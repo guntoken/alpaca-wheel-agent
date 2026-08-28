@@ -54,10 +54,16 @@ Bahasa kerja: **Indonesia**. Pemilik istirahat malam 28 Agu, kembali pagi 29 Agu
 - Jam pasar: 09:30–16:00 ET = **20:30–03:00 WIB** (Sen–Jum)
 
 ## Kerjaan tersisa (checklist submission)
-- [ ] **First live cycle** + lapor + push jurnal ← LANGKAH BERIKUTNYA
-- [ ] Cadence cycle selama lomba (29 Agu–4 Sep): tiap ~5 menit saat pasar buka
+**Rencana lengkap + jadwal 7 hari + checklist deliverable resmi lablab ada di
+[docs/SUBMISSION_PLAN.md](./docs/SUBMISSION_PLAN.md) — BACA ITU DULU saat resume.
+Deadline: submit Rabu 2 Sep (hard stop Kamis 3 Sep, jangan tunggu 4 Sep). Celah
+terbesar kita: belum ada Application URL (dashboard Streamlit) — prioritas hari-2.**
+- [x] First live cycle (28 Agu 20:42 WIB)
+- [ ] Cadence cycle selama lomba: loop live tiap malam saat pasar buka (20:30–03:00 WIB)
+- [ ] Dashboard Streamlit (read-only, data dari journal) + deploy → Application URL
 - [ ] One-page write-up: AI logic, risk gates, infrastruktur Alpaca (SDK+CLI+MCP)
-- [ ] Akun submission BARU $100k (menjelang 4 Sep) + ganti keys di `agent/.env`
+- [ ] Video ≤5 menit + slide PDF + cover 16:9 + deskripsi (pola lengkap di SUBMISSION_PLAN)
+- [ ] Akun submission BARU $100k (~2 Sep) + ganti keys di `agent/.env`
 - [ ] Post sosial X/LinkedIn tag @lablabai @AlpacaHQ (maks 5 link, kumpulkan URL-nya)
 
 ## Konteks desain singkat
