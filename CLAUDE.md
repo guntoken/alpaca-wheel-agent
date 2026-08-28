@@ -3,12 +3,16 @@
 Proyek hackathon **Alpaca AI Trading Agents 2026** (lablab.ai × Alpaca, 28 Agu–4 Sep 2026).
 Agent: wheel options otonom (CSP → covered call) + lapisan AI Claude headless. **PAPER ONLY.**
 
-## ▶️ RESUME — baca dulu (state per 28 Agu ~18:40 WIB)
-- **LIVE cycle pertama BELUM pernah jalan** — semua cycle sejauh ini dry-run (sesi sebelumnya
-  ditutup sebelum market open). Saat market open (20:30–03:00 WIB), langkah pertama:
-  `cd agent && uv run wheel-agent cycle --live` → cek `uv run wheel-agent status` →
-  laporkan ke pemilik dalam Bahasa Indonesia → commit+push jurnal ke repo.
-- Pemilik akan kembali ~21:00+ WIB. Bahasa kerja: **Indonesia**.
+## ▶️ RESUME — baca dulu (state per 28 Agu 18:42 WIB)
+- **Loop LIVE mandiri sedang berjalan**, terlepas dari sesi Claude: PID di `agent/loop.pid`,
+  log `agent/loop.log`, interval 15 menit, auto-mati ±03:12 WIB (setelah close). Cycle live
+  pertama terjadi otomatis begitu market open (20:30 WIB) — TIDAK perlu dijalankan manual.
+- Saat resume: **JANGAN jalankan loop/cycle kedua** (bisa tabrakan). Cukup periksa hasilnya:
+  `tail -30 agent/loop.log`, `cd agent && uv run wheel-agent status`, `tail -3 agent/journal.jsonl`,
+  lalu laporkan ke pemilik (Bahasa Indonesia): regime AI, posisi/order terkirim, P&L, error.
+  Setelah itu commit+push jurnal ke repo.
+- Hentikan loop: `kill $(cat agent/loop.pid)`.
+- Pemilik kembali ~21:00+ WIB. Bahasa kerja: **Indonesia**.
 
 ## Perintah (dari folder `agent/`)
 | Perintah | Fungsi |

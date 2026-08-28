@@ -11,6 +11,7 @@ __pycache__/
 # data / logs
 *.log
 data/cache/
+agent/loop.pid
 
 # reference repos studied locally (third-party, not part of this project)
 repos/
