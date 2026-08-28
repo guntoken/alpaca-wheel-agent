@@ -3,16 +3,27 @@
 Proyek hackathon **Alpaca AI Trading Agents 2026** (lablab.ai × Alpaca, 28 Agu–4 Sep 2026).
 Agent: wheel options otonom (CSP → covered call) + lapisan AI Claude headless. **PAPER ONLY.**
 
-## ▶️ RESUME — baca dulu (state per 28 Agu 18:42 WIB)
-- **Loop LIVE mandiri sedang berjalan**, terlepas dari sesi Claude: PID di `agent/loop.pid`,
-  log `agent/loop.log`, interval 15 menit, auto-mati ±03:12 WIB (setelah close). Cycle live
-  pertama terjadi otomatis begitu market open (20:30 WIB) — TIDAK perlu dijalankan manual.
-- Saat resume: **JANGAN jalankan loop/cycle kedua** (bisa tabrakan). Cukup periksa hasilnya:
-  `tail -30 agent/loop.log`, `cd agent && uv run wheel-agent status`, `tail -3 agent/journal.jsonl`,
-  lalu laporkan ke pemilik (Bahasa Indonesia): regime AI, posisi/order terkirim, P&L, error.
-  Setelah itu commit+push jurnal ke repo.
-- Hentikan loop: `kill $(cat agent/loop.pid)`.
-- Pemilik kembali ~21:00+ WIB. Bahasa kerja: **Indonesia**.
+## ▶️ RESUME — baca dulu (state per 28 Agu ~21:00 WIB)
+**Malam pertama SUDAH terjadi** (28 Agu): cycle live perdana jam 20:42 — AI regime RISK_ON,
+3 order CSP terkirim (INTC $86/25Sep qty2, T $25/18Sep qty7, F $13.50/18Sep qty13; limit di
+mid, status terakhir: open menunggu fill). Order ke-4 (KO) sempat ditolak broker (options
+buying power habis) → **sudah dipatch**: cycle kini menjepit budget ke `options_buying_power`
+aktual akun. Loop mandiri jalan sampai ±03:00 WIB lalu mati otomatis (timeout), market tutup.
+
+**Saat resume pagi (market TUTUP sampai 20:30 WIB):**
+1. Rekap semalam: `tail -50 agent/loop.log`, `cd agent && uv run wheel-agent status`,
+   `tail -5 agent/journal.jsonl` → laporkan ke pemilik (Bahasa Indonesia): order terisi/tidak,
+   premium masuk, posisi short put, P&L, peristiwa (TP/roll/assignment).
+2. Commit+push jurnal semalam ke repo.
+3. Penyempurnaan hari-2 (pasar tutup, waktu bagus): (a) **re-pricing order menganggur** —
+   cancel/replace ke bid/ask bila entry belum terisi >3 cycle; (b) tulis **one-page write-up**
+   (AI logic, risk gates, infra SDK+CLI+MCP) → `docs/WRITEUP.md`; (c) draft post sosial #2.
+4. Menjelang 20:30 WIB: jalankan ulang loop live:
+   `cd agent && setsid nohup env PYTHONUNBUFFERED=1 timeout 19800 ~/.local/bin/uv run wheel-agent loop --live --interval 900 >> loop.log 2>&1 < /dev/null & echo $! > loop.pid`
+   (timeout 19800s ≈ mati jam 03:00 WIB). JANGAN jalankan dua loop sekaligus — cek
+   `ps -p $(cat agent/loop.pid)` dulu.
+
+Bahasa kerja: **Indonesia**. Pemilik istirahat malam 28 Agu, kembali pagi 29 Agu.
 
 ## Perintah (dari folder `agent/`)
 | Perintah | Fungsi |
