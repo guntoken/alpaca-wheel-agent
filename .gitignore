@@ -16,3 +16,6 @@ agent/loop.pid
 # reference repos studied locally (third-party, not part of this project)
 repos/
 
+# research papers kept locally as reference (see commit messages for analysis)
+*.pdf
+
