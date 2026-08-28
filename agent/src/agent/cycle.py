@@ -4,7 +4,7 @@ from __future__ import annotations
 from datetime import datetime
 
 from . import ai, config, journal, risk, wheel
-from .alpaca_client import Api, parse_occ
+from .alpaca_client import Api, _num, parse_occ
 
 
 def _market_summary(api: Api) -> dict:
@@ -120,6 +120,11 @@ def run_cycle(dry_run: bool = True, force: bool = False, no_ai: bool = False) ->
             qty = abs(int(float(getattr(st.short_put, "qty", 0) or 0)))
             collateral_used += strike * 100 * qty
     caps = risk.collateral_caps(equity, regime["regime"])
+    # Broker truth: our own caps may not exceed Alpaca's actual options buying
+    # power (open CSP orders reserve it). If the field is missing, assume none.
+    obp = _num(getattr(acct, "options_buying_power", None)) or 0.0
+    caps["total"] = min(caps["total"], collateral_used + obp)
+    rec["options_buying_power"] = obp
     rec["caps"] = {k: round(v, 2) for k, v in caps.items()}
     rec["collateral_used"] = round(collateral_used, 2)
     rec["active_underlyings"] = sorted(active)
