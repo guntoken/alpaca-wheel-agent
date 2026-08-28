@@ -1,0 +1,20 @@
+[project]
+name = "agent"
+version = "0.1.0"
+description = "Options wheel agent — Alpaca AI Trading Agents Hackathon 2026 (paper only)"
+readme = "README.md"
+authors = [
+    { name = "guntoken", email = "wasisgunarto@gmail.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "alpaca-py>=0.44.0",
+    "python-dotenv>=1.2.3",
+]
+
+[project.scripts]
+wheel-agent = "agent.main:main"
+
+[build-system]
+requires = ["uv_build>=0.12.7,<0.13.0"]
+build-backend = "uv_build"

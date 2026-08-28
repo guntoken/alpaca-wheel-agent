@@ -1,0 +1,17 @@
+# secrets — never commit
+.env
+*.key
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# data / logs
+*.log
+data/cache/
+
+# reference repos studied locally (third-party, not part of this project)
+repos/
+
