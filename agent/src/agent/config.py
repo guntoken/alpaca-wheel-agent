@@ -25,6 +25,12 @@ MIN_PREMIUM_PCT = 0.005        # premium >= 0.5% of collateral (strike*100)
 TP_CLOSE_FRACTION = 0.50       # buy back when premium <= 50% of what we received
 ROLL_DELTA = 0.60              # defensive: close short put when delta reaches this
 
+# --- volatility-percentile gate (adapted from Rustamov et al. 2024, inverted
+# for premium selling: skip NEW CSPs when vol is cheap vs its own history) ---
+VOL_BAR_WINDOW = 21            # ~1 month bar, vs paper's 35-day OHP
+VOL_HISTORY_DAYS = 250         # paper uses 250 trading days
+VOL_PCT_FLOOR = 0.40           # last bar must rank >= 40th percentile
+
 # --- CC (covered call) ---
 CC_TARGET_DELTA = 0.25
 CC_DELTA_BAND = (0.12, 0.38)

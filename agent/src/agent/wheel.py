@@ -90,6 +90,14 @@ def decide(api: Api, st: SymbolState, ctx: dict) -> list[Intent]:
         eb = risk.earnings_block(u)
         if eb:
             return skip(eb)
+        # Vol-percentile gate (Rustamov et al. 2024, inverted for short
+        # premium): don't open NEW CSPs when vol-in-currency is cheap vs its
+        # own history — that's the paper's straddle-BUY zone, our sell-avoid zone.
+        vp = api.vol_dollar_percentile(u, config.VOL_BAR_WINDOW,
+                                       config.VOL_HISTORY_DAYS)
+        if vp is not None and vp < config.VOL_PCT_FLOOR:
+            return skip(f"vol percentile {vp:.0%} < {config.VOL_PCT_FLOOR:.0%} "
+                        "floor — premium cheap vs history (AON gate)")
         if not ctx["slots_free"]:
             return skip(f"max underlyings reached ({config.MAX_UNDERLYINGS})")
         strike_max = ctx["caps"]["per_underlying"] / 100.0
@@ -108,8 +116,9 @@ def decide(api: Api, st: SymbolState, ctx: dict) -> list[Intent]:
         return [Intent("SELL_CSP", u, occ=best.symbol, qty=qty, limit=limit,
                        coid=f"{config.ORDER_PREFIX}-CSP-{best.symbol}",
                        reason=(f"new CSP: delta {best.delta:.2f}, dte {best.dte}, "
-                               f"prem {best.premium_pct:.2%} of collateral"),
-                       detail=best.as_dict())]
+                               f"prem {best.premium_pct:.2%} of collateral"
+                               + (f", vol pct {vp:.0%}" if vp is not None else "")),
+                       detail={**best.as_dict(), "vol_pct": vp})]
 
     # ---------- state 2: short put open -> manage ----------
     if st.short_put is not None:

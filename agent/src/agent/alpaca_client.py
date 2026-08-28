@@ -153,6 +153,25 @@ class Api:
         var = sum((c - mean) ** 2 for c in tail) / (window - 1)
         return mean + mult * (var ** 0.5)
 
+    def vol_dollar_percentile(self, symbol: str, window: int = 21,
+                              history_days: int = 250) -> Optional[float]:
+        """Percentile (0..1) of the current 'volatility in currency' bar vs its
+        own history — adapted from Rustamov et al. 2024 (Analytical Option
+        Navigator, Risks 12(11):1131). They rank OHP-window dollar volatility
+        into percentiles and buy straddles at LOW percentiles; we invert it:
+        premium sellers want HIGH percentiles. Simplification: the bar is the
+        rolling mean absolute daily close-to-close dollar move (paper uses an
+        optimized high-low range). Returns None if history is short."""
+        closes = self.daily_closes(symbol, days=history_days + window + 15)
+        if len(closes) < window + 30:
+            return None
+        moves = [abs(closes[i] - closes[i - 1]) for i in range(1, len(closes))]
+        bars = [sum(moves[i - window:i]) / window
+                for i in range(window, len(moves) + 1)]
+        last = bars[-1]
+        below = sum(1 for b in bars if b <= last)
+        return below / len(bars)
+
     # ---- options data ----
     def chain_snapshots(self, underlying: str) -> dict:
         try:
