@@ -147,12 +147,26 @@ def decide(api: Api, st: SymbolState, ctx: dict) -> list[Intent]:
                                    f" of entry {entry_prem:.2f}"),
                            detail={"entry_prem": entry_prem, "ask": ask, "delta": delta, "dte": dte})]
         if delta >= config.ROLL_DELTA:
-            limit = min(mid, ask)
-            return [Intent("BUYBACK_PUT", u, occ=occ, qty=qty, limit=limit,
-                           coid=f"{config.ORDER_PREFIX}-ROLL-{occ}",
-                           reason=(f"defensive close: delta {delta:.2f} >= {config.ROLL_DELTA}"
-                                   " (fresh CSP may follow next cycle)"),
-                           detail={"entry_prem": entry_prem, "ask": ask, "delta": delta, "dte": dte})]
+            # Wheel discipline (practitioner consensus, e.g. ScottishTrader):
+            # roll ONLY for a net credit — closing a challenged put at a big
+            # debit locks in the loss that assignment + covered calls would
+            # have worked off. No credit available -> hold to assignment.
+            strike_max = ctx["caps"]["per_underlying"] / 100.0
+            fresh = _best(api.candidates(u, "P", config.DTE_MIN, config.DTE_MAX,
+                                         strike_max=strike_max),
+                          config.CSP_TARGET_DELTA, config.CSP_DELTA_BAND,
+                          config.MIN_PREMIUM_PCT)
+            if fresh and fresh.bid >= ask:
+                limit = min(mid, ask)
+                return [Intent("BUYBACK_PUT", u, occ=occ, qty=qty, limit=limit,
+                               coid=f"{config.ORDER_PREFIX}-ROLL-{occ}",
+                               reason=(f"roll for credit: delta {delta:.2f}, fresh CSP "
+                                       f"{fresh.symbol} bid {fresh.bid:.2f} >= close ask {ask:.2f}"),
+                               detail={"entry_prem": entry_prem, "ask": ask, "delta": delta,
+                                       "dte": dte, "roll_target": fresh.symbol})]
+            return skip(f"delta {delta:.2f} challenged but no credit roll "
+                        f"(fresh bid {f'{fresh.bid:.2f}' if fresh else 'none'}, close ask "
+                        f"{ask:.2f}) — hold to assignment (wheel discipline)")
         return skip(f"hold short put {occ}: delta {delta:.2f}, dte {dte}, "
                     f"unrealized {float(getattr(pos, 'unrealized_pl', 0) or 0):+.2f}")
 

@@ -21,6 +21,11 @@ def _market_summary(api: Api) -> dict:
             "vs_sma20_pct": round((px / sma20 - 1) * 100, 2) if px and sma20 else None,
             "vs_sma50_pct": round((px / sma50 - 1) * 100, 2) if px and sma50 else None,
         }
+    # market-wide vol context for the AI regime read (practitioner rule:
+    # "always know what vol is doing" — VIX awareness without a VIX feed)
+    spy_vp = api.vol_dollar_percentile("SPY")
+    if spy_vp is not None:
+        out["SPY_vol_dollar_percentile"] = round(spy_vp, 3)
     return out
 
 
