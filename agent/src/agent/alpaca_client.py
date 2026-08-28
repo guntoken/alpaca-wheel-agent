@@ -140,6 +140,19 @@ class Api:
         except Exception:
             return []
 
+    def upper_bollinger(self, symbol: str, window: int = 20,
+                        mult: float = 2.0) -> Optional[float]:
+        """Upper Bollinger Band of daily closes. Official Alpaca wheel guide
+        requires covered-call strikes above it — never sell calls into a
+        statistically stretched price. Returns None if history is short."""
+        closes = self.daily_closes(symbol, days=120)
+        if len(closes) < window:
+            return None
+        tail = closes[-window:]
+        mean = sum(tail) / window
+        var = sum((c - mean) ** 2 for c in tail) / (window - 1)
+        return mean + mult * (var ** 0.5)
+
     # ---- options data ----
     def chain_snapshots(self, underlying: str) -> dict:
         try:

@@ -14,6 +14,7 @@ from .alpaca_client import Api, Candidate, _num, _quote_pair, parse_occ
 class SymbolState:
     underlying: str
     equity_qty: int = 0
+    qty_available: int = 0                # net of shares already committed to orders
     avg_cost: float = 0.0
     short_put: Optional[object] = None   # alpaca Position (short put)
     short_call: Optional[object] = None  # alpaca Position (short call)
@@ -58,6 +59,7 @@ def collect_states(api: Api, universe: list[str]) -> dict[str, SymbolState]:
         else:
             st = states.setdefault(sym, SymbolState(underlying=sym))
             st.equity_qty = int(qty)
+            st.qty_available = int(_num(getattr(p, "qty_available", None)) or qty)
             st.avg_cost = avg
     return states
 
@@ -149,17 +151,28 @@ def decide(api: Api, st: SymbolState, ctx: dict) -> list[Intent]:
     if st.equity_qty >= 100 and st.short_call is None:
         if not ctx["entries_allowed"]:
             return skip(f"holding {st.equity_qty} {u}: CC blocked by regime/risk gate")
+        # Official Alpaca wheel guide: CC strike must clear BOTH cost basis and
+        # the upper Bollinger Band (SMA20 + 2σ) — don't cap a stretched price.
+        ub = api.upper_bollinger(u, config.BB_WINDOW, config.BB_STD)
+        floor = max(st.avg_cost, ub) if ub else st.avg_cost
         cands = api.candidates(u, "C", config.DTE_MIN, config.DTE_MAX,
-                               strike_min=max(st.avg_cost, 0.01))
+                               strike_min=max(floor, 0.01))
         best = _best(cands, config.CC_TARGET_DELTA, config.CC_DELTA_BAND)
         if best is None:
-            return skip(f"no qualifying call above cost {st.avg_cost:.2f}")
-        qty = st.equity_qty // 100
+            return skip(f"no qualifying call above floor {floor:.2f} "
+                        f"(cost {st.avg_cost:.2f}, upperBB "
+                        f"{f'{ub:.2f}' if ub else 'n/a'})")
+        avail = st.qty_available or st.equity_qty
+        qty = avail // 100
+        if qty < 1:
+            return skip(f"{u}: shares already committed to other orders")
         limit = max(best.mid, best.bid)
         return [Intent("SELL_CC", u, occ=best.symbol, qty=qty, limit=limit,
                        coid=f"{config.ORDER_PREFIX}-CC-{best.symbol}",
                        reason=(f"covered call: delta {best.delta:.2f}, dte {best.dte}, "
-                               f"strike {best.strike:.2f} >= cost {st.avg_cost:.2f}"),
+                               f"strike {best.strike:.2f} >= floor {floor:.2f} "
+                               f"(cost {st.avg_cost:.2f}, upperBB "
+                               f"{f'{ub:.2f}' if ub else 'n/a'})"),
                        detail=best.as_dict())]
         # remainder < 100 shares stays uncovered by design (never sell naked calls)
 

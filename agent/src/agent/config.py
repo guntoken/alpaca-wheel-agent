@@ -28,12 +28,14 @@ ROLL_DELTA = 0.60              # defensive: close short put when delta reaches t
 # --- CC (covered call) ---
 CC_TARGET_DELTA = 0.25
 CC_DELTA_BAND = (0.12, 0.38)
+BB_WINDOW = 20                 # covered-call strikes must clear the upper
+BB_STD = 2.0                   # Bollinger Band (official Alpaca wheel guide)
 
 # --- risk gates (the write-up section judges read) ---
 MAX_UNDERLYINGS = 5            # max underlyings with exposure at once
 MAX_COLLATERAL_PCT = 0.18      # per-underlying collateral cap (% of equity)
 MAX_TOTAL_COLLATERAL_PCT = 0.72
-MIN_OPEN_INTEREST = 100
+MIN_OPEN_INTEREST = 200        # official Alpaca wheel tutorial threshold
 MAX_QUOTE_SPREAD_PCT = 0.15    # (ask-bid)/mid
 DAILY_DRAWDOWN_STOP = 0.03     # no NEW entries if equity < day anchor * (1 - 3%)
 KILL_FILE = AGENT_DIR / "KILL"
