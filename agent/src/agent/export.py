@@ -99,6 +99,9 @@ def write_dashboard_data(api: Api | None = None) -> dict:
         {"ts": c.get("ts"), "equity": c.get("equity")}
         for c in cycles if c.get("equity") is not None
     ][-400:]
+    # macro panel the AI regime reader saw on the last cycle
+    data["market_context"] = next(
+        (c.get("market") for c in reversed(cycles) if c.get("market")), None)
     data["regime_history"] = [
         {"ts": c.get("ts"), "regime": (c.get("ai_regime") or {}).get("regime"),
          "reason": (c.get("ai_regime") or {}).get("reason"),

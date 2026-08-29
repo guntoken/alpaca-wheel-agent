@@ -54,6 +54,27 @@ with tabs[0]:
         b2.metric("Deterministic anchor", last.get("det") or "-")
         st.info(f"🧠 Claude said: “{last.get('reason')}”", icon="🧠")
 
+    st.subheader("Macro context the AI reads (all Alpaca-native data)")
+    macro = (DATA.get("market_context") or {}).get("macro", {})
+    if macro:
+        m1, m2, m3, m4 = st.columns(4)
+        for col, name in zip((m1, m2, m3), ("GLD", "VIXY", "BTC")):
+            m = macro.get(name) or {}
+            col.metric(f"{name} — {'gold' if name == 'GLD' else 'priced fear' if name == 'VIXY' else 'risk appetite'}",
+                       f"{m.get('day_pct', 0):+.2f}% d/d",
+                       f"vs SMA20 {m.get('vs_sma20_pct'):+.1f}%"
+                       if m.get("vs_sma20_pct") is not None else None)
+        news = macro.get("news") or {}
+        m4.metric("News sentiment (Alpaca)",
+                  f"{news.get('avg_sentiment', 0):+.2f}" if news.get("avg_sentiment") is not None else "n/a",
+                  f"{len(news.get('headlines', []))} headlines")
+        if news.get("headlines"):
+            for h in news["headlines"][:5]:
+                s = h.get("sentiment") or 0
+                emoji = "🟢" if s > 0.15 else ("🔴" if s < -0.15 else "⚪")
+                st.markdown(f"{emoji} &nbsp;{h['headline']} "
+                            f"`sent {h.get('sentiment')}`")
+
     st.subheader("The wheel, per underlying")
     by_under: dict[str, list] = {}
     for p in DATA.get("positions", []):

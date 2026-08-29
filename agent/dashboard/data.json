@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-28T22:50:38.538330-04:00",
+ "updated": "2026-08-28T23:05:36.479080-04:00",
  "account": {
   "equity": 99698.56,
   "cash": 101752.56,
@@ -245,8 +245,92 @@
   {
    "ts": "2026-08-29T02:33:15+00:00",
    "equity": 99698.56
+  },
+  {
+   "ts": "2026-08-29T03:02:37+00:00",
+   "equity": 99698.56
+  },
+  {
+   "ts": "2026-08-29T03:05:34+00:00",
+   "equity": 99698.56
   }
  ],
+ "market_context": {
+  "SPY": {
+   "last": 769.28,
+   "sma20": 769.18,
+   "sma50": 753.91,
+   "vs_sma20_pct": 0.01,
+   "vs_sma50_pct": 2.04
+  },
+  "QQQ": {
+   "last": 716.91,
+   "sma20": 717.92,
+   "sma50": 712.0,
+   "vs_sma20_pct": -0.14,
+   "vs_sma50_pct": 0.69
+  },
+  "SPY_vol_dollar_percentile": 0.211,
+  "SPY_day_change_pct": -0.25,
+  "macro": {
+   "GLD": {
+    "last": 408.84,
+    "day_pct": -3.26,
+    "vs_sma20_pct": 0.99
+   },
+   "VIXY": {
+    "last": 17.64,
+    "day_pct": 1.35,
+    "vs_sma20_pct": -6.25
+   },
+   "BTC": {
+    "last": 77716.27,
+    "day_pct": -0.16,
+    "vs_sma20_pct": 9.45
+   },
+   "news": {
+    "avg_sentiment": null,
+    "headlines": [
+     {
+      "ts": "2026-08-28 20:06:30+00:00",
+      "headline": "'Pentagon Is in Talks With Venezuelan Mogul for Massive Oil Deal' - Bloomberg",
+      "sentiment": null,
+      "source": "benzinga"
+     },
+     {
+      "ts": "2026-08-28 19:25:50+00:00",
+      "headline": "Iran's President Pezeshkian Says Iran's Exports And Imports Have Decreased By Up To 35% Because Of U.S. Sanctions And Blockade",
+      "sentiment": null,
+      "source": "benzinga"
+     },
+     {
+      "ts": "2026-08-28 18:06:59+00:00",
+      "headline": "'Hegseth Weighs Summoning Top Military Leaders to Quantico for Second Time' - WSJ Exclusive",
+      "sentiment": null,
+      "source": "benzinga"
+     },
+     {
+      "ts": "2026-08-28 17:24:46+00:00",
+      "headline": "Gold, Bitcoin Sink: September Rate Hike Odds Jump to 60% After Warsh's Hawkish Speech",
+      "sentiment": null,
+      "source": "benzinga"
+     },
+     {
+      "ts": "2026-08-28 17:23:41+00:00",
+      "headline": "UPDATE: The U.S. Court Of Appeals For The Ninth Circuit Said It Disagreed With A Prediction Market Company\u2019s Overly Broad Reading Of Federal Commodity Law, Affi",
+      "sentiment": null,
+      "source": "benzinga"
+     },
+     {
+      "ts": "2026-08-28 17:10:51+00:00",
+      "headline": "UPDATE: KCRA 3 News Network Reports \"California Lawmakers Block Newsom's Push To Prevent Insurance Companies From Suing Utilities That Cause Wildfires\"",
+      "sentiment": null,
+      "source": "benzinga"
+     }
+    ]
+   }
+  }
+ },
  "regime_history": [
   {
    "ts": "2026-08-28T10:22:12+00:00",
@@ -506,217 +590,23 @@
    "reason": "Both indexes above SMA50, consolidating at SMA20 with mild -0.25% day; orderly uptrend, healthy pullback",
    "det": "NEUTRAL_OR_BULL",
    "spy_pct": -0.25
+  },
+  {
+   "ts": "2026-08-29T03:02:37+00:00",
+   "regime": "RISK_ON",
+   "reason": "Indices hold above 50-SMA in mild pullback; gold sold off, VIXY below average, BTC strong \u2014 calm macro.",
+   "det": "NEUTRAL_OR_BULL",
+   "spy_pct": -0.25
+  },
+  {
+   "ts": "2026-08-29T03:05:34+00:00",
+   "regime": "NEUTRAL",
+   "reason": "Indices pinned at 20-day SMAs, VIXY below average, BTC elevated; hawkish rate-hike headlines sink gold \u2014 conflicting signals",
+   "det": "NEUTRAL_OR_BULL",
+   "spy_pct": -0.25
   }
  ],
  "decisions_feed": [
-  {
-   "ts": "2026-08-28T19:11:21+00:00",
-   "cycle": 30,
-   "kind": "SKIP",
-   "underlying": "NOK",
-   "occ": "",
-   "reason": "collateral budget exhausted for NOK"
-  },
-  {
-   "ts": "2026-08-28T19:11:21+00:00",
-   "cycle": 30,
-   "kind": "SKIP",
-   "underlying": "SOFI",
-   "occ": "",
-   "reason": "collateral budget exhausted for SOFI"
-  },
-  {
-   "ts": "2026-08-28T19:11:21+00:00",
-   "cycle": 30,
-   "kind": "SKIP",
-   "underlying": "BABA",
-   "occ": "",
-   "reason": "collateral budget exhausted for BABA"
-  },
-  {
-   "ts": "2026-08-28T19:11:21+00:00",
-   "cycle": 30,
-   "kind": "SKIP",
-   "underlying": "MU",
-   "occ": "",
-   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
-  },
-  {
-   "ts": "2026-08-28T19:11:21+00:00",
-   "cycle": 30,
-   "kind": "SKIP",
-   "underlying": "WBD",
-   "occ": "",
-   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
-  },
-  {
-   "ts": "2026-08-28T19:11:21+00:00",
-   "cycle": 30,
-   "kind": "SKIP",
-   "underlying": "VALE",
-   "occ": "",
-   "reason": "collateral budget exhausted for VALE"
-  },
-  {
-   "ts": "2026-08-28T19:27:09+00:00",
-   "cycle": 31,
-   "kind": "SKIP",
-   "underlying": "INTC",
-   "occ": "",
-   "reason": "collateral budget exhausted for INTC"
-  },
-  {
-   "ts": "2026-08-28T19:27:09+00:00",
-   "cycle": 31,
-   "kind": "SKIP",
-   "underlying": "T",
-   "occ": "",
-   "reason": "collateral budget exhausted for T"
-  },
-  {
-   "ts": "2026-08-28T19:27:09+00:00",
-   "cycle": 31,
-   "kind": "SKIP",
-   "underlying": "F",
-   "occ": "",
-   "reason": "collateral budget exhausted for F"
-  },
-  {
-   "ts": "2026-08-28T19:27:09+00:00",
-   "cycle": 31,
-   "kind": "SKIP",
-   "underlying": "GM",
-   "occ": "",
-   "reason": "collateral budget exhausted for GM"
-  },
-  {
-   "ts": "2026-08-28T19:27:09+00:00",
-   "cycle": 31,
-   "kind": "SKIP",
-   "underlying": "PFE",
-   "occ": "",
-   "reason": "collateral budget exhausted for PFE"
-  },
-  {
-   "ts": "2026-08-28T19:27:09+00:00",
-   "cycle": 31,
-   "kind": "SKIP",
-   "underlying": "KO",
-   "occ": "",
-   "reason": "collateral budget exhausted for KO"
-  },
-  {
-   "ts": "2026-08-28T19:27:09+00:00",
-   "cycle": 31,
-   "kind": "SKIP",
-   "underlying": "NOK",
-   "occ": "",
-   "reason": "collateral budget exhausted for NOK"
-  },
-  {
-   "ts": "2026-08-28T19:27:09+00:00",
-   "cycle": 31,
-   "kind": "SKIP",
-   "underlying": "SOFI",
-   "occ": "",
-   "reason": "collateral budget exhausted for SOFI"
-  },
-  {
-   "ts": "2026-08-28T19:27:09+00:00",
-   "cycle": 31,
-   "kind": "SKIP",
-   "underlying": "BABA",
-   "occ": "",
-   "reason": "collateral budget exhausted for BABA"
-  },
-  {
-   "ts": "2026-08-28T19:27:09+00:00",
-   "cycle": 31,
-   "kind": "SKIP",
-   "underlying": "MU",
-   "occ": "",
-   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
-  },
-  {
-   "ts": "2026-08-28T19:27:09+00:00",
-   "cycle": 31,
-   "kind": "SKIP",
-   "underlying": "WBD",
-   "occ": "",
-   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
-  },
-  {
-   "ts": "2026-08-28T19:27:09+00:00",
-   "cycle": 31,
-   "kind": "SKIP",
-   "underlying": "VALE",
-   "occ": "",
-   "reason": "collateral budget exhausted for VALE"
-  },
-  {
-   "ts": "2026-08-28T19:42:56+00:00",
-   "cycle": 32,
-   "kind": "SKIP",
-   "underlying": "INTC",
-   "occ": "",
-   "reason": "collateral budget exhausted for INTC"
-  },
-  {
-   "ts": "2026-08-28T19:42:56+00:00",
-   "cycle": 32,
-   "kind": "SKIP",
-   "underlying": "T",
-   "occ": "",
-   "reason": "collateral budget exhausted for T"
-  },
-  {
-   "ts": "2026-08-28T19:42:56+00:00",
-   "cycle": 32,
-   "kind": "SKIP",
-   "underlying": "F",
-   "occ": "",
-   "reason": "collateral budget exhausted for F"
-  },
-  {
-   "ts": "2026-08-28T19:42:56+00:00",
-   "cycle": 32,
-   "kind": "SKIP",
-   "underlying": "GM",
-   "occ": "",
-   "reason": "collateral budget exhausted for GM"
-  },
-  {
-   "ts": "2026-08-28T19:42:56+00:00",
-   "cycle": 32,
-   "kind": "SKIP",
-   "underlying": "PFE",
-   "occ": "",
-   "reason": "collateral budget exhausted for PFE"
-  },
-  {
-   "ts": "2026-08-28T19:42:56+00:00",
-   "cycle": 32,
-   "kind": "SKIP",
-   "underlying": "KO",
-   "occ": "",
-   "reason": "collateral budget exhausted for KO"
-  },
-  {
-   "ts": "2026-08-28T19:42:56+00:00",
-   "cycle": 32,
-   "kind": "SKIP",
-   "underlying": "NOK",
-   "occ": "",
-   "reason": "collateral budget exhausted for NOK"
-  },
-  {
-   "ts": "2026-08-28T19:42:56+00:00",
-   "cycle": 32,
-   "kind": "SKIP",
-   "underlying": "SOFI",
-   "occ": "",
-   "reason": "collateral budget exhausted for SOFI"
-  },
   {
    "ts": "2026-08-28T19:42:56+00:00",
    "cycle": 32,
@@ -1308,11 +1198,219 @@
    "underlying": "SOFI",
    "occ": "SOFI261002P00017000",
    "reason": "cap: total collateral budget 71783"
+  },
+  {
+   "ts": "2026-08-29T03:02:37+00:00",
+   "cycle": 38,
+   "kind": "SKIP",
+   "underlying": "INTC",
+   "occ": "",
+   "reason": "hold INTC260911P00086000: delta 0.33, dte 13, uPL -10.00 | hold INTC260925P00086000: delta 0.37, dte 27, uPL -158.00 | hold INTC261002P00085000: delta 0.35, dte 34, uPL -120.00"
+  },
+  {
+   "ts": "2026-08-29T03:02:37+00:00",
+   "cycle": 38,
+   "kind": "SKIP",
+   "underlying": "T",
+   "occ": "",
+   "reason": "vol percentile 19% < 40% floor \u2014 premium cheap vs history (AON gate)"
+  },
+  {
+   "ts": "2026-08-29T03:02:37+00:00",
+   "cycle": 38,
+   "kind": "SKIP",
+   "underlying": "F",
+   "occ": "",
+   "reason": "hold F260918P00013500: delta 0.32, dte 20, uPL -13.00"
+  },
+  {
+   "ts": "2026-08-29T03:02:37+00:00",
+   "cycle": 38,
+   "kind": "SKIP",
+   "underlying": "GM",
+   "occ": "",
+   "reason": "vol percentile 20% < 40% floor \u2014 premium cheap vs history (AON gate)"
+  },
+  {
+   "ts": "2026-08-29T03:02:37+00:00",
+   "cycle": 38,
+   "kind": "SELL_CSP",
+   "underlying": "PFE",
+   "occ": "PFE260918P00027000",
+   "reason": "new CSP: delta 0.24, dte 20, prem 0.74% of collateral, vol pct 77%"
+  },
+  {
+   "ts": "2026-08-29T03:02:37+00:00",
+   "cycle": 38,
+   "kind": "SKIP",
+   "underlying": "KO",
+   "occ": "",
+   "reason": "vol percentile 38% < 40% floor \u2014 premium cheap vs history (AON gate)"
+  },
+  {
+   "ts": "2026-08-29T03:02:37+00:00",
+   "cycle": 38,
+   "kind": "SELL_CSP",
+   "underlying": "NOK",
+   "occ": "NOK260911P00009500",
+   "reason": "new CSP: delta 0.24, dte 13, prem 1.58% of collateral, vol pct 50%"
+  },
+  {
+   "ts": "2026-08-29T03:02:37+00:00",
+   "cycle": 38,
+   "kind": "SELL_CSP",
+   "underlying": "SOFI",
+   "occ": "SOFI261002P00017000",
+   "reason": "new CSP: delta 0.31, dte 34, prem 3.47% of collateral, vol pct 48%"
+  },
+  {
+   "ts": "2026-08-29T03:02:37+00:00",
+   "cycle": 38,
+   "kind": "SKIP",
+   "underlying": "BABA",
+   "occ": "",
+   "reason": "collateral budget exhausted for BABA"
+  },
+  {
+   "ts": "2026-08-29T03:02:37+00:00",
+   "cycle": 38,
+   "kind": "SKIP",
+   "underlying": "MU",
+   "occ": "",
+   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
+  },
+  {
+   "ts": "2026-08-29T03:02:37+00:00",
+   "cycle": 38,
+   "kind": "SKIP",
+   "underlying": "WBD",
+   "occ": "",
+   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
+  },
+  {
+   "ts": "2026-08-29T03:02:37+00:00",
+   "cycle": 38,
+   "kind": "SKIP",
+   "underlying": "VALE",
+   "occ": "",
+   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
+  },
+  {
+   "ts": "2026-08-29T03:02:37+00:00",
+   "cycle": 38,
+   "kind": "SKIP",
+   "underlying": "NOK",
+   "occ": "NOK260911P00009500",
+   "reason": "cap: total collateral budget 71783"
+  },
+  {
+   "ts": "2026-08-29T03:02:37+00:00",
+   "cycle": 38,
+   "kind": "SKIP",
+   "underlying": "SOFI",
+   "occ": "SOFI261002P00017000",
+   "reason": "cap: total collateral budget 71783"
+  },
+  {
+   "ts": "2026-08-29T03:05:34+00:00",
+   "cycle": 39,
+   "kind": "SKIP",
+   "underlying": "INTC",
+   "occ": "",
+   "reason": "hold INTC260911P00086000: delta 0.33, dte 13, uPL -10.00 | hold INTC260925P00086000: delta 0.37, dte 27, uPL -158.00 | hold INTC261002P00085000: delta 0.35, dte 34, uPL -120.00"
+  },
+  {
+   "ts": "2026-08-29T03:05:34+00:00",
+   "cycle": 39,
+   "kind": "SKIP",
+   "underlying": "T",
+   "occ": "",
+   "reason": "vol percentile 19% < 40% floor \u2014 premium cheap vs history (AON gate)"
+  },
+  {
+   "ts": "2026-08-29T03:05:34+00:00",
+   "cycle": 39,
+   "kind": "SKIP",
+   "underlying": "F",
+   "occ": "",
+   "reason": "hold F260918P00013500: delta 0.32, dte 20, uPL -13.00"
+  },
+  {
+   "ts": "2026-08-29T03:05:34+00:00",
+   "cycle": 39,
+   "kind": "SKIP",
+   "underlying": "GM",
+   "occ": "",
+   "reason": "vol percentile 20% < 40% floor \u2014 premium cheap vs history (AON gate)"
+  },
+  {
+   "ts": "2026-08-29T03:05:34+00:00",
+   "cycle": 39,
+   "kind": "SKIP",
+   "underlying": "PFE",
+   "occ": "",
+   "reason": "collateral budget exhausted for PFE"
+  },
+  {
+   "ts": "2026-08-29T03:05:34+00:00",
+   "cycle": 39,
+   "kind": "SKIP",
+   "underlying": "KO",
+   "occ": "",
+   "reason": "vol percentile 38% < 40% floor \u2014 premium cheap vs history (AON gate)"
+  },
+  {
+   "ts": "2026-08-29T03:05:34+00:00",
+   "cycle": 39,
+   "kind": "SKIP",
+   "underlying": "NOK",
+   "occ": "",
+   "reason": "collateral budget exhausted for NOK"
+  },
+  {
+   "ts": "2026-08-29T03:05:34+00:00",
+   "cycle": 39,
+   "kind": "SKIP",
+   "underlying": "SOFI",
+   "occ": "",
+   "reason": "collateral budget exhausted for SOFI"
+  },
+  {
+   "ts": "2026-08-29T03:05:34+00:00",
+   "cycle": 39,
+   "kind": "SKIP",
+   "underlying": "BABA",
+   "occ": "",
+   "reason": "collateral budget exhausted for BABA"
+  },
+  {
+   "ts": "2026-08-29T03:05:34+00:00",
+   "cycle": 39,
+   "kind": "SKIP",
+   "underlying": "MU",
+   "occ": "",
+   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
+  },
+  {
+   "ts": "2026-08-29T03:05:34+00:00",
+   "cycle": 39,
+   "kind": "SKIP",
+   "underlying": "WBD",
+   "occ": "",
+   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
+  },
+  {
+   "ts": "2026-08-29T03:05:34+00:00",
+   "cycle": 39,
+   "kind": "SKIP",
+   "underlying": "VALE",
+   "occ": "",
+   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
   }
  ],
  "ai_vetoes": [],
  "stats": {
-  "cycles_total": 37,
+  "cycles_total": 39,
   "live_cycles": 25,
   "fills": 4,
   "unrealized_pl": -301.0,

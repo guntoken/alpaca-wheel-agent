@@ -17,15 +17,20 @@ REGIME_PROMPT = """You are the risk overlay of an options wheel trading agent (p
 Given the market summary below, classify the current regime for SELLING cash-secured puts
 on liquid US large/mid caps over the next few sessions.
 
+Market summary (JSON) — equities (SPY/QQQ vs their 20/50-day SMAs), plus a macro panel:
+GLD (gold, flight-to-safety), VIXY (priced fear), BTC (risk appetite), and recent news
+headlines with sentiment scores. Cross-check signals: equities up + gold up + VIXY up is
+not a clean risk-on; broad down + panic news = risk-off regardless of yesterday's trend.
+
 Market summary (JSON):
 {summary}
 
 Rules:
-- RISK_OFF: falling knife / stressed tape (e.g. index well below both SMAs with momentum down)
-- NEUTRAL: mixed or choppy
-- RISK_ON: orderly uptrend or healthy pullback
+- RISK_OFF: falling knife / stressed tape (e.g. index well below both SMAs with momentum down, fear gauges surging, news sentiment clearly negative)
+- NEUTRAL: mixed or choppy, or conflicting macro signals
+- RISK_ON: orderly uptrend or healthy pullback with calm macro
 
-Answer with STRICT JSON only, no prose: {{"regime":"RISK_ON|NEUTRAL|RISK_OFF","reason":"<max 20 words"}}"""
+Answer with STRICT JSON only, no prose: {{"regime":"RISK_ON|NEUTRAL|RISK_OFF","reason":"<max 20 words>"}}"""
 
 VETO_PROMPT = """You are the entry veto layer of an options wheel trading agent (paper account).
 The deterministic engine proposes the NEW entries below. Each is a cash-secured short put or a

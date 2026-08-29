@@ -33,6 +33,35 @@ def _market_summary(api: Api) -> dict:
         prev_close = spy_closes[-2]
         if prev_close:
             out["SPY_day_change_pct"] = round((out["SPY"]["last"] / prev_close - 1) * 100, 2)
+
+    # Macro context panel — everything the AI regime reader sees beyond equities.
+    # All Alpaca-native: GLD (flight to safety), VIXY (priced fear), BTC/USD
+    # (fastest risk-appetite gauge), and Alpaca's news feed with per-article
+    # sentiment scores (how geopolitics/fundamentals actually reach the model).
+    def _ctx(closes, last):
+        if not closes or len(closes) < 2 or not last:
+            return {}
+        sma20 = (sum(closes[-20:]) / 20) if len(closes) >= 20 else None
+        return {
+            "last": round(last, 2),
+            "day_pct": round((last / closes[-2] - 1) * 100, 2),
+            "vs_sma20_pct": round((last / sma20 - 1) * 100, 2) if sma20 else None,
+        }
+
+    macro: dict = {}
+    for sym in ("GLD", "VIXY"):
+        px = api.last_trade(sym)
+        macro[sym] = _ctx(api.daily_closes(sym, days=60), px)
+    btc = api.crypto_daily_closes("BTC/USD", days=60)
+    macro["BTC"] = _ctx(btc, btc[-1] if btc else None)
+    news = api.news_headlines(["SPY", "INTC", "F", "GM", "T", "PFE"], limit=6)
+    if news:
+        sents = [n["sentiment"] for n in news if n["sentiment"] is not None]
+        macro["news"] = {
+            "avg_sentiment": round(sum(sents) / len(sents), 2) if sents else None,
+            "headlines": news,
+        }
+    out["macro"] = macro
     return out
 
 

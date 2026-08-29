@@ -4,9 +4,12 @@ from __future__ import annotations
 from datetime import date, datetime, timedelta
 from typing import Optional
 
+from alpaca.data.historical.crypto import CryptoHistoricalDataClient
+from alpaca.data.historical.news import NewsClient
 from alpaca.data.historical.option import OptionHistoricalDataClient
 from alpaca.data.historical.stock import StockHistoricalDataClient
-from alpaca.data.requests import (OptionChainRequest, StockBarsRequest,
+from alpaca.data.requests import (CryptoBarsRequest, NewsRequest,
+                                  OptionChainRequest, StockBarsRequest,
                                   StockLatestTradeRequest)
 from alpaca.data.timeframe import TimeFrame
 from alpaca.trading.client import TradingClient
@@ -90,6 +93,8 @@ class Api:
         self.trade = TradingClient(config.KEY_ID, config.SECRET_KEY, paper=True)
         self.opts = OptionHistoricalDataClient(config.KEY_ID, config.SECRET_KEY)
         self.stocks = StockHistoricalDataClient(config.KEY_ID, config.SECRET_KEY)
+        self.crypto = CryptoHistoricalDataClient(config.KEY_ID, config.SECRET_KEY)
+        self.news = NewsClient(config.KEY_ID, config.SECRET_KEY)
 
     # ---- account & state ----
     def clock(self):
@@ -177,6 +182,67 @@ class Api:
         last = bars[-1]
         below = sum(1 for b in bars if b <= last)
         return below / len(bars)
+
+    def crypto_daily_closes(self, symbol: str = "BTC/USD", days: int = 60) -> list[float]:
+        """Daily closes for a crypto pair (risk-appetite gauge for the AI)."""
+        try:
+            r = self.crypto.get_crypto_bars(CryptoBarsRequest(
+                symbol_or_symbols=[symbol], timeframe=TimeFrame.Day,
+                start=datetime.utcnow() - timedelta(days=days)))
+            data = getattr(r, "data", None)
+            if isinstance(data, dict):
+                bars = data.get(symbol) or []
+            elif isinstance(r, dict):
+                bs = r.get(symbol)
+                bars = list(getattr(bs, "bars", []) or [])
+            else:
+                bars = list(getattr(r, "bars", []) or [])
+            closes = []
+            for b in bars:
+                c = getattr(b, "close", None)
+                if c is None and isinstance(b, dict):
+                    c = b.get("close")
+                if c:
+                    closes.append(float(c))
+            return closes
+        except Exception:
+            return []
+
+    def news_headlines(self, symbols: list[str], limit: int = 6) -> list[dict]:
+        """Recent headlines with Alpaca's own sentiment score — this is how
+        geopolitics and fundamentals reach the AI's regime read."""
+        try:
+            # NewsRequest.symbols is a comma-separated STRING; the response
+            # shape is NewsSet.data -> {'news': [article, ...]}
+            r = self.news.get_news(NewsRequest(
+                symbols=",".join(symbols), limit=limit))
+            data = getattr(r, "data", None)
+            if isinstance(data, dict):
+                items = data.get("news") or []
+            elif isinstance(r, dict):
+                items = r.get("news") or []
+            else:
+                items = []
+
+            def _f(n, key):
+                if isinstance(n, dict):
+                    return n.get(key)
+                return getattr(n, key, None)
+
+            out = []
+            for n in items:
+                head = str(_f(n, "headline") or "")
+                if not head:
+                    continue
+                out.append({
+                    "ts": str(_f(n, "created_at") or _f(n, "timestamp") or ""),
+                    "headline": head[:160],
+                    "sentiment": _num(_f(n, "sentiment")),
+                    "source": str(_f(n, "source") or ""),
+                })
+            return out
+        except Exception:
+            return []
 
     # ---- options data ----
     def chain_snapshots(self, underlying: str) -> dict:
