@@ -2,7 +2,13 @@
 
 One page on how the agent thinks, how it stays safe, and what it is built on.
 Live on Alpaca paper since 28 Aug 2026. Facts below are read from the agent's
-own decision journal, not from a backtest.
+own decision journal, and — for the deterministic core — from a 2.5-year
+backtest on real Alpaca option-trade bars (2024-03 → 2026-07: **+32.2% vs SPY
+buy-and-hold +45.6%, max drawdown 18.3% vs 19.0%, Sharpe 0.82 vs 1.08**; rules
+mirrored 1:1 from the live engine with zero re-tuning, every premium a real
+traded option bar — full artifacts in
+`agent/runs/bt-2026-08-29_wheel-csp-cc_1Day/`). The wheel deliberately trades
+upside for drawdown control; the AI governor layer is live-only by design.
 
 ## 1. The idea: an AI that can only say NO
 

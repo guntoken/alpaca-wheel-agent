@@ -1,0 +1,53 @@
+{
+  "run": "bt-2026-08-29_wheel-csp-cc_1Day",
+  "window": {
+    "start": "2024-03-01",
+    "end": "2026-07-31",
+    "trading_days": 606
+  },
+  "strategy": {
+    "total_return": 32.18,
+    "cagr": 18.3,
+    "max_drawdown": 18.25,
+    "sharpe": 0.82,
+    "final_equity": 132181.89
+  },
+  "benchmark_spy": {
+    "total_return": 45.59,
+    "cagr": 25.39,
+    "max_drawdown": 18.98,
+    "sharpe": 1.08,
+    "final_equity": 145592.97
+  },
+  "option_legs": {
+    "total": 175,
+    "wins": 170,
+    "win_rate_pct": 97.1,
+    "profit_factor": 23.96,
+    "net_option_pnl": 27740.15
+  },
+  "premiums_collected_gross": 45779.2,
+  "fees_paid": 1477.5,
+  "activity": {
+    "csp_sold": 98,
+    "cc_sold": 77,
+    "tp_closes": 75,
+    "cc_tp": 59,
+    "expired_worthless": 5,
+    "assignments": 20,
+    "called_away": 15
+  },
+  "gate_activity": {
+    "vol_floor": 121,
+    "drawdown": 1,
+    "extreme": 0,
+    "no_candidate": 68,
+    "budget": 13,
+    "slots": 92,
+    "sector": 0,
+    "fills_missed": 5,
+    "bear_entries_scaled": 3,
+    "cc_floor_block": 335
+  },
+  "opt_api_calls": 0
+}

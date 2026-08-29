@@ -21,6 +21,12 @@ st.set_page_config(page_title="Wheel Agent — Alpaca Hackathon",
 
 HERE = Path(__file__).parent
 DATA = json.loads((HERE / "data.json").read_text())
+# Backtest export (agent/dashboard/backtest.json). Optional so the hosted
+# dashboard never breaks if a deploy predates the backtest run.
+try:
+    BT = json.loads((HERE / "backtest.json").read_text())
+except Exception:
+    BT = None
 
 # ------------------------------------------------------------------ tokens ---
 CSS = """
@@ -142,6 +148,24 @@ h1, h2, h3, .wa-title {letter-spacing: -0.16px;}
   border-bottom: 2px solid var(--brand);}
 div[data-testid="stDataFrame"] {border: 1px solid var(--border);
   border-radius: 12px; overflow: hidden;}
+
+/* about / faq */
+.wa-note {border: 1px solid var(--border); border-left: 3px solid var(--brand);
+  background: var(--raised); border-radius: 10px; padding: 11px 15px;
+  font-size: .84rem; color: var(--text); line-height: 1.65;}
+.wa-disc {border: 1px dashed var(--border); border-radius: 10px;
+  padding: 10px 14px; font-size: .7rem; color: var(--faint);
+  line-height: 1.6; margin-top: 8px;}
+.wa-links {display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 4px 0;}
+.wa-link {font-size: .78rem; font-weight: 600; color: var(--brand-deep);
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 999px; padding: 6px 13px; text-decoration: none;
+  white-space: nowrap; box-shadow: 0 1px 2px rgba(63,50,15,.08);}
+.wa-link:hover {background: var(--brand-wash);}
+.wa-legend {display: flex; gap: 18px; font-size: .76rem; color: var(--muted);
+  margin: 2px 0 6px 0; align-items: center;}
+.wa-legend .sw {display: inline-block; width: 22px; height: 3px;
+  border-radius: 2px; margin-right: 6px; vertical-align: middle;}
 </style>
 """
 st.markdown(CSS, unsafe_allow_html=True)
@@ -330,6 +354,140 @@ def td(v, cls="", color=None):
     return f'<td class="{cls}"{c}>{v}</td>'
 
 
+def dual_line_html(entries, w=1100, h=300, pad_l=64, pad_r=70,
+                   pad_t=16, pad_b=32):
+    """Backtest equity: strategy (gold) vs SPY buy-and-hold (muted navy).
+    Same visual language as the live sparkline; hover shows both values."""
+    import json as _json
+    if len(entries) < 2:
+        return None
+    vals_s = [e["strategy"] for e in entries]
+    vals_b = [e["spy"] for e in entries]
+    lo, hi = min(vals_s + vals_b), max(vals_s + vals_b)
+    vpad = (hi - lo) * 0.14 or 1.0
+    lo, hi = lo - vpad, hi + vpad
+    n = len(entries)
+    xs = [pad_l + (w - pad_l - pad_r) * i / (n - 1) for i in range(n)]
+    ys_s = [pad_t + (h - pad_t - pad_b) * (1 - (v - lo) / (hi - lo))
+            for v in vals_s]
+    ys_b = [pad_t + (h - pad_t - pad_b) * (1 - (v - lo) / (hi - lo))
+            for v in vals_b]
+    line_s = _smooth_path(list(zip(xs, ys_s)))
+    line_b = _smooth_path(list(zip(xs, ys_b)))
+
+    grid = []
+    for k in range(4):
+        v = lo + (hi - lo) * k / 3
+        y = pad_t + (h - pad_t - pad_b) * (1 - k / 3)
+        grid.append(
+            f'<line x1="{pad_l}" y1="{y:.1f}" x2="{w - pad_r}" y2="{y:.1f}" '
+            'stroke="rgba(63,50,15,0.10)"/>'
+            f'<text x="{pad_l - 9}" y="{y + 4:.1f}" text-anchor="end" '
+            'font-size="11" fill="#6F6757">$%sk</text>' % round(v / 1000))
+    months = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",
+              "Sep", "Oct", "Nov", "Dec"]
+    for k in range(5):
+        i = round((n - 1) * k / 4)
+        x = xs[i]
+        dt = str(entries[i].get("date", ""))
+        label = f"{months[int(dt[5:7])]} {dt[2:4]}" if dt else ""
+        grid.append(
+            f'<line x1="{x:.1f}" y1="{h - pad_b}" x2="{x:.1f}" '
+            f'y2="{h - pad_b + 5}" stroke="rgba(63,50,15,0.25)"/>'
+            f'<text x="{x:.1f}" y="{h - pad_b + 19}" text-anchor="middle" '
+            f'font-size="10.5" fill="#8A8272">{label}</text>')
+
+    pdata = _json.dumps([
+        {"x": round(x, 1), "sy": round(a, 1), "by": round(b, 1),
+         "d": str(e.get("date", ""))[5:10], "sv": round(s, 0), "bv": round(v, 0)}
+        for x, a, b, e, s, v in zip(xs, ys_s, ys_b, entries, vals_s, vals_b)])
+    js = """
+<script>
+(function(){
+  var P = __PDATA__, W = __W__, H = __H__;
+  var svg = document.getElementById('waBt');
+  var tip = document.getElementById('waBtTip');
+  var cross = document.getElementById('waBtCross');
+  svg.addEventListener('mousemove', function(ev){
+    var r = svg.getBoundingClientRect();
+    var vx = (ev.clientX - r.left) * (W / r.width);
+    var best = 0, bd = 1e12;
+    for (var i = 0; i < P.length; i++){
+      var dd = Math.abs(P[i].x - vx); if (dd < bd){ bd = dd; best = i; }
+    }
+    var p = P[best];
+    cross.setAttribute('x1', p.x); cross.setAttribute('x2', p.x);
+    cross.style.display = '';
+    tip.style.display = 'block';
+    var ds = (p.sv - 100000) / 1000, db = (p.bv - 100000) / 1000;
+    tip.innerHTML = '<b style="color:#FFC61A">wheel $' + p.sv.toLocaleString() +
+      '</b> (' + (ds >= 0 ? '+' : '') + ds.toFixed(1) + 'k)<br>' +
+      '<span style="color:#9AA3B2">SPY $' + p.bv.toLocaleString() + '</span> (' +
+      (db >= 0 ? '+' : '') + db.toFixed(1) + 'k)&nbsp;· ' + p.d;
+    var px = r.left + p.x * (r.width / W);
+    var py = r.top + p.sy * (r.height / H);
+    tip.style.left = Math.max(px - tip.offsetWidth / 2, 8) + 'px';
+    tip.style.top = (py - tip.offsetHeight - 12) + 'px';
+  });
+  svg.addEventListener('mouseleave', function(){
+    tip.style.display = 'none'; cross.style.display = 'none';
+  });
+})();
+</script>"""
+    js = js.replace("__PDATA__", pdata).replace("__W__", str(w)).replace("__H__", str(h))
+    return (
+        '<div style="position:relative;font-family:Inter,-apple-system,sans-serif">'
+        f'<svg id="waBt" viewBox="0 0 {w} {h}" width="100%" '
+        'style="display:block;cursor:crosshair;background:#FFFFFF;'
+        'border:1px solid rgba(63,50,15,0.16);border-radius:12px">'
+        + "".join(grid)
+        + f'<path d="{line_b}" fill="none" stroke="#7A8494" stroke-width="1.7" '
+        'stroke-dasharray="1 0" opacity="0.85"/>'
+        + f'<path d="{line_s}" fill="none" stroke="#C98A00" stroke-width="2.4"/>'
+        + f'<circle cx="{xs[-1]:.1f}" cy="{ys_s[-1]:.1f}" r="4" fill="#C98A00" '
+        'stroke="#FFFFFF" stroke-width="1.4"/>'
+        + f'<text x="{xs[-1]:.1f}" y="{ys_s[-1] - 9:.1f}" text-anchor="end" '
+        'font-size="11" font-weight="700" fill="#635B4B">$%s</text>'
+        % f"{vals_s[-1] / 1000:,.1f}k"
+        + '<line id="waBtCross" y1="' + str(pad_t) + '" y2="' + str(h - pad_b) +
+        '" stroke="rgba(63,50,15,0.35)" stroke-dasharray="3 3" style="display:none"/>'
+        '</svg>'
+        '<div id="waBtTip" style="position:fixed;display:none;pointer-events:none;'
+        'background:#14181F;color:#FFFDF6;font-size:12px;padding:6px 11px;'
+        'border-radius:8px;white-space:nowrap;box-shadow:0 6px 18px rgba(0,0,0,.3);'
+        'z-index:99;line-height:1.5"></div>' + js + '</div>')
+
+
+def monthly_bars_html(monthly, w=1100, h=120, pad_b=22, pad_t=14):
+    """Monthly gross premium collected — small gold bars, native SVG tooltips."""
+    if not monthly:
+        return None
+    vals = [m["premium"] for m in monthly]
+    hi = max(vals) or 1.0
+    n = len(monthly)
+    gap = 3
+    bw = (w - 8 - gap * (n - 1)) / n
+    bars = []
+    for i, m in enumerate(monthly):
+        bh = max((h - pad_b - pad_t) * m["premium"] / hi, 1.5)
+        x = 4 + i * (bw + gap)
+        y = h - pad_b - bh
+        label = (m["month"][5:7] if i == 0 else
+                 (m["month"][5:7] if i % 4 == 0 else ""))
+        bars.append(
+            f'<rect x="{x:.1f}" y="{y:.1f}" width="{bw:.1f}" height="{bh:.1f}" '
+            'rx="2" fill="#C98A00" opacity="0.92">'
+            f'<title>{m["month"]}: ${m["premium"]:,.0f} premium</title></rect>')
+        if label:
+            bars.append(
+                f'<text x="{x + bw / 2:.1f}" y="{h - 7}" text-anchor="middle" '
+                f'font-size="9.5" fill="#8A8272">{label}</text>')
+    return (
+        f'<svg viewBox="0 0 {w} {h}" width="100%" style="display:block;'
+        'background:#FFFFFF;border:1px solid rgba(63,50,15,0.16);'
+        'border-radius:12px">' + "".join(bars) + '</svg>')
+
+
 acct = DATA.get("account", {})
 stats = DATA.get("stats", {})
 rl = DATA.get("risk_limits", {})
@@ -360,7 +518,8 @@ st.markdown(
     + pill(f"updated {updated} UTC")
     + "</div></div>", unsafe_allow_html=True)
 
-tabs = st.tabs(["🕹 Command Center", "🧪 Risk Lab", "🧠 AI Brain", "⚙️ Execution Desk"])
+tabs = st.tabs(["🕹 Command Center", "🧪 Risk Lab", "🧠 AI Brain",
+                "⚙️ Execution Desk", "📖 About", "❓ FAQ"])
 
 # ---------------------------------------------------------------- Command ---
 with tabs[0]:
@@ -595,6 +754,207 @@ with tabs[3]:
         + card("Cycles journaled", str(stats.get("cycles_total", 0)),
                sub=f"{stats.get('live_cycles', 0)} live")
         + card("Endpoint", "paper-api", sub="alpaca.markets · dashboard is read-only"))
+
+# ------------------------------------------------------------------ About ---
+with tabs[4]:
+    st.subheader("Why this exists")
+    st.markdown(
+        '<div class="wa-note">Retail options income is <b>manual, emotional and '
+        'error-prone</b>: the wrong delta, panic buy-backs, one ticker oversized. '
+        'The usual "AI trading agent" answer — let an LLM pick trades — makes that '
+        'worse: LLMs hallucinate, drift, and cannot be held to a risk mandate.<br><br>'
+        '<b>The Wheel Agent inverts the design.</b> A deterministic engine does 100% '
+        'of the trading on hard-coded rails. A Claude layer sits above it with '
+        'exactly two powers: <b>read the regime</b> and <b>veto a new entry</b>. '
+        'It can never place, size or force a trade — and it can never block an exit. '
+        'An AI that can only refuse is an AI you can actually trust on a broker.</div>',
+        unsafe_allow_html=True)
+
+    st.subheader("One cycle, six steps")
+    st.markdown(
+        '<div class="wa-steps">'
+        '<span class="wa-step on">1 · Observe</span><span class="wa-arrow">→</span>'
+        '<span class="wa-step on">2 · Gate</span><span class="wa-arrow">→</span>'
+        '<span class="wa-step on">3 · Decide</span><span class="wa-arrow">→</span>'
+        '<span class="wa-step on">4 · AI veto</span><span class="wa-arrow">→</span>'
+        '<span class="wa-step on">5 · Execute</span><span class="wa-arrow">→</span>'
+        '<span class="wa-step on">6 · Journal</span></div>'
+        '<div class="wa-note" style="border-left-color:var(--navy)">Every cycle: '
+        'account & market snapshot (broker is the source of truth) → kill-switch, '
+        'drawdown stop and <i>two</i> regime readers (Claude\'s judgment <b>and</b> a '
+        'deterministic SPY anchor — the tighter of the two governs) → per-name wheel '
+        'decisions on hard quality filters → Claude reviews each proposed entry, one '
+        'refusal with a reason kills it → marketable-limit orders only, exits before '
+        'entries → everything appended to a public JSONL decision journal.</div>',
+        unsafe_allow_html=True)
+
+    # ------------------------------------------------------------ backtest ---
+    st.subheader("Backtested on real Alpaca data — same rules, zero re-tuning")
+    if BT:
+        s, b = BT["strategy"], BT["benchmark_spy"]
+        win = BT.get("window", {})
+        legs = BT.get("option_legs", {})
+        row(
+            card("Total return", f"{s['total_return']:+.1f}%",
+                 sub=f"SPY buy-and-hold {b['total_return']:+.1f}%",
+                 tone="good" if s["total_return"] >= b["total_return"] else "bad",
+                 cls="gold" if s["total_return"] >= b["total_return"] else "")
+            + card("Max drawdown", f"{s['max_drawdown']:.1f}%",
+                   sub=f"SPY {b['max_drawdown']:.1f}%",
+                   tone="good" if s["max_drawdown"] <= b["max_drawdown"] else "warn")
+            + card("Sharpe", f"{s['sharpe']:.2f}",
+                   sub=f"SPY {b['sharpe']:.2f} · daily, rf=0",
+                   tone="good" if s["sharpe"] >= b["sharpe"] else "warn")
+            + card("Option legs", str(legs.get("total", "—")),
+                   sub=f"win rate {legs.get('win_rate_pct', '—')}% · "
+                       f"PF {legs.get('profit_factor', '—')}")
+            + card("Premium collected", fmt_usd(BT.get("premiums_collected_gross", 0)),
+                   sub=f"{win.get('start', '')} → {win.get('end', '')}"))
+        chart = dual_line_html(BT.get("equity_curve", []))
+        if chart:
+            st.markdown(
+                '<div class="wa-legend"><span><span class="sw" '
+                'style="background:#C98A00"></span>Wheel Agent (backtest)</span>'
+                '<span><span class="sw" style="background:#7A8494"></span>SPY '
+                'buy-and-hold</span><span style="margin-left:auto;color:var(--faint)"> '
+                'hover for detail</span></div>', unsafe_allow_html=True)
+            # components.html bypasses the markdown pipeline, which truncates
+            # inline SVG after the first </text>
+            import streamlit.components.v1 as components
+            components.html(chart, height=330, scrolling=False)
+        bars = monthly_bars_html(BT.get("monthly_premium", []))
+        if bars:
+            st.markdown(
+                '<div class="wa-legend" style="margin-top:10px"><span><span class="sw" '
+                'style="background:#C98A00"></span>Gross premium written, by month'
+                '</span></div>', unsafe_allow_html=True)
+            import streamlit.components.v1 as components
+            components.html(bars, height=150, scrolling=False)
+        st.markdown(
+            '<div class="wa-note"><b>Methodology.</b> '
+            + " · ".join(BT.get("methodology", [])) +
+            '<br><b>Data.</b> ' + BT.get("data", "") +
+            '<br><b>Honesty clause.</b> ' + BT.get("caveats", "") + '</div>',
+            unsafe_allow_html=True)
+        st.markdown(
+            '<div class="wa-disc"><b>Disclosure.</b> ' + BT.get("disclosure", "") +
+            ' Fees modeled at $0.50/contract/side (Alpaca fee schedule). Full run '
+            'artifacts — notes, spec, trades, equity curve, data fingerprint — in '
+            'the run folder linked below.</div>', unsafe_allow_html=True)
+    else:
+        st.info("Backtest export not found (agent/dashboard/backtest.json) — "
+                "the run folder keeps the full methodology either way.")
+
+    st.subheader("Methodology & paper trail — everything is auditable")
+    st.markdown(
+        '<div class="wa-links">'
+        '<a class="wa-link" href="https://github.com/guntoken/alpaca-wheel-agent/'
+        'blob/main/agent/journal.jsonl">📓 Live decision journal (JSONL)</a>'
+        '<a class="wa-link" href="https://github.com/guntoken/alpaca-wheel-agent/'
+        'tree/main/agent/runs/bt-2026-08-29_wheel-csp-cc_1Day">🧾 Backtest run '
+        'folder (full artifacts)</a>'
+        '<a class="wa-link" href="https://github.com/guntoken/alpaca-wheel-agent/'
+        'blob/main/docs/RESEARCH_NOTES.md">📚 Research notes — every source, '
+        'adopt or reject</a>'
+        '<a class="wa-link" href="https://github.com/guntoken/alpaca-wheel-agent/'
+        'blob/main/docs/WRITEUP.md">📄 One-page technical write-up</a>'
+        '<a class="wa-link" href="https://github.com/guntoken/alpaca-wheel-agent/'
+        'blob/main/docs/BUSINESS_CASE.md">💼 Business case</a>'
+        '<a class="wa-link" href="https://github.com/guntoken/alpaca-wheel-agent/'
+        'blob/main/README.md">🏠 README</a></div>'
+        '<div class="wa-note" style="border-left-color:var(--good)">The strategy '
+        'is not invented for the demo: parameters are validated source-by-source '
+        'in RESEARCH_NOTES.md (Alpaca\'s official wheel guide, peer-reviewed '
+        'volatility research — Rustamov et al. 2024, inverted for premium selling '
+        '— practitioner consensus, and a production-grade open agent system), '
+        'with every adoption <i>and</i> rejection written down. The live agent '
+        'has run unattended on Alpaca paper since day 1 of the hackathon, and '
+        'its own journal caught two production bugs on night 1 — both fixed '
+        'live, both public.</div>',
+        unsafe_allow_html=True)
+
+    st.subheader("Built agent-native on all three Alpaca surfaces")
+    row(card("Trading API", "alpaca-py", sub="the engine — orders, OPRA greeks")
+        + card("CLI", "alpaca 0.0.13", sub="ops & monitoring · backtest data")
+        + card("MCP server", "connected", sub="broker surface in the AI session")
+        + card("Built by", "Claude Code", sub="agent wrote & operates the agent"))
+
+# --------------------------------------------------------------------- FAQ ---
+with tabs[5]:
+    st.subheader("Questions we get — answered honestly")
+    faqs = [
+        ("Is this trading real money?",
+         "No. The account is <b>Alpaca paper</b> and the paper endpoint is "
+         "hard-coded — the code cannot reach a live-money endpoint even by "
+         "mistake. The dashboard is read-only and contains zero credentials."),
+        ("What does the AI actually do?",
+         "Two things only. Each cycle Claude reads an Alpaca-native market "
+         "summary (SPY/QQQ trend, SPY dollar-vol percentile, GLD/VIXY/BTC "
+         "moves, filtered news) and classifies the tape RISK_ON / NEUTRAL / "
+         "RISK_OFF with a stated reason — which scales the engine's budget. "
+         "Then it reviews every proposed <i>entry</i>; one veto with a reason "
+         "kills it. It cannot place, size or force trades, and it cannot veto "
+         "an exit or a buy-back — de-risking is always allowed."),
+        ("Why an AI that can only say NO?",
+         "Because that is the part of an LLM you can actually trust. A veto-only "
+         "layer cannot hallucinate a trade, cannot churn the account for "
+         "engagement, and its every refusal is journaled verbatim on the AI "
+         "Brain tab. Deterministic rails do the trading; the LLM is the risk "
+         "governor. Incentive alignment by construction."),
+        ("Backtest or live run — which one proves it?",
+         "Both, for different claims. The <b>backtest</b> (2.5 years, every "
+         "premium a real Alpaca option-trade bar, rules mirrored 1:1 from the "
+         "live engine with zero re-tuning) bounds what the deterministic core "
+         "does — the window includes the Aug-2024 VIX spike and the Apr-2025 "
+         "tariff drawdown. The <b>live run</b> shows the full system — engine "
+         "plus AI governor — trading unattended on Alpaca paper since day 1 of "
+         "the hackathon, journal and all. The AI layer is deliberately not "
+         "replayed in the backtest: a backtest of the judge would be circular."),
+        ("What happens in a crash?",
+         "Hard gates, not vibes: budget halves in a weak tape and goes to zero "
+         "at SPY −4% intraday; no new entries after a −3% daily drawdown; at "
+         "most 5 names, 2 per correlated sector, 72% of equity as total "
+         "collateral; exit quality floors on every entry; a kill-switch file "
+         "halts all submissions. Try the live stress test on the Risk Lab tab, "
+         "and the Aug-2024 / Apr-2025 episodes on the About tab's equity curve."),
+        ("What if a put gets assigned?",
+         "That is the wheel working, not failing. Assignment converts the "
+         "collateral into shares at the strike; the engine then sells covered "
+         "calls above max(cost basis, upper Bollinger) until called away — and "
+         "a challenged put is only ever bought back when a fresh put's premium "
+         "covers the closing cost (roll for credit, else hold). No panic "
+         "buy-backs by design."),
+        ("Why these twelve tickers?",
+         "Liquid US names with weekly options whose contract size fits a "
+         "$100k account, spanning nine sectors so the sector cap means "
+         "something. They were chosen for liquidity and size before the "
+         "backtest ran — not picked by optimizing on the backtest window."),
+        ("How do I know the numbers are real?",
+         "Everything is public: the live decision journal (agent/journal.jsonl) "
+         "with every order and reason, the commit history (bugs found and fixed "
+         "in the open), and the backtest run folder with notes, spec, trade "
+         "list, equity curve and a data fingerprint of every raw file. No "
+         "screenshot you have to take on faith."),
+        ("Can it lose money?",
+         "Yes. Short puts keep stock-like downside below the strike, covered "
+         "calls cap upside, and a sideways-crash sequence can draw the book "
+         "down — that is what every gate on the Risk Lab tab exists to bound, "
+         "not eliminate. Paper trading, educational build, not investment "
+         "advice."),
+        ("What is next?",
+         "A defined-risk spreads sleeve (the account tier already permits it), "
+         "walk-forward re-validation of the gates, multi-account support, and "
+         "the same veto-only governor pattern offered as a safety layer for "
+         "anyone else's trading agent."),
+        ("Who built this?",
+         "Claude Code (an AI coding agent) wrote the engine, ran the live "
+         "loops, diagnosed its own bugs from the journal, and authored the "
+         "docs — supervised by one human operator. An agent-native build, "
+         "including this dashboard."),
+    ]
+    for q, a in faqs:
+        with st.expander(q):
+            st.markdown(a, unsafe_allow_html=True)
 
 st.markdown(
     '<div class="wa-foot">🦉 <b>Wheel Agent</b> — Alpaca AI Trading Agents '

@@ -1,0 +1,18 @@
+{
+  "run_folder": "agent/runs/bt-2026-08-29_wheel-csp-cc_1Day",
+  "generated": "2026-08-29",
+  "stock_data": {
+    "source": "alpaca-cli",
+    "command": "alpaca data bars --symbol {sym} --start 2023-06-01 --end 2026-08-29 --timeframe 1Day --feed iex --adjustment raw --quiet",
+    "cli_version": "0.0.13",
+    "fallback": "alpaca-py StockHistoricalDataClient feed=iex (recorded in warnings.json if used)"
+  },
+  "option_data": {
+    "source": "alpaca-py OptionHistoricalDataClient",
+    "cache": "raw/opts_cache/*.json (keyed by symbol-set+range; re-runs are offline)",
+    "coverage_probed": "2022-01 no, 2023-01 no, 2023-08 no, 2024-01 yes"
+  },
+  "trading_days": "derived from SPY daily bars in window (no separate calendar fetch)",
+  "secrets": "read from agent/.env (APCA_API_KEY_ID / APCA_API_SECRET_KEY); never written to artifacts",
+  "outputs": ["summary.json", "report.md", "trades.csv", "round_trips.csv", "equity.csv", "benchmark_equity.csv", "data_fingerprint.json", "warnings.json", "fee_source.json", "../../dashboard/backtest.json"]
+}

@@ -3,18 +3,22 @@
 Proyek hackathon **Alpaca AI Trading Agents 2026** (lablab.ai × Alpaca, 28 Agu–4 Sep 2026).
 Agent: wheel options otonom (CSP → covered call) + lapisan AI Claude headless. **PAPER ONLY.**
 
-## ▶️ RESUME — baca dulu (state per 29 Agu ~21:00 WIB)
-**Hari-2 SELESAI; Hari-3 sore: dokumen submission BERES** — docs/WRITEUP.md
-(one-pager: AI logic, risk gates, infra SDK+CLI+MCP), docs/BUSINESS_CASE.md
-(TAM/SAM/kompetitor; angka primer: Cboe 15,2 miliar kontrak 2025, retail 30–60%,
-tabel harga Option Alpha/Composer/Option Samurai/tastytrade), docs/SOCIAL_POST_2.md
-(X thread + LinkedIn; posting SETELAH deploy ada URL), README ditaut ke ketiganya.
-Angka riil utk narasi: 39 cycle (25 live), 4 fill, $1.753 premium, equity $99.699,
-regime 31×RISK_ON / 8×NEUTRAL, 0 veto (jalur veto dites dry-run).
+## ▶️ RESUME — baca dulu (state per 29 Agu ~23:15 WIB)
+**Hari-3 malam: BACKTEST 2,5 TAHUN SELESAI + dashboard 6 tab** — run lengkap di
+`agent/runs/bt-2026-08-29_wheel-csp-cc_1Day/` (Mar 2024–Jul 2026, 606 hari, 374
+trade, premium dari option-trade bar ASLI Alpaca, 93 ladder kosong terverifikasi
+2× healing = memang tanpa trade). Angka final: **+32,2% vs SPY +45,6%, maxDD
+18,3% vs 19,0%, Sharpe 0,82 vs 1,08** (wheel menukar upside demi kontrol DD —
+framing jujur, jangan dibalik jadi klaim menang). Dashboard: tab About + FAQ
+baru (chart equity vs SPY interaktif, bar premium bulanan, kartu, 11 FAQ),
+terverifikasi DOM + hover sintetis; export `agent/dashboard/backtest.json`.
+WRITEUP + README sudah ditaut ke backtest. 98 CSP + 77 CC, WR leg 97,1%
+(akuntansi per-leg; risiko ada di drawdown saham), premium kotor $45.779.
 
 **Menunggu pemilik (satu-satunya bloker): DEPLOY** — share.streamlit.io → login GitHub →
 New app → repo `guntoken/alpaca-wheel-agent`, branch main, file `agent/dashboard/app.py`
 → Deploy (tanpa secrets) → tulis URL hasilnya ke README bagian Dashboard.
+Dashboard lokal: `cd agent && .venv/bin/streamlit run dashboard/app.py --server.port 8501`.
 
 **Sisa agenda (SUBMISSION_PLAN.md punya versi lengkap):**
 - [ ] Minggu 30 Agu: polish golden-path dashboard pasca-deploy + **slide PDF ≤10 hlm**
@@ -64,6 +68,9 @@ Deadline: submit Rabu 2 Sep (hard stop Kamis 3 Sep, jangan tunggu 4 Sep).**
 - [x] First live cycle (28 Agu 20:42 WIB, $1.753 premium)
 - [x] Dashboard Streamlit lokal (4 tab: Command Center / Risk Lab / AI Brain /
       Execution Desk; stress test live; hero screenshot `docs/dashboard-hero.png`)
+- [x] Backtest 2,5 tahun data real (29 Agu; run folder + tab About/FAQ dashboard;
+      verifikasi DOM penuh; angka final di RESUME di atas)
+- [x] One-page write-up (29 Agu; diperbarui malam ini dengan angka backtest final)
 - [ ] **Deploy Streamlit Cloud (aksi pemilik)**: share.streamlit.com → login GitHub →
       New app → repo `guntoken/alpaca-wheel-agent`, branch main, file
       `agent/dashboard/app.py` → Deploy (tanpa secrets) → tulis URL ke README
@@ -72,7 +79,6 @@ Deadline: submit Rabu 2 Sep (hard stop Kamis 3 Sep, jangan tunggu 4 Sep).**
 - [ ] Cadence cycle selama lomba: loop live tiap malam saat pasar buka (20:30–03:00 WIB);
       **Senin 31 Agu 20:15 WIB restart loop** (kode baru: enum fix, multi-posisi,
       cap sektor, regime overlay, re-pricing, Bollinger CC, vol gate)
-- [ ] One-page write-up: AI logic, risk gates, infrastruktur Alpaca (SDK+CLI+MCP)
 - [ ] Video ≤5 menit + slide PDF + cover 16:9 + deskripsi (pola lengkap di SUBMISSION_PLAN)
 - [ ] Akun submission BARU $100k (~2 Sep) + ganti keys di `agent/.env`
 - [ ] Post sosial X/LinkedIn tag @lablabai @AlpacaHQ (maks 5 link, kumpulkan URL-nya)

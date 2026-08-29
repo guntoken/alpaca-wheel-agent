@@ -48,7 +48,9 @@ against Alpaca's official wheel guide, peer-reviewed volatility research
 and a production-grade open agent system; every adoption and rejection is
 written down. For judges in a hurry: **[one-page write-up](docs/WRITEUP.md)**
 (AI logic, risk gates, Alpaca infra) ·
-**[business case](docs/BUSINESS_CASE.md)** (TAM/SAM, competitors, revenue).
+**[business case](docs/BUSINESS_CASE.md)** (TAM/SAM, competitors, revenue) ·
+**[2.5-year backtest](agent/runs/bt-2026-08-29_wheel-csp-cc_1Day/report.md)**
+(real Alpaca option data, same rules, full paper trail).
 
 ## Architecture
 

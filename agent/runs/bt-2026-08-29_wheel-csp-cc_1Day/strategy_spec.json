@@ -1,0 +1,52 @@
+{
+  "name": "wheel-csp-cc-mirror",
+  "description": "Backtest mirror of the live alpaca-wheel-agent engine (wheel.py + config.py), no re-tuning",
+  "asset_class": "us_equity_options",
+  "universe_scan_order": ["INTC", "T", "F", "GM", "PFE", "KO", "NOK", "SOFI", "BABA", "MU", "WBD", "VALE"],
+  "window": {"start": "2024-03-01", "end": "2026-07-31", "warmup_data_from": "2023-06-01"},
+  "initial_cash": 100000.0,
+  "decision_cadence": "weekly new entries (Monday or next trading day); daily TP/roll/expiry/CC management",
+  "csp_entry": {
+    "target_delta": 0.30, "delta_band": [0.18, 0.42],
+    "bear_target_delta": 0.20, "bear_delta_band": [0.10, 0.30],
+    "dte_band": [7, 35],
+    "min_premium_pct_of_collateral": 0.005,
+    "min_day_volume_contracts": 10,
+    "vol_dollar_percentile_floor": 0.40,
+    "vol_bar_window": 21, "vol_history_days": 250,
+    "selection": "nearest to target delta among qualifying (mirrors wheel.py _best)"
+  },
+  "position_sizing": {
+    "max_underlyings": 5, "max_per_sector": 2,
+    "per_underlying_collateral_pct": 0.18,
+    "total_collateral_pct": 0.72,
+    "regime_budget_mult": {"bear": 0.5, "extreme": 0.0},
+    "contracts": "floor(budget / (strike*100)), min 1"
+  },
+  "put_management": {
+    "take_profit_when_mark_le": 0.5,
+    "roll_when_delta_ge": 0.60,
+    "roll_only_for_net_credit": true,
+    "assignment": "expiry Friday stock close < strike -> buy 100/contract at strike"
+  },
+  "covered_call": {
+    "target_delta": 0.25, "delta_band": [0.12, 0.38],
+    "dte_band": [7, 35],
+    "strike_floor": "max(cost_basis, SMA20+2sigma)",
+    "called_away": "expiry Friday stock close > strike -> deliver at strike",
+    "take_profit_when_mark_le": 0.5
+  },
+  "regime_anchor_spy_close_pct": {"extreme_le": -4.0, "bear_le": -2.0},
+  "daily_drawdown_stop_pct": 0.03,
+  "fill_model": {
+    "signal": "decision-day close",
+    "fill": "next trading day option-bar open",
+    "slippage_pct_of_option_price_per_side": 0.05,
+    "commission_usd_per_contract_per_side": 0.50
+  },
+  "pricing_for_selection": {"model": "black-scholes inverted from traded premium", "r": 0.04, "q": 0.0},
+  "dividends": "paid on ex-date while shares held (Alpaca corporate-actions feed, raw/corporate_actions.json)",
+  "ai_layer": "NOT replayed - backtest bounds the deterministic core; live AI can only veto/halve (risk-reducing)",
+  "benchmark": "SPY buy-and-hold, same window, close-to-close",
+  "sharpe": "daily returns, sample std (N-1), rf=0, annualized sqrt(252)"
+}
