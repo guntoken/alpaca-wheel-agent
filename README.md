@@ -46,7 +46,9 @@ ignored open orders). Full story in the commit history and
 against Alpaca's official wheel guide, peer-reviewed volatility research
 (Rustamov et al. 2024, inverted for premium selling), practitioner consensus,
 and a production-grade open agent system; every adoption and rejection is
-written down.
+written down. For judges in a hurry: **[one-page write-up](docs/WRITEUP.md)**
+(AI logic, risk gates, Alpaca infra) ·
+**[business case](docs/BUSINESS_CASE.md)** (TAM/SAM, competitors, revenue).
 
 ## Architecture
 

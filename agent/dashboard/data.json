@@ -1,10 +1,10 @@
 {
- "updated": "2026-08-28T23:40:41.358957-04:00",
+ "updated": "2026-08-29T07:17:10.948477-04:00",
  "market_open": false,
  "account": {
-  "equity": 99698.56,
-  "cash": 101752.56,
-  "options_buying_power": 41402.56,
+  "equity": 99698.16,
+  "cash": 101752.16,
+  "options_buying_power": 41402.16,
   "day_start_equity": 99572.56,
   "paper_only": true
  },
