@@ -1,5 +1,9 @@
 # 🦉 Wheel Agent — the autonomous options wheel whose AI can only say NO
 
+**Live dashboard: https://alpaca-wheel-agent.streamlit.app** ·
+[source](agent/dashboard/app.py) · [slides](docs/slides.pdf) ·
+[one-page write-up](docs/WRITEUP.md) · [business case](docs/BUSINESS_CASE.md)
+
 ![Dashboard](docs/dashboard-hero.png)
 
 An autonomous options-wheel trading agent built for the **Alpaca AI Trading
@@ -25,8 +29,8 @@ and shown on the dashboard.
 
 ## Dashboard (read-only, zero credentials)
 
-`streamlit run agent/dashboard/app.py` — or the hosted copy (link added at
-submission). Four tabs:
+**Hosted: https://alpaca-wheel-agent.streamlit.app** — or run it locally with
+`streamlit run agent/dashboard/app.py`. Six tabs:
 
 - **Command Center** — equity curve from the decision journal, premium collected, the wheel stage per underlying, both regime readers side by side
 - **Risk Lab** — positions with collateral, per-underlying/per-sector caps, a live **stress test** (what a −1/−2/−5% night does to the book), and the full list of hard-coded safety rails
