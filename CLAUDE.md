@@ -57,7 +57,9 @@ Dashboard lokal: `cd agent && .venv/bin/streamlit run dashboard/app.py --server.
 **Sisa agenda (SUBMISSION_PLAN.md punya versi lengkap):**
 - [x] Minggu 30 Agu 00:45: **slide PDF SELESAI** — `docs/slides.pdf` (10 hlm 16:9 EN,
       palet tervalidasi, QA DOM 0-overflow) + `docs/cover-16x9.png`; pipeline
-      regenerasi di `docs/slides/README.md`. Video bisa direkam sambil menampilkan
+      regenerasi di `docs/slides/README.md`. **Diperbarui 01:30: headline K=3**
+      (+54,6% vs SPY +45,6% di cover+slide 7; slide 8 memuat baris kegagalan
+      champion sebagai bukti disiplin). Video bisa direkam sambil menampilkan
       PDF ini. Yang tersisa dari item ini: polish dashboard pasca-deploy.
 - [ ] Senin 31 Agu 20:15 WIB: **restart loop live** (kode baru aktif):
       `cd agent && setsid nohup env PYTHONUNBUFFERED=1 timeout 19800 ~/.local/bin/uv run wheel-agent loop --live --interval 900 >> loop.log 2>&1 < /dev/null & echo $! > loop.pid`
