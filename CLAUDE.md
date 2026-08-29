@@ -3,27 +3,32 @@
 Proyek hackathon **Alpaca AI Trading Agents 2026** (lablab.ai × Alpaca, 28 Agu–4 Sep 2026).
 Agent: wheel options otonom (CSP → covered call) + lapisan AI Claude headless. **PAPER ONLY.**
 
-## ▶️ RESUME — baca dulu (state per 28 Agu ~21:00 WIB)
-**Malam pertama SUDAH terjadi** (28 Agu): cycle live perdana jam 20:42 — AI regime RISK_ON,
-3 order CSP terkirim (INTC $86/25Sep qty2, T $25/18Sep qty7, F $13.50/18Sep qty13; limit di
-mid, status terakhir: open menunggu fill). Order ke-4 (KO) sempat ditolak broker (options
-buying power habis) → **sudah dipatch**: cycle kini menjepit budget ke `options_buying_power`
-aktual akun. Loop mandiri jalan sampai ±03:00 WIB lalu mati otomatis (timeout), market tutup.
+## ▶️ RESUME — baca dulu (state per 29 Agu ~20:00 WIB)
+**Hari-2 SELESAI** (semua item lama beres): bug posisi-enum + multi-posisi + cap
+per-underlying ditambal; adaptasi agentic-trading-system (regime deterministik, cap sektor,
+re-pricing); panel makro Alpaca-native (GLD/VIXY/BTC/news → regime AI); **dashboard 4-tab
+selesai & interaktif** (tema kuning-navy "Alpaca daylight", chart equity SVG halus dengan
+hover crosshair + tooltip + sumbu waktu UTC, stress test, AI Brain, stepper wheel).
+Hasil malam-1: 4 fill, **$1.753 premium**, 25 cycle live. Posisi kini: 4 short put
+(INTC×3, F×1), equity ±$99.7k. Market tutup sampai Senin 20:30 WIB.
 
-**Saat resume pagi (market TUTUP sampai 20:30 WIB):**
-1. Rekap semalam: `tail -50 agent/loop.log`, `cd agent && uv run wheel-agent status`,
-   `tail -5 agent/journal.jsonl` → laporkan ke pemilik (Bahasa Indonesia): order terisi/tidak,
-   premium masuk, posisi short put, P&L, peristiwa (TP/roll/assignment).
-2. Commit+push jurnal semalam ke repo.
-3. Penyempurnaan hari-2 (pasar tutup, waktu bagus): (a) **re-pricing order menganggur** —
-   cancel/replace ke bid/ask bila entry belum terisi >3 cycle; (b) tulis **one-page write-up**
-   (AI logic, risk gates, infra SDK+CLI+MCP) → `docs/WRITEUP.md`; (c) draft post sosial #2.
-4. Menjelang 20:30 WIB: jalankan ulang loop live:
-   `cd agent && setsid nohup env PYTHONUNBUFFERED=1 timeout 19800 ~/.local/bin/uv run wheel-agent loop --live --interval 900 >> loop.log 2>&1 < /dev/null & echo $! > loop.pid`
-   (timeout 19800s ≈ mati jam 03:00 WIB). JANGAN jalankan dua loop sekaligus — cek
-   `ps -p $(cat agent/loop.pid)` dulu.
+**Menunggu pemilik (satu-satunya bloker): DEPLOY** — share.streamlit.io → login GitHub →
+New app → repo `guntoken/alpaca-wheel-agent`, branch main, file `agent/dashboard/app.py`
+→ Deploy (tanpa secrets) → tulis URL hasilnya ke README bagian Dashboard.
 
-Bahasa kerja: **Indonesia**. Pemilik istirahat malam 28 Agu, kembali pagi 29 Agu.
+**Sisa agenda (SUBMISSION_PLAN.md punya versi lengkap):**
+- [ ] Minggu 30 Agu: **write-up satu halaman** (docs/WRITEUP.md: AI logic, risk gates,
+      infra SDK+CLI+MCP — bahan: RESEARCH_NOTES.md) + slide PDF ≤10 hlm + cover 16:9 +
+      riset business case (TAM/SAM/kompetitor) + draft post sosial #2
+- [ ] Senin 31 Agu 20:15 WIB: **restart loop live** (kode baru aktif):
+      `cd agent && setsid nohup env PYTHONUNBUFFERED=1 timeout 19800 ~/.local/bin/uv run wheel-agent loop --live --interval 900 >> loop.log 2>&1 < /dev/null & echo $! > loop.pid`
+      Cek dulu `ps -p $(cat agent/loop.pid)` — JANGAN dua loop. Rutin tiap sesi malam:
+      `uv run python -m agent.export` lalu commit+push (dashboard hosted ikut segar).
+- [ ] Selasa 1 Sep: rekam video ≤5 mnt (struktur di SUBMISSION_PLAN) + **buat akun paper
+      BARU $100.000** + ganti keys di `agent/.env` (+ env MCP bila perlu)
+- [ ] Rabu 2 Sep: dry-run submission → **SUBMIT** (hard stop Kamis 3 Sep)
+
+Bahasa kerja: **Indonesia**.
 
 ## Perintah (dari folder `agent/`)
 | Perintah | Fungsi |
