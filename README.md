@@ -70,7 +70,7 @@ agent/src/agent/
 
 Built on all three Alpaca surfaces: **Trading API** (alpaca-py SDK — the
 engine), **CLI** (operations & monitoring), and **MCP server** (connected to
-the Claude session that built and supervises the agent).
+the AI session that supervises the agent).
 
 ## Safety rails (not dashboard decorations)
 

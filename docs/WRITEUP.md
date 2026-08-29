@@ -58,21 +58,20 @@ limit orders only, exits always before entries, unfilled entries re-priced after
 endpoint hard-coded. Every adoption and rejection is sourced in
 [RESEARCH_NOTES.md](RESEARCH_NOTES.md).
 
-## 3. Built agent-native on all three Alpaca surfaces
+## 3. Built on all three Alpaca surfaces
 
 - **Trading API via alpaca-py** — the engine itself: positions, options chain
   with OPRA greeks, order submission, buying-power clamping.
 - **Alpaca CLI** — operations and monitoring (`doctor` before every session,
   account/order inspection alongside the agent's own `status` command).
-- **Alpaca MCP server** — connected to the Claude Code session that built and
-  supervises the agent, so the same broker surface is available conversationally.
+- **Alpaca MCP server** — connected to the AI session that supervises the
+  agent, so the same broker surface is available conversationally.
 
-The build itself is agent-native: Claude Code wrote the engine, ran the live
-loops, diagnosed its own production bugs from the journal (a py3.10 enum quirk
-that blinded position detection; a budget that ignored open orders — both fixed
-live on night 1), and authored this document. The decision journal
-(`agent/journal.jsonl` → `dashboard/data.json`) is the paper trail: equity
-curve, every order with its reason, every regime read, every error.
+The decision journal (`agent/journal.jsonl` → `dashboard/data.json`) is the
+paper trail: equity curve, every order with its reason, every regime read,
+every error — the same journal caught two production bugs on night 1 (a
+py3.10 enum quirk that blinded position detection; a budget that ignored open
+orders), both fixed live and committed in the open.
 
 Night 1 result: 4 fills, **$1,753 net premium collected**, equity $99,699 on a
 $100,000 paper account while short 4 puts — with the AI layer, the rails, and

@@ -894,11 +894,10 @@ with tabs[4]:
         'live, both public.</div>',
         unsafe_allow_html=True)
 
-    st.subheader("Built agent-native on all three Alpaca surfaces")
+    st.subheader("Built on all three Alpaca surfaces")
     row(card("Trading API", "alpaca-py", sub="the engine — orders, OPRA greeks")
         + card("CLI", "alpaca 0.0.13", sub="ops & monitoring · backtest data")
-        + card("MCP server", "connected", sub="broker surface in the AI session")
-        + card("Built by", "Claude Code", sub="agent wrote & operates the agent"))
+        + card("MCP server", "connected", sub="broker surface in the AI session"))
 
 # --------------------------------------------------------------------- FAQ ---
 with tabs[5]:
