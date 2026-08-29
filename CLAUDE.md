@@ -24,7 +24,8 @@ dari SPY di bull window, TAPI **Calmar 1,51 > SPY 1,34** (menang per unit
 drawdown) dan semua metrik membaik vs baseline. OOS jujur: +16,9% vs baseline
 +25,5% (postur defensif rugi di rally 2025-H2). Bandingkan via `compare.py`.
 Dokumen headline (README/WRITEUP) TETAP memakai baseline — varian tidak
-menggantikan klaim utama.
+menggantikan klaim utama; WRITEUP §3 + FAQ "What is next?" menyebut kedua
+varian sebagai eksplorasi berlabel jujur (30 Agu).
 
 **Varian C (eksplorasi, 30 Agu 00:07)** — `agent/runs/bt-2026-08-29_weekly-champion/`:
 uji asumsi pemilik "1 saham pilihan mingguan oleh bot > SPY". Seleksi-first ala

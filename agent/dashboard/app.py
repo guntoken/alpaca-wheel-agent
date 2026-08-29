@@ -945,7 +945,17 @@ with tabs[5]:
          "A defined-risk spreads sleeve (the account tier already permits it), "
          "walk-forward re-validation of the gates, multi-account support, and "
          "the same veto-only governor pattern offered as a safety layer for "
-         "anyone else's trading agent."),
+         "anyone else's trading agent. One direction is already explored in "
+         "the repo: a <b>selection-first 'weekly champion' mode</b> — the bot "
+         "scores a 24-name universe (SMA200 quality gate, 63-day momentum, "
+         "premium richness) and wheels only the week's best name. Its 1-year "
+         "exploration run (2025-08 → 2026-07, full artifacts in "
+         "<i>agent/runs/bt-2026-08-29_weekly-champion/</i>) returned <b>+46% "
+         "vs SPY +20%</b> with Sharpe 1.76 — but at double SPY's drawdown, "
+         "because 40% of the account rides one name. Concentration pays and "
+         "bites; it would ship opt-in, with the drawdown stop doing the "
+         "biting. One sample, reported as-is — the momentum screen that won "
+         "here buys tops in a mean-reverting year."),
         ("Who built this?",
          "Claude Code (an AI coding agent) wrote the engine, ran the live "
          "loops, diagnosed its own bugs from the journal, and authored the "

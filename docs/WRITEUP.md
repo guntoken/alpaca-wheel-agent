@@ -78,6 +78,19 @@ Night 1 result: 4 fills, **$1,753 net premium collected**, equity $99,699 on a
 $100,000 paper account while short 4 puts — with the AI layer, the rails, and
 the journal running unattended.
 
+Beyond the baseline, the repo carries two documented strategy explorations,
+each with rules pre-committed before results were seen. A **defensive
+variant** (SMA200 quality screen + regime-scaled delta + 4% cash yield) lifted
+the 2.5-year profile to +34.2% with max drawdown 12.9% — Calmar 1.51 vs SPY's
+1.34 — though its OOS half trailed the baseline's always-on exposure in the
+2025 rally. A **concentrated "weekly champion" mode** scores a 24-name
+universe and wheels only the bot-picked best name each week: +46% vs SPY
++20% in its 1-year window with Sharpe 1.76, at double the drawdown — the
+bot's picks averaged +117% vs the universe's +64%, evidence the selection
+layer adds value, and one sample's worth of caution that it can also buy
+tops. Both live under `agent/runs/` with full artifacts; neither replaces
+the baseline claims above.
+
 ## 4. What this is not
 
 Not investment advice, not a live-money system. It is a hackathon build whose
