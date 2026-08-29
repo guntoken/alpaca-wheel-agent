@@ -3,23 +3,22 @@
 Proyek hackathon **Alpaca AI Trading Agents 2026** (lablab.ai × Alpaca, 28 Agu–4 Sep 2026).
 Agent: wheel options otonom (CSP → covered call) + lapisan AI Claude headless. **PAPER ONLY.**
 
-## ▶️ RESUME — baca dulu (state per 29 Agu ~20:00 WIB)
-**Hari-2 SELESAI** (semua item lama beres): bug posisi-enum + multi-posisi + cap
-per-underlying ditambal; adaptasi agentic-trading-system (regime deterministik, cap sektor,
-re-pricing); panel makro Alpaca-native (GLD/VIXY/BTC/news → regime AI); **dashboard 4-tab
-selesai & interaktif** (tema kuning-navy "Alpaca daylight", chart equity SVG halus dengan
-hover crosshair + tooltip + sumbu waktu UTC, stress test, AI Brain, stepper wheel).
-Hasil malam-1: 4 fill, **$1.753 premium**, 25 cycle live. Posisi kini: 4 short put
-(INTC×3, F×1), equity ±$99.7k. Market tutup sampai Senin 20:30 WIB.
+## ▶️ RESUME — baca dulu (state per 29 Agu ~21:00 WIB)
+**Hari-2 SELESAI; Hari-3 sore: dokumen submission BERES** — docs/WRITEUP.md
+(one-pager: AI logic, risk gates, infra SDK+CLI+MCP), docs/BUSINESS_CASE.md
+(TAM/SAM/kompetitor; angka primer: Cboe 15,2 miliar kontrak 2025, retail 30–60%,
+tabel harga Option Alpha/Composer/Option Samurai/tastytrade), docs/SOCIAL_POST_2.md
+(X thread + LinkedIn; posting SETELAH deploy ada URL), README ditaut ke ketiganya.
+Angka riil utk narasi: 39 cycle (25 live), 4 fill, $1.753 premium, equity $99.699,
+regime 31×RISK_ON / 8×NEUTRAL, 0 veto (jalur veto dites dry-run).
 
 **Menunggu pemilik (satu-satunya bloker): DEPLOY** — share.streamlit.io → login GitHub →
 New app → repo `guntoken/alpaca-wheel-agent`, branch main, file `agent/dashboard/app.py`
 → Deploy (tanpa secrets) → tulis URL hasilnya ke README bagian Dashboard.
 
 **Sisa agenda (SUBMISSION_PLAN.md punya versi lengkap):**
-- [ ] Minggu 30 Agu: **write-up satu halaman** (docs/WRITEUP.md: AI logic, risk gates,
-      infra SDK+CLI+MCP — bahan: RESEARCH_NOTES.md) + slide PDF ≤10 hlm + cover 16:9 +
-      riset business case (TAM/SAM/kompetitor) + draft post sosial #2
+- [ ] Minggu 30 Agu: polish golden-path dashboard pasca-deploy + **slide PDF ≤10 hlm**
+      (bahan siap: WRITEUP + BUSINESS_CASE + dashboard-hero.png) + cover 16:9
 - [ ] Senin 31 Agu 20:15 WIB: **restart loop live** (kode baru aktif):
       `cd agent && setsid nohup env PYTHONUNBUFFERED=1 timeout 19800 ~/.local/bin/uv run wheel-agent loop --live --interval 900 >> loop.log 2>&1 < /dev/null & echo $! > loop.pid`
       Cek dulu `ps -p $(cat agent/loop.pid)` — JANGAN dua loop. Rutin tiap sesi malam:
