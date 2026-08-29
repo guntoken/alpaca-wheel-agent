@@ -173,9 +173,27 @@ def row(html):
     st.markdown(f'<div class="wa-row">{html}</div>', unsafe_allow_html=True)
 
 
-def sparkline_svg(entries, w=1100, h=250, pad_l=64, pad_r=14, pad_t=16, pad_b=20):
-    """Server-rendered equity curve — pure SVG, no charting library. Entries:
-    list of {ts, equity}. Deterministic, brand-styled, hover tooltips native."""
+def _smooth_path(pts):
+    """Catmull-Rom to cubic bezier — gentle curves, no stiff segments."""
+    if len(pts) < 3:
+        return "M" + " L".join(f"{x:.1f},{y:.1f}" for x, y in pts)
+    d = f"M{pts[0][0]:.1f},{pts[0][1]:.1f}"
+    for i in range(len(pts) - 1):
+        p0 = pts[i - 1] if i > 0 else pts[0]
+        p1, p2 = pts[i], pts[i + 1]
+        p3 = pts[i + 2] if i + 2 < len(pts) else p2
+        c1 = (p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6)
+        c2 = (p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6)
+        d += f"C{c1[0]:.1f},{c1[1]:.1f} {c2[0]:.1f},{c2[1]:.1f} {p2[0]:.1f},{p2[1]:.1f}"
+    return d
+
+
+def sparkline_html(entries, w=1100, h=290, pad_l=64, pad_r=64,
+                   pad_t=20, pad_b=34):
+    """Interactive equity curve: smooth gold area+line, dollar y-labels, UTC
+    time x-labels, hover crosshair with live tooltip, draw-in animation.
+    Pure server-rendered SVG + vanilla JS inside the components iframe."""
+    import json as _json
     vals = [e["equity"] for e in entries]
     if len(vals) < 2:
         return None
@@ -186,10 +204,13 @@ def sparkline_svg(entries, w=1100, h=250, pad_l=64, pad_r=14, pad_t=16, pad_b=20
     lo, hi = lo - vpad, hi + vpad
     n = len(vals)
     xs = [pad_l + (w - pad_l - pad_r) * i / (n - 1) for i in range(n)]
-    ys = [pad_t + (h - pad_t - pad_b) * (1 - (v - lo) / (hi - lo)) for v in vals]
-    path = "M" + " L".join(f"{x:.1f},{y:.1f}" for x, y in zip(xs, ys))
-    area = (path + f" L{xs[-1]:.1f},{h - pad_b:.1f} "
+    ys = [pad_t + (h - pad_t - pad_b) * (1 - (v - lo) / (hi - lo))
+          for v in vals]
+    pts = list(zip(xs, ys))
+    line = _smooth_path(pts)
+    area = (line + f" L{xs[-1]:.1f},{h - pad_b:.1f} "
             f"L{xs[0]:.1f},{h - pad_b:.1f} Z")
+
     grid = []
     for k in range(4):
         v = lo + (hi - lo) * k / 3
@@ -199,21 +220,96 @@ def sparkline_svg(entries, w=1100, h=250, pad_l=64, pad_r=14, pad_t=16, pad_b=20
             f'stroke="rgba(63,50,15,0.10)"/>'
             f'<text x="{pad_l - 9}" y="{y + 4:.1f}" text-anchor="end" '
             f'font-size="11" fill="#6F6757">${v / 1000:.1f}k</text>')
-    dots = "".join(
-        f'<circle cx="{x:.1f}" cy="{y:.1f}" r="8" fill="transparent">'
-        f'<title>{str(e.get("ts", ""))[11:16]} UTC · ${v:,.0f}</title></circle>'
-        for x, y, v, e in zip(xs, ys, vals, entries))
+    for k in range(5):
+        i = round((n - 1) * k / 4)
+        x = xs[i]
+        ts = str(entries[i].get("ts", ""))
+        label = (ts[5:10] + " " + ts[11:16]) if k == 0 else ts[11:16]
+        grid.append(
+            f'<line x1="{x:.1f}" y1="{h - pad_b}" x2="{x:.1f}" '
+            f'y2="{h - pad_b + 5}" stroke="rgba(63,50,15,0.25)"/>'
+            f'<text x="{x:.1f}" y="{h - pad_b + 19}" text-anchor="middle" '
+            f'font-size="10.5" fill="#8A8272">{label}</text>')
+    grid.append(
+        f'<text x="{w - pad_r}" y="{h - pad_b + 19}" text-anchor="end" '
+        f'font-size="10" fill="#8A8272" opacity="0">UTC</text>')
+
+    pdata = _json.dumps([
+        {"x": round(x, 1), "y": round(y, 1),
+         "t": str(e.get("ts", ""))[11:16], "d": str(e.get("ts", ""))[5:10],
+         "v": round(v, 0)}
+        for x, y, v, e in zip(xs, ys, vals, entries)])
+
+    js = """
+<script>
+(function(){
+  var PTS = __PDATA__;
+  var W = __W__, H = __H__;
+  var svg = document.getElementById('waSpark');
+  var tip = document.getElementById('waTip');
+  var cross = document.getElementById('waCross');
+  var dot = document.getElementById('waDot');
+  svg.addEventListener('mousemove', function(ev){
+    var r = svg.getBoundingClientRect();
+    var vx = (ev.clientX - r.left) * (W / r.width);
+    var best = 0, bd = 1e12;
+    for (var i = 0; i < PTS.length; i++){
+      var d = Math.abs(PTS[i].x - vx);
+      if (d < bd){ bd = d; best = i; }
+    }
+    var p = PTS[best];
+    cross.setAttribute('x1', p.x); cross.setAttribute('x2', p.x);
+    cross.style.display = '';
+    dot.setAttribute('cx', p.x); dot.setAttribute('cy', p.y);
+    dot.style.display = '';
+    tip.style.display = 'block';
+    tip.innerHTML = '<b style="color:#FFC61A">$' + p.v.toLocaleString() +
+      '</b>&nbsp; ' + p.d + ' ' + p.t + ' UTC · cycle ' + (best + 1);
+    var px = r.left + p.x * (r.width / W);
+    var py = r.top + p.y * (r.height / H);
+    tip.style.left = Math.max(px - tip.offsetWidth / 2, 8) + 'px';
+    tip.style.top = (py - tip.offsetHeight - 14) + 'px';
+  });
+  svg.addEventListener('mouseleave', function(){
+    tip.style.display = 'none';
+    cross.style.display = 'none'; dot.style.display = 'none';
+  });
+})();
+</script>"""
+    js = js.replace("__PDATA__", pdata).replace("__W__", str(w)).replace("__H__", str(h))
+
     return (
-        f'<svg class="wa-spark" viewBox="0 0 {w} {h}" width="100%" '
-        f'style="display:block;background:#FFFFFF;border:1px solid '
-        f'rgba(63,50,15,0.16);border-radius:12px">'
-        f'<defs><linearGradient id="eqg" x1="0" y1="1" x2="0" y2="0">'
-        f'<stop offset="0" stop-color="rgba(201,138,0,0.02)"/>'
-        f'<stop offset="1" stop-color="rgba(201,138,0,0.32)"/>'
-        f'</linearGradient></defs>{"".join(grid)}'
-        f'<path d="{area}" fill="url(#eqg)"/>'
-        f'<path d="{path}" fill="none" stroke="#C98A00" stroke-width="2.2"/>'
-        f'{dots}</svg>')
+        '<div style="position:relative;font-family:Inter,-apple-system,sans-serif">'
+        f'<svg id="waSpark" viewBox="0 0 {w} {h}" width="100%" '
+        'style="display:block;cursor:crosshair;background:#FFFFFF;'
+        'border:1px solid rgba(63,50,15,0.16);border-radius:12px">'
+        '<defs><linearGradient id="eqg" x1="0" y1="1" x2="0" y2="0">'
+        '<stop offset="0" stop-color="rgba(201,138,0,0.02)"/>'
+        '<stop offset="1" stop-color="rgba(201,138,0,0.32)"/>'
+        '</linearGradient></defs>'
+        + "".join(grid)
+        + f'<path d="{area}" fill="url(#eqg)" style="animation:wafade .8s ease"/>'
+        f'<path d="{line}" fill="none" stroke="#C98A00" stroke-width="2.4" '
+        'class="wa-line"/>'
+        f'<circle cx="{xs[-1]:.1f}" cy="{ys[-1]:.1f}" r="4.5" fill="#C98A00" '
+        f'stroke="#FFFFFF" stroke-width="1.5"/>'
+        f'<text x="{xs[-1]:.1f}" y="{ys[-1] - 10:.1f}" text-anchor="end" '
+        f'font-size="11.5" font-weight="700" fill="#635B4B">'
+        f'${vals[-1]:,.0f}</text>'
+        '<line id="waCross" y1="' + str(pad_t) + '" y2="' + str(h - pad_b) +
+        '" stroke="rgba(63,50,15,0.35)" stroke-dasharray="3 3" style="display:none"/>'
+        '<circle id="waDot" r="5" fill="#FFC61A" stroke="#14181F" '
+        'stroke-width="1.5" style="display:none"/>'
+        '</svg>'
+        '<div id="waTip" style="position:fixed;display:none;pointer-events:none;'
+        'background:#14181F;color:#FFFDF6;font-size:12px;padding:6px 11px;'
+        'border-radius:8px;white-space:nowrap;box-shadow:0 6px 18px rgba(0,0,0,.3);'
+        'z-index:99"></div>'
+        '<style>@keyframes wafade{from{opacity:0}to{opacity:1}}'
+        '.wa-line{stroke-dasharray:4000;stroke-dashoffset:4000;'
+        'animation:wadraw 1.1s ease forwards}'
+        '@keyframes wadraw{to{stroke-dashoffset:0}}</style>'
+        + js + '</div>')
 
 
 def pill(text, cls=""):
@@ -285,14 +381,13 @@ with tabs[0]:
     st.subheader("Equity curve — every cycle, from the decision journal")
     entries = [e for e in DATA.get("equity_curve", [])
                if e.get("equity") is not None]
-    svg = sparkline_svg(entries)
-    if svg:
+    html = sparkline_html(entries)
+    if html:
         # components.html bypasses the markdown pipeline, which truncates
         # inline SVG (learned the hard way: DOM stopped after first </text>)
         import streamlit.components.v1 as components
-        components.html(svg, height=270, scrolling=False)
-        st.caption(f"{len(entries)} cycles · hover any point for time + equity "
-                   "· server-rendered SVG, no charting library")
+        components.html(html, height=320, scrolling=False)
+        st.caption(f"{len(entries)} cycles · hover the chart: crosshair + tooltip per cycle · server-rendered SVG, no charting library")
 
     # regime ribbon
     hist = DATA.get("regime_history", [])
