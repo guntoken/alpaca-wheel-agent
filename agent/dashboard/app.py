@@ -15,6 +15,91 @@ import streamlit as st
 st.set_page_config(page_title="Wheel Agent — Alpaca Hackathon",
                    page_icon="🦉", layout="wide")
 
+# --- theme: modern-dark fintech (ui-ux-pro-max guidance, MIT) with an
+# Alpaca-inspired mint-teal accent; financial semantics green/red stay native
+THEME_CSS = """
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+html, body, button, [class*="css"], [data-testid="stMetricLabel"],
+[data-testid="stMetricValue"] {
+    font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+}
+h1, h2, h3 {letter-spacing: -0.02em;}
+section[data-testid="stMetric"] {
+    background: #0D0F12;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 14px 16px 10px 16px;
+}
+section[data-testid="stMetric"] > div > label {
+    color: #8A8F98 !important;
+    text-transform: uppercase;
+    font-size: 0.70rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+.stTabs [data-baseweb="tab-list"] {
+    gap: 4px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.stTabs [data-baseweb="tab"] {
+    border-radius: 9px 9px 0 0;
+    padding: 8px 18px;
+    color: #8A8F98;
+    font-weight: 500;
+}
+.stTabs [data-baseweb="tab"][aria-selected="true"] {
+    background: #0D0F12;
+    color: #00D3A7 !important;
+    font-weight: 650;
+    border-bottom: 2px solid #00D3A7;
+}
+[data-testid="stHeader"] {background: transparent;}
+[data-testid="stHeadingContainer"] h2 {
+    border-left: 3px solid #00D3A7;
+    padding-left: 10px;
+}
+div[data-testid="stDataFrame"] {border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px; overflow: hidden;}
+/* hide default streamlit chrome (deploy button, status) for a product feel */
+[data-testid="stToolbar"], [data-testid="stStatusWidget"],
+[class="stDeployButton"] {display: none !important;}
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+</style>
+"""
+st.markdown(THEME_CSS, unsafe_allow_html=True)
+
+
+def fmt_usd(v, signed: bool = False) -> str:
+    if v is None:
+        return "—"
+    if signed:
+        return ("−" if v < 0 else "+") + f"${abs(v):,.0f}"
+    return f"${v:,.0f}"
+
+
+def _card(label: str, value: str, sub: str | None = None,
+          tone: str | None = None) -> str:
+    """A metric card with real surface, border and financial color semantics
+    (profit green / loss red / accent teal / neutral off-white)."""
+    color = {"good": "#22C55E", "bad": "#EF4444",
+             "accent": "#00D3A7"}.get(tone or "", "#EDEDEF")
+    subh = (f'<div style="color:#8A8F98;font-size:0.76rem;margin-top:3px">{sub}</div>'
+            if sub else "")
+    return (f'<div style="flex:1;min-width:130px;background:#0D0F12;'
+            f'border:1px solid rgba(255,255,255,0.08);border-radius:12px;'
+            f'padding:13px 15px;">'
+            f'<div style="color:#8A8F98;font-size:0.66rem;font-weight:700;'
+            f'letter-spacing:0.07em;text-transform:uppercase;">{label}</div>'
+            f'<div style="color:{color};font-size:1.5rem;font-weight:700;'
+            f'margin-top:4px;letter-spacing:-0.02em;">{value}</div>{subh}</div>')
+
+
+def card_row(html: str) -> None:
+    st.markdown(f'<div style="display:flex;gap:10px;margin:4px 0 8px 0;">{html}</div>',
+                unsafe_allow_html=True)
+
 HERE = Path(__file__).parent
 DATA = json.loads((HERE / "data.json").read_text())
 
@@ -31,12 +116,18 @@ tabs = st.tabs(["🕹 Command Center", "🧪 Risk Lab", "🧠 AI Brain", "⚙️
 
 # ---------------------------------------------------------------- Command ---
 with tabs[0]:
-    c1, c2, c3, c4, c5 = st.columns(5)
-    c1.metric("Equity", f"${acct.get('equity', 0):,.0f}")
-    c2.metric("Net premium collected", f"${DATA.get('premium_net_collected', 0):,.0f}")
-    c3.metric("Unrealized P&L", f"${stats.get('unrealized_pl', 0):,.0f}")
-    c4.metric("Open positions", len(DATA.get("positions", [])))
-    c5.metric("Cycles (live)", f"{stats.get('live_cycles', 0)}")
+    upl = stats.get("unrealized_pl", 0) or 0
+    prem = DATA.get("premium_net_collected", 0) or 0
+    card_row(
+        _card("Equity", fmt_usd(acct.get("equity", 0)),
+              sub=f"day anchor {fmt_usd(acct.get('day_start_equity'))}")
+        + _card("Net premium collected", fmt_usd(prem, signed=True),
+                sub=f"{stats.get('fills', 0)} fills", tone="good" if prem >= 0 else "bad")
+        + _card("Unrealized P&L", fmt_usd(upl, signed=True),
+                sub="mark-to-market", tone="good" if upl >= 0 else "bad")
+        + _card("Open positions", str(len(DATA.get("positions", []))),
+                sub=f"{stats.get('live_cycles', 0)} live cycles")
+    )
 
     curve = pd.DataFrame(DATA.get("equity_curve", []))
     if not curve.empty:
@@ -48,26 +139,37 @@ with tabs[0]:
     hist = DATA.get("regime_history", [])
     if hist:
         last = hist[-1]
-        b1, b2 = st.columns(2)
-        b1.metric("AI regime (Claude)", last.get("regime") or "-",
-                  f"SPY {last.get('spy_pct')}% d/d" if last.get("spy_pct") is not None else None)
-        b2.metric("Deterministic anchor", last.get("det") or "-")
+        card_row(
+            _card("AI regime (Claude)", last.get("regime") or "—",
+                  sub=f"SPY {last.get('spy_pct'):+.2f}% d/d" if last.get("spy_pct") is not None else "LLM judgment",
+                  tone="good" if last.get("regime") == "RISK_ON"
+                  else ("bad" if last.get("regime") == "RISK_OFF" else "accent"))
+            + _card("Deterministic anchor", last.get("det") or "—",
+                    sub="SPY-intraday tiers · cannot flicker")
+        )
         st.info(f"🧠 Claude said: “{last.get('reason')}”", icon="🧠")
 
     st.subheader("Macro context the AI reads (all Alpaca-native data)")
     macro = (DATA.get("market_context") or {}).get("macro", {})
     if macro:
-        m1, m2, m3, m4 = st.columns(4)
-        for col, name in zip((m1, m2, m3), ("GLD", "VIXY", "BTC")):
+        names = {"GLD": "gold · flight to safety", "VIXY": "priced fear",
+                 "BTC": "risk appetite"}
+        parts = ""
+        for name, label in names.items():
             m = macro.get(name) or {}
-            col.metric(f"{name} — {'gold' if name == 'GLD' else 'priced fear' if name == 'VIXY' else 'risk appetite'}",
-                       f"{m.get('day_pct', 0):+.2f}% d/d",
-                       f"vs SMA20 {m.get('vs_sma20_pct'):+.1f}%"
-                       if m.get("vs_sma20_pct") is not None else None)
+            day = m.get("day_pct", 0) or 0
+            vs20 = m.get("vs_sma20_pct")
+            tone = "bad" if (name == "VIXY" and day > 2) or (
+                name in ("GLD", "BTC") and day < -3) else None
+            parts += _card(name, f"{day:+.2f}% d/d",
+                           sub=f"vs SMA20 {vs20:+.1f}%" if vs20 is not None else label,
+                           tone=tone)
         news = macro.get("news") or {}
-        m4.metric("News sentiment (Alpaca)",
-                  f"{news.get('avg_sentiment', 0):+.2f}" if news.get("avg_sentiment") is not None else "n/a",
-                  f"{len(news.get('headlines', []))} headlines")
+        n_avg = news.get("avg_sentiment")
+        parts += _card("News (Alpaca)",
+                       f"{n_avg:+.2f}" if n_avg is not None else f"{len(news.get('headlines', []))} h/l",
+                       sub=f"{len(news.get('headlines', []))} headlines · LLM reads them")
+        card_row(parts)
         if news.get("headlines"):
             for h in news["headlines"][:5]:
                 s = h.get("sentiment") or 0
@@ -114,9 +216,9 @@ with tabs[1]:
 
     st.subheader("Stress test — what a selloff tonight would do")
     shocks = [-0.01, -0.02, -0.05]
-    cols = st.columns(len(shocks))
     rows = []
-    for col, sh in zip(cols, shocks):
+    cards = ""
+    for sh in shocks:
         book_pl = 0.0
         at_risk = 0.0
         itm = []
@@ -133,11 +235,13 @@ with tabs[1]:
             if strike > new_spot:
                 at_risk += p.get("collateral") or 0
                 itm.append(p["underlying"])
-        col.metric(f"SPY {sh:+.0%}", f"${book_pl:+,.0f}",
-                   f"{len(itm)} put(s) ITM", delta_color="inverse")
-        rows.append({"shock": f"{sh:+.0%}", "est. book P&L": f"${book_pl:+,.0f}",
-                     "collateral at risk": f"${at_risk:,.0f}",
+        cards += _card(f"SPY {sh:+.0%}", fmt_usd(book_pl, signed=True),
+                       sub=f"{len(itm)} put(s) ITM · risk {fmt_usd(at_risk)}",
+                       tone="good" if book_pl >= 0 else "bad")
+        rows.append({"shock": f"{sh:+.0%}", "est. book P&L": fmt_usd(book_pl, signed=True),
+                     "collateral at risk": fmt_usd(at_risk),
                      "ITM underlyings": ", ".join(sorted(set(itm))) or "—"})
+    card_row(cards)
     st.table(pd.DataFrame(rows))
     st.caption("Uniform-shock approximation: every underlying moves with SPY, "
                "beta 1, no vol expansion. Reality is messier — this is a floor, "
@@ -173,7 +277,8 @@ with tabs[2]:
         df.columns = ["ts (UTC)", "AI regime", "anchor", "SPY %", "Claude's reasoning"]
         st.dataframe(df, width='stretch', hide_index=True)
     vetoes = DATA.get("ai_vetoes", [])
-    st.metric("Entries vetoed so far", len(vetoes))
+    card_row(_card("Entries vetoed by the AI", str(len(vetoes)),
+                   sub="it can only say NO", tone="accent"))
     if vetoes:
         st.dataframe(pd.DataFrame(vetoes), width='stretch', hide_index=True)
 
@@ -197,10 +302,13 @@ with tabs[3]:
         st.dataframe(fills.iloc[::-1], width='stretch', hide_index=True)
 
     st.subheader("Runtime")
-    r1, r2, r3 = st.columns(3)
-    r1.metric("Kill switch", "ARMED-HALT" if stats.get("kill_switch") else "off (trading enabled)")
-    r2.metric("Cycles journaled", stats.get("cycles_total", 0))
-    r3.metric("Paper endpoint", "paper-api.alpaca.markets")
+    card_row(
+        _card("Kill switch", "ARMED — HALT" if stats.get("kill_switch") else "off",
+              sub="agent/KILL file", tone="bad" if stats.get("kill_switch") else "accent")
+        + _card("Cycles journaled", str(stats.get("cycles_total", 0)),
+                sub=f"{stats.get('live_cycles', 0)} live")
+        + _card("Paper endpoint", "paper-api", sub="alpaca.markets · read-only dashboard")
+    )
     st.caption("Orders are submitted only by the local agent with --live; this "
                "dashboard is read-only and credential-free.")
 

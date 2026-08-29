@@ -1,0 +1,12 @@
+# Streamlit theme — "modern dark fintech" per ui-ux-pro-max guidance
+# (MIT), with an Alpaca-inspired mint-teal accent. Located at repo root so
+# Streamlit Community Cloud picks it up automatically.
+[theme]
+base = "dark"
+primaryColor = "#00D3A7"
+backgroundColor = "#050507"
+secondaryBackgroundColor = "#0D0F12"
+textColor = "#E8EAED"
+
+[server]
+headless = true
