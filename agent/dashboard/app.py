@@ -980,11 +980,6 @@ with tabs[5]:
          "opt-in behind tighter drawdown limits — momentum screens buy tops "
          "in mean-reverting years, and we say so on the slide, not in a "
          "footnote."),
-        ("Who built this?",
-         "Claude Code (an AI coding agent) wrote the engine, ran the live "
-         "loops, diagnosed its own bugs from the journal, and authored the "
-         "docs — supervised by one human operator. An agent-native build, "
-         "including this dashboard."),
     ]
     for q, a in faqs:
         with st.expander(q):
