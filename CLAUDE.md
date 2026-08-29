@@ -37,14 +37,17 @@ seleksi: nama terpilih rata-rata +117% vs universe +64% (layar momentum menang
 di tahun momentum; SOFI/COIN jadi counter-example). 1 sampel = bukan bukti
 statistik. Analisis: `compare_c.py` di folder run.
 
-**Sweep Top-K (30 Agu 00:25)** — `agent/runs/bt-2026-08-30_topk-sweep/`: uji usulan
-pemilik "pick 2-3 saham kalau lebih baik". K=2/3/5 equal-weight (36%/24%/14,4%),
-window + layar seleksi sama varian C. Hasil 1 tahun: **K=1 +46,4% (DD 18,6%) >
-K=3 +26,6% (DD 10,7%) > SPY +20,1% >> K=2 +5,6%, K=5 +1,2%.** Di window ini
-konsentrasi pada juara #1 adalah edge-nya — menambah nama mengencerkan pemenang
-(MU/INTC) tanpa menghindari pecundang bersama (SOFI). K=3 = jalan tengah
-(return+Sharpe > SPY, DD ≈ baseline). Pola K=2 vs K=3 tak-monoton = path-luck
-1 sampel. Analisis: `compare_k.py`.
+**Sweep Top-K (30 Agu 00:25) + full-window (01:09)** — `agent/runs/bt-2026-08-30_topk-sweep/`:
+uji usulan pemilik. Sweep 1 tahun: K=1 +46,4% > K=3 +26,6% > SPY +20,1% >> K=2/K=5.
+Lalu dua uji window-setara 2,5 tahun: champion K=1 GAGAL (+35,3%, DD 27,2% — edge
+1-tahun = starting-state luck; run di bt-2026-08-30_champion-25mo) TAPI **K=3
+MENGALAHKAN SPY: +54,6% vs +45,6%, Calmar 1,39 vs 1,34, DD 21,5% vs 19,0%.**
+**Tab About dashboard (30 Agu ~01:20) kini berfokus pada run K=3 2,5 tahun**
+(kartu: return/Calmar/DD/legs/premium, note "What this run is" berlabel
+selection-first variant + tautan run baseline & sweep; FAQ "backtest vs live"
+dan "what is next" diselaraskan; backtest.json = data k3full). Klaim "same rules"
+tetap milik baseline dan tidak dipakai utk K=3 — pelabelan jujur: selection-first,
+pre-committed, sweep dipublikasikan.
 
 **Menunggu pemilik (satu-satunya bloker): DEPLOY** — share.streamlit.io → login GitHub →
 New app → repo `guntoken/alpaca-wheel-agent`, branch main, file `agent/dashboard/app.py`

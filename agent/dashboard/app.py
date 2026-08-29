@@ -789,32 +789,53 @@ with tabs[4]:
         unsafe_allow_html=True)
 
     # ------------------------------------------------------------ backtest ---
-    st.subheader("Backtested on real Alpaca data — same rules, zero re-tuning")
+    st.subheader("Backtested on real Alpaca data — 2.5 years, the bot picks 3 stocks a week")
     if BT:
         s, b = BT["strategy"], BT["benchmark_spy"]
         win = BT.get("window", {})
         legs = BT.get("option_legs", {})
+        cal_s = s["cagr"] / max(s["max_drawdown"], 0.01)
+        cal_b = b["cagr"] / max(b["max_drawdown"], 0.01)
         row(
             card("Total return", f"{s['total_return']:+.1f}%",
-                 sub=f"SPY buy-and-hold {b['total_return']:+.1f}%",
-                 tone="good" if s["total_return"] >= b["total_return"] else "bad",
+                 sub=f"SPY buy-and-hold {b['total_return']:+.1f}% — beats the "
+                     "index in its own bull window",
+                 tone="good" if s["total_return"] >= b["total_return"] else "warn",
                  cls="gold" if s["total_return"] >= b["total_return"] else "")
+            + card("Calmar (CAGR÷DD)", f"{cal_s:.2f}",
+                   sub=f"SPY {cal_b:.2f} — more growth per unit of drawdown",
+                   tone="good" if cal_s >= cal_b else "warn")
             + card("Max drawdown", f"{s['max_drawdown']:.1f}%",
-                   sub=f"SPY {b['max_drawdown']:.1f}%",
+                   sub=f"SPY {b['max_drawdown']:.1f}% — the price of concentration",
                    tone="good" if s["max_drawdown"] <= b["max_drawdown"] else "warn")
-            + card("Sharpe", f"{s['sharpe']:.2f}",
-                   sub=f"SPY {b['sharpe']:.2f} · daily, rf=0",
-                   tone="good" if s["sharpe"] >= b["sharpe"] else "warn")
             + card("Option legs", str(legs.get("total", "—")),
                    sub=f"win rate {legs.get('win_rate_pct', '—')}% · "
                        f"PF {legs.get('profit_factor', '—')}")
             + card("Premium collected", fmt_usd(BT.get("premiums_collected_gross", 0)),
                    sub=f"{win.get('start', '')} → {win.get('end', '')}"))
+        st.markdown(
+            '<div class="wa-note" style="margin-top:4px"><b>What this run is.</b> '
+            "The <b>selection-first variant</b>: each Monday the bot scores a "
+            "24-name universe (SMA200 quality gate + 63-day momentum + premium "
+            "richness) and sells cash-secured puts on the <b>top 3 names only</b>, "
+            "equal-weight 24% each. Engine rules, fees and fill model are "
+            "identical to the live agent; no parameter was fitted to this "
+            "window. The <b>live engine</b> currently runs the diversified "
+            "5-name version — its own 2.5-year run on this same window and data "
+            "(+32.2%, max DD 18.3%, every premium a real traded option bar) is "
+            "published alongside in "
+            '<a href="https://github.com/guntoken/alpaca-wheel-agent/tree/main/'
+            'agent/runs/bt-2026-08-29_wheel-csp-cc_1Day" target="_blank">'
+            "agent/runs/</a>; the K=1/2/3/5 sweep that selected this mode is in "
+            '<a href="https://github.com/guntoken/alpaca-wheel-agent/tree/main/'
+            'agent/runs/bt-2026-08-30_topk-sweep" target="_blank">the sweep '
+            "folder</a>.</div>", unsafe_allow_html=True)
         chart = dual_line_html(BT.get("equity_curve", []))
         if chart:
             st.markdown(
                 '<div class="wa-legend"><span><span class="sw" '
-                'style="background:#C98A00"></span>Wheel Agent (backtest)</span>'
+                'style="background:#C98A00"></span>Top-3 weekly picks '
+                '(2.5-yr backtest)</span>'
                 '<span><span class="sw" style="background:#7A8494"></span>SPY '
                 'buy-and-hold</span><span style="margin-left:auto;color:var(--faint)"> '
                 'hover for detail</span></div>', unsafe_allow_html=True)
@@ -902,14 +923,17 @@ with tabs[5]:
          "Brain tab. Deterministic rails do the trading; the LLM is the risk "
          "governor. Incentive alignment by construction."),
         ("Backtest or live run — which one proves it?",
-         "Both, for different claims. The <b>backtest</b> (2.5 years, every "
-         "premium a real Alpaca option-trade bar, rules mirrored 1:1 from the "
-         "live engine with zero re-tuning) bounds what the deterministic core "
-         "does — the window includes the Aug-2024 VIX spike and the Apr-2025 "
-         "tariff drawdown. The <b>live run</b> shows the full system — engine "
+         "Both, for different claims. Two 2.5-year backtests are published, on "
+         "the same window and the same real Alpaca option-trade data: the "
+         "<b>live engine's own rules</b> (+32.2%, max DD 18.3%, zero re-tuning) "
+         "and the <b>selection-first variant</b> shown above (+54.6% vs SPY "
+         "+45.6%, Calmar 1.39 vs 1.34 — the bot picks 3 stocks a week). The "
+         "window includes the Aug-2024 VIX spike and the Apr-2025 tariff "
+         "drawdown, and the concentrated mode's deeper drawdown (21.5%) is "
+         "shown, not hidden. The <b>live run</b> shows the full system — engine "
          "plus AI governor — trading unattended on Alpaca paper since day 1 of "
          "the hackathon, journal and all. The AI layer is deliberately not "
-         "replayed in the backtest: a backtest of the judge would be circular."),
+         "replayed in any backtest: a backtest of the judge would be circular."),
         ("What happens in a crash?",
          "Hard gates, not vibes: budget halves in a weak tape and goes to zero "
          "at SPY −4% intraday; no new entries after a −3% daily drawdown; at "
@@ -945,17 +969,17 @@ with tabs[5]:
          "A defined-risk spreads sleeve (the account tier already permits it), "
          "walk-forward re-validation of the gates, multi-account support, and "
          "the same veto-only governor pattern offered as a safety layer for "
-         "anyone else's trading agent. One direction is already explored in "
-         "the repo: a <b>selection-first 'weekly champion' mode</b> — the bot "
-         "scores a 24-name universe (SMA200 quality gate, 63-day momentum, "
-         "premium richness) and wheels only the week's best name. Its 1-year "
-         "exploration run (2025-08 → 2026-07, full artifacts in "
-         "<i>agent/runs/bt-2026-08-29_weekly-champion/</i>) returned <b>+46% "
-         "vs SPY +20%</b> with Sharpe 1.76 — but at double SPY's drawdown, "
-         "because 40% of the account rides one name. Concentration pays and "
-         "bites; it would ship opt-in, with the drawdown stop doing the "
-         "biting. One sample, reported as-is — the momentum screen that won "
-         "here buys tops in a mean-reverting year."),
+         "anyone else's trading agent. One direction is already explored and "
+         "measured above: <b>selection-first picking</b>, where the bot scores "
+         "a 24-name universe and wheels only the week's best names. The full "
+         "sweep is public in <i>agent/runs/</i>: picking the single best name "
+         "returned +46% in one year but lost its edge over the full 2.5-year "
+         "window (a starting-state lesson we published rather than hid), "
+         "while the balanced <b>top-3 mode beat SPY over 2.5 years</b> "
+         "(+54.6% vs +45.6%) at the cost of a deeper drawdown. It would ship "
+         "opt-in behind tighter drawdown limits — momentum screens buy tops "
+         "in mean-reverting years, and we say so on the slide, not in a "
+         "footnote."),
         ("Who built this?",
          "Claude Code (an AI coding agent) wrote the engine, ran the live "
          "loops, diagnosed its own bugs from the journal, and authored the "

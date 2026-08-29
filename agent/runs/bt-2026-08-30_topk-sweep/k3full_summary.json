@@ -1,0 +1,516 @@
+{
+  "run": "bt-2026-08-30_topk-sweep",
+  "window": {
+    "start": "2024-03-01",
+    "end": "2026-07-31",
+    "trading_days": 606
+  },
+  "strategy": {
+    "total_return": 54.63,
+    "cagr": 30.02,
+    "max_drawdown": 21.53,
+    "sharpe": 0.98,
+    "final_equity": 154625.3
+  },
+  "benchmark_spy": {
+    "total_return": 45.59,
+    "cagr": 25.39,
+    "max_drawdown": 18.98,
+    "sharpe": 1.08,
+    "final_equity": 145592.97
+  },
+  "option_legs": {
+    "total": 177,
+    "wins": 173,
+    "win_rate_pct": 97.7,
+    "profit_factor": 172.14,
+    "net_option_pnl": 63716.3
+  },
+  "premiums_collected_gross": 92181.2,
+  "fees_paid": 1055.5,
+  "activity": {
+    "csp_sold": 114,
+    "cc_sold": 63,
+    "tp_closes": 98,
+    "cc_tp": 49,
+    "expired_worthless": 5,
+    "assignments": 14,
+    "called_away": 10
+  },
+  "gate_activity": {
+    "vol_floor": 118,
+    "drawdown": 0,
+    "extreme": 0,
+    "no_candidate": 56,
+    "budget": 32,
+    "slots": 0,
+    "sector": 1,
+    "fills_missed": 10,
+    "bear_entries_scaled": 2,
+    "cc_floor_block": 322,
+    "quality": 351,
+    "afford": 90
+  },
+  "opt_api_calls": 313,
+  "variant": "D topk-sweep",
+  "topk": 3,
+  "per_name_pct": 0.24,
+  "champions_picked": [
+    {
+      "date": "2024-03-25",
+      "name": "MU"
+    },
+    {
+      "date": "2024-03-25",
+      "name": "PLTR"
+    },
+    {
+      "date": "2024-03-25",
+      "name": "AMD"
+    },
+    {
+      "date": "2024-04-01",
+      "name": "GM"
+    },
+    {
+      "date": "2024-04-08",
+      "name": "MU"
+    },
+    {
+      "date": "2024-04-08",
+      "name": "DIS"
+    },
+    {
+      "date": "2024-04-15",
+      "name": "COIN"
+    },
+    {
+      "date": "2024-04-15",
+      "name": "F"
+    },
+    {
+      "date": "2024-04-22",
+      "name": "MU"
+    },
+    {
+      "date": "2024-04-29",
+      "name": "COIN"
+    },
+    {
+      "date": "2024-04-29",
+      "name": "MU"
+    },
+    {
+      "date": "2024-04-29",
+      "name": "F"
+    },
+    {
+      "date": "2024-05-06",
+      "name": "COIN"
+    },
+    {
+      "date": "2024-05-06",
+      "name": "SNAP"
+    },
+    {
+      "date": "2024-05-13",
+      "name": "MU"
+    },
+    {
+      "date": "2024-05-13",
+      "name": "BABA"
+    },
+    {
+      "date": "2024-05-20",
+      "name": "BABA"
+    },
+    {
+      "date": "2024-05-20",
+      "name": "MU"
+    },
+    {
+      "date": "2024-05-20",
+      "name": "DIS"
+    },
+    {
+      "date": "2024-06-03",
+      "name": "MU"
+    },
+    {
+      "date": "2024-06-03",
+      "name": "DIS"
+    },
+    {
+      "date": "2024-06-03",
+      "name": "XOM"
+    },
+    {
+      "date": "2024-06-24",
+      "name": "MU"
+    },
+    {
+      "date": "2024-06-24",
+      "name": "KO"
+    },
+    {
+      "date": "2024-06-24",
+      "name": "T"
+    },
+    {
+      "date": "2024-07-08",
+      "name": "MU"
+    },
+    {
+      "date": "2024-07-15",
+      "name": "PLTR"
+    },
+    {
+      "date": "2024-07-15",
+      "name": "F"
+    },
+    {
+      "date": "2024-08-05",
+      "name": "KO"
+    },
+    {
+      "date": "2024-08-05",
+      "name": "T"
+    },
+    {
+      "date": "2024-08-12",
+      "name": "KO"
+    },
+    {
+      "date": "2024-08-12",
+      "name": "PLTR"
+    },
+    {
+      "date": "2024-08-12",
+      "name": "T"
+    },
+    {
+      "date": "2024-08-26",
+      "name": "PLTR"
+    },
+    {
+      "date": "2024-08-26",
+      "name": "GM"
+    },
+    {
+      "date": "2024-08-26",
+      "name": "T"
+    },
+    {
+      "date": "2024-09-23",
+      "name": "XOM"
+    },
+    {
+      "date": "2024-09-23",
+      "name": "T"
+    },
+    {
+      "date": "2024-09-23",
+      "name": "PLTR"
+    },
+    {
+      "date": "2024-10-07",
+      "name": "BABA"
+    },
+    {
+      "date": "2024-10-07",
+      "name": "PLTR"
+    },
+    {
+      "date": "2024-10-07",
+      "name": "XOM"
+    },
+    {
+      "date": "2024-10-21",
+      "name": "PLTR"
+    },
+    {
+      "date": "2024-10-21",
+      "name": "NOK"
+    },
+    {
+      "date": "2024-10-21",
+      "name": "SOFI"
+    },
+    {
+      "date": "2024-11-11",
+      "name": "SOFI"
+    },
+    {
+      "date": "2024-11-11",
+      "name": "GM"
+    },
+    {
+      "date": "2024-11-25",
+      "name": "SOFI"
+    },
+    {
+      "date": "2024-11-25",
+      "name": "PLTR"
+    },
+    {
+      "date": "2024-11-25",
+      "name": "GM"
+    },
+    {
+      "date": "2025-03-03",
+      "name": "PLTR"
+    },
+    {
+      "date": "2025-03-03",
+      "name": "BABA"
+    },
+    {
+      "date": "2025-03-03",
+      "name": "T"
+    },
+    {
+      "date": "2025-03-24",
+      "name": "BABA"
+    },
+    {
+      "date": "2025-03-24",
+      "name": "PLTR"
+    },
+    {
+      "date": "2025-03-24",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-09-08",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-09-08",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-09-08",
+      "name": "BABA"
+    },
+    {
+      "date": "2025-09-22",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-09-22",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-09-22",
+      "name": "BABA"
+    },
+    {
+      "date": "2025-10-27",
+      "name": "MU"
+    },
+    {
+      "date": "2025-10-27",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-10-27",
+      "name": "AMD"
+    },
+    {
+      "date": "2025-11-17",
+      "name": "MU"
+    },
+    {
+      "date": "2025-11-17",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-11-17",
+      "name": "AMD"
+    },
+    {
+      "date": "2025-12-01",
+      "name": "MU"
+    },
+    {
+      "date": "2025-12-01",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-12-01",
+      "name": "INTC"
+    },
+    {
+      "date": "2025-12-15",
+      "name": "MU"
+    },
+    {
+      "date": "2025-12-15",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-12-15",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-12-29",
+      "name": "MU"
+    },
+    {
+      "date": "2025-12-29",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-12-29",
+      "name": "INTC"
+    },
+    {
+      "date": "2026-01-12",
+      "name": "MU"
+    },
+    {
+      "date": "2026-01-12",
+      "name": "XOM"
+    },
+    {
+      "date": "2026-01-12",
+      "name": "INTC"
+    },
+    {
+      "date": "2026-01-26",
+      "name": "XOM"
+    },
+    {
+      "date": "2026-01-26",
+      "name": "INTC"
+    },
+    {
+      "date": "2026-01-26",
+      "name": "NOK"
+    },
+    {
+      "date": "2026-02-09",
+      "name": "VALE"
+    },
+    {
+      "date": "2026-02-09",
+      "name": "INTC"
+    },
+    {
+      "date": "2026-02-09",
+      "name": "GM"
+    },
+    {
+      "date": "2026-02-23",
+      "name": "XOM"
+    },
+    {
+      "date": "2026-02-23",
+      "name": "T"
+    },
+    {
+      "date": "2026-02-23",
+      "name": "KO"
+    },
+    {
+      "date": "2026-03-16",
+      "name": "NOK"
+    },
+    {
+      "date": "2026-03-16",
+      "name": "XOM"
+    },
+    {
+      "date": "2026-03-16",
+      "name": "VALE"
+    },
+    {
+      "date": "2026-04-13",
+      "name": "NOK"
+    },
+    {
+      "date": "2026-04-13",
+      "name": "XOM"
+    },
+    {
+      "date": "2026-04-13",
+      "name": "AMD"
+    },
+    {
+      "date": "2026-04-27",
+      "name": "NOK"
+    },
+    {
+      "date": "2026-04-27",
+      "name": "INTC"
+    },
+    {
+      "date": "2026-04-27",
+      "name": "KO"
+    },
+    {
+      "date": "2026-05-04",
+      "name": "INTC"
+    },
+    {
+      "date": "2026-05-04",
+      "name": "NOK"
+    },
+    {
+      "date": "2026-05-04",
+      "name": "AMD"
+    },
+    {
+      "date": "2026-05-11",
+      "name": "INTC"
+    },
+    {
+      "date": "2026-05-11",
+      "name": "CVX"
+    },
+    {
+      "date": "2026-05-26",
+      "name": "NOK"
+    },
+    {
+      "date": "2026-05-26",
+      "name": "INTC"
+    },
+    {
+      "date": "2026-05-26",
+      "name": "XOM"
+    },
+    {
+      "date": "2026-06-15",
+      "name": "F"
+    },
+    {
+      "date": "2026-06-15",
+      "name": "INTC"
+    },
+    {
+      "date": "2026-06-15",
+      "name": "KO"
+    },
+    {
+      "date": "2026-06-29",
+      "name": "INTC"
+    },
+    {
+      "date": "2026-06-29",
+      "name": "KO"
+    },
+    {
+      "date": "2026-07-20",
+      "name": "KO"
+    },
+    {
+      "date": "2026-07-20",
+      "name": "CVX"
+    },
+    {
+      "date": "2026-07-20",
+      "name": "F"
+    }
+  ]
+}
