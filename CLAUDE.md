@@ -56,11 +56,18 @@ Bahasa kerja: **Indonesia**. Pemilik istirahat malam 28 Agu, kembali pagi 29 Agu
 ## Kerjaan tersisa (checklist submission)
 **Rencana lengkap + jadwal 7 hari + checklist deliverable resmi lablab ada di
 [docs/SUBMISSION_PLAN.md](./docs/SUBMISSION_PLAN.md) — BACA ITU DULU saat resume.
-Deadline: submit Rabu 2 Sep (hard stop Kamis 3 Sep, jangan tunggu 4 Sep). Celah
-terbesar kita: belum ada Application URL (dashboard Streamlit) — prioritas hari-2.**
-- [x] First live cycle (28 Agu 20:42 WIB)
-- [ ] Cadence cycle selama lomba: loop live tiap malam saat pasar buka (20:30–03:00 WIB)
-- [ ] Dashboard Streamlit (read-only, data dari journal) + deploy → Application URL
+Deadline: submit Rabu 2 Sep (hard stop Kamis 3 Sep, jangan tunggu 4 Sep).**
+- [x] First live cycle (28 Agu 20:42 WIB, $1.753 premium)
+- [x] Dashboard Streamlit lokal (4 tab: Command Center / Risk Lab / AI Brain /
+      Execution Desk; stress test live; hero screenshot `docs/dashboard-hero.png`)
+- [ ] **Deploy Streamlit Cloud (aksi pemilik)**: share.streamlit.com → login GitHub →
+      New app → repo `guntoken/alpaca-wheel-agent`, branch main, file
+      `agent/dashboard/app.py` → Deploy (tanpa secrets) → tulis URL ke README
+- [ ] Rutin tiap sesi malam: `uv run python -m agent.export` lalu commit+push
+      (agar dashboard hosted ikut segar), lalu restart loop live jelang 20:30 WIB
+- [ ] Cadence cycle selama lomba: loop live tiap malam saat pasar buka (20:30–03:00 WIB);
+      **Senin 31 Agu 20:15 WIB restart loop** (kode baru: enum fix, multi-posisi,
+      cap sektor, regime overlay, re-pricing, Bollinger CC, vol gate)
 - [ ] One-page write-up: AI logic, risk gates, infrastruktur Alpaca (SDK+CLI+MCP)
 - [ ] Video ≤5 menit + slide PDF + cover 16:9 + deskripsi (pola lengkap di SUBMISSION_PLAN)
 - [ ] Akun submission BARU $100k (~2 Sep) + ganti keys di `agent/.env`
