@@ -1,0 +1,138 @@
+{
+  "files": {
+    "bars_AMD.json": {
+      "sha256_16": "8d96a23405036f71",
+      "bytes": 102161
+    },
+    "bars_BA.json": {
+      "sha256_16": "4b28a1c97f7b15e9",
+      "bytes": 101769
+    },
+    "bars_BABA.json": {
+      "sha256_16": "70bde5a6bb3466fe",
+      "bytes": 100073
+    },
+    "bars_CAT.json": {
+      "sha256_16": "70423e8e369ec41e",
+      "bytes": 101440
+    },
+    "bars_COIN.json": {
+      "sha256_16": "54d1d8fb6362cca7",
+      "bytes": 101143
+    },
+    "bars_CVX.json": {
+      "sha256_16": "51a73b626d4f5ce4",
+      "bytes": 101922
+    },
+    "bars_DIS.json": {
+      "sha256_16": "8677127e7230301f",
+      "bytes": 100319
+    },
+    "bars_F.json": {
+      "sha256_16": "8d6921bbbf478723",
+      "bytes": 98759
+    },
+    "bars_GM.json": {
+      "sha256_16": "030dc83a6b5a595f",
+      "bytes": 98287
+    },
+    "bars_INTC.json": {
+      "sha256_16": "31a7c2750b817277",
+      "bytes": 99442
+    },
+    "bars_KO.json": {
+      "sha256_16": "d8d2dc30806dd82b",
+      "bytes": 98447
+    },
+    "bars_MSTR.json": {
+      "sha256_16": "2b5d38950ce6e39d",
+      "bytes": 101446
+    },
+    "bars_MU.json": {
+      "sha256_16": "0f451c64ebe54943",
+      "bytes": 100721
+    },
+    "bars_NKE.json": {
+      "sha256_16": "c09bf5096652a179",
+      "bytes": 99069
+    },
+    "bars_NOK.json": {
+      "sha256_16": "d1c0ca7b36853304",
+      "bytes": 95137
+    },
+    "bars_NVDA.json": {
+      "sha256_16": "372d6641056b3a90",
+      "bytes": 102992
+    },
+    "bars_PFE.json": {
+      "sha256_16": "38fb944a12b79de8",
+      "bytes": 98874
+    },
+    "bars_PLTR.json": {
+      "sha256_16": "e7e6b2a2e38ff650",
+      "bytes": 100420
+    },
+    "bars_SNAP.json": {
+      "sha256_16": "25a0e0d0fef8b16e",
+      "bytes": 96633
+    },
+    "bars_SOFI.json": {
+      "sha256_16": "5e833e4f4555e462",
+      "bytes": 97222
+    },
+    "bars_SPY.json": {
+      "sha256_16": "6c5ab58eae430488",
+      "bytes": 102974
+    },
+    "bars_T.json": {
+      "sha256_16": "ac578d3ef0497d46",
+      "bytes": 98968
+    },
+    "bars_VALE.json": {
+      "sha256_16": "088efab1a3bc09de",
+      "bytes": 98421
+    },
+    "bars_WBD.json": {
+      "sha256_16": "54cf0170a76e4a31",
+      "bytes": 97586
+    },
+    "bars_XOM.json": {
+      "sha256_16": "67c56622acc76d37",
+      "bytes": 102029
+    },
+    "corporate_actions.json": {
+      "sha256_16": "5505ba2af8e31c25",
+      "bytes": 2864
+    }
+  },
+  "opts_cache_files": 1469,
+  "stock_bars": {
+    "INTC": 814,
+    "T": 814,
+    "F": 814,
+    "GM": 814,
+    "PFE": 814,
+    "KO": 814,
+    "NOK": 814,
+    "SOFI": 814,
+    "BABA": 814,
+    "MU": 814,
+    "WBD": 814,
+    "VALE": 814,
+    "AMD": 814,
+    "NVDA": 814,
+    "PLTR": 814,
+    "SNAP": 814,
+    "COIN": 814,
+    "MSTR": 814,
+    "XOM": 814,
+    "CVX": 814,
+    "DIS": 814,
+    "CAT": 814,
+    "NKE": 814,
+    "BA": 814,
+    "SPY": 814
+  },
+  "first_day": "2023-06-01",
+  "last_day": "2026-08-28"
+}

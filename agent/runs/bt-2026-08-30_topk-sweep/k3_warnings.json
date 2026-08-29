@@ -1,0 +1,4 @@
+{
+  "fills_dropped_stale": 7,
+  "note": "see notes.md 'Deviations' \u2014 liquidity proxy, inverse-BS greeks, daily-close regime proxy, no AI layer, no early assignment"
+}

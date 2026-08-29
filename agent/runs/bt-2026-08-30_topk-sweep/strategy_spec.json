@@ -1,0 +1,18 @@
+{
+  "variant": "D topk-sweep",
+  "question": "berapa nama weekly-picks yang optimal untuk wheel selection-first?",
+  "K_tested": [
+    1,
+    2,
+    3,
+    5
+  ],
+  "budget": "per-name min(40%, 72%/K) equal-weight; total exposure konstan",
+  "selection": "identik varian C (SMA200 gate + momentum63 + volp, fallback ranking)",
+  "window": [
+    "2025-08-01",
+    "2026-07-31"
+  ],
+  "k1_source": "bt-2026-08-29_weekly-champion (tidak diulang)",
+  "commitment": "rules fixed before results; artifacts TAG-prefixed per K"
+}

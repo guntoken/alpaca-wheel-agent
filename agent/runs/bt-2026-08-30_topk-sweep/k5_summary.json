@@ -1,0 +1,308 @@
+{
+  "run": "bt-2026-08-30_topk-sweep",
+  "window": {
+    "start": "2025-08-01",
+    "end": "2026-07-31",
+    "trading_days": 251
+  },
+  "strategy": {
+    "total_return": 1.15,
+    "cagr": 1.67,
+    "max_drawdown": 5.71,
+    "sharpe": 0.18,
+    "final_equity": 101145.62
+  },
+  "benchmark_spy": {
+    "total_return": 20.11,
+    "cagr": 30.54,
+    "max_drawdown": 9.13,
+    "sharpe": 1.51,
+    "final_equity": 120112.91
+  },
+  "option_legs": {
+    "total": 90,
+    "wins": 87,
+    "win_rate_pct": 96.7,
+    "profit_factor": 24.1,
+    "net_option_pnl": 12437.2
+  },
+  "premiums_collected_gross": 19303.7,
+  "fees_paid": 373.0,
+  "activity": {
+    "csp_sold": 62,
+    "cc_sold": 28,
+    "tp_closes": 50,
+    "cc_tp": 20,
+    "expired_worthless": 4,
+    "assignments": 9,
+    "called_away": 5
+  },
+  "gate_activity": {
+    "vol_floor": 74,
+    "drawdown": 0,
+    "extreme": 0,
+    "no_candidate": 12,
+    "budget": 4,
+    "slots": 0,
+    "sector": 0,
+    "fills_missed": 9,
+    "bear_entries_scaled": 0,
+    "cc_floor_block": 83,
+    "quality": 92,
+    "afford": 99
+  },
+  "opt_api_calls": 102,
+  "variant": "D topk-sweep",
+  "topk": 5,
+  "per_name_pct": 0.144,
+  "champions_picked": [
+    {
+      "date": "2025-08-01",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-08-01",
+      "name": "MU"
+    },
+    {
+      "date": "2025-08-01",
+      "name": "BABA"
+    },
+    {
+      "date": "2025-08-01",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-08-01",
+      "name": "DIS"
+    },
+    {
+      "date": "2025-08-11",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-08-11",
+      "name": "GM"
+    },
+    {
+      "date": "2025-08-11",
+      "name": "MU"
+    },
+    {
+      "date": "2025-08-11",
+      "name": "BABA"
+    },
+    {
+      "date": "2025-08-11",
+      "name": "KO"
+    },
+    {
+      "date": "2025-08-25",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-08-25",
+      "name": "MU"
+    },
+    {
+      "date": "2025-08-25",
+      "name": "INTC"
+    },
+    {
+      "date": "2025-09-02",
+      "name": "BABA"
+    },
+    {
+      "date": "2025-09-02",
+      "name": "MU"
+    },
+    {
+      "date": "2025-09-02",
+      "name": "T"
+    },
+    {
+      "date": "2025-09-08",
+      "name": "MU"
+    },
+    {
+      "date": "2025-09-08",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-09-15",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-09-15",
+      "name": "T"
+    },
+    {
+      "date": "2025-09-22",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-09-22",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-09-22",
+      "name": "INTC"
+    },
+    {
+      "date": "2025-09-22",
+      "name": "XOM"
+    },
+    {
+      "date": "2025-09-29",
+      "name": "INTC"
+    },
+    {
+      "date": "2025-09-29",
+      "name": "XOM"
+    },
+    {
+      "date": "2025-10-27",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-10-27",
+      "name": "NOK"
+    },
+    {
+      "date": "2025-10-27",
+      "name": "GM"
+    },
+    {
+      "date": "2025-10-27",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-10-27",
+      "name": "INTC"
+    },
+    {
+      "date": "2025-11-10",
+      "name": "NOK"
+    },
+    {
+      "date": "2025-11-10",
+      "name": "INTC"
+    },
+    {
+      "date": "2025-11-10",
+      "name": "GM"
+    },
+    {
+      "date": "2025-11-10",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-11-10",
+      "name": "F"
+    },
+    {
+      "date": "2025-12-01",
+      "name": "INTC"
+    },
+    {
+      "date": "2025-12-01",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-12-01",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-12-01",
+      "name": "PFE"
+    },
+    {
+      "date": "2026-02-17",
+      "name": "XOM"
+    },
+    {
+      "date": "2026-02-17",
+      "name": "INTC"
+    },
+    {
+      "date": "2026-02-17",
+      "name": "GM"
+    },
+    {
+      "date": "2026-02-17",
+      "name": "WBD"
+    },
+    {
+      "date": "2026-02-17",
+      "name": "KO"
+    },
+    {
+      "date": "2026-03-02",
+      "name": "NOK"
+    },
+    {
+      "date": "2026-03-02",
+      "name": "INTC"
+    },
+    {
+      "date": "2026-03-02",
+      "name": "KO"
+    },
+    {
+      "date": "2026-05-04",
+      "name": "INTC"
+    },
+    {
+      "date": "2026-05-04",
+      "name": "NOK"
+    },
+    {
+      "date": "2026-05-04",
+      "name": "VALE"
+    },
+    {
+      "date": "2026-05-26",
+      "name": "NOK"
+    },
+    {
+      "date": "2026-05-26",
+      "name": "INTC"
+    },
+    {
+      "date": "2026-05-26",
+      "name": "XOM"
+    },
+    {
+      "date": "2026-06-15",
+      "name": "F"
+    },
+    {
+      "date": "2026-06-15",
+      "name": "KO"
+    },
+    {
+      "date": "2026-06-15",
+      "name": "INTC"
+    },
+    {
+      "date": "2026-06-15",
+      "name": "GM"
+    },
+    {
+      "date": "2026-06-15",
+      "name": "XOM"
+    },
+    {
+      "date": "2026-07-20",
+      "name": "INTC"
+    },
+    {
+      "date": "2026-07-20",
+      "name": "KO"
+    },
+    {
+      "date": "2026-07-20",
+      "name": "F"
+    }
+  ]
+}

@@ -1,0 +1,907 @@
+=== TOPK 2 start 00:17:34 ===
+== fetch stock bars (Alpaca CLI, iex/raw) ==
+  INTC: 814 days
+  T: 814 days
+  F: 814 days
+  GM: 814 days
+  PFE: 814 days
+  KO: 814 days
+  NOK: 814 days
+  SOFI: 814 days
+  BABA: 814 days
+  MU: 814 days
+  WBD: 814 days
+  VALE: 814 days
+  AMD: 814 days
+  NVDA: 814 days
+  PLTR: 814 days
+  SNAP: 814 days
+  COIN: 814 days
+  MSTR: 814 days
+  XOM: 814 days
+  CVX: 814 days
+  DIS: 814 days
+  CAT: 814 days
+  NKE: 814 days
+  BA: 814 days
+  SPY: 814 days
+== simulate (single pass; cache pre-verified by the baseline run) ==
+-- pass 1: cache clean --
+    ranking: SOFI m+70% v0.91 | COIN m+56% v0.76 | AMD m+78% v0.65
+    -> pick #1 SOFI SOFI250822P00020000 x18 delta 0.31
+    -> pick #2 COIN COIN250808P00302500 x1 delta 0.30
+  2025-08-01  eq $100,000  puts 0 calls 0  shares 0  reserved $0  (opt calls: 0)
+    ranking: AMD m+79% v0.71 | PLTR m+29% v0.77 | GM m+17% v0.79
+    -> pick #3 GM GM250815P00051000 x1 delta 0.24
+  2025-08-04  eq $100,455  puts 2 calls 0  shares 0  reserved $66,250  (opt calls: 0)
+    ranking: AMD m+68% v0.82 | SOFI m+70% v0.81 | PLTR m+56% v0.85
+    -> pick #1 AMD AMD250912P00162500 x2 delta 0.29
+    -> pick #2 SOFI SOFI250912P00021000 x17 delta 0.30
+  2025-08-11  eq $101,015  puts 0 calls 0  shares 0  reserved $0  (opt calls: 0)
+    ranking: PLTR m+34% v0.86 | WBD m+29% v0.79 | GM m+12% v0.83
+    -> pick #2 WBD WBD250919P00011000 x4 delta 0.26
+  2025-08-18  eq $101,787  puts 2 calls 0  shares 0  reserved $68,200  (opt calls: 0)
+    ranking: SOFI m+100% v1.00 | PLTR m+27% v0.91 | COIN m+16% v0.82
+    -> pick #1 SOFI SOFI250926P00024000 x15 delta 0.28
+  2025-08-25  eq $101,122  puts 2 calls 0  shares 0  reserved $36,900  (opt calls: 0)
+    ranking: BABA m+21% v0.86 | PLTR m+19% v0.91 | MU m+21% v0.65
+    -> pick #4 INTC INTC250926P00023000 x1 delta 0.30
+  2025-09-02  eq $101,069  puts 2 calls 0  shares 0  reserved $68,500  (opt calls: 0)
+    ranking: PLTR m+22% v0.78 | BABA m+18% v0.91 | WBD m+26% v0.72
+    -> pick #3 WBD WBD250919P00012000 x1 delta 0.32
+  2025-09-08  eq $100,589  puts 3 calls 0  shares 0  reserved $70,800  (opt calls: 0)
+    ranking: SOFI m+97% v0.99 | BABA m+40% v0.94 | MU m+36% v0.82
+    -> pick #1 SOFI SOFI251003P00026000 x14 delta 0.29
+    -> pick #2 BABA BABA251010P00150000 x2 delta 0.30
+  2025-09-15  eq $102,713  puts 1 calls 0  shares 200  reserved $1,200  (opt calls: 0)
+    ranking: WBD m+84% v1.00 | SOFI m+94% v0.99 | BABA m+45% v0.96
+    -> pick #1 WBD WBD251024P00018000 x20 delta 0.29
+    -> pick #2 SOFI SOFI251024P00027500 x13 delta 0.29
+  2025-09-22  eq $103,321  puts 0 calls 1  shares 200  reserved $0  (opt calls: 0)
+    ranking: BABA m+59% v1.00 | MU m+33% v0.99 | INTC m+54% v0.93
+  2025-09-29  eq $102,791  puts 2 calls 0  shares 200  reserved $71,750  (opt calls: 0)
+    ranking: INTC m+55% v1.00 | BABA m+73% v0.94 | MU m+54% v0.99
+  2025-10-06  eq $105,895  puts 2 calls 1  shares 200  reserved $71,750  (opt calls: 2)
+    ranking: INTC m+62% v1.00 | MU m+60% v1.00 | BABA m+43% v0.97
+  2025-10-13  eq $106,787  puts 2 calls 1  shares 200  reserved $71,750  (opt calls: 3)
+    ranking: MU m+89% v0.99 | BABA m+44% v0.97 | INTC m+64% v0.95
+    -> pick #3 INTC INTC251114P00035000 x1 delta 0.30
+    -> pick #4 NOK NOK251031P00005500 x3 delta 0.35
+  2025-10-20  eq $109,513  puts 2 calls 1  shares 200  reserved $71,750  (opt calls: 5)
+    ranking: MU m+97% v1.00 | SOFI m+34% v1.00 | NOK m+52% v0.99
+    -> pick #2 SOFI SOFI251121P00027500 x14 delta 0.29
+    -> pick #3 NOK NOK251121P00006000 x62 delta 0.28
+  2025-10-27  eq $110,471  puts 1 calls 1  shares 200  reserved $3,500  (opt calls: 6)
+    ranking: MU m+115% v0.99 | NOK m+74% v1.00 | AMD m+49% v1.00
+    -> pick #1 MU MU251114P00222500 x1 delta 0.30
+    -> pick #2 NOK NOK251114P00007000 x26 delta 0.38
+  2025-11-03  eq $110,863  puts 1 calls 0  shares 0  reserved $38,500  (opt calls: 7)
+    ranking: MU m+98% v1.00 | AMD m+40% v0.97 | GM m+31% v0.99
+    -> pick #2 AMD AMD251128P00230000 x1 delta 0.29
+  2025-11-10  eq $112,094  puts 2 calls 0  shares 0  reserved $56,700  (opt calls: 11)
+    ranking: MU m+98% v1.00 | NOK m+58% v0.99 | GM m+19% v1.00
+    -> pick #1 MU MU251205P00225000 x1 delta 0.30
+    -> pick #4 WBD WBD251219P00021000 x19 delta 0.29
+  2025-11-17  eq $112,553  puts 0 calls 0  shares 0  reserved $0  (opt calls: 13)
+    ranking: NOK m+42% v0.99 | INTC m+47% v0.91 | AMD m+29% v0.98
+    -> pick #2 INTC INTC251212P00034000 x5 delta 0.30
+  2025-11-24  eq $112,608  puts 2 calls 0  shares 0  reserved $62,400  (opt calls: 14)
+    ranking: MU m+103% v1.00 | WBD m+105% v0.90 | AMD m+35% v0.98
+    -> pick #1 MU MU251219P00222500 x1 delta 0.30
+    -> pick #2 WBD WBD251226P00022000 x18 delta 0.28
+  2025-12-01  eq $113,959  puts 0 calls 0  shares 0  reserved $0  (opt calls: 16)
+    ranking: INTC m+65% v0.99 | NOK m+34% v0.94 | AMD m+42% v0.94
+    -> pick #1 INTC INTC260102P00038000 x5 delta 0.29
+    -> pick #2 NOK NOK251219P00006000 x2 delta 0.30
+  2025-12-08  eq $114,826  puts 2 calls 0  shares 0  reserved $61,850  (opt calls: 17)
+    ranking: MU m+50% v0.98 | WBD m+63% v0.97 | NOK m+35% v0.92
+    -> pick #1 MU MU260109P00220000 x1 delta 0.29
+    -> pick #2 WBD WBD251226P00029000 x14 delta 0.34
+  2025-12-15  eq $114,754  puts 1 calls 0  shares 0  reserved $19,000  (opt calls: 19)
+    ranking: MU m+66% v0.99 | GM m+42% v0.85 | AMD m+34% v0.87
+    -> pick #2 GM GM260109P00081000 x2 delta 0.30
+  [all-empty retry 1] opts ['NOK260102P00005500', 'NOK260102P00006000']...
+  2025-12-22  eq $115,046  puts 2 calls 0  shares 0  reserved $59,600  (opt calls: 24)
+    ranking: MU m+80% v0.98 | WBD m+53% v0.95 | NOK m+40% v0.80
+    -> pick #1 MU MU260109P00282500 x1 delta 0.30
+    -> pick #2 WBD WBD260116P00028000 x7 delta 0.31
+  2025-12-29  eq $115,926  puts 2 calls 0  shares 0  reserved $35,200  (opt calls: 25)
+    ranking: MU m+66% v1.00 | SOFI m+16% v0.91 | NOK m+32% v0.80
+    -> pick #1 MU MU260206P00290000 x1 delta 0.30
+    -> pick #2 SOFI SOFI260206P00027000 x7 delta 0.30
+  2026-01-05  eq $116,718  puts 2 calls 0  shares 0  reserved $35,800  (opt calls: 27)
+    ranking: NOK m+23% v0.91 | XOM m+12% v0.92 | WBD m+66% v0.79
+    -> pick #2 XOM XOM260130P00121000 x3 delta 0.31
+  2026-01-12  eq $116,767  puts 2 calls 0  shares 0  reserved $47,900  (opt calls: 30)
+    ranking: MU m+81% v1.00 | INTC m+31% v0.99 | XOM m+16% v0.93
+    -> pick #2 INTC INTC260206P00043000 x5 delta 0.20
+    -> pick #5 NOK NOK260130P00006000 x2 delta 0.24
+  2026-01-20  eq $116,462  puts 1 calls 0  shares 0  reserved $18,900  (opt calls: 34)
+    ranking: MU m+88% v0.99 | VALE m+37% v0.98 | XOM m+16% v0.94
+    -> pick #1 MU MU260227P00360000 x1 delta 0.30
+    -> pick #5 NOK NOK260220P00006500 x11 delta 0.29
+  2026-01-26  eq $116,158  puts 2 calls 0  shares 0  reserved $40,400  (opt calls: 38)
+    ranking: VALE m+36% v1.00 | INTC m+22% v1.00 | GM m+23% v1.00
+    -> pick #2 INTC INTC260220P00046000 x4 delta 0.30
+  2026-02-02  eq $115,362  puts 3 calls 0  shares 0  reserved $62,050  (opt calls: 41)
+    ranking: VALE m+37% v1.00 | XOM m+32% v0.97 | GM m+17% v1.00
+    -> pick #1 VALE VALE260220P00016000 x17 delta 0.22
+  2026-02-09  eq $114,321  puts 2 calls 0  shares 700  reserved $54,400  (opt calls: 44)
+    ranking: VALE m+28% v1.00 | XOM m+23% v0.99 | GM m+13% v0.98
+    -> pick #2 XOM XOM260227P00143000 x1 delta 0.31
+    -> pick #3 GM GM260320P00077500 x1 delta 0.30
+  2026-02-17  eq $113,691  puts 2 calls 0  shares 700  reserved $54,400  (opt calls: 44)
+    ranking: VALE m+40% v1.00 | NOK m+26% v0.97 | T m+13% v0.99
+    -> pick #3 T T260306P00028000 x14 delta 0.31
+    -> pick #4 KO KO260306P00079000 x2 delta 0.27
+  2026-02-23  eq $112,497  puts 2 calls 0  shares 1100  reserved $22,050  (opt calls: 45)
+    ranking: XOM m+34% v1.00 | VALE m+36% v0.98 | NOK m+36% v0.97
+    -> pick #1 XOM XOM260313P00150000 x2 delta 0.32
+  [all-empty retry 1] opts ['VALE260313P00014000', 'VALE260313P00015000']...
+    -> pick #3 NOK NOK260327P00008000 x5 delta 0.36
+  2026-03-02  eq $113,310  puts 2 calls 0  shares 1100  reserved $46,950  (opt calls: 49)
+  2026-03-09  eq $113,640  puts 3 calls 0  shares 1100  reserved $41,750  (opt calls: 51)
+    ranking: XOM m+32% v0.94 | VALE m+13% v0.97 | T m+14% v0.90
+    -> pick #1 XOM XOM260327P00152500 x2 delta 0.28
+    -> pick #2 VALE VALE260417P00014000 x28 delta 0.25
+  2026-03-16  eq $113,395  puts 2 calls 1  shares 1100  reserved $11,750  (opt calls: 54)
+  2026-03-23  eq $112,708  puts 2 calls 0  shares 1200  reserved $69,700  (opt calls: 56)
+    ranking: XOM m+44% v0.93 | NOK m+20% v0.97 | MU m+13% v1.00
+    -> pick #1 XOM XOM260417P00165000 x2 delta 0.30
+    -> pick #2 NOK NOK260417P00007500 x10 delta 0.29
+  2026-03-30  eq $110,132  puts 1 calls 0  shares 1200  reserved $39,200  (opt calls: 59)
+  2026-04-06  eq $114,816  puts 2 calls 1  shares 1200  reserved $40,500  (opt calls: 64)
+    ranking: NOK m+60% v0.98 | VALE m+25% v0.93 | CVX m+18% v0.95
+    -> pick #1 NOK NOK260424P00010000 x41 delta 0.38
+  [all-empty retry 1] opts ['CVX260424P00160000', 'CVX260424P00165000']...
+  2026-04-13  eq $115,964  puts 1 calls 2  shares 1200  reserved $33,000  (opt calls: 71)
+    ranking: INTC m+40% v0.98 | VALE m+22% v0.92 | CVX m+10% v0.97
+    -> pick #1 INTC INTC260508P00061000 x6 delta 0.30
+  [all-empty retry 1] opts ['VALE260501P00015000', 'VALE260501P00016000']...
+  2026-04-20  eq $117,813  puts 1 calls 1  shares 1000  reserved $41,000  (opt calls: 80)
+    ranking: NOK m+56% v1.00 | INTC m+100% v1.00 | AMD m+33% v0.99
+    -> pick #1 NOK NOK260529P00010000 x42 delta 0.29
+    -> pick #2 INTC INTC260522P00078000 x5 delta 0.30
+  2026-04-27  eq $119,335  puts 0 calls 1  shares 1000  reserved $0  (opt calls: 82)
+    ranking: INTC m+96% v1.00 | NOK m+97% v1.00 | AMD m+39% v1.00
+    -> pick #1 INTC INTC260515P00090000 x4 delta 0.30
+    -> pick #2 NOK NOK260605P00012000 x36 delta 0.28
+  2026-05-04  eq $120,421  puts 0 calls 0  shares 1000  reserved $0  (opt calls: 84)
+    ranking: INTC m+158% v1.00 | VALE m+2% v0.94 | CVX m+1% v0.93
+    -> pick #1 INTC INTC260522P00120000 x3 delta 0.30
+  [all-empty retry 1] opts ['VALE260522P00015000', 'VALE260522P00016000']...
+  2026-05-11  eq $120,086  puts 1 calls 1  shares 1000  reserved $43,200  (opt calls: 91)
+  2026-05-18  eq $119,465  puts 2 calls 1  shares 1000  reserved $79,200  (opt calls: 92)
+    ranking: NOK m+119% v1.00 | INTC m+168% v0.99 | F m+8% v1.00
+    -> pick #1 NOK NOK260626P00015000 x29 delta 0.30
+    -> pick #2 INTC INTC260612P00114000 x3 delta 0.30
+  2026-05-26  eq $122,389  puts 0 calls 2  shares 1000  reserved $0  (opt calls: 93)
+  2026-06-01  eq $123,759  puts 2 calls 1  shares 1000  reserved $77,700  (opt calls: 95)
+  2026-06-08  eq $122,351  puts 2 calls 2  shares 1000  reserved $77,700  (opt calls: 98)
+  [all-empty retry 1] opts ['INTC260619P00095000', 'INTC260619P00096000']...
+  [all-empty retry 1] opts ['INTC260619P00090000', 'INTC260619P00092500']...
+    ranking: F m+26% v0.99 | INTC m+179% v0.97 | GM m+15% v0.99
+    -> pick #1 F F260717P00014000 x31 delta 0.30
+  2026-06-15  eq $123,409  puts 1 calls 0  shares 900  reserved $43,500  (opt calls: 103)
+    ranking: INTC m+221% v0.99 | KO m+6% v0.99 | GM m+10% v0.95
+  [all-empty retry 1] opts ['BA260703P00190000', 'BA260703P00192500']...
+  [all-empty retry 1] opts ['NVDA260703P00180000', 'NVDA260703P00182500']...
+  2026-06-22  eq $122,371  puts 2 calls 0  shares 900  reserved $86,900  (opt calls: 107)
+    ranking: INTC m+205% v1.00 | KO m+9% v0.98 | NVDA m+16% v0.64
+    -> pick #1 INTC INTC260724P00119000 x3 delta 0.30
+  [all-empty retry 1] opts ['VALE260710P00013000', 'VALE260710P00014000']...
+  2026-06-29  eq $119,976  puts 1 calls 0  shares 3800  reserved $43,400  (opt calls: 110)
+  2026-07-06  eq $117,696  puts 2 calls 0  shares 3800  reserved $79,100  (opt calls: 111)
+  2026-07-13  eq $114,048  puts 2 calls 0  shares 3800  reserved $79,100  (opt calls: 112)
+    ranking: KO m+8% v1.00 | CVX m+3% v0.88 | F m+9% v0.49
+    -> pick #1 KO KO260731P00080000 x4 delta 0.29
+    -> pick #3 F F260821P00013000 x8 delta 0.27
+  2026-07-20  eq $109,105  puts 1 calls 0  shares 3800  reserved $35,700  (opt calls: 121)
+  2026-07-27  eq $106,572  puts 2 calls 1  shares 4100  reserved $42,400  (opt calls: 126)
+
+== done ==
+{
+  "run": "bt-2026-08-30_topk-sweep",
+  "window": {
+    "start": "2025-08-01",
+    "end": "2026-07-31",
+    "trading_days": 251
+  },
+  "strategy": {
+    "total_return": 5.6,
+    "cagr": 8.24,
+    "max_drawdown": 19.53,
+    "sharpe": 0.39,
+    "final_equity": 105597.35
+  },
+  "benchmark_spy": {
+    "total_return": 20.11,
+    "cagr": 30.54,
+    "max_drawdown": 9.13,
+    "sharpe": 1.51,
+    "final_equity": 120112.91
+  },
+  "option_legs": {
+    "total": 75,
+    "wins": 75,
+    "win_rate_pct": 100.0,
+    "profit_factor": null,
+    "net_option_pnl": 33532.35
+  },
+  "premiums_collected_gross": 48460.9,
+  "fees_paid": 620.0,
+  "activity": {
+    "csp_sold": 64,
+    "cc_sold": 11,
+    "tp_closes": 56,
+    "cc_tp": 7,
+    "expired_worthless": 1,
+    "assignments": 7,
+    "called_away": 3
+  },
+  "gate_activity": {
+    "vol_floor": 142,
+    "drawdown": 0,
+    "extreme": 0,
+    "no_candidate": 29,
+    "budget": 69,
+    "slots": 0,
+    "sector": 2,
+    "fills_missed": 6,
+    "bear_entries_scaled": 2,
+    "cc_floor_block": 43,
+    "quality": 287,
+    "afford": 64
+  },
+  "opt_api_calls": 126,
+  "variant": "D topk-sweep",
+  "topk": 2,
+  "per_name_pct": 0.36,
+  "champions_picked": [
+    {
+      "date": "2025-08-01",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-08-01",
+      "name": "COIN"
+    },
+    {
+      "date": "2025-08-04",
+      "name": "GM"
+    },
+    {
+      "date": "2025-08-11",
+      "name": "AMD"
+    },
+    {
+      "date": "2025-08-11",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-08-18",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-08-25",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-09-02",
+      "name": "INTC"
+    },
+    {
+      "date": "2025-09-08",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-09-15",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-09-15",
+      "name": "BABA"
+    },
+    {
+      "date": "2025-09-22",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-09-22",
+      "name": "SOFI"
+    },
+    {
+      "dat
+=== TOPK 3 start 00:19:55 ===
+== fetch stock bars (Alpaca CLI, iex/raw) ==
+  INTC: 814 days
+  T: 814 days
+  F: 814 days
+  GM: 814 days
+  PFE: 814 days
+  KO: 814 days
+  NOK: 814 days
+  SOFI: 814 days
+  BABA: 814 days
+  MU: 814 days
+  WBD: 814 days
+  VALE: 814 days
+  AMD: 814 days
+  NVDA: 814 days
+  PLTR: 814 days
+  SNAP: 814 days
+  COIN: 814 days
+  MSTR: 814 days
+  XOM: 814 days
+  CVX: 814 days
+  DIS: 814 days
+  CAT: 814 days
+  NKE: 814 days
+  BA: 814 days
+  SPY: 814 days
+== simulate (single pass; cache pre-verified by the baseline run) ==
+-- pass 1: cache clean --
+    ranking: SOFI m+70% v0.91 | AMD m+78% v0.65 | PLTR m+33% v0.75
+    -> pick #1 SOFI SOFI250822P00020000 x12 delta 0.31
+    -> pick #2 AMD AMD250829P00160000 x1 delta 0.29
+    -> pick #3 PLTR PLTR250808P00145000 x1 delta 0.31
+  2025-08-01  eq $100,000  puts 0 calls 0  shares 0  reserved $0  (opt calls: 2)
+    ranking: GM m+17% v0.79 | MU m+34% v0.59 | DIS m+29% v0.57
+    -> pick #1 GM GM250815P00051000 x3 delta 0.24
+    -> pick #6 WBD WBD250829P00012000 x1 delta 0.30
+  2025-08-04  eq $100,309  puts 3 calls 0  shares 0  reserved $54,500  (opt calls: 7)
+    ranking: PLTR m+56% v0.85 | SOFI m+70% v0.81 | GM m+14% v0.77
+    -> pick #1 PLTR PLTR250905P00172500 x1 delta 0.30
+    -> pick #2 SOFI SOFI250912P00021000 x11 delta 0.30
+    -> pick #3 GM GM250905P00052000 x2 delta 0.28
+  2025-08-11  eq $100,946  puts 2 calls 0  shares 0  reserved $17,200  (opt calls: 12)
+  [all-empty retry 1] opts ['WBD250822P00009000', 'WBD250822P00010000']...
+    ranking: AMD m+50% v0.87 | GM m+12% v0.83 | MU m+26% v0.69
+    -> pick #1 AMD AMD250912P00167500 x1 delta 0.30
+    -> pick #3 MU MU250919P00117000 x1 delta 0.30
+  [all-empty retry 1] opts ['KO250829P00060000', 'KO250829P00061000']...
+  2025-08-18  eq $101,353  puts 3 calls 0  shares 0  reserved $41,550  (opt calls: 21)
+    ranking: SOFI m+100% v1.00 | INTC m+22% v0.59 | BA m+12% v0.60
+    -> pick #1 SOFI SOFI250926P00024000 x10 delta 0.28
+  2025-08-25  eq $99,848  puts 4 calls 0  shares 0  reserved $46,900  (opt calls: 34)
+    ranking: BABA m+21% v0.86 | WBD m+16% v0.76 | INTC m+23% v0.59
+  [all-empty retry 1] opts ['DIS250912P00100000', 'DIS250912P00102500']...
+  2025-09-02  eq $99,987  puts 4 calls 0  shares 0  reserved $69,700  (opt calls: 43)
+    ranking: WBD m+26% v0.72 | BABA m+18% v0.91 | MU m+21% v0.75
+    -> pick #1 WBD WBD250919P00012000 x19 delta 0.32
+    -> pick #4 INTC INTC251010P00023000 x3 delta 0.27
+  2025-09-08  eq $99,773  puts 2 calls 0  shares 100  reserved $40,750  (opt calls: 49)
+    ranking: SOFI m+97% v0.99 | BABA m+40% v0.94 | MU m+36% v0.82
+    -> pick #1 SOFI SOFI251003P00026000 x9 delta 0.29
+    -> pick #2 BABA BABA251010P00150000 x1 delta 0.30
+    -> pick #4 T T251003P00029000 x1 delta 0.31
+  2025-09-15  eq $102,777  puts 2 calls 0  shares 200  reserved $29,700  (opt calls: 52)
+    ranking: WBD m+84% v1.00 | SOFI m+94% v0.99 | BABA m+45% v0.96
+    -> pick #1 WBD WBD251024P00018000 x13 delta 0.29
+    -> pick #2 SOFI SOFI251024P00027500 x9 delta 0.29
+    -> pick #3 BABA BABA251010P00157500 x1 delta 0.31
+  2025-09-22  eq $103,997  puts 1 calls 2  shares 200  reserved $2,900  (opt calls: 55)
+  [all-empty retry 1] opts ['T251003P00022500', 'T251003P00024000']...
+  [all-empty retry 1] opts ['T251003P00022500', 'T251003P00024000']...
+  [all-empty retry 1] opts ['T251003P00022500', 'T251003P00024000']...
+  2025-09-29  eq $103,742  puts 3 calls 0  shares 200  reserved $51,050  (opt calls: 63)
+  2025-10-06  eq $105,008  puts 2 calls 2  shares 300  reserved $48,150  (opt calls: 64)
+  2025-10-13  eq $105,424  puts 2 calls 2  shares 300  reserved $48,150  (opt calls: 64)
+  2025-10-20  eq $107,771  puts 2 calls 1  shares 300  reserved $48,150  (opt calls: 65)
+    ranking: MU m+97% v1.00 | SOFI m+34% v1.00 | NOK m+52% v0.99
+    -> pick #1 MU MU251107P00207500 x1 delta 0.30
+    -> pick #2 SOFI SOFI251121P00027500 x9 delta 0.29
+    -> pick #3 NOK NOK251121P00006000 x43 delta 0.28
+  2025-10-27  eq $109,161  puts 0 calls 1  shares 300  reserved $0  (opt calls: 67)
+    ranking: MU m+115% v0.99 | NOK m+74% v1.00 | AMD m+49% v1.00
+    -> pick #1 MU MU251114P00222500 x1 delta 0.30
+    -> pick #2 NOK NOK251114P00007000 x37 delta 0.38
+    -> pick #4 WBD WBD251121P00021000 x3 delta 0.26
+  2025-11-03  eq $110,938  puts 1 calls 1  shares 200  reserved $24,750  (opt calls: 71)
+    ranking: MU m+98% v1.00 | AMD m+40% v0.97 | GM m+31% v0.99
+    -> pick #1 MU MU251128P00237500 x1 delta 0.30
+    -> pick #4 INTC INTC251212P00036000 x1 delta 0.30
+  2025-11-10  eq $111,728  puts 2 calls 0  shares 200  reserved $50,650  (opt calls: 75)
+    ranking: NOK m+58% v0.99 | WBD m+97% v0.92 | GM m+19% v1.00
+    -> pick #2 WBD WBD251219P00021000 x12 delta 0.29
+    -> pick #5 SOFI SOFI251212P00025000 x10 delta 0.31
+  2025-11-17  eq $109,467  puts 2 calls 0  shares 200  reserved $27,350  (opt calls: 77)
+  2025-11-24  eq $108,928  puts 4 calls 0  shares 200  reserved $77,550  (opt calls: 79)
+    ranking: AMD m+35% v0.98 | NOK m+44% v0.96 | INTC m+65% v0.93
+    -> pick #1 AMD AMD251212P00210000 x1 delta 0.30
+    -> pick #3 INTC INTC251219P00038000 x7 delta 0.30
+    -> pick #4 WBD WBD251226P00022000 x12 delta 0.28
+  2025-12-01  eq $111,974  puts 0 calls 0  shares 300  reserved $0  (opt calls: 80)
+  2025-12-08  eq $115,097  puts 2 calls 0  shares 300  reserved $47,400  (opt calls: 83)
+    ranking: INTC m+49% v0.99 | WBD m+63% v0.97 | NOK m+35% v0.92
+  [all-empty retry 1] opts ['INTC251226P00032500', 'INTC251226P00033000']...
+    -> pick #2 WBD WBD251226P00029000 x9 delta 0.34
+  [all-empty retry 1] opts ['NOK251226P00005000', 'NOK251226P00005500']...
+  [all-empty retry 1] opts ['GM251226P00070000', 'GM251226P00072000']...
+    -> pick #5 AMD AMD260116P00195000 x1 delta 0.30
+    -> pick #6 SOFI SOFI260116P00024000 x11 delta 0.30
+  2025-12-15  eq $114,572  puts 0 calls 2  shares 300  reserved $0  (opt calls: 91)
+  2025-12-22  eq $120,453  puts 2 calls 0  shares 300  reserved $45,600  (opt calls: 94)
+    ranking: WBD m+53% v0.95 | NOK m+40% v0.80 | INTC m+6% v0.90
+    -> pick #1 WBD WBD260116P00028000 x10 delta 0.31
+  [all-empty retry 1] opts ['NOK260109P00005500', 'NOK260109P00006000']...
+    -> pick #3 INTC INTC260116P00035000 x8 delta 0.29
+    -> pick #5 GM GM260109P00081000 x3 delta 0.29
+  2025-12-29  eq $121,294  puts 0 calls 2  shares 300  reserved $0  (opt calls: 99)
+  2026-01-05  eq $121,571  puts 2 calls 1  shares 300  reserved $52,300  (opt calls: 101)
+    ranking: XOM m+12% v0.92 | NOK m+23% v0.91 | WBD m+66% v0.79
+    -> pick #1 XOM XOM260130P00121000 x2 delta 0.31
+    -> pick #4 INTC INTC260213P00041000 x7 delta 0.30
+    -> pick #5 CVX CVX260130P00157500 x1 delta 0.27
+  2026-01-12  eq $122,770  puts 0 calls 0  shares 200  reserved $0  (opt calls: 102)
+    ranking: XOM m+16% v0.93 | GM m+33% v0.87 | NOK m+11% v0.92
+  [all-empty retry 1] opts ['WBD260130P00022500', 'WBD260130P00024000']...
+  2026-01-20  eq $122,377  puts 2 calls 1  shares 200  reserved $44,450  (opt calls: 108)
+    ranking: VALE m+37% v0.98 | XOM m+16% v0.94 | INTC m+11% v1.00
+    -> pick #2 XOM XOM260227P00130000 x2 delta 0.29
+    -> pick #3 INTC INTC260220P00040000 x7 delta 0.29
+    -> pick #5 NOK NOK260220P00006500 x45 delta 0.29
+  2026-01-26  eq $122,524  puts 0 calls 0  shares 200  reserved $0  (opt calls: 108)
+    ranking: VALE m+36% v1.00 | INTC m+22% v1.00 | GM m+23% v1.00
+    -> pick #2 INTC INTC260220P00046000 x6 delta 0.30
+  2026-02-02  eq $121,450  puts 2 calls 0  shares 200  reserved $55,250  (opt calls: 111)
+    ranking: VALE m+37% v1.00 | XOM m+32% v0.97 | GM m+17% v1.00
+    -> pick #1 VALE VALE260220P00016000 x18 delta 0.22
+    -> pick #2 XOM XOM260306P00145000 x1 delta 0.26
+    -> pick #3 GM GM260227P00078000 x2 delta 0.29
+  2026-02-09  eq $121,618  puts 1 calls 0  shares 200  reserved $27,600  (opt calls: 112)
+  2026-02-17  eq $120,736  puts 3 calls 0  shares 200  reserved $57,700  (opt calls: 115)
+    ranking: VALE m+40% v1.00 | NOK m+26% v0.97 | GM m+16% v0.98
+  [all-empty retry 1] opts ['GM260306P00070000', 'GM260306P00071000']...
+    -> pick #4 KO KO260306P00079000 x3 delta 0.27
+    -> pick #5 CVX CVX260306P00180000 x1 delta 0.29
+    -> pick #6 BA BA260320P00220000 x1 delta 0.28
+  2026-02-23  eq $119,886  puts 1 calls 1  shares 800  reserved $14,500  (opt calls: 120)
+  2026-03-02  eq $122,686  puts 2 calls 0  shares 800  reserved $40,000  (opt calls: 122)
+    ranking: NOK m+28% v0.97 | XOM m+28% v0.96 | VALE m+13% v0.98
+    -> pick #2 XOM XOM260327P00145000 x2 delta 0.30
+    -> pick #3 VALE VALE260320P00015000 x19 delta 0.37
+    -> pick #5 KO KO260327P00076000 x1 delta 0.31
+  2026-03-09  eq $123,760  puts 1 calls 1  shares 800  reserved $22,000  (opt calls: 125)
+  2026-03-16  eq $123,869  puts 3 calls 1  shares 800  reserved $58,100  (opt calls: 131)
+  [all-empty retry 1] opts ['PLTR260403C00172500', 'PLTR260403C00175000']...
+  2026-03-23  eq $122,615  puts 1 calls 1  shares 2800  reserved $7,600  (opt calls: 134)
+  2026-03-30  eq $118,391  puts 0 calls 1  shares 2900  reserved $0  (opt calls: 134)
+  2026-04-06  eq $129,196  puts 0 calls 3  shares 2900  reserved $0  (opt calls: 135)
+  2026-04-13  eq $131,730  puts 0 calls 3  shares 1000  reserved $0  (opt calls: 136)
+    ranking: NOK m+62% v0.99 | INTC m+40% v0.98 | XOM m+14% v1.00
+    -> pick #1 NOK NOK260501P00010000 x32 delta 0.32
+    -> pick #2 INTC INTC260508P00061000 x5 delta 0.30
+    -> pick #3 XOM XOM260515P00142000 x2 delta 0.31
+  2026-04-20  eq $133,400  puts 0 calls 1  shares 400  reserved $0  (opt calls: 137)
+  2026-04-27  eq $135,641  puts 1 calls 2  shares 400  reserved $28,400  (opt calls: 138)
+    ranking: INTC m+96% v1.00 | NOK m+97% v1.00 | CVX m+10% v0.95
+    -> pick #1 INTC INTC260515P00090000 x3 delta 0.30
+    -> pick #2 NOK NOK260605P00012000 x27 delta 0.28
+    -> pick #3 CVX CVX260522P00185000 x1 delta 0.29
+  2026-05-04  eq $135,915  puts 0 calls 0  shares 300  reserved $0  (opt calls: 141)
+  2026-05-11  eq $136,034  puts 2 calls 1  shares 300  reserved $50,900  (opt calls: 143)
+  2026-05-18  eq $135,556  puts 2 calls 1  shares 300  reserved $50,900  (opt calls: 143)
+    ranking: NOK m+119% v1.00 | INTC m+168% v0.99 | F m+8% v1.00
+    -> pick #1 NOK NOK260626P00015000 x21 delta 0.30
+    -> pick #2 INTC INTC260612P00114000 x2 delta 0.30
+    -> pick #3 F F260626P00014000 x23 delta 0.22
+  2026-05-26  eq $135,879  puts 0 calls 0  shares 300  reserved $0  (opt calls: 145)
+  2026-06-01  eq $138,713  puts 2 calls 1  shares 300  reserved $54,300  (opt calls: 148)
+  [all-empty retry 1] opts ['BA260619C00240000', 'BA260626C00240000']...
+  2026-06-08  eq $135,079  puts 2 calls 0  shares 300  reserved $54,300  (opt calls: 151)
+    ranking: F m+26% v0.99 | INTC m+179% v0.97 | KO m+4% v1.00
+    -> pick #1 F F260717P00014000 x23 delta 0.30
+    -> pick #2 INTC INTC260710P00117000 x2 delta 0.30
+    -> pick #3 KO KO260710P00079000 x1 delta 0.29
+  2026-06-15  eq $138,107  puts 1 calls 0  shares 300  reserved $31,500  (opt calls: 152)
+  2026-06-22  eq $136,119  puts 4 calls 1  shares 300  reserved $95,000  (opt calls: 153)
+  2026-06-29  eq $132,837  puts 1 calls 0  shares 2400  reserved $32,200  (opt calls: 154)
+  2026-07-06  eq $134,527  puts 1 calls 1  shares 2400  reserved $32,200  (opt calls: 155)
+  2026-07-13  eq $131,945  puts 1 calls 1  shares 2400  reserved $32,200  (opt calls: 155)
+    ranking: INTC m+42% v0.97 | KO m+8% v1.00 | CVX m+3% v0.88
+    -> pick #1 INTC INTC260821P00087500 x3 delta 0.30
+    -> pick #2 KO KO260731P00080000 x3 delta 0.29
+    -> pick #3 CVX CVX260807P00182500 x1 delta 0.28
+  2026-07-20  eq $128,926  puts 0 calls 0  shares 2400  reserved $0  (opt calls: 156)
+  2026-07-27  eq $127,163  puts 2 calls 1  shares 2400  reserved $50,250  (opt calls: 159)
+
+== done ==
+{
+  "run": "bt-2026-08-30_topk-sweep",
+  "window": {
+    "start": "2025-08-01",
+    "end": "2026-07-31",
+    "trading_days": 251
+  },
+  "strategy": {
+    "total_return": 26.59,
+    "cagr": 40.9,
+    "max_drawdown": 10.69,
+    "sharpe": 1.54,
+    "final_equity": 126591.95
+  },
+  "benchmark_spy": {
+    "total_return": 20.11,
+    "cagr": 30.54,
+    "max_drawdown": 9.13,
+    "sharpe": 1.51,
+    "final_equity": 120112.91
+  },
+  "option_legs": {
+    "total": 98,
+    "wins": 98,
+    "win_rate_pct": 100.0,
+    "profit_factor": null,
+    "net_option_pnl": 31586.7
+  },
+  "premiums_collected_gross": 44730.5,
+  "fees_paid": 552.5,
+  "activity": {
+    "csp_sold": 69,
+    "cc_sold": 29,
+    "tp_closes": 58,
+    "cc_tp": 23,
+    "expired_worthless": 1,
+    "assignments": 9,
+    "called_away": 5
+  },
+  "gate_activity": {
+    "vol_floor": 100,
+    "drawdown": 0,
+    "extreme": 0,
+    "no_candidate": 23,
+    "budget": 32,
+    "slots": 0,
+    "sector": 4,
+    "fills_missed": 7,
+    "bear_entries_scaled": 0,
+    "cc_floor_block": 78,
+    "quality": 151,
+    "afford": 52
+  },
+  "opt_api_calls": 160,
+  "variant": "D topk-sweep",
+  "topk": 3,
+  "per_name_pct": 0.24,
+  "champions_picked": [
+    {
+      "date": "2025-08-01",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-08-01",
+      "name": "AMD"
+    },
+    {
+      "date": "2025-08-01",
+      "name": "PLTR"
+    },
+    {
+      "date": "2025-08-04",
+      "name": "GM"
+    },
+    {
+      "date": "2025-08-04",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-08-11",
+      "name": "PLTR"
+    },
+    {
+      "date": "2025-08-11",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-08-11",
+      "name": "GM"
+    },
+    {
+      "date": "2025-08-18",
+      "name": "AMD"
+    },
+    {
+      "date": "2025-08-18",
+      "name": "MU"
+    },
+    {
+      "date": "2025-08-25",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-09-08",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-09-08",
+      "name": "INTC"
+    },
+    {
+      "date"
+=== TOPK 5 start 00:22:57 ===
+== fetch stock bars (Alpaca CLI, iex/raw) ==
+  INTC: 814 days
+  T: 814 days
+  F: 814 days
+  GM: 814 days
+  PFE: 814 days
+  KO: 814 days
+  NOK: 814 days
+  SOFI: 814 days
+  BABA: 814 days
+  MU: 814 days
+  WBD: 814 days
+  VALE: 814 days
+  AMD: 814 days
+  NVDA: 814 days
+  PLTR: 814 days
+  SNAP: 814 days
+  COIN: 814 days
+  MSTR: 814 days
+  XOM: 814 days
+  CVX: 814 days
+  DIS: 814 days
+  CAT: 814 days
+  NKE: 814 days
+  BA: 814 days
+  SPY: 814 days
+== simulate (single pass; cache pre-verified by the baseline run) ==
+-- pass 1: cache clean --
+    ranking: SOFI m+70% v0.91 | MU m+35% v0.55 | GM m+17% v0.80
+    -> pick #1 SOFI SOFI250822P00020000 x7 delta 0.31
+    -> pick #2 MU MU250829P00099000 x1 delta 0.31
+  [all-empty retry 1] opts ['GM250808P00045000', 'GM250808P00046000']...
+    -> pick #4 BABA BABA250815P00113000 x1 delta 0.30
+    -> pick #5 WBD WBD250829P00012000 x11 delta 0.28
+    -> pick #6 DIS DIS250808P00112000 x1 delta 0.29
+  2025-08-01  eq $100,000  puts 0 calls 0  shares 0  reserved $0  (opt calls: 6)
+  2025-08-04  eq $100,049  puts 5 calls 0  shares 0  reserved $59,600  (opt calls: 10)
+    ranking: SOFI m+70% v0.81 | GM m+14% v0.77 | MU m+44% v0.68
+    -> pick #1 SOFI SOFI250912P00021000 x6 delta 0.30
+    -> pick #2 GM GM250905P00052000 x2 delta 0.28
+    -> pick #3 MU MU250822P00119000 x1 delta 0.30
+    -> pick #4 BABA BABA250905P00113000 x1 delta 0.30
+    -> pick #5 KO KO250912P00069000 x1 delta 0.27
+  2025-08-11  eq $99,607  puts 1 calls 0  shares 0  reserved $13,200  (opt calls: 13)
+  2025-08-18  eq $100,841  puts 5 calls 0  shares 0  reserved $55,900  (opt calls: 16)
+    ranking: SOFI m+100% v1.00 | MU m+25% v0.72 | INTC m+22% v0.59
+    -> pick #1 SOFI SOFI250926P00024000 x6 delta 0.28
+    -> pick #2 MU MU250905P00112000 x1 delta 0.29
+    -> pick #3 INTC INTC250926P00023000 x6 delta 0.29
+  [all-empty retry 1] opts ['PFE250905P00020000', 'PFE250905P00022000']...
+  2025-08-25  eq $101,148  puts 3 calls 0  shares 0  reserved $31,400  (opt calls: 19)
+    ranking: BABA m+21% v0.86 | WBD m+16% v0.76 | MU m+21% v0.65
+    -> pick #1 BABA BABA250912P00134000 x1 delta 0.30
+    -> pick #3 MU MU250912P00114000 x1 delta 0.30
+    -> pick #5 T T251003P00028000 x4 delta 0.27
+  2025-09-02  eq $101,420  puts 3 calls 0  shares 0  reserved $35,100  (opt calls: 24)
+  [all-empty retry 1] opts ['KO250912P00057500', 'KO250912P00059000']...
+    ranking: MU m+21% v0.75 | WBD m+26% v0.72 | T m+3% v0.66
+    -> pick #1 MU MU250919P00127000 x1 delta 0.30
+    -> pick #2 WBD WBD250919P00012000 x10 delta 0.32
+  2025-09-08  eq $102,021  puts 4 calls 0  shares 0  reserved $48,500  (opt calls: 33)
+    ranking: SOFI m+97% v0.99 | T m+5% v0.74
+    -> pick #1 SOFI SOFI251003P00026000 x5 delta 0.29
+    -> pick #2 T T251003P00029000 x5 delta 0.31
+  2025-09-15  eq $102,392  puts 1 calls 0  shares 100  reserved $12,000  (opt calls: 36)
+    ranking: WBD m+84% v1.00 | SOFI m+94% v0.99 | INTC m+36% v0.61
+    -> pick #1 WBD WBD251024P00018000 x8 delta 0.29
+    -> pick #2 SOFI SOFI251024P00027500 x5 delta 0.29
+    -> pick #3 INTC INTC251024P00027000 x5 delta 0.31
+    -> pick #4 XOM XOM251003P00110000 x1 delta 0.29
+  2025-09-22  eq $102,519  puts 1 calls 0  shares 100  reserved $14,500  (opt calls: 40)
+    ranking: INTC m+54% v0.93 | XOM m+6% v0.65
+    -> pick #1 INTC INTC251024P00032000 x4 delta 0.30
+    -> pick #2 XOM XOM251031P00111000 x1 delta 0.31
+  2025-09-29  eq $102,147  puts 3 calls 1  shares 100  reserved $42,650  (opt calls: 44)
+  2025-10-06  eq $101,301  puts 3 calls 1  shares 600  reserved $39,250  (opt calls: 46)
+  2025-10-13  eq $101,316  puts 3 calls 1  shares 600  reserved $39,250  (opt calls: 46)
+  2025-10-20  eq $102,776  puts 3 calls 1  shares 600  reserved $39,250  (opt calls: 46)
+    ranking: SOFI m+34% v1.00 | NOK m+52% v0.99 | GM m+33% v0.99
+    -> pick #1 SOFI SOFI251121P00027500 x5 delta 0.29
+    -> pick #2 NOK NOK251121P00006000 x24 delta 0.28
+    -> pick #3 GM GM251121P00067000 x2 delta 0.31
+    -> pick #4 WBD WBD251121P00020000 x7 delta 0.29
+    -> pick #5 INTC INTC251107P00037500 x3 delta 0.30
+  2025-10-27  eq $103,074  puts 0 calls 0  shares 600  reserved $0  (opt calls: 47)
+  2025-11-03  eq $102,929  puts 3 calls 0  shares 600  reserved $38,400  (opt calls: 51)
+    ranking: NOK m+68% v1.00 | INTC m+76% v0.89 | GM m+31% v0.99
+    -> pick #1 NOK NOK251205P00006500 x22 delta 0.23
+    -> pick #2 INTC INTC251212P00036000 x4 delta 0.30
+    -> pick #3 GM GM251121P00069000 x2 delta 0.25
+    -> pick #4 WBD WBD251128P00022000 x6 delta 0.30
+    -> pick #5 F F251121P00013000 x3 delta 0.38
+  2025-11-10  eq $103,345  puts 1 calls 1  shares 600  reserved $13,750  (opt calls: 53)
+  2025-11-17  eq $102,608  puts 5 calls 1  shares 600  reserved $59,600  (opt calls: 55)
+  2025-11-24  eq $103,021  puts 3 calls 1  shares 900  reserved $41,900  (opt calls: 57)
+    ranking: INTC m+65% v0.93 | WBD m+105% v0.90 | SOFI m+17% v0.98
+    -> pick #1 INTC INTC251219P00038000 x3 delta 0.30
+    -> pick #2 WBD WBD251226P00022000 x6 delta 0.28
+    -> pick #3 SOFI SOFI251212P00027500 x5 delta 0.29
+    -> pick #5 PFE PFE251212P00025000 x6 delta 0.35
+  2025-12-01  eq $104,134  puts 1 calls 2  shares 900  reserved $14,300  (opt calls: 57)
+  2025-12-08  eq $103,914  puts 2 calls 0  shares 3100  reserved $26,950  (opt calls: 60)
+  [all-empty retry 1] opts ['SOFI251219P00022500', 'SOFI251219P00023000']...
+  [all-empty retry 1] opts ['SOFI251219P00022500', 'SOFI251219P00023000']...
+  [all-empty retry 1] opts ['SOFI251219P00022500', 'SOFI251219P00023000']...
+  2025-12-15  eq $103,368  puts 0 calls 2  shares 3600  reserved $0  (opt calls: 67)
+  2025-12-22  eq $104,828  puts 0 calls 1  shares 3600  reserved $0  (opt calls: 68)
+  2025-12-29  eq $104,879  puts 0 calls 1  shares 3600  reserved $0  (opt calls: 71)
+  2026-01-05  eq $105,407  puts 0 calls 2  shares 3600  reserved $0  (opt calls: 74)
+  2026-01-12  eq $104,537  puts 0 calls 3  shares 3600  reserved $0  (opt calls: 75)
+  2026-01-20  eq $103,492  puts 0 calls 3  shares 3600  reserved $0  (opt calls: 76)
+  2026-01-26  eq $104,907  puts 0 calls 1  shares 3600  reserved $0  (opt calls: 76)
+  2026-02-02  eq $104,480  puts 0 calls 2  shares 3600  reserved $0  (opt calls: 76)
+  2026-02-09  eq $105,173  puts 0 calls 3  shares 3600  reserved $0  (opt calls: 76)
+    ranking: VALE m+28% v1.00 | XOM m+23% v0.99 | INTC m+29% v0.98
+    -> pick #2 XOM XOM260227P00143000 x1 delta 0.31
+    -> pick #3 INTC INTC260227P00044000 x3 delta 0.30
+    -> pick #4 GM GM260320P00077500 x1 delta 0.30
+    -> pick #5 WBD WBD260227P00027500 x5 delta 0.27
+    -> pick #6 KO KO260320P00077500 x1 delta 0.31
+  2026-02-17  eq $105,466  puts 0 calls 1  shares 3500  reserved $0  (opt calls: 80)
+  2026-02-23  eq $104,862  puts 5 calls 2  shares 1300  reserved $56,750  (opt calls: 83)
+    ranking: VALE m+36% v0.98 | NOK m+36% v0.97 | INTC m+24% v0.91
+    -> pick #2 NOK NOK260327P00008000 x18 delta 0.36
+    -> pick #3 INTC INTC260313P00043000 x3 delta 0.29
+    -> pick #4 KO KO260327P00078000 x1 delta 0.28
+  [all-empty retry 1] opts ['WBD260313P00025000', 'WBD260313P00026000']...
+  [all-empty retry 1] opts ['PFE260313P00022500', 'PFE260313P00023000']...
+  2026-03-02  eq $104,940  puts 1 calls 0  shares 1300  reserved $7,750  (opt calls: 89)
+  2026-03-09  eq $104,294  puts 3 calls 1  shares 1300  reserved $29,950  (opt calls: 91)
+  2026-03-16  eq $104,418  puts 3 calls 0  shares 1300  reserved $29,950  (opt calls: 91)
+  2026-03-23  eq $104,728  puts 1 calls 1  shares 1400  reserved $7,800  (opt calls: 92)
+  2026-03-30  eq $103,412  puts 0 calls 1  shares 1500  reserved $0  (opt calls: 92)
+  2026-04-06  eq $104,105  puts 0 calls 3  shares 1500  reserved $0  (opt calls: 92)
+  2026-04-13  eq $103,544  puts 0 calls 2  shares 1500  reserved $0  (opt calls: 93)
+  2026-04-20  eq $105,322  puts 0 calls 2  shares 1500  reserved $0  (opt calls: 94)
+  2026-04-27  eq $104,411  puts 0 calls 3  shares 1500  reserved $0  (opt calls: 94)
+    ranking: INTC m+96% v1.00 | NOK m+97% v1.00 | KO m+4% v0.93
+    -> pick #1 INTC INTC260515P00090000 x1 delta 0.30
+    -> pick #2 NOK NOK260605P00012000 x12 delta 0.28
+    -> pick #4 VALE VALE260515P00015000 x9 delta 0.21
+  2026-05-04  eq $103,583  puts 0 calls 0  shares 1400  reserved $0  (opt calls: 94)
+  2026-05-11  eq $103,270  puts 1 calls 1  shares 1400  reserved $14,400  (opt calls: 94)
+  2026-05-18  eq $103,101  puts 1 calls 0  shares 1400  reserved $14,400  (opt calls: 94)
+    ranking: NOK m+119% v1.00 | INTC m+168% v0.99 | XOM m+0% v0.98
+    -> pick #1 NOK NOK260626P00015000 x10 delta 0.30
+    -> pick #2 INTC INTC260612P00114000 x1 delta 0.30
+    -> pick #3 XOM XOM260612P00145000 x1 delta 0.30
+  [all-empty retry 1] opts ['VALE260605P00014000', 'VALE260605P00015000']...
+  [all-empty retry 1] opts ['KO260605P00070000', 'KO260605P00071000']...
+  2026-05-26  eq $104,430  puts 0 calls 2  shares 1400  reserved $0  (opt calls: 99)
+  2026-06-01  eq $105,631  puts 3 calls 2  shares 1400  reserved $40,900  (opt calls: 100)
+  2026-06-08  eq $103,538  puts 2 calls 1  shares 1100  reserved $26,400  (opt calls: 100)
+    ranking: F m+26% v0.99 | KO m+4% v1.00 | INTC m+179% v0.97
+    -> pick #1 F F260717P00014000 x10 delta 0.30
+    -> pick #2 KO KO260710P00079000 x1 delta 0.29
+    -> pick #3 INTC INTC260710P00117000 x1 delta 0.30
+    -> pick #4 GM GM260717P00080000 x1 delta 0.29
+    -> pick #5 XOM XOM260717P00135000 x1 delta 0.28
+  2026-06-15  eq $105,191  puts 1 calls 0  shares 1000  reserved $15,000  (opt calls: 101)
+  2026-06-22  eq $104,604  puts 6 calls 0  shares 1000  reserved $70,100  (opt calls: 102)
+  2026-06-29  eq $103,840  puts 3 calls 0  shares 2000  reserved $35,500  (opt calls: 102)
+  2026-07-06  eq $103,043  puts 3 calls 0  shares 2000  reserved $35,500  (opt calls: 102)
+  2026-07-13  eq $102,710  puts 2 calls 0  shares 2000  reserved $22,000  (opt calls: 102)
+    ranking: INTC m+42% v0.97 | KO m+8% v1.00 | F m+9% v0.49
+    -> pick #1 INTC INTC260821P00087500 x1 delta 0.30
+    -> pick #2 KO KO260731P00080000 x1 delta 0.29
+    -> pick #3 F F260821P00013000 x11 delta 0.27
+  2026-07-20  eq $100,890  puts 0 calls 0  shares 2100  reserved $0  (opt calls: 102)
+  2026-07-27  eq $101,938  puts 3 calls 1  shares 2100  reserved $31,050  (opt calls: 102)
+
+== done ==
+{
+  "run": "bt-2026-08-30_topk-sweep",
+  "window": {
+    "start": "2025-08-01",
+    "end": "2026-07-31",
+    "trading_days": 251
+  },
+  "strategy": {
+    "total_return": 1.15,
+    "cagr": 1.67,
+    "max_drawdown": 5.71,
+    "sharpe": 0.18,
+    "final_equity": 101145.62
+  },
+  "benchmark_spy": {
+    "total_return": 20.11,
+    "cagr": 30.54,
+    "max_drawdown": 9.13,
+    "sharpe": 1.51,
+    "final_equity": 120112.91
+  },
+  "option_legs": {
+    "total": 90,
+    "wins": 87,
+    "win_rate_pct": 96.7,
+    "profit_factor": 24.1,
+    "net_option_pnl": 12437.2
+  },
+  "premiums_collected_gross": 19303.7,
+  "fees_paid": 373.0,
+  "activity": {
+    "csp_sold": 62,
+    "cc_sold": 28,
+    "tp_closes": 50,
+    "cc_tp": 20,
+    "expired_worthless": 4,
+    "assignments": 9,
+    "called_away": 5
+  },
+  "gate_activity": {
+    "vol_floor": 74,
+    "drawdown": 0,
+    "extreme": 0,
+    "no_candidate": 12,
+    "budget": 4,
+    "slots": 0,
+    "sector": 0,
+    "fills_missed": 9,
+    "bear_entries_scaled": 0,
+    "cc_floor_block": 83,
+    "quality": 92,
+    "afford": 99
+  },
+  "opt_api_calls": 102,
+  "variant": "D topk-sweep",
+  "topk": 5,
+  "per_name_pct": 0.144,
+  "champions_picked": [
+    {
+      "date": "2025-08-01",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-08-01",
+      "name": "MU"
+    },
+    {
+      "date": "2025-08-01",
+      "name": "BABA"
+    },
+    {
+      "date": "2025-08-01",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-08-01",
+      "name": "DIS"
+    },
+    {
+      "date": "2025-08-11",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-08-11",
+      "name": "GM"
+    },
+    {
+      "date": "2025-08-11",
+      "name": "MU"
+    },
+    {
+      "date": "2025-08-11",
+      "name": "BABA"
+    },
+    {
+      "date": "2025-08-11",
+      "name": "KO"
+    },
+    {
+      "date": "2025-08-25",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-08-25",
+      "name": "MU"
+    },
+    {
+      "date": "2025-08-25",
+      "name": "INTC"
+    },
+    {
+      "date": "2025
+=== SWEEP SELESAI 00:24:59 ===
