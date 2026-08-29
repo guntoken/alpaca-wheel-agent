@@ -14,12 +14,34 @@ def kill_reason() -> str | None:
 
 
 def refresh_day_anchor(state: dict, equity: float) -> dict:
-    """Reset the daily drawdown anchor on first cycle of each day."""
+    """Reset the daily drawdown anchor and reprice counters each day."""
     today = date.today().isoformat()
     if state.get("day") != today:
         state["day"] = today
         state["day_start_equity"] = equity
+        state["repriced"] = {}
     return state
+
+
+def sector_of(symbol: str) -> str:
+    for sector, tickers in config.SECTOR_MAP.items():
+        if symbol in tickers:
+            return sector
+    return "other"
+
+
+def deterministic_regime(spy_day_change_pct: float | None) -> dict:
+    """SPY-intraday-change regime tiers. The AI regime can flicker; this anchor
+    cannot. The tighter of the two always governs entries and budget."""
+    if spy_day_change_pct is None:
+        return {"regime": "NEUTRAL", "budget_mult": 1.0, "delta_override": None}
+    if spy_day_change_pct <= config.REGIME_SPY_EXTREME_PCT:
+        return {"regime": "EXTREME_BEAR", "budget_mult": config.EXTREME_BUDGET_MULT,
+                "delta_override": None}
+    if spy_day_change_pct <= config.REGIME_SPY_BEAR_PCT:
+        return {"regime": "BEAR", "budget_mult": config.BEAR_BUDGET_MULT,
+                "delta_override": config.BEAR_TARGET_DELTA}
+    return {"regime": "NEUTRAL_OR_BULL", "budget_mult": 1.0, "delta_override": None}
 
 
 def drawdown_ok(state: dict, equity: float) -> tuple[bool, str | None]:

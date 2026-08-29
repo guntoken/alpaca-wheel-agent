@@ -65,6 +65,31 @@ curve, positions with P&L, Greeks, exposure). **Code not reused** — the repo
 carries no open-source license ("private"), so ideas only, per our no-unlicensed-copy
 rule. Our dashboard stays Python/Streamlit, journal-fed, zero credentials.
 
+## 7. github.com/cemarsh/agentic-trading-system (12.8k lines, updated May 2026)
+Mature autonomous wheel engine: policy/congressional-signal feeds, regime
+detection, Claude strategy advisor, PostgreSQL journal, n8n automation, 192
+tests. No open-source license — **ideas adapted, code written from scratch**.
+**Adopted (day 2):**
+- **Deterministic regime overlay**: SPY intraday % tiers (≤−4% extreme / ≤−2%
+  bear / else neutral-bull). The AI regime can flicker between cycles; this
+  anchor cannot, and the tighter of the two always governs entries and budget.
+- **BEAR delta widening**: in a weak tape the engine sells further OTM
+  (target delta 0.30 → 0.20), not just less — assignment-risk reduction that
+  keeps premium flowing.
+- **Sector cap**: max 2 underlyings per correlated sector, counting CSP
+  collateral (an assigned CSP becomes the shares). Their "FJET lesson" — one
+  module once took 29% of the book — is the crash mode sector caps exist for.
+- **Stale entry re-pricing**: unfilled ENTRY orders are cancelled after 20
+  minutes so the engine re-quotes at fresh prices, chase-capped at 3 attempts
+  per symbol per day (their counter is deliberately in-memory and fails toward
+  "try harder to get flat" — we mirror the cap for entries).
+**Not adopted:** PostgreSQL/n8n/systemd infrastructure (overkill for a 7-day
+event), congressional-trade/policy-signal feeds (data plumbing exceeds the
+week), inverse-ETF hedges (not wheel-pure), Finnhub earnings API (needs another
+account; our static blackout + AI veto covers the competition window), their
+10-strategy per-ticker advisor (our veto-only AI is a cleaner story and already
+validated).
+
 ## Net effect on the engine (all live from the day-2 loop restart)
 1. CC strikes clear max(cost basis, SMA20+2σ) — official guidance
 2. OI floor 200; CC sizing on qty_available

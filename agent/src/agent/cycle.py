@@ -1,7 +1,7 @@
 """One trading cycle: observe -> gates -> decide -> AI overlay -> execute -> journal."""
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 
 from . import ai, config, journal, risk, wheel
 from .alpaca_client import Api, _enumval, _num, parse_occ
@@ -26,6 +26,13 @@ def _market_summary(api: Api) -> dict:
     spy_vp = api.vol_dollar_percentile("SPY")
     if spy_vp is not None:
         out["SPY_vol_dollar_percentile"] = round(spy_vp, 3)
+    # SPY intraday change feeds the deterministic regime overlay.
+    # Daily bars: the last bar is today's forming bar, [-2] is the prior close.
+    spy_closes = api.daily_closes("SPY", days=10)
+    if out["SPY"].get("last") and len(spy_closes) >= 2:
+        prev_close = spy_closes[-2]
+        if prev_close:
+            out["SPY_day_change_pct"] = round((out["SPY"]["last"] / prev_close - 1) * 100, 2)
     return out
 
 
@@ -47,6 +54,10 @@ def _enforce_caps(entries: list[dict], collateral_used: float, caps: dict,
     used = collateral_used
     reserved = dict(reserved_by_symbol or {})
     symbols = {s for s, v in reserved.items() if v > 0} | set()
+    sector_used: dict[str, set] = {}
+    for sym, v in reserved.items():
+        if v > 0:
+            sector_used.setdefault(risk.sector_of(sym), set()).add(sym)
     ranked = sorted(entries, key=lambda i: -(i.get("detail", {}).get("premium_pct") or 0))
     for i in ranked:
         try:
@@ -58,6 +69,11 @@ def _enforce_caps(entries: list[dict], collateral_used: float, caps: dict,
         sym = i["underlying"]
         if sym not in symbols and len(symbols) >= config.MAX_UNDERLYINGS:
             capped.append({**i, "reason": f"cap: max {config.MAX_UNDERLYINGS} underlyings"})
+            continue
+        sector_syms = sector_used.setdefault(risk.sector_of(sym), set())
+        if sym not in sector_syms and len(sector_syms) >= config.MAX_PER_SECTOR:
+            capped.append({**i, "reason": (f"cap: max {config.MAX_PER_SECTOR} underlyings "
+                           f"in sector {risk.sector_of(sym)}")})
             continue
         if reserved.get(sym, 0.0) + need > caps["per_underlying"]:
             capped.append({**i, "reason": (f"cap: per-underlying "
@@ -71,6 +87,7 @@ def _enforce_caps(entries: list[dict], collateral_used: float, caps: dict,
         used += need
         reserved[sym] = reserved.get(sym, 0.0) + need
         symbols.add(sym)
+        sector_syms.add(sym)
     return approved, capped
 
 
@@ -117,7 +134,12 @@ def run_cycle(dry_run: bool = True, force: bool = False, no_ai: bool = False) ->
     regime = ({"regime": "NEUTRAL", "reason": "AI disabled by flag", "ai": False}
               if no_ai else ai.read_regime(summary))
     rec["ai_regime"] = regime
-    entries_allowed = bool(dd_ok and regime["regime"] != "RISK_OFF")
+    # Deterministic overlay: the AI can flicker; this anchor cannot. The
+    # tighter of the two always governs. In BEAR it also widens the CSP delta.
+    det = risk.deterministic_regime(summary.get("SPY_day_change_pct"))
+    rec["det_regime"] = {**det, "spy_day_change_pct": summary.get("SPY_day_change_pct")}
+    entries_allowed = bool(dd_ok and regime["regime"] != "RISK_OFF"
+                           and det["budget_mult"] > 0)
     rec["entries_allowed"] = entries_allowed
 
     # 4) positions -> wheel states
@@ -128,6 +150,43 @@ def run_cycle(dry_run: bool = True, force: bool = False, no_ai: bool = False) ->
     active = {u for u, st in states.items()
               if st.equity_qty > 0 or st.short_puts or st.short_calls}
     open_orders = api.open_orders()
+
+    # Stale entry re-pricing: cancel our unfilled ENTRY orders so the engine
+    # re-quotes them fresh next pass (night-1 lesson: mid-limit T orders sat
+    # all night). Chase-capped per symbol per day — after the cap we let it be.
+    repriced = state.setdefault("repriced", {})
+    cancelled: set = set()
+    now_utc = datetime.now(timezone.utc)
+    for o in list(open_orders):
+        occ = str(getattr(o, "symbol", ""))
+        coid = str(getattr(o, "client_order_id", ""))
+        side = _enumval(getattr(o, "side", "")).lower()
+        if not coid.startswith((f"{config.ORDER_PREFIX}-CSP", f"{config.ORDER_PREFIX}-CC")):
+            continue
+        created = getattr(o, "created_at", None)
+        if created is None:
+            continue
+        age_min = (now_utc - created).total_seconds() / 60.0
+        if age_min < config.REPRICE_AFTER_MIN:
+            continue
+        root = parse_occ(occ)[0]
+        n_today = int(repriced.get(root, 0))
+        if n_today >= config.MAX_REPRICES_PER_SYMBOL_DAY:
+            continue
+        if dry_run:
+            rec.setdefault("reprice_would_cancel", []).append(
+                {"occ": occ, "age_min": round(age_min, 1)})
+            continue
+        if api.cancel_order(getattr(o, "id", None)):
+            repriced[root] = n_today + 1
+            cancelled.add((occ, side))
+            rec.setdefault("repriced", []).append(
+                {"occ": occ, "age_min": round(age_min, 1)})
+    if cancelled:
+        open_orders = [o for o in open_orders
+                       if (str(getattr(o, "symbol", "")),
+                           _enumval(getattr(o, "side", "")).lower()) not in cancelled]
+        journal.save_state(state)
 
     # Reserved collateral per underlying: FILLED short puts + our OPEN sell-put
     # orders. Night-1 lesson: fills lag submissions, so a cycle that only looks
@@ -159,6 +218,8 @@ def run_cycle(dry_run: bool = True, force: bool = False, no_ai: bool = False) ->
     # power (open CSP orders reserve it). If the field is missing, assume none.
     obp = _num(getattr(acct, "options_buying_power", None)) or 0.0
     caps["total"] = min(caps["total"], collateral_used + obp)
+    # Deterministic-regime budget multiplier (BEAR halves, EXTREME zeroes).
+    caps["total"] *= det["budget_mult"]
     rec["options_buying_power"] = obp
     rec["caps"] = {k: round(v, 2) for k, v in caps.items()}
     rec["collateral_used"] = round(collateral_used, 2)
@@ -174,6 +235,9 @@ def run_cycle(dry_run: bool = True, force: bool = False, no_ai: bool = False) ->
            "collateral_used": collateral_used, "universe": config.UNIVERSE,
            "active_underlyings": sorted(active),
            "reserved": reserved_by_symbol,
+           "csp_target_delta": det.get("delta_override"),
+           "csp_band": (config.BEAR_DELTA_BAND if det.get("delta_override")
+                        else config.CSP_DELTA_BAND),
            "slots_free": risk.slots_free(len(active))}
 
     # 5) deterministic decisions

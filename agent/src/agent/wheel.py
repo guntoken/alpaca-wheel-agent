@@ -102,8 +102,9 @@ def decide(api: Api, st: SymbolState, ctx: dict) -> list[Intent]:
             return skip(f"max underlyings reached ({config.MAX_UNDERLYINGS})")
         strike_max = ctx["caps"]["per_underlying"] / 100.0
         cands = api.candidates(u, "P", config.DTE_MIN, config.DTE_MAX, strike_max=strike_max)
-        best = _best(cands, config.CSP_TARGET_DELTA, config.CSP_DELTA_BAND,
-                     config.MIN_PREMIUM_PCT)
+        target = ctx.get("csp_target_delta") or config.CSP_TARGET_DELTA
+        band = ctx.get("csp_band") or config.CSP_DELTA_BAND
+        best = _best(cands, target, band, config.MIN_PREMIUM_PCT)
         if best is None:
             return skip("no qualifying put (delta/DTE/OI/spread/premium filters)")
         collat_used = ctx.get("collateral_used", 0.0)

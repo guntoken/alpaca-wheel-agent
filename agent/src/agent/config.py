@@ -46,6 +46,37 @@ MAX_QUOTE_SPREAD_PCT = 0.15    # (ask-bid)/mid
 DAILY_DRAWDOWN_STOP = 0.03     # no NEW entries if equity < day anchor * (1 - 3%)
 KILL_FILE = AGENT_DIR / "KILL"
 
+# --- sector diversification (correlated assignments are the wheel's crash mode;
+# idea adapted from agentic-trading-system's sector cap, own implementation) ---
+SECTOR_MAP = {
+    "semis": ["INTC", "MU"],
+    "telecom": ["T", "NOK"],
+    "auto": ["F", "GM"],
+    "pharma": ["PFE"],
+    "staples": ["KO"],
+    "fintech": ["SOFI"],
+    "china-ecom": ["BABA"],
+    "media": ["WBD"],
+    "materials": ["VALE"],
+}
+MAX_PER_SECTOR = 2             # max UNDERLYINGS with exposure in one sector
+
+# --- deterministic regime overlay on top of the AI regime read
+# (SPY intraday %; tiers adapted from agentic-trading-system, own implementation).
+# The AI can flicker; this anchor can't. Tighter of the two always wins. ---
+REGIME_SPY_BEAR_PCT = -2.0
+REGIME_SPY_EXTREME_PCT = -4.0
+REGIME_SPY_BULL_PCT = 2.0
+BEAR_TARGET_DELTA = 0.20       # weak tape -> sell further OTM, not just less
+BEAR_DELTA_BAND = (0.10, 0.30)
+BEAR_BUDGET_MULT = 0.5
+EXTREME_BUDGET_MULT = 0.0      # no new entries at all
+
+# --- stale entry re-pricing (night-1 lesson: mid-limit T orders never filled;
+# cancel-and-fresh-quote next cycle, with a chase cap so we stop chasing) ---
+REPRICE_AFTER_MIN = 20
+MAX_REPRICES_PER_SYMBOL_DAY = 3
+
 # --- files ---
 STATE_FILE = AGENT_DIR / "state.json"
 JOURNAL_FILE = AGENT_DIR / "journal.jsonl"
