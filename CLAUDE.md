@@ -15,6 +15,17 @@ terverifikasi DOM + hover sintetis; export `agent/dashboard/backtest.json`.
 WRITEUP + README sudah ditaut ke backtest. 98 CSP + 77 CC, WR leg 97,1%
 (akuntansi per-leg; risiko ada di drawdown saham), premium kotor $45.779.
 
+**Varian B (eksplorasi, 29 Agu 23:49)** — `agent/runs/bt-2026-08-29_variantB/`:
+jawaban pertanyaan "bisakah wheel kalahkan SPY". 3 lever pre-committed (screen
+SMA200, delta by regime SPY 0,40/0,30/0,20 + CC 1,5σ saat RISK_ON, cash 4% APR),
+walk-forward IS/OOS. Hasil full window: **+34,2% (DD 12,9%, Sharpe 0,87)** vs
+baseline +32,2% (DD 18,3%) vs SPY +45,6% (DD 19,0%) — return mentah tetap kalah
+dari SPY di bull window, TAPI **Calmar 1,51 > SPY 1,34** (menang per unit
+drawdown) dan semua metrik membaik vs baseline. OOS jujur: +16,9% vs baseline
++25,5% (postur defensif rugi di rally 2025-H2). Bandingkan via `compare.py`.
+Dokumen headline (README/WRITEUP) TETAP memakai baseline — varian tidak
+menggantikan klaim utama.
+
 **Menunggu pemilik (satu-satunya bloker): DEPLOY** — share.streamlit.io → login GitHub →
 New app → repo `guntoken/alpaca-wheel-agent`, branch main, file `agent/dashboard/app.py`
 → Deploy (tanpa secrets) → tulis URL hasilnya ke README bagian Dashboard.

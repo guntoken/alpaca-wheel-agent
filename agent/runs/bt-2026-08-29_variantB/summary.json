@@ -1,0 +1,98 @@
+{
+  "run": "bt-2026-08-29_variantB",
+  "window": {
+    "start": "2024-03-01",
+    "end": "2026-07-31",
+    "trading_days": 606
+  },
+  "strategy": {
+    "total_return": 34.21,
+    "cagr": 19.39,
+    "max_drawdown": 12.85,
+    "sharpe": 0.87,
+    "final_equity": 134235.68
+  },
+  "benchmark_spy": {
+    "total_return": 45.59,
+    "cagr": 25.39,
+    "max_drawdown": 18.98,
+    "sharpe": 1.08,
+    "final_equity": 145592.97
+  },
+  "option_legs": {
+    "total": 148,
+    "wins": 143,
+    "win_rate_pct": 96.6,
+    "profit_factor": 19.34,
+    "net_option_pnl": 37944.35
+  },
+  "premiums_collected_gross": 58765.3,
+  "fees_paid": 982.5,
+  "activity": {
+    "csp_sold": 72,
+    "cc_sold": 76,
+    "tp_closes": 52,
+    "cc_tp": 61,
+    "expired_worthless": 5,
+    "assignments": 17,
+    "called_away": 12
+  },
+  "gate_activity": {
+    "vol_floor": 54,
+    "drawdown": 0,
+    "extreme": 0,
+    "no_candidate": 67,
+    "budget": 5,
+    "slots": 95,
+    "sector": 0,
+    "fills_missed": 13,
+    "bear_entries_scaled": 0,
+    "cc_floor_block": 297,
+    "quality": 83
+  },
+  "opt_api_calls": 407,
+  "variant_levers": {
+    "cash_apr": 0.04,
+    "quality_sma": 200,
+    "riskon_delta": 0.4,
+    "cc_std_riskon": 1.5
+  },
+  "walk_forward": {
+    "split_after": "2025-06-30",
+    "segments": {
+      "IS": {
+        "strategy": {
+          "total_return": 14.8,
+          "cagr": 16.33,
+          "max_drawdown": 12.85,
+          "sharpe": 0.72,
+          "final_equity": 114813.88
+        },
+        "benchmark_spy": {
+          "total_return": 20.45,
+          "cagr": 22.62,
+          "max_drawdown": 18.98,
+          "sharpe": 0.88,
+          "final_equity": 120451.13
+        }
+      },
+      "OOS": {
+        "strategy": {
+          "total_return": 16.92,
+          "cagr": 23.14,
+          "max_drawdown": 12.23,
+          "sharpe": 1.09,
+          "final_equity": 134235.68
+        },
+        "benchmark_spy": {
+          "total_return": 20.87,
+          "cagr": 28.73,
+          "max_drawdown": 9.13,
+          "sharpe": 1.47,
+          "final_equity": 145592.97
+        }
+      }
+    }
+  },
+  "cash_interest_accrued": 5878.33
+}

@@ -1,0 +1,82 @@
+{
+  "files": {
+    "_suspects.json": {
+      "sha256_16": "0fcd75b2bf964a9f",
+      "bytes": 12648
+    },
+    "bars_BABA.json": {
+      "sha256_16": "70bde5a6bb3466fe",
+      "bytes": 100073
+    },
+    "bars_F.json": {
+      "sha256_16": "8d6921bbbf478723",
+      "bytes": 98759
+    },
+    "bars_GM.json": {
+      "sha256_16": "030dc83a6b5a595f",
+      "bytes": 98287
+    },
+    "bars_INTC.json": {
+      "sha256_16": "31a7c2750b817277",
+      "bytes": 99442
+    },
+    "bars_KO.json": {
+      "sha256_16": "d8d2dc30806dd82b",
+      "bytes": 98447
+    },
+    "bars_MU.json": {
+      "sha256_16": "0f451c64ebe54943",
+      "bytes": 100721
+    },
+    "bars_NOK.json": {
+      "sha256_16": "d1c0ca7b36853304",
+      "bytes": 95137
+    },
+    "bars_PFE.json": {
+      "sha256_16": "38fb944a12b79de8",
+      "bytes": 98874
+    },
+    "bars_SOFI.json": {
+      "sha256_16": "5e833e4f4555e462",
+      "bytes": 97222
+    },
+    "bars_SPY.json": {
+      "sha256_16": "6c5ab58eae430488",
+      "bytes": 102974
+    },
+    "bars_T.json": {
+      "sha256_16": "ac578d3ef0497d46",
+      "bytes": 98968
+    },
+    "bars_VALE.json": {
+      "sha256_16": "088efab1a3bc09de",
+      "bytes": 98421
+    },
+    "bars_WBD.json": {
+      "sha256_16": "54cf0170a76e4a31",
+      "bytes": 97586
+    },
+    "corporate_actions.json": {
+      "sha256_16": "5505ba2af8e31c25",
+      "bytes": 2864
+    }
+  },
+  "opts_cache_files": 983,
+  "stock_bars": {
+    "INTC": 814,
+    "T": 814,
+    "F": 814,
+    "GM": 814,
+    "PFE": 814,
+    "KO": 814,
+    "NOK": 814,
+    "SOFI": 814,
+    "BABA": 814,
+    "MU": 814,
+    "WBD": 814,
+    "VALE": 814,
+    "SPY": 814
+  },
+  "first_day": "2023-06-01",
+  "last_day": "2026-08-28"
+}

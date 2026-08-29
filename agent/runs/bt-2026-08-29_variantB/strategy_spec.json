@@ -1,0 +1,65 @@
+{
+  "variant": "B",
+  "base_run": "bt-2026-08-29_wheel-csp-cc_1Day",
+  "universe": [
+    "INTC",
+    "T",
+    "F",
+    "GM",
+    "PFE",
+    "KO",
+    "NOK",
+    "SOFI",
+    "BABA",
+    "MU",
+    "WBD",
+    "VALE"
+  ],
+  "levers": {
+    "quality_screen": "new CSP only if close > SMA200 (own history)",
+    "regime_delta": {
+      "RISK_ON": {
+        "def": "SPY>SMA50 & SMA50 rising 20d",
+        "band": [
+          0.3,
+          0.45
+        ],
+        "target": 0.4,
+        "cc_band_std": 1.5
+      },
+      "NEUTRAL": {
+        "band": [
+          0.18,
+          0.42
+        ],
+        "target": 0.3,
+        "cc_band_std": 2.0
+      },
+      "RISK_OFF": {
+        "def": "SPY<SMA200",
+        "band": [
+          0.1,
+          0.3
+        ],
+        "target": 0.2,
+        "budget_mult": 0.5
+      }
+    },
+    "cash_apr": 0.04
+  },
+  "walk_forward": {
+    "split_after": "2025-06-30",
+    "commitment": "params fixed before OOS seen"
+  },
+  "unchanged_from_base": [
+    "fill model next-open + 5% slippage",
+    "$0.50/contract/side",
+    "TP 50%",
+    "roll-for-credit at delta 0.60",
+    "caps 5 names / 2 per sector / 18% per name / 72% total",
+    "drawdown stop 3%",
+    "SPY daily -2%/-4% gates",
+    "universe",
+    "data"
+  ]
+}

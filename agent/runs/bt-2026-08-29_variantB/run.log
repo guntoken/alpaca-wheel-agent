@@ -1,0 +1,295 @@
+== fetch stock bars (Alpaca CLI, iex/raw) ==
+  INTC: 814 days
+  T: 814 days
+  F: 814 days
+  GM: 814 days
+  PFE: 814 days
+  KO: 814 days
+  NOK: 814 days
+  SOFI: 814 days
+  BABA: 814 days
+  MU: 814 days
+  WBD: 814 days
+  VALE: 814 days
+  SPY: 814 days
+== simulate (single pass: opts_cache pre-verified by the baseline run) ==
+-- pass 1: cache clean --
+  2024-03-01  eq $100,016  puts 0 calls 0  shares 0  reserved $0  (opt calls: 0)
+  2024-03-04  eq $99,684  puts 2 calls 0  shares 0  reserved $32,600  (opt calls: 0)
+  2024-03-11  eq $99,621  puts 2 calls 0  shares 0  reserved $35,600  (opt calls: 0)
+  2024-03-18  eq $98,857  puts 2 calls 0  shares 0  reserved $35,600  (opt calls: 0)
+  2024-03-25  eq $99,994  puts 1 calls 0  shares 0  reserved $17,600  (opt calls: 0)
+  2024-04-01  eq $100,206  puts 3 calls 0  shares 0  reserved $45,500  (opt calls: 0)
+  2024-04-08  eq $101,294  puts 1 calls 0  shares 2200  reserved $18,000  (opt calls: 0)
+  2024-04-15  eq $99,322  puts 2 calls 0  shares 2600  reserved $29,800  (opt calls: 0)
+  2024-04-22  eq $99,697  puts 2 calls 1  shares 2600  reserved $28,900  (opt calls: 0)
+  2024-04-29  eq $101,098  puts 1 calls 2  shares 2700  reserved $17,500  (opt calls: 0)
+  2024-05-06  eq $101,919  puts 2 calls 0  shares 2700  reserved $35,500  (opt calls: 0)
+  2024-05-13  eq $102,491  puts 2 calls 2  shares 2700  reserved $35,500  (opt calls: 0)
+  2024-05-20  eq $103,005  puts 0 calls 1  shares 2700  reserved $0  (opt calls: 0)
+  2024-05-28  eq $100,951  puts 2 calls 2  shares 2700  reserved $35,400  (opt calls: 0)
+  2024-06-03  eq $101,151  puts 2 calls 1  shares 2700  reserved $35,400  (opt calls: 0)
+  2024-06-10  eq $103,207  puts 1 calls 2  shares 2900  reserved $18,000  (opt calls: 0)
+  2024-06-17  eq $101,636  puts 0 calls 2  shares 2800  reserved $0  (opt calls: 0)
+  2024-06-24  eq $101,436  puts 1 calls 1  shares 2800  reserved $14,400  (opt calls: 0)
+  2024-07-01  eq $100,692  puts 3 calls 0  shares 2400  reserved $45,000  (opt calls: 0)
+  2024-07-08  eq $100,828  puts 2 calls 0  shares 2500  reserved $30,600  (opt calls: 0)
+  2024-07-15  eq $104,045  puts 1 calls 0  shares 2500  reserved $12,600  (opt calls: 1)
+  2024-07-22  eq $102,834  puts 2 calls 2  shares 2500  reserved $32,900  (opt calls: 3)
+  [all-empty retry 1] opts ['GM240802P00037500', 'GM240802P00038000']...
+  2024-07-29  eq $97,517  puts 2 calls 0  shares 2500  reserved $32,900  (opt calls: 7)
+  2024-08-05  eq $91,387  puts 1 calls 1  shares 3800  reserved $14,700  (opt calls: 10)
+  [all-empty retry 1] opts ['GM240816P00037500', 'GM240816P00038000']...
+  [all-empty retry 1] opts ['GM240823P00037000', 'GM240823P00037500']...
+  2024-08-12  eq $93,755  puts 1 calls 1  shares 3800  reserved $14,700  (opt calls: 14)
+  [all-empty retry 1] opts ['GM240823P00037500', 'GM240823P00039000']...
+  2024-08-19  eq $99,978  puts 0 calls 0  shares 4100  reserved $0  (opt calls: 19)
+  2024-08-26  eq $100,197  puts 0 calls 3  shares 4100  reserved $0  (opt calls: 20)
+  2024-09-03  eq $98,961  puts 0 calls 3  shares 4100  reserved $0  (opt calls: 20)
+  2024-09-09  eq $97,085  puts 0 calls 1  shares 4100  reserved $0  (opt calls: 21)
+  2024-09-16  eq $99,989  puts 0 calls 1  shares 4100  reserved $0  (opt calls: 24)
+  2024-09-23  eq $101,752  puts 0 calls 3  shares 4100  reserved $0  (opt calls: 25)
+  2024-09-30  eq $101,309  puts 0 calls 1  shares 4100  reserved $0  (opt calls: 25)
+  2024-10-07  eq $102,290  puts 0 calls 2  shares 3900  reserved $0  (opt calls: 28)
+  2024-10-14  eq $105,182  puts 3 calls 2  shares 3900  reserved $41,900  (opt calls: 36)
+  2024-10-21  eq $104,732  puts 1 calls 1  shares 1800  reserved $16,800  (opt calls: 38)
+  [all-empty retry 1] opts ['KO241108P00057500', 'KO241108P00058000']...
+  2024-10-28  eq $105,937  puts 0 calls 1  shares 1800  reserved $0  (opt calls: 43)
+  2024-11-04  eq $104,326  puts 2 calls 0  shares 1500  reserved $36,300  (opt calls: 45)
+  [all-empty retry 1] opts ['T241122P00019000', 'T241122P00020000']...
+  [all-empty retry 1] opts ['NOK241122P00004000', 'NOK241122P00004500']...
+  2024-11-11  eq $107,109  puts 0 calls 0  shares 1500  reserved $0  (opt calls: 51)
+  2024-11-18  eq $105,402  puts 2 calls 0  shares 1500  reserved $35,300  (opt calls: 53)
+  [all-empty retry 1] opts ['GM241129P00047500', 'GM241129P00048000']...
+  [all-empty retry 1] opts ['GM241129P00047500', 'GM241129P00048000']...
+  [all-empty retry 1] opts ['GM241129P00047500', 'GM241129P00048000']...
+  [all-empty retry 1] opts ['NOK241206P00003500', 'NOK241206P00004000']...
+  2024-11-25  eq $107,104  puts 0 calls 0  shares 1500  reserved $0  (opt calls: 65)
+  [all-empty retry 1] opts ['GM241206P00047500', 'GM241206P00048000']...
+  [all-empty retry 1] opts ['GM241206P00047500', 'GM241206P00048000']...
+  [all-empty retry 1] opts ['T241213P00019000', 'T241213P00020000']...
+  2024-12-02  eq $105,943  puts 4 calls 0  shares 1500  reserved $73,100  (opt calls: 75)
+  2024-12-09  eq $106,700  puts 1 calls 0  shares 1500  reserved $17,700  (opt calls: 82)
+  2024-12-16  eq $105,655  puts 3 calls 0  shares 1500  reserved $54,100  (opt calls: 87)
+  [all-empty retry 1] opts ['T241227P00019000', 'T241227P00020000']...
+  2024-12-23  eq $103,788  puts 2 calls 0  shares 1500  reserved $36,100  (opt calls: 90)
+  [all-empty retry 1] opts ['T250110P00019000', 'T250110P00020000']...
+  2024-12-30  eq $103,856  puts 1 calls 0  shares 1800  reserved $18,400  (opt calls: 93)
+  [all-empty retry 1] opts ['T250110P00019000', 'T250110P00020000']...
+  2025-01-06  eq $105,449  puts 1 calls 1  shares 1800  reserved $18,400  (opt calls: 97)
+  2025-01-13  eq $102,609  puts 0 calls 0  shares 2600  reserved $0  (opt calls: 99)
+  2025-01-21  eq $107,441  puts 0 calls 0  shares 2600  reserved $0  (opt calls: 101)
+  2025-01-27  eq $107,262  puts 0 calls 2  shares 2600  reserved $0  (opt calls: 103)
+  2025-02-03  eq $105,782  puts 0 calls 1  shares 2600  reserved $0  (opt calls: 103)
+  2025-02-10  eq $106,591  puts 0 calls 1  shares 2600  reserved $0  (opt calls: 104)
+  2025-02-18  eq $109,669  puts 0 calls 2  shares 2600  reserved $0  (opt calls: 105)
+  [all-empty retry 1] opts ['KO250307P00060000', 'KO250307P00062000']...
+  [all-empty retry 1] opts ['NOK250307P00004000', 'NOK250307P00004500']...
+  2025-02-24  eq $108,414  puts 0 calls 0  shares 1700  reserved $0  (opt calls: 112)
+  2025-03-03  eq $107,962  puts 3 calls 0  shares 1700  reserved $50,000  (opt calls: 115)
+  2025-03-10  eq $106,752  puts 2 calls 0  shares 1700  reserved $37,700  (opt calls: 115)
+  2025-03-17  eq $110,353  puts 2 calls 0  shares 1700  reserved $37,700  (opt calls: 119)
+  [all-empty retry 1] opts ['T250404P00022500', 'T250404P00023000']...
+  [all-empty retry 1] opts ['KO250404P00060000', 'KO250404P00061000']...
+  [all-empty retry 1] opts ['NOK250404P00004500', 'NOK250404P00005000']...
+  2025-03-24  eq $112,162  puts 1 calls 0  shares 1700  reserved $19,500  (opt calls: 129)
+  2025-03-31  eq $109,101  puts 2 calls 0  shares 1700  reserved $31,400  (opt calls: 131)
+  [all-empty retry 1] opts ['INTC250418P00017000', 'INTC250418P00018000']...
+  2025-04-07  eq $100,939  puts 1 calls 0  shares 1800  reserved $18,400  (opt calls: 136)
+  [all-empty retry 1] opts ['INTC250418P00016000', 'INTC250418P00017000']...
+  [all-empty retry 1] opts ['INTC250418P00018000', 'INTC250418P00019000']...
+  [all-empty retry 1] opts ['INTC250418P00017000', 'INTC250418P00018000']...
+  2025-04-14  eq $103,971  puts 0 calls 0  shares 2600  reserved $0  (opt calls: 142)
+  2025-04-21  eq $101,468  puts 0 calls 0  shares 2600  reserved $0  (opt calls: 142)
+  2025-04-28  eq $106,385  puts 0 calls 0  shares 2600  reserved $0  (opt calls: 142)
+  2025-05-05  eq $106,935  puts 0 calls 0  shares 2600  reserved $0  (opt calls: 143)
+  2025-05-12  eq $112,120  puts 0 calls 1  shares 2600  reserved $0  (opt calls: 145)
+  2025-05-19  eq $112,108  puts 0 calls 1  shares 2600  reserved $0  (opt calls: 147)
+  2025-05-27  eq $110,145  puts 0 calls 1  shares 2600  reserved $0  (opt calls: 149)
+  2025-06-02  eq $108,572  puts 0 calls 1  shares 2600  reserved $0  (opt calls: 150)
+  2025-06-09  eq $111,686  puts 0 calls 0  shares 2600  reserved $0  (opt calls: 151)
+  2025-06-16  eq $113,281  puts 0 calls 1  shares 2600  reserved $0  (opt calls: 153)
+  2025-06-23  eq $113,528  puts 0 calls 2  shares 2600  reserved $0  (opt calls: 154)
+  2025-06-30  eq $114,814  puts 0 calls 2  shares 2600  reserved $0  (opt calls: 154)
+  2025-07-07  eq $115,476  puts 0 calls 2  shares 2600  reserved $0  (opt calls: 154)
+  2025-07-14  eq $117,424  puts 0 calls 1  shares 2600  reserved $0  (opt calls: 155)
+  2025-07-21  eq $117,573  puts 0 calls 0  shares 2600  reserved $0  (opt calls: 158)
+  2025-07-28  eq $115,845  puts 0 calls 2  shares 2600  reserved $0  (opt calls: 161)
+  2025-08-04  eq $113,571  puts 0 calls 1  shares 2600  reserved $0  (opt calls: 162)
+  2025-08-11  eq $117,122  puts 0 calls 2  shares 2600  reserved $0  (opt calls: 163)
+  2025-08-18  eq $120,786  puts 0 calls 2  shares 2600  reserved $0  (opt calls: 164)
+  2025-08-25  eq $122,651  puts 0 calls 1  shares 2600  reserved $0  (opt calls: 167)
+  2025-09-02  eq $123,761  puts 0 calls 3  shares 2600  reserved $0  (opt calls: 169)
+  [all-empty retry 1] opts ['MU250919C00144000', 'MU250919C00145000']...
+  2025-09-08  eq $125,276  puts 0 calls 0  shares 2500  reserved $0  (opt calls: 177)
+  2025-09-15  eq $129,694  puts 3 calls 1  shares 2500  reserved $66,500  (opt calls: 185)
+  2025-09-22  eq $132,322  puts 2 calls 2  shares 2500  reserved $44,000  (opt calls: 188)
+  2025-09-29  eq $133,898  puts 2 calls 2  shares 2500  reserved $44,000  (opt calls: 190)
+  [all-empty retry 1] opts ['T251010P00022500', 'T251010P00024000']...
+  [all-empty retry 1] opts ['T251010P00022500', 'T251010P00023000']...
+  [all-empty retry 1] opts ['T251010P00022500', 'T251010P00023000']...
+  2025-10-06  eq $134,209  puts 2 calls 2  shares 1700  reserved $44,000  (opt calls: 198)
+  [all-empty retry 1] opts ['T251017P00022500', 'T251017P00023000']...
+  [all-empty retry 1] opts ['T251017P00022500', 'T251017P00023000']...
+  [all-empty retry 1] opts ['NOK251024P00004500', 'NOK251024P00005000']...
+  2025-10-13  eq $132,203  puts 0 calls 1  shares 2500  reserved $0  (opt calls: 208)
+  2025-10-20  eq $136,152  puts 4 calls 1  shares 2400  reserved $83,350  (opt calls: 214)
+  2025-10-27  eq $139,918  puts 0 calls 1  shares 2400  reserved $0  (opt calls: 218)
+  2025-11-03  eq $138,858  puts 5 calls 1  shares 2100  reserved $99,600  (opt calls: 225)
+  2025-11-10  eq $140,539  puts 4 calls 0  shares 2100  reserved $91,600  (opt calls: 230)
+  [all-empty retry 1] opts ['KO251128P00060000', 'KO251128P00062000']...
+  [all-empty retry 1] opts ['NOK251128P00005500', 'NOK251128P00006000']...
+  [all-empty retry 1] opts ['VALE251128P00010000', 'VALE251128P00011000']...
+  2025-11-17  eq $139,775  puts 1 calls 1  shares 2100  reserved $23,400  (opt calls: 244)
+  [all-empty retry 1] opts ['INTC251128P00027500', 'INTC251128P00029000']...
+  2025-11-24  eq $141,557  puts 5 calls 0  shares 2100  reserved $100,600  (opt calls: 254)
+  [all-empty retry 1] opts ['GM251212P00062500', 'GM251212P00064000']...
+  [all-empty retry 1] opts ['KO251212P00062500', 'KO251212P00063000']...
+  [all-empty retry 1] opts ['NOK251212P00005000', 'NOK251212P00005500']...
+  2025-12-01  eq $145,254  puts 0 calls 1  shares 2100  reserved $0  (opt calls: 267)
+  2025-12-08  eq $145,057  puts 2 calls 0  shares 2100  reserved $41,450  (opt calls: 278)
+  2025-12-15  eq $143,215  puts 4 calls 1  shares 2200  reserved $65,600  (opt calls: 287)
+  [all-empty retry 1] opts ['SOFI251226P00022500', 'SOFI251226P00023000']...
+  [all-empty retry 1] opts ['SOFI251226P00022500', 'SOFI251226P00023000']...
+  [all-empty retry 1] opts ['SOFI251226P00022500', 'SOFI251226P00023000']...
+  2025-12-22  eq $144,181  puts 2 calls 2  shares 2200  reserved $48,600  (opt calls: 300)
+  [all-empty retry 1] opts ['SOFI260102P00022500', 'SOFI260102P00023000']...
+  [all-empty retry 1] opts ['SOFI260102P00022500', 'SOFI260102P00024000']...
+  [all-empty retry 1] opts ['SOFI260102P00022500', 'SOFI260102P00023000']...
+  [all-empty retry 1] opts ['SOFI260109P00022500', 'SOFI260109P00023000']...
+  2025-12-29  eq $144,477  puts 2 calls 1  shares 2200  reserved $48,600  (opt calls: 312)
+  [all-empty retry 1] opts ['SOFI260109P00022500', 'SOFI260109P00023000']...
+  2026-01-05  eq $148,987  puts 1 calls 1  shares 3100  reserved $23,400  (opt calls: 318)
+  [all-empty retry 1] opts ['NOK260123P00005500', 'NOK260123P00006000']...
+  2026-01-12  eq $147,831  puts 0 calls 1  shares 3100  reserved $0  (opt calls: 325)
+  [all-empty retry 1] opts ['GM260123P00070000', 'GM260123P00071000']...
+  [all-empty retry 1] opts ['GM260123P00070000', 'GM260123P00071000']...
+  2026-01-20  eq $145,386  puts 3 calls 3  shares 3100  reserved $71,400  (opt calls: 334)
+  [all-empty retry 1] opts ['GM260206P00065000', 'GM260206P00067500']...
+  2026-01-26  eq $148,218  puts 0 calls 0  shares 3100  reserved $0  (opt calls: 340)
+  [all-empty retry 1] opts ['NOK260213P00005500', 'NOK260213P00006000']...
+  [all-empty retry 1] opts ['WBD260213P00022500', 'WBD260213P00024000']...
+  [all-empty retry 1] opts ['VALE260213P00014000', 'VALE260213P00015000']...
+  2026-02-02  eq $148,377  puts 0 calls 1  shares 3100  reserved $0  (opt calls: 354)
+  2026-02-09  eq $147,257  puts 3 calls 3  shares 3100  reserved $71,400  (opt calls: 360)
+  2026-02-17  eq $146,031  puts 1 calls 1  shares 3100  reserved $24,900  (opt calls: 365)
+  2026-02-23  eq $143,970  puts 0 calls 2  shares 3400  reserved $0  (opt calls: 366)
+  2026-03-02  eq $142,212  puts 0 calls 0  shares 3400  reserved $0  (opt calls: 367)
+  2026-03-09  eq $138,883  puts 0 calls 1  shares 3400  reserved $0  (opt calls: 368)
+  2026-03-16  eq $137,390  puts 0 calls 0  shares 3400  reserved $0  (opt calls: 369)
+  [all-empty retry 1] opts ['GM260403C00083000', 'GM260403C00084000']...
+  2026-03-23  eq $137,526  puts 0 calls 1  shares 3400  reserved $0  (opt calls: 372)
+  2026-03-30  eq $133,790  puts 0 calls 1  shares 3400  reserved $0  (opt calls: 372)
+  2026-04-06  eq $135,321  puts 0 calls 1  shares 3400  reserved $0  (opt calls: 372)
+  2026-04-13  eq $136,193  puts 0 calls 0  shares 3400  reserved $0  (opt calls: 373)
+  2026-04-20  eq $142,047  puts 0 calls 1  shares 3400  reserved $0  (opt calls: 373)
+  2026-04-27  eq $139,172  puts 0 calls 1  shares 3400  reserved $0  (opt calls: 373)
+  2026-05-04  eq $135,943  puts 0 calls 0  shares 3400  reserved $0  (opt calls: 375)
+  2026-05-11  eq $136,164  puts 0 calls 2  shares 3400  reserved $0  (opt calls: 377)
+  2026-05-18  eq $135,682  puts 0 calls 0  shares 3400  reserved $0  (opt calls: 377)
+  2026-05-26  eq $139,310  puts 0 calls 1  shares 3400  reserved $0  (opt calls: 379)
+  2026-06-01  eq $142,033  puts 0 calls 2  shares 3400  reserved $0  (opt calls: 380)
+  [all-empty retry 1] opts ['GM260619C00085000', 'GM260619C00086000']...
+  2026-06-08  eq $138,380  puts 0 calls 0  shares 2100  reserved $0  (opt calls: 382)
+  2026-06-15  eq $139,038  puts 0 calls 0  shares 2100  reserved $0  (opt calls: 383)
+  [all-empty retry 1] opts ['GM260703C00085000', 'GM260703C00086000']...
+  2026-06-22  eq $137,590  puts 3 calls 0  shares 2100  reserved $72,600  (opt calls: 389)
+  [all-empty retry 1] opts ['NOK260703P00011000', 'NOK260703P00012000']...
+  2026-06-29  eq $135,605  puts 1 calls 0  shares 2100  reserved $23,800  (opt calls: 393)
+  2026-07-06  eq $135,102  puts 1 calls 1  shares 2100  reserved $23,800  (opt calls: 398)
+  2026-07-13  eq $135,696  puts 1 calls 1  shares 2100  reserved $23,800  (opt calls: 403)
+  2026-07-20  eq $132,949  puts 0 calls 0  shares 3800  reserved $0  (opt calls: 407)
+  2026-07-27  eq $135,074  puts 0 calls 1  shares 3800  reserved $0  (opt calls: 407)
+
+== done ==
+{
+  "run": "bt-2026-08-29_variantB",
+  "window": {
+    "start": "2024-03-01",
+    "end": "2026-07-31",
+    "trading_days": 606
+  },
+  "strategy": {
+    "total_return": 34.21,
+    "cagr": 19.39,
+    "max_drawdown": 12.85,
+    "sharpe": 0.87,
+    "final_equity": 134235.68
+  },
+  "benchmark_spy": {
+    "total_return": 45.59,
+    "cagr": 25.39,
+    "max_drawdown": 18.98,
+    "sharpe": 1.08,
+    "final_equity": 145592.97
+  },
+  "option_legs": {
+    "total": 148,
+    "wins": 143,
+    "win_rate_pct": 96.6,
+    "profit_factor": 19.34,
+    "net_option_pnl": 37944.35
+  },
+  "premiums_collected_gross": 58765.3,
+  "fees_paid": 982.5,
+  "activity": {
+    "csp_sold": 72,
+    "cc_sold": 76,
+    "tp_closes": 52,
+    "cc_tp": 61,
+    "expired_worthless": 5,
+    "assignments": 17,
+    "called_away": 12
+  },
+  "gate_activity": {
+    "vol_floor": 54,
+    "drawdown": 0,
+    "extreme": 0,
+    "no_candidate": 67,
+    "budget": 5,
+    "slots": 95,
+    "sector": 0,
+    "fills_missed": 13,
+    "bear_entries_scaled": 0,
+    "cc_floor_block": 297,
+    "quality": 83
+  },
+  "opt_api_calls": 407,
+  "variant_levers": {
+    "cash_apr": 0.04,
+    "quality_sma": 200,
+    "riskon_delta": 0.4,
+    "cc_std_riskon": 1.5
+  },
+  "walk_forward": {
+    "split_after": "2025-06-30",
+    "segments": {
+      "IS": {
+        "strategy": {
+          "total_return": 14.8,
+          "cagr": 16.33,
+          "max_drawdown": 12.85,
+          "sharpe": 0.72,
+          "final_equity": 114813.88
+        },
+        "benchmark_spy": {
+          "total_return": 20.45,
+          "cagr": 22.62,
+          "max_drawdown": 18.98,
+          "sharpe": 0.88,
+          "final_equity": 120451.13
+        }
+      },
+      "OOS": {
+        "strategy": {
+          "total_return": 16.92,
+          "cagr": 23.14,
+          "max_drawdown": 12.23,
+          "sharpe": 1.09,
+          "final_equity": 134235.68
+        },
+        "benchmark_spy": {
+          "total_return": 20.87,
+          "cagr": 28.73,
+          "max_drawdown": 9.13,
+       
