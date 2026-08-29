@@ -19,3 +19,6 @@ repos/
 # research papers kept locally as reference (see commit messages for analysis)
 *.pdf
 
+
+# submission deck (slide PDF + cover) — build via docs/slides/
+!docs/slides.pdf
