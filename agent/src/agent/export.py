@@ -21,7 +21,9 @@ def write_dashboard_data(api: Api | None = None) -> dict:
 
     acct = api.account()
     state = load_state()
-    data["updated"] = api.clock().timestamp.isoformat()
+    clock = api.clock()
+    data["updated"] = clock.timestamp.isoformat()
+    data["market_open"] = bool(clock.is_open)
     data["account"] = {
         "equity": _num(acct.equity),
         "cash": _num(acct.cash),
