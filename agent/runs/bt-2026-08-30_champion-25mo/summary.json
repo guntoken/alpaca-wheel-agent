@@ -1,0 +1,298 @@
+{
+  "run": "bt-2026-08-30_champion-25mo",
+  "window": {
+    "start": "2024-03-01",
+    "end": "2026-07-31",
+    "trading_days": 606
+  },
+  "strategy": {
+    "total_return": 35.34,
+    "cagr": 20.0,
+    "max_drawdown": 27.15,
+    "sharpe": 0.6,
+    "final_equity": 135342.35
+  },
+  "benchmark_spy": {
+    "total_return": 45.59,
+    "cagr": 25.39,
+    "max_drawdown": 18.98,
+    "sharpe": 1.08,
+    "final_equity": 145592.97
+  },
+  "option_legs": {
+    "total": 113,
+    "wins": 113,
+    "win_rate_pct": 100.0,
+    "profit_factor": null,
+    "net_option_pnl": 67907.85
+  },
+  "premiums_collected_gross": 95386.7,
+  "fees_paid": 907.0,
+  "activity": {
+    "csp_sold": 60,
+    "cc_sold": 53,
+    "tp_closes": 47,
+    "cc_tp": 38,
+    "expired_worthless": 4,
+    "assignments": 13,
+    "called_away": 9
+  },
+  "gate_activity": {
+    "vol_floor": 324,
+    "drawdown": 2,
+    "extreme": 0,
+    "no_candidate": 51,
+    "budget": 110,
+    "slots": 0,
+    "sector": 6,
+    "fills_missed": 2,
+    "bear_entries_scaled": 1,
+    "cc_floor_block": 199,
+    "quality": 880,
+    "afford": 60
+  },
+  "opt_api_calls": 308,
+  "variant": "C weekly-champion (selection-first, 1 name, 40% budget)",
+  "champions_picked": [
+    {
+      "date": "2024-03-25",
+      "name": "COIN"
+    },
+    {
+      "date": "2024-04-01",
+      "name": "MU"
+    },
+    {
+      "date": "2024-04-15",
+      "name": "COIN"
+    },
+    {
+      "date": "2024-04-22",
+      "name": "MU"
+    },
+    {
+      "date": "2024-04-29",
+      "name": "COIN"
+    },
+    {
+      "date": "2024-05-06",
+      "name": "COIN"
+    },
+    {
+      "date": "2024-05-13",
+      "name": "SNAP"
+    },
+    {
+      "date": "2024-05-20",
+      "name": "BABA"
+    },
+    {
+      "date": "2024-05-28",
+      "name": "MU"
+    },
+    {
+      "date": "2024-06-03",
+      "name": "SNAP"
+    },
+    {
+      "date": "2024-06-10",
+      "name": "MU"
+    },
+    {
+      "date": "2024-06-17",
+      "name": "GM"
+    },
+    {
+      "date": "2024-06-24",
+      "name": "MU"
+    },
+    {
+      "date": "2024-07-01",
+      "name": "PLTR"
+    },
+    {
+      "date": "2024-07-08",
+      "name": "PLTR"
+    },
+    {
+      "date": "2024-07-15",
+      "name": "GM"
+    },
+    {
+      "date": "2024-07-22",
+      "name": "SNAP"
+    },
+    {
+      "date": "2024-08-12",
+      "name": "KO"
+    },
+    {
+      "date": "2024-10-07",
+      "name": "BABA"
+    },
+    {
+      "date": "2024-10-14",
+      "name": "CAT"
+    },
+    {
+      "date": "2024-10-21",
+      "name": "NOK"
+    },
+    {
+      "date": "2024-11-04",
+      "name": "GM"
+    },
+    {
+      "date": "2024-11-11",
+      "name": "GM"
+    },
+    {
+      "date": "2024-11-18",
+      "name": "COIN"
+    },
+    {
+      "date": "2024-11-25",
+      "name": "SOFI"
+    },
+    {
+      "date": "2024-12-02",
+      "name": "SOFI"
+    },
+    {
+      "date": "2024-12-09",
+      "name": "COIN"
+    },
+    {
+      "date": "2024-12-16",
+      "name": "PLTR"
+    },
+    {
+      "date": "2024-12-23",
+      "name": "SOFI"
+    },
+    {
+      "date": "2024-12-30",
+      "name": "PLTR"
+    },
+    {
+      "date": "2025-01-06",
+      "name": "GM"
+    },
+    {
+      "date": "2025-01-21",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-01-27",
+      "name": "PLTR"
+    },
+    {
+      "date": "2025-02-03",
+      "name": "PLTR"
+    },
+    {
+      "date": "2025-02-10",
+      "name": "PLTR"
+    },
+    {
+      "date": "2025-02-18",
+      "name": "PLTR"
+    },
+    {
+      "date": "2025-02-24",
+      "name": "T"
+    },
+    {
+      "date": "2025-03-17",
+      "name": "BABA"
+    },
+    {
+      "date": "2025-03-31",
+      "name": "T"
+    },
+    {
+      "date": "2025-10-13",
+      "name": "INTC"
+    },
+    {
+      "date": "2025-10-20",
+      "name": "AMD"
+    },
+    {
+      "date": "2025-10-27",
+      "name": "MU"
+    },
+    {
+      "date": "2025-11-03",
+      "name": "NOK"
+    },
+    {
+      "date": "2025-11-10",
+      "name": "MU"
+    },
+    {
+      "date": "2025-11-17",
+      "name": "AMD"
+    },
+    {
+      "date": "2025-11-24",
+      "name": "WBD"
+    },
+    {
+      "date": "2026-01-12",
+      "name": "MU"
+    },
+    {
+      "date": "2026-01-20",
+      "name": "XOM"
+    },
+    {
+      "date": "2026-01-26",
+      "name": "MU"
+    },
+    {
+      "date": "2026-02-02",
+      "name": "INTC"
+    },
+    {
+      "date": "2026-02-09",
+      "name": "VALE"
+    },
+    {
+      "date": "2026-02-17",
+      "name": "GM"
+    },
+    {
+      "date": "2026-04-20",
+      "name": "NOK"
+    },
+    {
+      "date": "2026-04-27",
+      "name": "NOK"
+    },
+    {
+      "date": "2026-05-04",
+      "name": "INTC"
+    },
+    {
+      "date": "2026-05-11",
+      "name": "INTC"
+    },
+    {
+      "date": "2026-05-18",
+      "name": "NOK"
+    },
+    {
+      "date": "2026-05-26",
+      "name": "NOK"
+    },
+    {
+      "date": "2026-06-01",
+      "name": "F"
+    },
+    {
+      "date": "2026-06-15",
+      "name": "INTC"
+    }
+  ]
+}
