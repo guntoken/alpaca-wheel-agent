@@ -45,6 +45,9 @@ h1, h2, h3, .wa-title {letter-spacing: -0.16px;}
   padding-left: 10px; margin-top: 22px;}
 [data-testid="stToolbar"], [data-testid="stStatusWidget"],
 [class="stDeployButton"] {display: none !important;}
+/* altair chart element menu ("Show data" etc.) — a raw i/equity table is
+   noise for judges; the chart itself carries the information */
+[data-testid="stElementToolbar"] {display: none !important;}
 #MainMenu, footer {visibility: hidden;}
 
 /* hero band (navy bookend, yellow accents — the alpaca identity) */
@@ -252,9 +255,7 @@ with tabs[0]:
             base = alt.Chart(df).encode(
                 x=alt.X("i:O", axis=None, title=None),
                 y=alt.Y("equity:Q", scale=alt.Scale(domain=[lo - pad, hi + pad]),
-                        title=None,
-                        axis=alt.Axis(format="$,.0", tickCount=4,
-                                      labelColor="#6F6757")),
+                        title=None),
                 tooltip=[alt.Tooltip("i:O", title="cycle"),
                          alt.Tooltip("equity:Q", format="$,.0f")])
             chart = (base.mark_area(color=grad, interpolate="monotone")
@@ -265,7 +266,9 @@ with tabs[0]:
                                        ticks=False
                      ).configure_axisY(gridColor="rgba(63,50,15,0.08)",
                                        domainColor="rgba(63,50,15,0.15)",
-                                       ticks=False, titleColor="#6F6757")
+                                       format="$,.0", tickCount=4,
+                                       ticks=False, titleColor="#6F6757",
+                                       labelColor="#6F6757")
             st.altair_chart(chart, use_container_width=True)
         except Exception:
             # degrade quietly — a broken chart is bad enough without exposing
