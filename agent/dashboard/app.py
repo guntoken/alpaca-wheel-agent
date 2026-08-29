@@ -173,6 +173,49 @@ def row(html):
     st.markdown(f'<div class="wa-row">{html}</div>', unsafe_allow_html=True)
 
 
+def sparkline_svg(entries, w=1100, h=250, pad_l=64, pad_r=14, pad_t=16, pad_b=20):
+    """Server-rendered equity curve — pure SVG, no charting library. Entries:
+    list of {ts, equity}. Deterministic, brand-styled, hover tooltips native."""
+    vals = [e["equity"] for e in entries]
+    if len(vals) < 2:
+        return None
+    lo, hi = min(vals), max(vals)
+    if hi - lo < 1:
+        hi = lo + 1.0
+    vpad = (hi - lo) * 0.18
+    lo, hi = lo - vpad, hi + vpad
+    n = len(vals)
+    xs = [pad_l + (w - pad_l - pad_r) * i / (n - 1) for i in range(n)]
+    ys = [pad_t + (h - pad_t - pad_b) * (1 - (v - lo) / (hi - lo)) for v in vals]
+    path = "M" + " L".join(f"{x:.1f},{y:.1f}" for x, y in zip(xs, ys))
+    area = (path + f" L{xs[-1]:.1f},{h - pad_b:.1f} "
+            f"L{xs[0]:.1f},{h - pad_b:.1f} Z")
+    grid = []
+    for k in range(4):
+        v = lo + (hi - lo) * k / 3
+        y = pad_t + (h - pad_t - pad_b) * (1 - k / 3)
+        grid.append(
+            f'<line x1="{pad_l}" y1="{y:.1f}" x2="{w - pad_r}" y2="{y:.1f}" '
+            f'stroke="rgba(63,50,15,0.10)"/>'
+            f'<text x="{pad_l - 9}" y="{y + 4:.1f}" text-anchor="end" '
+            f'font-size="11" fill="#6F6757">${v / 1000:.1f}k</text>')
+    dots = "".join(
+        f'<circle cx="{x:.1f}" cy="{y:.1f}" r="8" fill="transparent">'
+        f'<title>{str(e.get("ts", ""))[11:16]} UTC · ${v:,.0f}</title></circle>'
+        for x, y, v, e in zip(xs, ys, vals, entries))
+    return (
+        f'<svg class="wa-spark" viewBox="0 0 {w} {h}" width="100%" '
+        f'style="display:block;background:#FFFFFF;border:1px solid '
+        f'rgba(63,50,15,0.16);border-radius:12px">'
+        f'<defs><linearGradient id="eqg" x1="0" y1="1" x2="0" y2="0">'
+        f'<stop offset="0" stop-color="rgba(201,138,0,0.02)"/>'
+        f'<stop offset="1" stop-color="rgba(201,138,0,0.32)"/>'
+        f'</linearGradient></defs>{"".join(grid)}'
+        f'<path d="{area}" fill="url(#eqg)"/>'
+        f'<path d="{path}" fill="none" stroke="#C98A00" stroke-width="2.2"/>'
+        f'{dots}</svg>')
+
+
 def pill(text, cls=""):
     return f'<span class="wa-pill {cls}">{text}</span>'
 
@@ -240,41 +283,16 @@ with tabs[0]:
                sub=f"{stats.get('live_cycles', 0)} live cycles"))
 
     st.subheader("Equity curve — every cycle, from the decision journal")
-    curve = pd.DataFrame(DATA.get("equity_curve", []))
-    if not curve.empty:
-        try:
-            import altair as alt
-            df = curve[["equity"]].reset_index()
-            df.columns = ["i", "equity"]
-            lo, hi = float(df.equity.min()), float(df.equity.max())
-            pad = max((hi - lo) * 0.35, 120.0)
-            grad = alt.LinearGradient(
-                gradient="linear", x1=1, x2=1, y1=1, y2=0,
-                stops=[alt.GradientStop(color="rgba(201,138,0,0.30)", offset=0),
-                       alt.GradientStop(color="rgba(201,138,0,0.02)", offset=1)])
-            base = alt.Chart(df).encode(
-                x=alt.X("i:O", axis=None, title=None),
-                y=alt.Y("equity:Q", scale=alt.Scale(domain=[lo - pad, hi + pad]),
-                        title=None),
-                tooltip=[alt.Tooltip("i:O", title="cycle"),
-                         alt.Tooltip("equity:Q", format="$,.0f")])
-            chart = (base.mark_area(color=grad, interpolate="monotone")
-                     + base.mark_line(color="#C98A00", strokeWidth=2,
-                                      interpolate="monotone")
-                     ).properties(height=250).configure_view(stroke=None
-                     ).configure_axisX(grid=False, domain=False, labels=False,
-                                       ticks=False
-                     ).configure_axisY(gridColor="rgba(63,50,15,0.08)",
-                                       domainColor="rgba(63,50,15,0.15)",
-                                       format="$,.0", tickCount=4,
-                                       ticks=False, titleColor="#6F6757",
-                                       labelColor="#6F6757")
-            st.altair_chart(chart, use_container_width=True)
-        except Exception:
-            # degrade quietly — a broken chart is bad enough without exposing
-            # stack traces to judges; the journal still has every data point
-            st.line_chart(pd.DataFrame(DATA.get("equity_curve", []))["equity"],
-                          height=250)
+    entries = [e for e in DATA.get("equity_curve", [])
+               if e.get("equity") is not None]
+    svg = sparkline_svg(entries)
+    if svg:
+        # components.html bypasses the markdown pipeline, which truncates
+        # inline SVG (learned the hard way: DOM stopped after first </text>)
+        import streamlit.components.v1 as components
+        components.html(svg, height=270, scrolling=False)
+        st.caption(f"{len(entries)} cycles · hover any point for time + equity "
+                   "· server-rendered SVG, no charting library")
 
     # regime ribbon
     hist = DATA.get("regime_history", [])
