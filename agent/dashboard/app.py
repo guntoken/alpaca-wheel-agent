@@ -27,13 +27,12 @@ CSS = """
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 :root {
-  --bg: #050507; --surface: #0D0F12; --raised: #12151A;
-  --border: rgba(255,255,255,0.08); --border-soft: rgba(255,255,255,0.05);
-  --text: #EDEDEF; --muted: #8A8F98; --faint: #5B616B;
-  --teal-300: #5FE8C9; --teal-500: #00D3A7; --teal-900: #07231C;
-  --teal-wash: rgba(0,211,167,0.09);
-  --gold: #E8C475; --gold-wash: rgba(232,196,117,0.10);
-  --good: #22C55E; --bad: #EF4444; --warn: #F5A524;
+  --bg: #F3E6C5; --surface: #FFFFFF; --raised: #F8EFD9;
+  --border: rgba(63,50,15,0.18); --border-soft: rgba(63,50,15,0.10);
+  --text: #1F2430; --muted: #635B4B; --faint: #6B6353;
+  --brand: #FFC61A; --brand-deep: #A87B00; --brand-wash: rgba(255,198,26,0.22);
+  --navy: #14181F; --navy-2: #1E242E;
+  --good: #15803D; --bad: #C62828; --warn: #9A6700;
 }
 html, body, [class*="css"] {font-family: 'Inter', -apple-system, sans-serif;
   color: var(--text);}
@@ -42,36 +41,40 @@ html, body, [class*="css"] {font-family: 'Inter', -apple-system, sans-serif;
 [data-testid="stAppViewContainer"] > .main > div {padding-top: 8px !important;}
 h1, h2, h3, .wa-title {letter-spacing: -0.16px;}
 [data-testid="stHeader"] {background: transparent;}
-[data-testid="stHeadingContainer"] h2 {border-left: 3px solid var(--teal-500);
+[data-testid="stHeadingContainer"] h2 {border-left: 3px solid var(--brand);
   padding-left: 10px; margin-top: 22px;}
 [data-testid="stToolbar"], [data-testid="stStatusWidget"],
 [class="stDeployButton"] {display: none !important;}
 #MainMenu, footer {visibility: hidden;}
 
-/* hero band (dark bookend) */
-.wa-hero {background: linear-gradient(120deg, var(--teal-900) 0%, var(--bg) 65%);
-  border: 1px solid var(--border); border-radius: 16px;
+/* hero band (navy bookend, yellow accents — the alpaca identity) */
+.wa-hero {background: linear-gradient(120deg, var(--navy) 0%, #2A2410 90%);
+  border: 1px solid rgba(255,214,102,0.25); border-radius: 16px;
   padding: 18px 22px; display: flex; align-items: center;
   justify-content: space-between; gap: 16px; flex-wrap: wrap;
-  box-shadow: 0 1px 2px rgba(0,0,0,.28), 0 10px 24px rgba(0,0,0,.16);}
-.wa-mark {width: 46px; height: 46px; border-radius: 12px;
-  background: var(--teal-wash); border: 1px solid rgba(95,232,201,.25);
+  box-shadow: 0 1px 2px rgba(63,50,15,.20), 0 10px 24px rgba(63,50,15,.14);}
+.wa-hero .wa-title {color: #FFFDF6;}
+.wa-hero .wa-tag {color: rgba(255,253,246,0.66);}
+.wa-mark {width: 52px; height: 52px; border-radius: 14px;
+  background: rgba(242,183,5,0.14); border: 1px solid rgba(255,214,102,0.35);
   display: flex; align-items: center; justify-content: center;}
 .wa-title {font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em;}
 .wa-tag {color: var(--muted); font-size: .82rem; margin-top: 2px;}
 .wa-pills {display: flex; gap: 8px; flex-wrap: wrap;}
 .wa-pill {font-size: .68rem; font-weight: 700; letter-spacing: .06em;
   text-transform: uppercase; padding: 5px 11px; border-radius: 999px;
-  border: 1px solid var(--border); color: var(--muted); white-space: nowrap;}
-.wa-pill.ok {color: var(--teal-300); border-color: rgba(95,232,201,.3);
-  background: var(--teal-wash);}
-.wa-pill.warn {color: var(--warn); border-color: rgba(245,165,36,.3);
-  background: rgba(245,165,36,.08);}
+  border: 1px solid var(--border); color: var(--muted); white-space: nowrap;
+  background: var(--surface);}
+.wa-hero .wa-pill {background: transparent; color: rgba(255,253,246,0.62);
+  border-color: rgba(255,253,246,0.22);}
+.wa-hero .wa-pill.ok {color: #FFD666; border-color: rgba(255,214,102,0.45);
+  background: rgba(242,183,5,0.14);}
 
 /* regime ribbon */
 .wa-ribbon {border-radius: 12px; padding: 12px 18px; margin: 10px 0 6px 0;
   display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap;
-  border: 1px solid var(--border); background: var(--surface);}
+  border: 1px solid var(--border); background: var(--surface);
+  box-shadow: 0 1px 2px rgba(63,50,15,.10);}
 .wa-ribbon .quote {color: var(--text); font-size: .95rem;}
 .wa-ribbon .who {color: var(--muted); font-size: .75rem;}
 
@@ -79,7 +82,11 @@ h1, h2, h3, .wa-title {letter-spacing: -0.16px;}
 .wa-row {display: flex; gap: 10px; margin: 6px 0 10px 0; flex-wrap: wrap;}
 .wa-card {flex: 1; min-width: 138px; background: var(--surface);
   border: 1px solid var(--border); border-radius: 12px; padding: 13px 15px;
-  box-shadow: 0 1px 2px rgba(0,0,0,.22), 0 6px 14px rgba(0,0,0,.12);}
+  box-shadow: 0 1px 2px rgba(63,50,15,.10), 0 5px 12px rgba(63,50,15,.06);}
+.wa-card.gold {background: var(--brand); border-color: var(--brand-deep);
+  box-shadow: 0 2px 4px rgba(63,50,15,.18), 0 8px 18px rgba(196,138,0,.22);}
+.wa-card.gold .wa-label {color: rgba(31,36,48,0.72);}
+.wa-card.gold .wa-sub {color: rgba(31,36,48,0.66);}
 .wa-label {color: var(--muted); font-size: .64rem; font-weight: 700;
   letter-spacing: .08em; text-transform: uppercase;}
 .wa-value {font-size: 1.5rem; font-weight: 750; margin-top: 4px;
@@ -92,9 +99,9 @@ h1, h2, h3, .wa-title {letter-spacing: -0.16px;}
   margin: 4px 0 14px 0;}
 .wa-step {font-size: .78rem; font-weight: 600; padding: 6px 12px;
   border-radius: 999px; border: 1px solid var(--border); color: var(--faint);
-  background: transparent; white-space: nowrap;}
-.wa-step.on {color: #062B23; background: var(--teal-500);
-  border-color: var(--teal-500); font-weight: 700;}
+  background: var(--surface); white-space: nowrap;}
+.wa-step.on {color: var(--navy); background: var(--brand);
+  border-color: var(--brand-deep); font-weight: 700;}
 .wa-arrow {color: var(--faint); font-size: .8rem;}
 
 /* data tables */
@@ -102,31 +109,34 @@ h1, h2, h3, .wa-title {letter-spacing: -0.16px;}
   font-variant-numeric: tabular-nums;}
 .wa-table th {text-align: left; color: var(--muted); font-size: .64rem;
   text-transform: uppercase; letter-spacing: .07em; font-weight: 700;
-  padding: 8px 10px; border-bottom: 1px solid var(--border);}
-.wa-table td {padding: 8px 10px; border-bottom: 1px solid var(--border-soft);}
-.wa-table tr:hover td {background: rgba(255,255,255,0.025);}
+  padding: 8px 10px; border-bottom: 1px solid var(--border);
+  background: var(--raised);}
+.wa-table td {padding: 8px 10px; border-bottom: 1px solid var(--border-soft);
+  color: var(--text);}
+.wa-table tr:hover td {background: var(--brand-wash);}
 .wa-table .num {text-align: right;}
 .wa-wrap {border: 1px solid var(--border); border-radius: 12px;
-  overflow: hidden; background: var(--surface);}
+  overflow: hidden; background: var(--surface);
+  box-shadow: 0 1px 2px rgba(63,50,15,.08);}
 .mono {font-variant-numeric: tabular-nums;}
 
 /* news list */
-.wa-news {border-left: 2px solid var(--border); padding: 2px 0 2px 12px;
+.wa-news {border-left: 3px solid var(--brand); padding: 2px 0 2px 12px;
   margin: 4px 0;}
 .wa-news .h {color: var(--text); font-size: .85rem;}
 .wa-news .m {color: var(--faint); font-size: .72rem;}
 
-/* footer band (dark bookend) */
-.wa-foot {margin-top: 26px; background: var(--teal-900);
-  border-radius: 12px; padding: 14px 18px; color: rgba(255,255,255,.72);
+/* footer band (navy bookend) */
+.wa-foot {margin-top: 26px; background: var(--navy);
+  border-radius: 12px; padding: 14px 18px; color: rgba(255,253,246,0.75);
   font-size: .74rem; line-height: 1.6;}
 .stTabs [data-baseweb="tab-list"] {gap: 4px;
   border-bottom: 1px solid var(--border);}
 .stTabs [data-baseweb="tab"] {border-radius: 9px 9px 0 0; padding: 8px 18px;
   color: var(--muted); font-weight: 500;}
 .stTabs [data-baseweb="tab"][aria-selected="true"] {background: var(--surface);
-  color: var(--teal-500) !important; font-weight: 650;
-  border-bottom: 2px solid var(--teal-500);}
+  color: var(--brand-deep) !important; font-weight: 650;
+  border-bottom: 2px solid var(--brand);}
 div[data-testid="stDataFrame"] {border: 1px solid var(--border);
   border-radius: 12px; overflow: hidden;}
 </style>
@@ -145,13 +155,13 @@ def fmt_usd(v, signed=False):
 
 def _tone_color(tone):
     return {"good": "var(--good)", "bad": "var(--bad)",
-            "gold": "var(--gold)", "accent": "var(--teal-500)",
+            "gold": "var(--navy)", "accent": "var(--brand-deep)",
             "warn": "var(--warn)"}.get(tone or "", "var(--text)")
 
 
-def card(label, value, sub=None, tone=None):
+def card(label, value, sub=None, tone=None, cls=""):
     subh = (f'<div class="wa-sub">{sub}</div>' if sub else "")
-    return (f'<div class="wa-card"><div class="wa-label">{label}</div>'
+    return (f'<div class="wa-card {cls}"><div class="wa-label">{label}</div>'
             f'<div class="wa-value" style="color:{_tone_color(tone)}">'
             f'{value}</div>{subh}</div>')
 
@@ -184,13 +194,18 @@ rl = DATA.get("risk_limits", {})
 
 # ------------------------------------------------------------ hero band ---
 updated = str(DATA.get("updated", ""))[:16].replace("T", " ")
-OWL_SVG = ('<svg viewBox="0 0 32 32" width="28" height="28" aria-label="owl">'
-           '<circle cx="16" cy="16" r="12.5" stroke="#5FE8C9" stroke-width="2" fill="none"/>'
-           '<circle cx="11.5" cy="13" r="2.7" fill="#00D3A7"/>'
-           '<circle cx="20.5" cy="13" r="2.7" fill="#00D3A7"/>'
-           '<path d="M16 17.5 L14.2 21.5 H17.8 Z" fill="#00D3A7"/>'
-           '<path d="M7 21 Q11 26.5 16 26.5 Q21 26.5 25 21" stroke="#5FE8C9"'
-           ' stroke-width="2" fill="none"/></svg>')
+OWL_SVG = ('<svg viewBox="0 0 36 36" width="34" height="34" aria-label="owl">'
+           '<path d="M7 13 L10 4.5 L13.5 12 Z" fill="#FFD666"/>'
+           '<path d="M29 13 L26 4.5 L22.5 12 Z" fill="#FFD666"/>'
+           '<circle cx="18" cy="19" r="13" fill="none" stroke="#FFD666" '
+           'stroke-width="2.4"/>'
+           '<circle cx="13" cy="17" r="4.8" fill="#F2B705"/>'
+           '<circle cx="23" cy="17" r="4.8" fill="#F2B705"/>'
+           '<circle cx="13" cy="17" r="1.8" fill="#14181F"/>'
+           '<circle cx="23" cy="17" r="1.8" fill="#14181F"/>'
+           '<path d="M18 23 L16.1 26.8 H19.9 Z" fill="#FFD666"/>'
+           '<path d="M9 26 Q13 30.6 18 30.6 Q23 30.6 27 26" stroke="#FFD666" '
+           'stroke-width="2.2" fill="none"/></svg>')
 
 st.markdown(
     f'<div class="wa-hero"><div style="display:flex;gap:14px;align-items:center">'
@@ -214,7 +229,8 @@ with tabs[0]:
              sub=f"anchor {fmt_usd(acct.get('day_start_equity'))}")
         + card("Premium collected", fmt_usd(prem, signed=True),
                sub=f"{stats.get('fills', 0)} fills — the wheel's income",
-               tone="gold" if prem >= 0 else "bad")
+               cls="gold" if prem >= 0 else "",
+               tone=None if prem >= 0 else "bad")
         + card("Unrealized P&L", fmt_usd(upl, signed=True), sub="mark-to-market",
                tone="good" if upl >= 0 else "bad")
         + card("Open positions", str(len(DATA.get("positions", []))),
@@ -230,38 +246,39 @@ with tabs[0]:
             lo, hi = float(df.equity.min()), float(df.equity.max())
             pad = max((hi - lo) * 0.35, 120.0)
             grad = alt.LinearGradient(
-                x1=1, x2=1, y1=1, y2=0,
-                stops=[alt.GradientStop(color="rgba(0,211,167,0.35)", offset=0),
-                       alt.GradientStop(color="rgba(0,211,167,0.02)", offset=1)])
+                gradient="linear", x1=1, x2=1, y1=1, y2=0,
+                stops=[alt.GradientStop(color="rgba(201,138,0,0.30)", offset=0),
+                       alt.GradientStop(color="rgba(201,138,0,0.02)", offset=1)])
             base = alt.Chart(df).encode(
                 x=alt.X("i:O", axis=None, title=None),
                 y=alt.Y("equity:Q", scale=alt.Scale(domain=[lo - pad, hi + pad]),
                         title=None,
                         axis=alt.Axis(format="$,.0", tickCount=4,
-                                      labelColor="#8A8F98")),
+                                      labelColor="#6F6757")),
                 tooltip=[alt.Tooltip("i:O", title="cycle"),
                          alt.Tooltip("equity:Q", format="$,.0f")])
             chart = (base.mark_area(color=grad, interpolate="monotone")
-                     + base.mark_line(color="#00D3A7", strokeWidth=2,
+                     + base.mark_line(color="#C98A00", strokeWidth=2,
                                       interpolate="monotone")
                      ).properties(height=250).configure_view(stroke=None
                      ).configure_axisX(grid=False, domain=False, labels=False,
                                        ticks=False
-                     ).configure_axisY(gridColor="rgba(255,255,255,0.05)",
-                                       domainColor="rgba(255,255,255,0.10)",
-                                       ticks=False, titleColor="#8A8F98")
+                     ).configure_axisY(gridColor="rgba(63,50,15,0.08)",
+                                       domainColor="rgba(63,50,15,0.15)",
+                                       ticks=False, titleColor="#6F6757")
             st.altair_chart(chart, use_container_width=True)
         except Exception as e:
-            st.line_chart(curve.set_index("ts")["equity"], height=250)
+            st.line_chart(pd.DataFrame(DATA.get("equity_curve", []))["equity"],
+                          height=250)
             st.caption(f"(fallback chart: {e})")
 
     # regime ribbon
     hist = DATA.get("regime_history", [])
     if hist:
         last = hist[-1]
-        tone = {"RISK_ON": ("var(--teal-300)", "rgba(0,211,167,.08)"),
-                "RISK_OFF": ("var(--bad)", "rgba(239,68,68,.08)"),
-                }.get(last.get("regime"), ("var(--warn)", "rgba(245,165,36,.07)"))
+        tone = {"RISK_ON": ("var(--good)", "rgba(21,128,61,.10)"),
+                "RISK_OFF": ("var(--bad)", "rgba(198,40,40,.10)"),
+                }.get(last.get("regime"), ("var(--warn)", "rgba(154,103,0,.10)"))
         st.markdown(
             f'<div class="wa-ribbon" style="border-color:{tone[1]}">'
             f'<span class="wa-pill" style="color:{tone[0]};border-color:{tone[1]};'
@@ -434,7 +451,7 @@ with tabs[3]:
     fills = DATA.get("fills", [])
     if fills:
         row(card("Net premium collected", fmt_usd(DATA.get("premium_net_collected", 0), signed=True),
-                 sub=f"{len(fills)} fills", tone="gold"))
+                 sub=f"{len(fills)} fills", cls="gold"))
         html_table(["ts", "contract", "side", "#qty", "#price", "#notional"],
                    [td(str(f.get("ts", ""))[:16])
                     + td(f["symbol"])

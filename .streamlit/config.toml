@@ -1,12 +1,12 @@
-# Streamlit theme — "modern dark fintech" per ui-ux-pro-max guidance
-# (MIT), with an Alpaca-inspired mint-teal accent. Located at repo root so
-# Streamlit Community Cloud picks it up automatically.
+# Streamlit theme — Alpaca daylight: warm cream-yellow canvas, dark navy ink,
+# golden-yellow brand moments (Alpaca's alpaca-is-yellow-on-navy identity).
+# Root copy for Streamlit Community Cloud.
 [theme]
-base = "dark"
-primaryColor = "#00D3A7"
-backgroundColor = "#050507"
-secondaryBackgroundColor = "#0D0F12"
-textColor = "#E8EAED"
+base = "light"
+primaryColor = "#C98A00"
+backgroundColor = "#FBF4DF"
+secondaryBackgroundColor = "#F3E8CC"
+textColor = "#1F2430"
 
 [server]
 headless = true
