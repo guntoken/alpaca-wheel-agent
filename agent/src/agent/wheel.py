@@ -7,7 +7,7 @@ from datetime import date
 from typing import Optional
 
 from . import config
-from .alpaca_client import Api, Candidate, _num, _quote_pair, parse_occ
+from .alpaca_client import Api, Candidate, _num, _enumval, _quote_pair, parse_occ
 
 
 @dataclass
@@ -16,8 +16,8 @@ class SymbolState:
     equity_qty: int = 0
     qty_available: int = 0                # net of shares already committed to orders
     avg_cost: float = 0.0
-    short_put: Optional[object] = None   # alpaca Position (short put)
-    short_call: Optional[object] = None  # alpaca Position (short call)
+    short_puts: list = field(default_factory=list)   # alpaca Positions (short puts)
+    short_calls: list = field(default_factory=list)  # alpaca Positions (short calls)
     spot: Optional[float] = None
 
 
@@ -42,20 +42,20 @@ def collect_states(api: Api, universe: list[str]) -> dict[str, SymbolState]:
     states = {u: SymbolState(underlying=u) for u in universe}
     for p in api.positions():
         sym = str(p.symbol)
-        asset_class = str(getattr(p, "asset_class", "") or "")
+        asset_class = _enumval(getattr(p, "asset_class", "") or "").lower()
         qty = _num(getattr(p, "qty", 0)) or 0
         avg = _num(getattr(p, "avg_entry_price", 0)) or 0.0
-        side = str(getattr(p, "side", "long"))
-        if "option" in asset_class.lower():
+        side = _enumval(getattr(p, "side", "long")).lower()
+        if "option" in asset_class:
             try:
                 root, _exp, right, _strike = parse_occ(sym)
             except Exception:
                 continue
             st = states.setdefault(root, SymbolState(underlying=root))
             if right == "P" and side == "short":
-                st.short_put = p
+                st.short_puts.append(p)
             elif right == "C" and side == "short":
-                st.short_call = p
+                st.short_calls.append(p)
         else:
             st = states.setdefault(sym, SymbolState(underlying=sym))
             st.equity_qty = int(qty)
@@ -79,7 +79,7 @@ def decide(api: Api, st: SymbolState, ctx: dict) -> list[Intent]:
     skip = lambda r: [Intent("SKIP", u, reason=r)]
 
     # ---------- state 1: flat -> consider new CSP ----------
-    if st.short_put is None and st.equity_qty == 0 and st.short_call is None:
+    if not st.short_puts and st.equity_qty == 0 and not st.short_calls:
         if not ctx["entries_allowed"]:
             return skip("no new entries (regime/risk gate)")
         if u not in ctx["universe"]:
@@ -107,7 +107,8 @@ def decide(api: Api, st: SymbolState, ctx: dict) -> list[Intent]:
         if best is None:
             return skip("no qualifying put (delta/DTE/OI/spread/premium filters)")
         collat_used = ctx.get("collateral_used", 0.0)
-        budget = min(ctx["caps"]["per_underlying"],
+        reserved_here = ctx.get("reserved", {}).get(u, 0.0)
+        budget = min(ctx["caps"]["per_underlying"] - reserved_here,
                      ctx["caps"]["total"] - collat_used)
         qty = max(0, int(math.floor(budget / (best.strike * 100)))) if budget > 0 else 0
         if qty < 1:
@@ -120,58 +121,68 @@ def decide(api: Api, st: SymbolState, ctx: dict) -> list[Intent]:
                                + (f", vol pct {vp:.0%}" if vp is not None else "")),
                        detail={**best.as_dict(), "vol_pct": vp})]
 
-    # ---------- state 2: short put open -> manage ----------
-    if st.short_put is not None:
-        pos = st.short_put
-        occ = str(pos.symbol)
-        qty = abs(int(_num(getattr(pos, "qty", 0)) or 0))
-        entry_prem = abs(_num(getattr(pos, "avg_entry_price", 0)) or 0.0)
+    # ---------- state 2: short puts open -> manage each one ----------
+    if st.short_puts:
         snaps = api.chain_snapshots(u)
-        s = snaps.get(occ)
-        if s is None or getattr(s, "latest_quote", None) is None:
-            return skip(f"short put {occ}: no live quote, holding")
-        bid, ask = _quote_pair(s.latest_quote)
-        if not bid or not ask:
-            return skip(f"short put {occ}: bad quote, holding")
-        mid = (bid + ask) / 2
-        delta = abs(_num(getattr(getattr(s, "greeks", None), "delta", None)) or 0.0)
-        _, expiry, _, strike = parse_occ(occ)
-        dte = (expiry - date.today()).days
-        if dte <= 0:
-            return skip(f"short put {occ} expires today — let it settle (assignment if ITM)")
-        if entry_prem > 0 and ask <= entry_prem * config.TP_CLOSE_FRACTION:
-            limit = min(mid, ask)
-            return [Intent("BUYBACK_PUT", u, occ=occ, qty=qty, limit=limit,
-                           coid=f"{config.ORDER_PREFIX}-TPP-{occ}",
-                           reason=(f"take-profit: ask {ask:.2f} <= {config.TP_CLOSE_FRACTION:.0%}"
-                                   f" of entry {entry_prem:.2f}"),
-                           detail={"entry_prem": entry_prem, "ask": ask, "delta": delta, "dte": dte})]
-        if delta >= config.ROLL_DELTA:
-            # Wheel discipline (practitioner consensus, e.g. ScottishTrader):
-            # roll ONLY for a net credit — closing a challenged put at a big
-            # debit locks in the loss that assignment + covered calls would
-            # have worked off. No credit available -> hold to assignment.
-            strike_max = ctx["caps"]["per_underlying"] / 100.0
-            fresh = _best(api.candidates(u, "P", config.DTE_MIN, config.DTE_MAX,
-                                         strike_max=strike_max),
-                          config.CSP_TARGET_DELTA, config.CSP_DELTA_BAND,
-                          config.MIN_PREMIUM_PCT)
-            if fresh and fresh.bid >= ask:
-                limit = min(mid, ask)
-                return [Intent("BUYBACK_PUT", u, occ=occ, qty=qty, limit=limit,
-                               coid=f"{config.ORDER_PREFIX}-ROLL-{occ}",
-                               reason=(f"roll for credit: delta {delta:.2f}, fresh CSP "
-                                       f"{fresh.symbol} bid {fresh.bid:.2f} >= close ask {ask:.2f}"),
-                               detail={"entry_prem": entry_prem, "ask": ask, "delta": delta,
-                                       "dte": dte, "roll_target": fresh.symbol})]
-            return skip(f"delta {delta:.2f} challenged but no credit roll "
-                        f"(fresh bid {f'{fresh.bid:.2f}' if fresh else 'none'}, close ask "
-                        f"{ask:.2f}) — hold to assignment (wheel discipline)")
-        return skip(f"hold short put {occ}: delta {delta:.2f}, dte {dte}, "
-                    f"unrealized {float(getattr(pos, 'unrealized_pl', 0) or 0):+.2f}")
+        intents: list[Intent] = []
+        notes: list[str] = []
+        for pos in st.short_puts:
+            occ = str(pos.symbol)
+            qty = abs(int(_num(getattr(pos, "qty", 0)) or 0))
+            entry_prem = abs(_num(getattr(pos, "avg_entry_price", 0)) or 0.0)
+            s = snaps.get(occ)
+            if s is None or getattr(s, "latest_quote", None) is None:
+                notes.append(f"{occ}: no live quote, holding")
+                continue
+            bid, ask = _quote_pair(s.latest_quote)
+            if not bid or not ask:
+                notes.append(f"{occ}: bad quote, holding")
+                continue
+            mid = (bid + ask) / 2
+            delta = abs(_num(getattr(getattr(s, "greeks", None), "delta", None)) or 0.0)
+            _, expiry, _, _strike = parse_occ(occ)
+            dte = (expiry - date.today()).days
+            if dte <= 0:
+                notes.append(f"{occ} expires today — let it settle (assignment if ITM)")
+                continue
+            if entry_prem > 0 and ask <= entry_prem * config.TP_CLOSE_FRACTION:
+                intents.append(Intent(
+                    "BUYBACK_PUT", u, occ=occ, qty=qty, limit=min(mid, ask),
+                    coid=f"{config.ORDER_PREFIX}-TPP-{occ}",
+                    reason=(f"take-profit: ask {ask:.2f} <= {config.TP_CLOSE_FRACTION:.0%}"
+                            f" of entry {entry_prem:.2f}"),
+                    detail={"entry_prem": entry_prem, "ask": ask, "delta": delta, "dte": dte}))
+                continue
+            if delta >= config.ROLL_DELTA:
+                # Wheel discipline (practitioner consensus, e.g. ScottishTrader):
+                # roll ONLY for a net credit — closing a challenged put at a big
+                # debit locks in the loss that assignment + covered calls would
+                # have worked off. No credit available -> hold to assignment.
+                strike_max = ctx["caps"]["per_underlying"] / 100.0
+                fresh = _best(api.candidates(u, "P", config.DTE_MIN, config.DTE_MAX,
+                                             strike_max=strike_max),
+                              config.CSP_TARGET_DELTA, config.CSP_DELTA_BAND,
+                              config.MIN_PREMIUM_PCT)
+                if fresh and fresh.bid >= ask:
+                    intents.append(Intent(
+                        "BUYBACK_PUT", u, occ=occ, qty=qty, limit=min(mid, ask),
+                        coid=f"{config.ORDER_PREFIX}-ROLL-{occ}",
+                        reason=(f"roll for credit: delta {delta:.2f}, fresh CSP "
+                                f"{fresh.symbol} bid {fresh.bid:.2f} >= close ask {ask:.2f}"),
+                        detail={"entry_prem": entry_prem, "ask": ask, "delta": delta,
+                                "dte": dte, "roll_target": fresh.symbol}))
+                    continue
+                notes.append(f"{occ}: delta {delta:.2f} challenged, no credit roll — "
+                             "hold to assignment")
+                continue
+            notes.append(f"hold {occ}: delta {delta:.2f}, dte {dte}, "
+                         f"uPL {float(getattr(pos, 'unrealized_pl', 0) or 0):+.2f}")
+        if intents:
+            return intents
+        return skip(" | ".join(notes))
 
     # ---------- state 3: shares held (assigned) -> covered call ----------
-    if st.equity_qty >= 100 and st.short_call is None:
+    if st.equity_qty >= 100 and not st.short_calls:
         if not ctx["entries_allowed"]:
             return skip(f"holding {st.equity_qty} {u}: CC blocked by regime/risk gate")
         # Official Alpaca wheel guide: CC strike must clear BOTH cost basis and
@@ -202,25 +213,33 @@ def decide(api: Api, st: SymbolState, ctx: dict) -> list[Intent]:
     if st.equity_qty > 0 and st.equity_qty < 100:
         return skip(f"{st.equity_qty} {u} shares (<100) — no CC possible, holding")
 
-    # ---------- state 4: shares + short call -> manage CC ----------
-    if st.equity_qty >= 100 and st.short_call is not None:
-        pos = st.short_call
-        occ = str(pos.symbol)
-        qty = abs(int(_num(getattr(pos, "qty", 0)) or 0))
-        entry_prem = abs(_num(getattr(pos, "avg_entry_price", 0)) or 0.0)
+    # ---------- state 4: shares + short calls -> manage CCs ----------
+    if st.equity_qty >= 100 and st.short_calls:
         snaps = api.chain_snapshots(u)
-        s = snaps.get(occ)
-        if s is None or getattr(s, "latest_quote", None) is None:
-            return skip(f"covered call {occ}: no live quote, holding")
-        bid, ask = _quote_pair(s.latest_quote)
-        if entry_prem > 0 and bid and bid <= entry_prem * config.TP_CLOSE_FRACTION:
-            limit = min((bid + ask) / 2 if ask else bid, bid)
-            return [Intent("BUYBACK_CC", u, occ=occ, qty=qty, limit=limit,
-                           coid=f"{config.ORDER_PREFIX}-TPC-{occ}",
-                           reason=(f"CC take-profit: bid {bid:.2f} <= "
-                                   f"{config.TP_CLOSE_FRACTION:.0%} of entry {entry_prem:.2f}"),
-                           detail={"entry_prem": entry_prem, "bid": bid})]
-        return skip(f"hold covered call {occ} (strike {parse_occ(occ)[3]:.2f}, "
-                    f"underlying {st.spot or 'n/a'})")
+        intents = []
+        notes = []
+        for pos in st.short_calls:
+            occ = str(pos.symbol)
+            qty = abs(int(_num(getattr(pos, "qty", 0)) or 0))
+            entry_prem = abs(_num(getattr(pos, "avg_entry_price", 0)) or 0.0)
+            s = snaps.get(occ)
+            if s is None or getattr(s, "latest_quote", None) is None:
+                notes.append(f"CC {occ}: no live quote, holding")
+                continue
+            bid, ask = _quote_pair(s.latest_quote)
+            if entry_prem > 0 and bid and bid <= entry_prem * config.TP_CLOSE_FRACTION:
+                limit = min((bid + ask) / 2 if ask else bid, bid)
+                intents.append(Intent(
+                    "BUYBACK_CC", u, occ=occ, qty=qty, limit=limit,
+                    coid=f"{config.ORDER_PREFIX}-TPC-{occ}",
+                    reason=(f"CC take-profit: bid {bid:.2f} <= "
+                            f"{config.TP_CLOSE_FRACTION:.0%} of entry {entry_prem:.2f}"),
+                    detail={"entry_prem": entry_prem, "bid": bid}))
+                continue
+            notes.append(f"hold CC {occ} (strike {parse_occ(occ)[3]:.2f}, "
+                         f"underlying {st.spot or 'n/a'})")
+        if intents:
+            return intents
+        return skip(" | ".join(notes))
 
     return skip("state not handled")

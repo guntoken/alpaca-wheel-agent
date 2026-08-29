@@ -35,6 +35,12 @@ def _num(x) -> Optional[float]:
         return None
 
 
+def _enumval(x) -> str:
+    """str() of a pydantic enum member on py3.10 yields 'Class.MEMBER';
+    f-strings yield the value. Always normalize through .value instead."""
+    return str(getattr(x, "value", x))
+
+
 def _quote_pair(q) -> tuple[Optional[float], Optional[float]]:
     """SDK model names differ across versions; try both spellings."""
     bid = _num(getattr(q, "bid_price", None)) or _num(getattr(q, "bp", None))

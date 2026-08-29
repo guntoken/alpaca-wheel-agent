@@ -4,7 +4,7 @@ from __future__ import annotations
 from datetime import datetime
 
 from . import ai, config, journal, risk, wheel
-from .alpaca_client import Api, _num, parse_occ
+from .alpaca_client import Api, _enumval, _num, parse_occ
 
 
 def _market_summary(api: Api) -> dict:
@@ -37,13 +37,16 @@ def _pos_brief(p) -> dict:
             "unrealized_pl": float(getattr(p, "unrealized_pl", 0) or 0)}
 
 
-def _enforce_caps(entries: list[dict], collateral_used: float, caps: dict):
+def _enforce_caps(entries: list[dict], collateral_used: float, caps: dict,
+                  reserved_by_symbol: dict | None = None):
     """Central cap enforcement: the per-symbol budget in wheel.decide is blind to
     the other symbols' picks, so the final entry list is pruned here — best
-    premium first — against the REAL totals."""
+    premium first — against the REAL totals, including the per-underlying cap
+    (filled positions + already-open orders)."""
     approved, capped = [], []
     used = collateral_used
-    symbols: set[str] = set()
+    reserved = dict(reserved_by_symbol or {})
+    symbols = {s for s, v in reserved.items() if v > 0} | set()
     ranked = sorted(entries, key=lambda i: -(i.get("detail", {}).get("premium_pct") or 0))
     for i in ranked:
         try:
@@ -56,11 +59,17 @@ def _enforce_caps(entries: list[dict], collateral_used: float, caps: dict):
         if sym not in symbols and len(symbols) >= config.MAX_UNDERLYINGS:
             capped.append({**i, "reason": f"cap: max {config.MAX_UNDERLYINGS} underlyings"})
             continue
+        if reserved.get(sym, 0.0) + need > caps["per_underlying"]:
+            capped.append({**i, "reason": (f"cap: per-underlying "
+                           f"{caps['per_underlying']:.0f} (reserved "
+                           f"{reserved.get(sym, 0.0):.0f} + need {need:.0f})")})
+            continue
         if used + need > caps["total"]:
             capped.append({**i, "reason": f"cap: total collateral budget {caps['total']:.0f}"})
             continue
         approved.append(i)
         used += need
+        reserved[sym] = reserved.get(sym, 0.0) + need
         symbols.add(sym)
     return approved, capped
 
@@ -117,13 +126,34 @@ def run_cycle(dry_run: bool = True, force: bool = False, no_ai: bool = False) ->
     states = wheel.collect_states(api, config.UNIVERSE)
 
     active = {u for u, st in states.items()
-              if st.equity_qty > 0 or st.short_put is not None or st.short_call is not None}
+              if st.equity_qty > 0 or st.short_puts or st.short_calls}
+    open_orders = api.open_orders()
+
+    # Reserved collateral per underlying: FILLED short puts + our OPEN sell-put
+    # orders. Night-1 lesson: fills lag submissions, so a cycle that only looks
+    # at positions can stack multiple strikes/expiries on one underlying and
+    # blow through the per-name cap. Open orders must reserve budget too.
+    reserved_by_symbol: dict[str, float] = {}
     collateral_used = 0.0
     for u, st in states.items():
-        if st.short_put is not None:
-            _, _, _, strike = parse_occ(str(st.short_put.symbol))
-            qty = abs(int(float(getattr(st.short_put, "qty", 0) or 0)))
+        for pos in st.short_puts:
+            _, _, _, strike = parse_occ(str(pos.symbol))
+            qty = abs(int(float(getattr(pos, "qty", 0) or 0)))
+            reserved_by_symbol[u] = reserved_by_symbol.get(u, 0.0) + strike * 100 * qty
             collateral_used += strike * 100 * qty
+    for o in open_orders:
+        occ = str(getattr(o, "symbol", ""))
+        side = _enumval(getattr(o, "side", "")).lower()
+        coid = str(getattr(o, "client_order_id", ""))
+        if "sell" in side and coid.startswith(config.ORDER_PREFIX):
+            try:
+                root, _e, right, strike = parse_occ(occ)
+                if right == "P":
+                    q = abs(int(float(getattr(o, "qty", 0) or 0)))
+                    reserved_by_symbol[root] = reserved_by_symbol.get(root, 0.0) + strike * 100 * q
+                    collateral_used += strike * 100 * q
+            except Exception:
+                pass
     caps = risk.collateral_caps(equity, regime["regime"])
     # Broker truth: our own caps may not exceed Alpaca's actual options buying
     # power (open CSP orders reserve it). If the field is missing, assume none.
@@ -132,16 +162,18 @@ def run_cycle(dry_run: bool = True, force: bool = False, no_ai: bool = False) ->
     rec["options_buying_power"] = obp
     rec["caps"] = {k: round(v, 2) for k, v in caps.items()}
     rec["collateral_used"] = round(collateral_used, 2)
+    rec["reserved_by_symbol"] = {k: round(v, 0) for k, v in reserved_by_symbol.items()}
     rec["active_underlyings"] = sorted(active)
 
-    open_orders = api.open_orders()
-    open_syms_sides = {(str(getattr(o, "symbol", "")), str(getattr(o, "side", "")))
+    open_syms_sides = {(str(getattr(o, "symbol", "")),
+                        _enumval(getattr(o, "side", "")).lower())
                        for o in open_orders}
     rec["open_orders_n"] = len(open_orders)
 
     ctx = {"entries_allowed": entries_allowed, "caps": caps,
            "collateral_used": collateral_used, "universe": config.UNIVERSE,
            "active_underlyings": sorted(active),
+           "reserved": reserved_by_symbol,
            "slots_free": risk.slots_free(len(active))}
 
     # 5) deterministic decisions
@@ -160,7 +192,8 @@ def run_cycle(dry_run: bool = True, force: bool = False, no_ai: bool = False) ->
     entries = [i for i in rec["intents"] if i["kind"] in ("SELL_CSP", "SELL_CC")]
     exits = [i for i in rec["intents"] if i["kind"] in ("BUYBACK_PUT", "BUYBACK_CC")]
 
-    entries, capped = _enforce_caps(entries, collateral_used, caps)
+    entries, capped = _enforce_caps(entries, collateral_used, caps,
+                                    reserved_by_symbol)
     for i in capped:
         rec["intents"] = [x for x in rec["intents"] if x is not i]
         rec["intents"].append({"kind": "SKIP", "underlying": i.get("underlying", ""),
