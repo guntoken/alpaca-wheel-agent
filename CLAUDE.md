@@ -52,8 +52,10 @@ New app → repo `guntoken/alpaca-wheel-agent`, branch main, file `agent/dashboa
 Dashboard lokal: `cd agent && .venv/bin/streamlit run dashboard/app.py --server.port 8501`.
 
 **Sisa agenda (SUBMISSION_PLAN.md punya versi lengkap):**
-- [ ] Minggu 30 Agu: polish golden-path dashboard pasca-deploy + **slide PDF ≤10 hlm**
-      (bahan siap: WRITEUP + BUSINESS_CASE + dashboard-hero.png) + cover 16:9
+- [x] Minggu 30 Agu 00:45: **slide PDF SELESAI** — `docs/slides.pdf` (10 hlm 16:9 EN,
+      palet tervalidasi, QA DOM 0-overflow) + `docs/cover-16x9.png`; pipeline
+      regenerasi di `docs/slides/README.md`. Video bisa direkam sambil menampilkan
+      PDF ini. Yang tersisa dari item ini: polish dashboard pasca-deploy.
 - [ ] Senin 31 Agu 20:15 WIB: **restart loop live** (kode baru aktif):
       `cd agent && setsid nohup env PYTHONUNBUFFERED=1 timeout 19800 ~/.local/bin/uv run wheel-agent loop --live --interval 900 >> loop.log 2>&1 < /dev/null & echo $! > loop.pid`
       Cek dulu `ps -p $(cat agent/loop.pid)` — JANGAN dua loop. Rutin tiap sesi malam:
