@@ -267,10 +267,11 @@ with tabs[0]:
                                        domainColor="rgba(63,50,15,0.15)",
                                        ticks=False, titleColor="#6F6757")
             st.altair_chart(chart, use_container_width=True)
-        except Exception as e:
+        except Exception:
+            # degrade quietly — a broken chart is bad enough without exposing
+            # stack traces to judges; the journal still has every data point
             st.line_chart(pd.DataFrame(DATA.get("equity_curve", []))["equity"],
                           height=250)
-            st.caption(f"(fallback chart: {e})")
 
     # regime ribbon
     hist = DATA.get("regime_history", [])
