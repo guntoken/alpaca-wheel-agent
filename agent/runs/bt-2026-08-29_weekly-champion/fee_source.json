@@ -1,0 +1,6 @@
+{
+  "model": "USD 0.50 per contract per side commission",
+  "source": "https://files.alpaca.markets/disclosures/library/BrokFeeSched.pdf",
+  "fetch_attempt": "blocked from this network 2026-08-29 (DNS policy; only paper-api/data hosts pinned) \u2014 modeled from Alpaca's published options commission",
+  "excluded": "OCC/exchange/regulatory pass-through fees (~$0.01-0.05/contract) not added: small optimistic bias"
+}

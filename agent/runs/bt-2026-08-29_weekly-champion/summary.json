@@ -1,0 +1,222 @@
+{
+  "run": "bt-2026-08-29_weekly-champion",
+  "window": {
+    "start": "2025-08-01",
+    "end": "2026-07-31",
+    "trading_days": 251
+  },
+  "strategy": {
+    "total_return": 46.44,
+    "cagr": 74.14,
+    "max_drawdown": 18.64,
+    "sharpe": 1.76,
+    "final_equity": 146437.1
+  },
+  "benchmark_spy": {
+    "total_return": 20.11,
+    "cagr": 30.54,
+    "max_drawdown": 9.13,
+    "sharpe": 1.51,
+    "final_equity": 120112.91
+  },
+  "option_legs": {
+    "total": 54,
+    "wins": 53,
+    "win_rate_pct": 98.1,
+    "profit_factor": 47.24,
+    "net_option_pnl": 41061.6
+  },
+  "premiums_collected_gross": 58757.6,
+  "fees_paid": 559.5,
+  "activity": {
+    "csp_sold": 41,
+    "cc_sold": 13,
+    "tp_closes": 29,
+    "cc_tp": 5,
+    "expired_worthless": 1,
+    "assignments": 10,
+    "called_away": 7
+  },
+  "gate_activity": {
+    "vol_floor": 147,
+    "drawdown": 1,
+    "extreme": 0,
+    "no_candidate": 17,
+    "budget": 23,
+    "slots": 0,
+    "sector": 7,
+    "fills_missed": 3,
+    "bear_entries_scaled": 1,
+    "cc_floor_block": 44,
+    "quality": 344,
+    "afford": 61
+  },
+  "opt_api_calls": 172,
+  "variant": "C weekly-champion (selection-first, 1 name, 40% budget)",
+  "champions_picked": [
+    {
+      "date": "2025-08-01",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-08-04",
+      "name": "COIN"
+    },
+    {
+      "date": "2025-08-11",
+      "name": "AMD"
+    },
+    {
+      "date": "2025-08-18",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-08-25",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-09-02",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-09-15",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-09-22",
+      "name": "SOFI"
+    },
+    {
+      "date": "2025-09-29",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-10-13",
+      "name": "BABA"
+    },
+    {
+      "date": "2025-10-20",
+      "name": "INTC"
+    },
+    {
+      "date": "2025-11-03",
+      "name": "NOK"
+    },
+    {
+      "date": "2025-11-10",
+      "name": "MU"
+    },
+    {
+      "date": "2025-11-17",
+      "name": "AMD"
+    },
+    {
+      "date": "2025-11-24",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-12-01",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-12-08",
+      "name": "NOK"
+    },
+    {
+      "date": "2025-12-15",
+      "name": "WBD"
+    },
+    {
+      "date": "2025-12-22",
+      "name": "GM"
+    },
+    {
+      "date": "2025-12-29",
+      "name": "WBD"
+    },
+    {
+      "date": "2026-01-05",
+      "name": "SOFI"
+    },
+    {
+      "date": "2026-01-12",
+      "name": "MU"
+    },
+    {
+      "date": "2026-01-20",
+      "name": "GM"
+    },
+    {
+      "date": "2026-01-26",
+      "name": "MU"
+    },
+    {
+      "date": "2026-02-02",
+      "name": "INTC"
+    },
+    {
+      "date": "2026-02-09",
+      "name": "VALE"
+    },
+    {
+      "date": "2026-02-17",
+      "name": "GM"
+    },
+    {
+      "date": "2026-02-23",
+      "name": "XOM"
+    },
+    {
+      "date": "2026-03-02",
+      "name": "MU"
+    },
+    {
+      "date": "2026-03-16",
+      "name": "MU"
+    },
+    {
+      "date": "2026-04-20",
+      "name": "NOK"
+    },
+    {
+      "date": "2026-04-27",
+      "name": "NOK"
+    },
+    {
+      "date": "2026-05-04",
+      "name": "INTC"
+    },
+    {
+      "date": "2026-05-11",
+      "name": "INTC"
+    },
+    {
+      "date": "2026-05-18",
+      "name": "NOK"
+    },
+    {
+      "date": "2026-05-26",
+      "name": "NOK"
+    },
+    {
+      "date": "2026-06-01",
+      "name": "F"
+    },
+    {
+      "date": "2026-06-15",
+      "name": "AMD"
+    },
+    {
+      "date": "2026-07-06",
+      "name": "AMD"
+    },
+    {
+      "date": "2026-07-13",
+      "name": "CVX"
+    },
+    {
+      "date": "2026-07-27",
+      "name": "KO"
+    }
+  ]
+}

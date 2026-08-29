@@ -1,0 +1,57 @@
+{
+  "variant": "C weekly-champion",
+  "question": "1 saham pilihan mingguan (bot memilih) > SPY buy-hold? 1 tahun.",
+  "universe": [
+    "INTC",
+    "T",
+    "F",
+    "GM",
+    "PFE",
+    "KO",
+    "NOK",
+    "SOFI",
+    "BABA",
+    "MU",
+    "WBD",
+    "VALE",
+    "AMD",
+    "NVDA",
+    "PLTR",
+    "SNAP",
+    "COIN",
+    "MSTR",
+    "XOM",
+    "CVX",
+    "DIS",
+    "CAT",
+    "NKE",
+    "BA"
+  ],
+  "selection": {
+    "gate": "close > SMA200",
+    "score": "rank(mom 63d) + rank(vol-dollar pct)",
+    "fallback": "top-3 by score until viable contract",
+    "cadence": "Mondays"
+  },
+  "concentration": {
+    "per_name_pct": 0.4,
+    "total_pct": 0.72,
+    "positions": "1 CSP/week"
+  },
+  "window": [
+    "2025-08-01",
+    "2026-07-31"
+  ],
+  "unchanged_from_base": [
+    "delta 0.30/BEAR 0.20",
+    "DTE 7-35",
+    "TP 50%",
+    "roll at 0.60",
+    "CC delta 0.25 Bollinger 2\u03c3",
+    "drawdown stop 3%",
+    "SPY -2/-4 gates",
+    "fill next-open + 5% slippage",
+    "$0.50/contract/side"
+  ],
+  "commitment": "rules fixed before results seen; 1-year result reported as-is"
+}

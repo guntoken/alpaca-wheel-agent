@@ -26,6 +26,16 @@ drawdown) dan semua metrik membaik vs baseline. OOS jujur: +16,9% vs baseline
 Dokumen headline (README/WRITEUP) TETAP memakai baseline — varian tidak
 menggantikan klaim utama.
 
+**Varian C (eksplorasi, 30 Agu 00:07)** — `agent/runs/bt-2026-08-29_weekly-champion/`:
+uji asumsi pemilik "1 saham pilihan mingguan oleh bot > SPY". Seleksi-first ala
+WheelMetrics (gate SMA200 + ranking momentum-63h + vol-percentile, top-3 fallback),
+universe 24 nama, 1 CSP/minggu di juara, budget 40%, window 1 tahun 2025-08→2026-07.
+**Hasil: +46,4% vs SPY +20,1% (Sharpe 1,76 vs 1,51) — asumsi terkonfirmasi di
+window ini, TAPI maxDD 18,6% = 2× SPY 9,1% (harga konsentrasi).** Kontrol skill
+seleksi: nama terpilih rata-rata +117% vs universe +64% (layar momentum menang
+di tahun momentum; SOFI/COIN jadi counter-example). 1 sampel = bukan bukti
+statistik. Analisis: `compare_c.py` di folder run.
+
 **Menunggu pemilik (satu-satunya bloker): DEPLOY** — share.streamlit.io → login GitHub →
 New app → repo `guntoken/alpaca-wheel-agent`, branch main, file `agent/dashboard/app.py`
 → Deploy (tanpa secrets) → tulis URL hasilnya ke README bagian Dashboard.
