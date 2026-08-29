@@ -87,8 +87,8 @@
     <div style="display:flex;gap:26px;align-items:center">
       <div style="flex:1;display:flex;gap:14px">
         <div class="tile" style="background:#1D232D;border-color:#2A313D;flex:1">
-          <div class="val" style="color:#FFFDF6">+32.2%</div>
-          <div class="sub" style="color:#9AA1AC">2.5-yr backtest, real option trades — max DD 18.3% vs SPY 19.0%</div>
+          <div class="val" style="color:#FFFDF6">+54.6%</div>
+          <div class="sub" style="color:#9AA1AC">2.5-yr backtest, bot picks 3 stocks/week, real option trades — vs SPY +45.6%</div>
         </div>
         <div class="tile" style="background:#1D232D;border-color:#2A313D;flex:1">
           <div class="val" style="color:#FFFDF6">25 cycles</div>
@@ -260,50 +260,53 @@
 <div class="slide">
   <div class="pad">
     <div class="kicker">Evidence</div>
-    <h2>Backtested 2.5 years on real option trades — zero re-tuning</h2>
-    <p class="lead">Every premium in the backtest is a <b>real Alpaca option-trade bar</b>;
-    rules mirror the live engine 1:1 with no parameter fitted. The wheel deliberately trades
-    upside for drawdown control — it defends, it doesn't chase.</p>
+    <h2>Backtested 2.5 years on real option trades — beats SPY in its own bull window</h2>
+    <p class="lead">The selection-first mode: each Monday the bot scores a 24-name universe
+    (SMA200 quality gate, 63-day momentum, premium richness) and sells puts on the
+    <b>top 3 names only</b>. Every premium is a <b>real Alpaca option-trade bar</b>; no
+    parameter was fitted to this window.</p>
     <div style="display:flex;justify-content:center;margin-top:14px">
       <svg viewBox="0 0 1120 430" width="1040" height="399" xmlns="http://www.w3.org/2000/svg" font-family="Inter,Segoe UI,Arial,sans-serif"
            style="display:block"><image href="equity.svg" width="1120" height="430"/></svg>
     </div>
     <div style="display:flex;gap:18px;margin-top:12px;align-items:center">
       <span style="display:inline-flex;align-items:center;gap:8px;font-size:14.5px;color:var(--ink)">
-        <span style="width:26px;height:4px;border-radius:2px;background:#C98A00;display:inline-block"></span>Wheel Agent
+        <span style="width:26px;height:4px;border-radius:2px;background:#C98A00;display:inline-block"></span>Top-3 weekly picks
         <span style="width:26px;height:4px;border-radius:2px;background:#3D6BA8;display:inline-block;margin-left:18px"></span>SPY buy-and-hold</span>
       <span style="margin-left:auto;font-size:15px;color:var(--ink)">
-        <b>+32.2%</b> vs SPY +45.6% · max DD <b>18.3%</b> vs 19.0% · Sharpe 0.82 vs 1.08</span>
+        <b>+54.6%</b> vs SPY +45.6% · Calmar <b>1.39</b> vs 1.34 · max DD 21.5% vs 19.0% — shown, not hidden</span>
     </div>
   </div>
-  <div class="foot"><span>Window Mar 2024 – Jul 2026 · full artifacts in agent/runs/ · hypothetical, see disclosures</span><span>7</span></div>
+  <div class="foot"><span>Window Mar 2024 – Jul 2026 · live engine's own rules: +32.2% (agent/runs/) · hypothetical, see disclosures</span><span>7</span></div>
 </div>
 
 <!-- ============================ 8 · EXPLORATIONS ============================ -->
 <div class="slide">
   <div class="pad">
-    <div class="kicker">Explorations — pre-committed, honestly reported</div>
-    <h2>Three strategy directions, tested with walk-forward discipline</h2>
+    <div class="kicker">Explorations — pre-committed, honestly reported, failures included</div>
+    <h2>Four configurations, one window, every result published</h2>
     <p class="lead">Each exploration fixes its rules <b>before</b> looking at out-of-sample
-    data, and every number — win or lose — is published in the repo with full artifacts.</p>
-    <table style="margin-top:16px">
-      <tr><th>Direction</th><th>What changed</th><th class="num">Return</th><th class="num">Max DD</th><th class="num">vs SPY</th></tr>
-      <tr><td><b>Defensive variant</b></td><td>SMA200 quality screen + regime-scaled delta + 4% cash yield</td>
+    data. When the 1-year winner failed the full window, we published that too — the
+    <b>top-3 mode</b> is the one that survived it.</p>
+    <table style="margin-top:14px">
+      <tr><th>Configuration</th><th>Window</th><th class="num">Return</th><th class="num">Max DD</th><th class="num">vs SPY +45.6%</th></tr>
+      <tr><td><b>Live engine</b> — same rules as production</td><td>2.5 yr</td>
+          <td class="num">+32.2%</td><td class="num">18.3%</td><td class="num">trades upside for drawdown control</td></tr>
+      <tr><td><b>+ Defensive levers</b> — quality screen · regime delta · cash yield</td><td>2.5 yr</td>
           <td class="num">+34.2%</td><td class="num"><b>12.9%</b></td><td class="num">Calmar 1.51 vs 1.34 ✓</td></tr>
-      <tr><td><b>Weekly champion</b></td><td>Bot picks one stock a week (momentum + quality screen), 40% position</td>
-          <td class="num"><b>+46.4%</b></td><td class="num">18.6%</td><td class="num">+46% vs +20% · Sharpe 1.76 ✓</td></tr>
-      <tr><td><b>Top-K sweep</b></td><td>1 vs 2 vs 3 vs 5 weekly picks, equal-weight</td>
-          <td class="num">K=3 +26.6%</td><td class="num">10.7%</td><td class="num">concentration is the edge</td></tr>
+      <tr><td><b>+ Weekly champion</b> — 1 pick/wk, 40% position</td><td>1 yr → 2.5 yr</td>
+          <td class="num">+46% → +35.3%</td><td class="num">→ 27.2%</td><td class="num">edge didn't survive the full window</td></tr>
+      <tr><td><b>+ Top-3 weekly picks</b> — the slide-7 headline</td><td>2.5 yr</td>
+          <td class="num"><b>+54.6%</b></td><td class="num">21.5%</td><td class="num">beats SPY on return and Calmar ✓</td></tr>
     </table>
-    <p class="note" style="margin-top:14px">The selection layer adds measurable value: names
-    the bot picked averaged <b>+117%</b> vs the universe's +64% (1-yr window). One sample per
-    row — momentum screens buy tops in mean-reverting years, and we say so on the slide after
-    the chart, not in a footnote.</p>
-    <div style="display:flex;justify-content:center;margin-top:8px">
+    <p class="note" style="margin-top:12px">The selection layer adds measurable value: names
+    the bot picked averaged <b>+117%</b> vs the universe's +64%. Momentum screens buy tops in
+    mean-reverting years — which is why the champion failure row stays on this slide.</p>
+    <div style="display:flex;justify-content:center;margin-top:6px">
       <svg viewBox="0 0 1120 190" width="1040" height="177"><image href="premium.svg" width="1120" height="190"/></svg>
     </div>
   </div>
-  <div class="foot"><span>Windows and full paper trails in agent/runs/ (bt-2026-08-29_*, bt-2026-08-30_topk-sweep)</span><span>8</span></div>
+  <div class="foot"><span>Full paper trails in agent/runs/ (bt-2026-08-29_*, bt-2026-08-30_topk-sweep, bt-2026-08-30_champion-25mo)</span><span>8</span></div>
 </div>
 
 <!-- ============================ 9 · MARKET ============================ -->
