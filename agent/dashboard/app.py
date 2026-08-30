@@ -17,7 +17,7 @@ import pandas as pd
 import streamlit as st
 
 st.set_page_config(page_title="Wheel Agent — Alpaca Hackathon",
-                   page_icon="🦉", layout="wide")
+                   layout="wide")
 
 HERE = Path(__file__).parent
 DATA = json.loads((HERE / "data.json").read_text())
@@ -518,8 +518,8 @@ st.markdown(
     + pill(f"updated {updated} UTC")
     + "</div></div>", unsafe_allow_html=True)
 
-tabs = st.tabs(["🕹 Command Center", "🧪 Risk Lab", "🧠 AI Brain",
-                "⚙️ Execution Desk", "📖 About", "❓ FAQ"])
+tabs = st.tabs(["Command Center", "Risk Lab", "AI Brain",
+                "Execution Desk", "About", "FAQ"])
 
 # ---------------------------------------------------------------- Command ---
 with tabs[0]:
@@ -870,19 +870,19 @@ with tabs[4]:
     st.markdown(
         '<div class="wa-links">'
         '<a class="wa-link" href="https://github.com/guntoken/alpaca-wheel-agent/'
-        'blob/main/agent/journal.jsonl">📓 Live decision journal (JSONL)</a>'
+        'blob/main/agent/journal.jsonl">Live decision journal (JSONL)</a>'
         '<a class="wa-link" href="https://github.com/guntoken/alpaca-wheel-agent/'
-        'tree/main/agent/runs/bt-2026-08-29_wheel-csp-cc_1Day">🧾 Backtest run '
+        'tree/main/agent/runs/bt-2026-08-29_wheel-csp-cc_1Day">Backtest run '
         'folder (full artifacts)</a>'
         '<a class="wa-link" href="https://github.com/guntoken/alpaca-wheel-agent/'
-        'blob/main/docs/RESEARCH_NOTES.md">📚 Research notes — every source, '
+        'blob/main/docs/RESEARCH_NOTES.md">Research notes — every source, '
         'adopt or reject</a>'
         '<a class="wa-link" href="https://github.com/guntoken/alpaca-wheel-agent/'
-        'blob/main/docs/WRITEUP.md">📄 One-page technical write-up</a>'
+        'blob/main/docs/WRITEUP.md">One-page technical write-up</a>'
         '<a class="wa-link" href="https://github.com/guntoken/alpaca-wheel-agent/'
-        'blob/main/docs/BUSINESS_CASE.md">💼 Business case</a>'
+        'blob/main/docs/BUSINESS_CASE.md">Business case</a>'
         '<a class="wa-link" href="https://github.com/guntoken/alpaca-wheel-agent/'
-        'blob/main/README.md">🏠 README</a></div>'
+        'blob/main/README.md">README</a></div>'
         '<div class="wa-note" style="border-left-color:var(--good)">The strategy '
         'is not invented for the demo: parameters are validated source-by-source '
         'in RESEARCH_NOTES.md (Alpaca\'s official wheel guide, peer-reviewed '
@@ -985,7 +985,7 @@ with tabs[5]:
             st.markdown(a, unsafe_allow_html=True)
 
 st.markdown(
-    '<div class="wa-foot">🦉 <b>Wheel Agent</b> — Alpaca AI Trading Agents '
+    '<div class="wa-foot"><b>Wheel Agent</b> — Alpaca AI Trading Agents '
     'Hackathon 2026 · paper trading only · no real money · no performance '
     'guarantee · not investment advice · options involve substantial risk · '
     'built on Alpaca Trading API, CLI and MCP server.</div>',
