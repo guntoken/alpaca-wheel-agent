@@ -1,136 +1,130 @@
-# OWL Agent — per-slide speaker notes (informal English, read-aloud)
+# OWL Agent — per-slide speaker notes (mengikuti teks PDF, EN informal)
 
-Untuk video pendekatan "baca tiap slide". Total ±730 kata ≈ 4:50–5:00 di
-kecepatan santai (~145 kata/menit). Semua angka sudah ditulis **sebagaimana
-diucapkan** — tinggal dibaca. Kalimat pendek-pendek, dibuat untuk napas
-natural. Rekaman: buka `docs/slides.pdf` mode fullscreen/presentasi, wajah
-pojok (Loom/OBS), baca note sambil mata sesekali ke slide.
+Prinsip sesuai permintaan: **notes mengalir mengikuti teks slide dari atas ke
+bawah** — seperti membaca PDF-nya, hanya diberi kata sambung/kata bantu agar
+enak didengar. Semua angka ditulis **sesuai pelafalan**. Total ±770 kata ≈
+5:00–5:10 di kecepatan santai; kalau terasa mepet, potong satu kalimat di
+slide 3 atau 8 (sudah kutandai). Rekam: PDF fullscreen (Ctrl+L), pindah slide
+dengan panah, wajah pojok kanan bawah.
 
 ---
 
-## Slide 1 · Cover — ±28 detik
+## Slide 1 · Cover — ±30 detik
 
-> Hi everyone. This is OWL Agent — short for Option-WheeL. It's an
-> autonomous options trading agent with one big twist: the AI can only say
-> NO. It never picks a trade. It can only refuse one. And the numbers you
-> see here are real — our backtest beat SPY, it's been running live on
-> Alpaca paper since day one, and everything is public. Let me show you
-> how it works.
-
-*Cue: senyum, tatap kamera. Tunjuk tile "+54.6%" sekali.*
+> Hi everyone — this is OWL Agent, short for Option-WheeL: an autonomous
+> options wheel with an AI risk governor. The whole idea is in this one
+> line: an AI that can only say NO. A deterministic engine does the
+> trading, and Claude holds exactly two powers — read the regime, and
+> veto a new entry. It never places, sizes, or forces a trade, and it
+> never blocks an exit. Back here: plus fifty-four point six percent,
+> live since day one, one hundred percent public. Let me show you.
 
 ## Slide 2 · The problem — ±30 detik
 
-> So here's the problem. Selling options for income should be boring —
-> but real people can't stay boring. They panic-buy back losing puts, they
-> oversize one winner, they pick the wrong strike. And the popular answer
-> — hey, let an AI pick the trades — actually makes it worse. LLMs
-> hallucinate. You can't hold a chatbot to a risk mandate. And the market
-> is huge: fifteen point two billion contracts last year, with retail
-> driving up to sixty percent of the flow.
+> So, the problem: options income is a discipline problem disguised as a
+> trading problem. The wheel should be boring and repeatable — and real
+> people can't do it. The wrong delta, panic buy-backs, one oversized
+> ticker. And the popular fix — an AI that picks the trades — actually
+> makes it worse: LLMs hallucinate, drift, and can't be held to a risk
+> mandate. Meanwhile the market is huge: fifteen point two billion
+> contracts in twenty twenty-five, with retail at thirty to sixty percent
+> of the flow.
 
-*Cue: gesture ke tiga kartu satu-per-satu saat menyebutnya.*
+## Slide 3 · The solution — ±32 detik
 
-## Slide 3 · The solution — ±33 detik
+> Our solution: invert the design — the AI governs, the engine trades.
+> On the left, the deterministic engine that does everything: puts at
+> delta zero point three, profit taken at fifty percent, rolls only for
+> credit, covered calls above cost and the Bollinger band. On the right,
+> the Claude governor, which may only refuse: it reads the regime every
+> cycle, and it vetoes new entries — one refusal with a reason kills it.
+> It can never place, size, or force a trade, and never block an exit.
+> *(kalau mepet, hapus:)* Incentive alignment by construction.
 
-> So we flipped the design. A deterministic engine does all the trading —
-> the classic wheel, on hard-coded rails. Delta around zero point three,
-> take profit at fifty percent, roll only for credit. And above it sits
-> Claude, with exactly two powers: read the market regime, and veto a new
-> entry. That's it. It can't place, size, or force a trade — and it can
-> never block an exit. An AI that can only say no... is an AI you can
-> actually trust on a broker.
+## Slide 4 · How it works — ±33 detik
 
-*Cue: jeda setengah detik sebelum kalimat terakhir — itu tagline.*
+> How it works: one cycle, six steps — every five to fifteen minutes
+> while the market is open. The broker is the source of truth, and
+> everything is appended to a public journal. Observe — the account and
+> market snapshot. Gate — kill switch, drawdown stop, dual regime
+> readers. Decide — the wheel logic per name. Then the AI veto — Claude
+> reviews each entry, one NO kills it. Execute — marketable limits,
+> exits first. And journal — every order and reason, public. The regime
+> also scales exposure: seventy-two percent collateral in risk-on,
+> thirty-six in neutral, no new entries in risk-off — and the tighter
+> reader always wins.
 
-## Slide 4 · One cycle, six steps — ±30 detik
+## Slide 5 · Safety — ±30 detik
 
-> Every cycle runs six steps. Observe — the broker is the source of
-> truth. Gate — kill switch, drawdown stop, and two regime readers:
-> Claude's judgment plus a hard-coded SPY anchor. The tighter one always
-> wins. Decide — the wheel logic, per name. Then the AI veto — one
-> refusal kills the entry. Execute with limit orders, exits first. And
-> everything lands in a public journal. That journal caught two real bugs
-> on night one — both fixed live, in the open.
-
-*Cue: hitung enam kotak dengan kursor mengikuti urutan; berhenti di kotak 4 (gold).*
-
-## Slide 5 · Risk gates — ±28 detik
-
-> Safety here isn't vibes — it's arithmetic. Max five names, two per
-> sector, eighteen percent per name. Seventy-two percent of equity as
-> collateral when the tape is strong — half of that when it's neutral.
-> No new entries after a three percent down day, or a four percent SPY
-> drop. Earnings blackouts. And a kill switch — one file, and the agent
-> stops submitting anything. De-risking is never blocked. Only new risk
-> can be vetoed.
-
-*Cue: nada cepat-confident; ini slide "boring by design" — biar terdengar begitu.*
+> Safety is hard-coded, not vibes — every gate on this slide is a
+> deterministic check that runs before any order. Five names max, two
+> per sector, eighteen percent per name. Seventy-two percent of equity
+> as total collateral — or thirty-six when the tape is weak. A minus
+> three percent daily drawdown stops new entries. SPY down two percent
+> halves the budget; down four percent, entries stop entirely. Earnings
+> blackouts. And the kill switch — one file, and nothing gets submitted.
+> Exits are never vetoed: de-risking is always allowed.
 
 ## Slide 6 · Live run — ±28 detik
 
-> And this is not a mockup. It's been running unattended on Alpaca paper
-> since day one of the hackathon. Twenty-five live cycles, four fills,
-> seventeen hundred fifty-three dollars in premium. Thirty-one risk-on
-> reads, eight neutral, zero vetoes so far — the veto path itself is
-> tested in dry runs. The dashboard behind me is the real one — six tabs,
-> and the equity curve is built straight from the agent's own journal.
-
-*Cue: kalau video menampilkan dashboard sesaat, alt-tab singkat lalu kembali.*
+> And this is real — live and unattended on Alpaca paper since day one.
+> Engine, governor, gates, journal: the whole system, running on its
+> own. Four fills, seventeen hundred fifty-three dollars in premium.
+> Twenty-five live cycles out of thirty-nine. Thirty-one risk-on reads,
+> eight neutral, zero vetoes — the veto path is exercised in dry-runs.
+> Behind me, the six-tab dashboard — and the equity curve is built
+> straight from that journal.
 
 ## Slide 7 · The backtest — ±33 detik
 
-> Now the evidence. Two and a half years, backtested on real Alpaca
-> option trades — every single premium is a real traded bar, nothing
-> synthetic. The mode on screen: each Monday the bot scores twenty-four
-> names and picks the top three. The result — plus fifty-four point six
-> percent, versus SPY's forty-five point six. And right next to it, the
-> deeper drawdown: twenty-one and a half percent. We show it, because
-> that's the honest price of concentration.
-
-*Cue: kursor ikuti garis emas di chart pelan, lalu tunjuk angka DD.*
+> Now the evidence: backtested two and a half years on real option
+> trades — and it beats SPY in its own bull window. The mode on this
+> chart: every Monday the bot scores twenty-four names and sells puts
+> on the top three only. Every premium is a real traded option bar, and
+> no parameter was fitted to this window. The result: plus fifty-four
+> point six percent, versus SPY's forty-five point six. Calmar one point
+> three nine versus one point three four. And the deeper drawdown —
+> twenty-one and a half percent — is shown, not hidden.
 
 ## Slide 8 · Why top-3 — ±33 detik — *slide terpenting*
 
-> And here's how we picked that mode — this one matters. We ran a series
-> of backtests to beat buy-and-hold. One stock a week beat SPY in its
-> first year — but lost over the full two and a half years. So we
-> rejected it. Two picks and five picks lost outright. Three picks beat
-> SPY in both windows — the one year, and the two and a half. That's why
-> top-three is our headline. And yes — even the failures are published.
+> How we picked that mode: four configurations, one window, every result
+> published. The live engine's own rules: plus thirty-two point two —
+> trading upside for drawdown control. Add the defensive levers:
+> thirty-four point two, smallest drawdown, best Calmar. One pick a
+> week — the champion — beat SPY in year one, but didn't survive the
+> full window... so we rejected it. Two picks and five picks lost
+> outright. And three picks beat SPY in both windows — that's the
+> headline, and that's why it's selected.
 
-*Cue: tunjuk baris champion (merah) saat "we rejected it", baris top-3 saat "both windows".*
+## Slide 9 · Business — ±30 detik
 
-## Slide 9 · Business — ±28 detik
-
-> So, who pays for this? US options just printed its sixth straight
-> record — fifteen point two billion contracts. Every competitor on this
-> slide automates execution. Nobody sells what we have: an AI risk
-> governor whose alignment is provable — it literally cannot churn your
-> account. Twenty-nine a month for the engine and the governor.
-> Seventy-nine for multi-account and defined-risk spreads. We're paid to
-> keep users safe — not to grow their volume.
-
-*Cue: tangan membuka saat "Nobody sells what we have".*
+> The business: a paid governor in a market that has never been larger.
+> Fifteen point two billion contracts — the sixth straight record —
+> retail at thirty to sixty percent. Our TAM is four to eighteen billion
+> a year; a realistic SAM, two hundred million to one point eight
+> billion. Everyone on this table automates execution — none of them
+> sells an AI risk governor with provable alignment. Pricing is simple:
+> twenty-nine a month core, seventy-nine pro. No payment for order flow
+> — we're paid to keep users safe, not to grow their volume.
 
 ## Slide 10 · Close — ±28 detik
 
-> Everything runs on all three Alpaca surfaces — the SDK, the CLI, and
-> the MCP server, live inside the AI session itself. Next up: a
-> defined-risk spreads sleeve, walk-forward validation of every gate, and
-> the selection-first mode behind an opt-in. The repo, the journal, every
-> backtest — all public, failures included. OWL Agent: the AI doesn't
-> pick your trades. It makes sure you survive them. Try it — the link is
-> right there. Thanks for watching.
-
-*Cue: kembali tatap kamera di dua kalimat terakhir, senyum, diam 1 detik sebelum stop.*
+> Finally: built on all three Alpaca surfaces — the SDK for the engine,
+> the CLI for operations, and the MCP server, live inside the AI session
+> itself. What's next: a defined-risk spreads sleeve, walk-forward
+> validation of every gate, and the selection-first mode behind an
+> opt-in. The repo, the journal, every backtest — all public, failures
+> included. The AI doesn't pick your trades — it makes sure you survive
+> them. Try it: the link is right there. Thanks for watching.
 
 ---
 
-## Checklist rekam versi slide-reading
+## Checklist rekam
 
-- [ ] PDF mode fullscreen (Ctrl+L di kebanyakan viewer) — pindah slide dengan panah
-- [ ] Wajah pojok kanan bawah; cahaya dari depan; mic dekat mulut
-- [ ] Test 20 detik dulu (slide 1) — cek volume + posisi wajah
-- [ ] Jangan buru-buru di slide 8 (kisah seleksi) — itu momen paling kuat
+- [ ] PDF fullscreen (Ctrl+L), pindah slide dengan panah — baca note, mata sesekali ke slide
+- [ ] Wajah pojok kanan bawah, cahaya dari depan, mic dekat mulut
+- [ ] Test 20 detik (slide 1) dulu — cek volume & posisi
+- [ ] Slide 8 jangan diburu-buru — "so we rejected it" adalah momen terkuat
+- [ ] Dua take; take kedua biasanya lebih santai
 - [ ] Ekspor MP4, cek ≤5:00 dan ≤100 MB
