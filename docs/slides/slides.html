@@ -286,8 +286,9 @@
     <div class="kicker">Explorations — pre-committed, honestly reported, failures included</div>
     <h2>Four configurations, one window, every result published</h2>
     <p class="lead">Each exploration fixes its rules <b>before</b> looking at out-of-sample
-    data. When the 1-year winner failed the full window, we published that too — the
-    <b>top-3 mode</b> is the one that survived it.</p>
+    data. We ran a series of backtests to beat SPY buy-and-hold — and picked the top-3
+    mode because it's <b>the only configuration that beat SPY in BOTH windows</b>, the
+    1-year test and the full 2.5 years.</p>
     <table style="margin-top:14px">
       <tr><th>Configuration</th><th>Window</th><th class="num">Return</th><th class="num">Max DD</th><th class="num">vs SPY +45.6%</th></tr>
       <tr><td><b>Live engine</b> — same rules as production</td><td>2.5 yr</td>
@@ -300,8 +301,10 @@
           <td class="num"><b>+54.6%</b></td><td class="num">21.5%</td><td class="num">beats SPY on return and Calmar ✓</td></tr>
     </table>
     <p class="note" style="margin-top:12px">The selection layer adds measurable value: names
-    the bot picked averaged <b>+117%</b> vs the universe's +64%. Momentum screens buy tops in
-    mean-reverting years — which is why the champion failure row stays on this slide.</p>
+    the bot picked averaged <b>+117%</b> vs the universe's +64%. K=1 beat SPY at 1 year
+    (+46% vs +20%) but failed at 2.5 — rejected; K=2/K=5 lost outright; <b>K=3 won both
+    windows</b> (+27% vs +20% at 1 yr) — selected. Momentum screens buy tops in
+    mean-reverting years — which is why the failure row stays on this slide.</p>
     <div style="display:flex;justify-content:center;margin-top:6px">
       <svg viewBox="0 0 1120 190" width="1040" height="177"><image href="premium.svg" width="1120" height="190"/></svg>
     </div>

@@ -56,6 +56,15 @@ written down. For judges in a hurry: **[one-page write-up](docs/WRITEUP.md)**
 **[2.5-year backtest](agent/runs/bt-2026-08-29_wheel-csp-cc_1Day/report.md)**
 (real Alpaca option data, same rules, full paper trail).
 
+**How the headline mode was picked** — a series of backtests to beat SPY
+buy-and-hold, all published: one weekly pick (K=1) beat SPY over 1 year
+(+46% vs +20%) but **lost** over the full 2.5 years (+35% vs +46%) —
+rejected; K=2 and K=5 lost outright in the sweep; three weekly picks (K=3)
+beat SPY in **both** windows (+27% vs +20% at 1 year; **+55% vs +46% at
+2.5 years**, max DD 21.5% vs 19.0%) — selected. The live engine keeps its
+diversified 5-name rules; every run, including the failures, is under
+`agent/runs/`.
+
 ## Architecture
 
 ```

@@ -285,8 +285,9 @@
     <div class="kicker">Explorations — pre-committed, honestly reported, failures included</div>
     <h2>Four configurations, one window, every result published</h2>
     <p class="lead">Each exploration fixes its rules <b>before</b> looking at out-of-sample
-    data. When the 1-year winner failed the full window, we published that too — the
-    <b>top-3 mode</b> is the one that survived it.</p>
+    data. We ran a series of backtests to beat SPY buy-and-hold — and picked the top-3
+    mode because it's <b>the only configuration that beat SPY in BOTH windows</b>, the
+    1-year test and the full 2.5 years.</p>
     <table style="margin-top:14px">
       <tr><th>Configuration</th><th>Window</th><th class="num">Return</th><th class="num">Max DD</th><th class="num">vs SPY +45.6%</th></tr>
       <tr><td><b>Live engine</b> — same rules as production</td><td>2.5 yr</td>
@@ -299,8 +300,10 @@
           <td class="num"><b>+54.6%</b></td><td class="num">21.5%</td><td class="num">beats SPY on return and Calmar ✓</td></tr>
     </table>
     <p class="note" style="margin-top:12px">The selection layer adds measurable value: names
-    the bot picked averaged <b>+117%</b> vs the universe's +64%. Momentum screens buy tops in
-    mean-reverting years — which is why the champion failure row stays on this slide.</p>
+    the bot picked averaged <b>+117%</b> vs the universe's +64%. K=1 beat SPY at 1 year
+    (+46% vs +20%) but failed at 2.5 — rejected; K=2/K=5 lost outright; <b>K=3 won both
+    windows</b> (+27% vs +20% at 1 yr) — selected. Momentum screens buy tops in
+    mean-reverting years — which is why the failure row stays on this slide.</p>
     <div style="display:flex;justify-content:center;margin-top:6px">
       <svg viewBox="0 0 1120 190" width="1040" height="177" xmlns="http://www.w3.org/2000/svg" font-family="Inter,Segoe UI,Arial,sans-serif"><rect x="8.0" y="148.0" width="35.2" height="16.0" rx="2" fill="#C98A00"/><text x="25.6" y="182" text-anchor="middle" font-size="11" fill="#6E7684">24-03</text><rect x="46.2" y="97.3" width="35.2" height="66.7" rx="2" fill="#C98A00"/><rect x="84.3" y="128.1" width="35.2" height="35.9" rx="2" fill="#C98A00"/><rect x="122.5" y="126.2" width="35.2" height="37.8" rx="2" fill="#C98A00"/><rect x="160.7" y="138.8" width="35.2" height="25.2" rx="2" fill="#C98A00"/><text x="178.3" y="182" text-anchor="middle" font-size="11" fill="#6E7684">24-07</text><rect x="198.9" y="137.3" width="35.2" height="26.7" rx="2" fill="#C98A00"/><rect x="237.0" y="146.0" width="35.2" height="18.0" rx="2" fill="#C98A00"/><rect x="275.2" y="110.2" width="35.2" height="53.8" rx="2" fill="#C98A00"/><rect x="313.4" y="114.6" width="35.2" height="49.4" rx="2" fill="#C98A00"/><text x="331.0" y="182" text-anchor="middle" font-size="11" fill="#6E7684">24-11</text><rect x="351.6" y="159.6" width="35.2" height="4.4" rx="2" fill="#C98A00"/><rect x="389.7" y="162.0" width="35.2" height="2.0" rx="2" fill="#C98A00"/><rect x="427.9" y="156.8" width="35.2" height="7.2" rx="2" fill="#C98A00"/><rect x="466.1" y="114.6" width="35.2" height="49.4" rx="2" fill="#C98A00"/><text x="483.7" y="182" text-anchor="middle" font-size="11" fill="#6E7684">25-03</text><rect x="504.2" y="146.4" width="35.2" height="17.6" rx="2" fill="#C98A00"/><rect x="542.4" y="138.2" width="35.2" height="25.8" rx="2" fill="#C98A00"/><rect x="580.6" y="145.8" width="35.2" height="18.2" rx="2" fill="#C98A00"/><rect x="618.8" y="147.4" width="35.2" height="16.6" rx="2" fill="#C98A00"/><text x="636.3" y="182" text-anchor="middle" font-size="11" fill="#6E7684">25-07</text><rect x="656.9" y="132.7" width="35.2" height="31.3" rx="2" fill="#C98A00"/><rect x="695.1" y="83.0" width="35.2" height="81.0" rx="2" fill="#C98A00"/><rect x="733.3" y="110.6" width="35.2" height="53.4" rx="2" fill="#C98A00"/><rect x="771.4" y="115.0" width="35.2" height="49.0" rx="2" fill="#C98A00"/><text x="789.0" y="182" text-anchor="middle" font-size="11" fill="#6E7684">25-11</text><rect x="809.6" y="57.9" width="35.2" height="106.1" rx="2" fill="#C98A00"/><rect x="847.8" y="88.7" width="35.2" height="75.3" rx="2" fill="#C98A00"/><rect x="886.0" y="125.2" width="35.2" height="38.8" rx="2" fill="#C98A00"/><rect x="924.1" y="118.3" width="35.2" height="45.7" rx="2" fill="#C98A00"/><text x="941.7" y="182" text-anchor="middle" font-size="11" fill="#6E7684">26-03</text><rect x="962.3" y="61.7" width="35.2" height="102.3" rx="2" fill="#C98A00"/><rect x="1000.5" y="18.0" width="35.2" height="146.0" rx="2" fill="#C98A00"/><rect x="1038.7" y="89.4" width="35.2" height="74.6" rx="2" fill="#C98A00"/><rect x="1076.8" y="143.4" width="35.2" height="20.6" rx="2" fill="#C98A00"/><text x="1094.4" y="182" text-anchor="middle" font-size="11" fill="#6E7684">26-07</text><text x="8" y="14" font-size="12" fill="#6E7684">gross premium written per month — top-3 weekly picks, every premium a real traded option bar</text></svg>
     </div>

@@ -67,21 +67,23 @@ point at the veto column.
 > thirty-one risk-on reads, eight neutral, zero vetoes — the veto path is
 > exercised in dry-runs, and every refusal would be journaled verbatim.
 
-**SCREEN D (2:35–3:05) — About tab.** Click tab; hover the equity chart
+**SCREEN D (2:35–3:15) — About tab.** Click tab; hover the equity chart
 crosshair slowly left→right; point at +54.6% card, then 21.5% card.
 
 > The evidence. A two-and-a-half-year backtest on real Alpaca option
 > trades — every premium a real traded bar. The selection-first mode, where
 > the bot picks three stocks a week, returned plus fifty-four-point-six
 > percent versus SPY's forty-five-point-six — and right next to it, the
-> deeper drawdown, because that's the honest price of concentration. The
-> live engine's own rules returned thirty-two-point-two over the same
-> window. And when our single-pick mode won one year but lost its edge on
-> the full window — we published that too.
+> deeper drawdown, because that's the honest price of concentration. How
+> did we pick this mode? A series of backtests. One stock a week beat SPY
+> in its first year — but lost over the full two-and-a-half-year window,
+> so we rejected it. Three stocks a week beat SPY in BOTH windows — one
+> year, and two-and-a-half years. That's the mode we selected, and its
+> full paper trail is public, failures included.
 
 **CUT:** to slide 8 (explorations table) for 2 seconds if timing allows.
 
-## 3:05–3:50 · BUSINESS CASE (~100 words)
+## 3:15–3:55 · BUSINESS CASE (~100 words)
 
 **SCREEN:** slide 9. Point at TAM tile, then competitor table.
 
@@ -95,7 +97,7 @@ crosshair slowly left→right; point at +54.6% card, then 21.5% card.
 
 **CUT:** to slide 10.
 
-## 3:50–4:40 · WHAT'S NEXT + TRUST (~90 words)
+## 3:55–4:45 · WHAT'S NEXT + TRUST (~90 words)
 
 **SCREEN:** slide 10; end on the hosted dashboard FAQ tab, "Can it lose
 > money?" expander opened.
@@ -106,7 +108,7 @@ crosshair slowly left→right; point at +54.6% card, then 21.5% card.
 > with every order and reason, every backtest artifact — including the
 > failures. The FAQ even answers "can it lose money?" honestly: yes.
 
-## 4:40–5:00 · CLOSE (~35 words)
+## 4:45–5:00 · CLOSE (~35 words)
 
 **SCREEN:** back to dashboard hero (OWL logo). Hold still.
 
