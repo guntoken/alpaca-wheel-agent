@@ -13,15 +13,15 @@ real lablab winner (evo.ninja). Updated 28 Aug 2026 night.
 ## Required deliverables (from the official guide)
 | # | Deliverable | Status | Owner/notes |
 |---|---|---|---|
-| 1 | Project title (clear, descriptive) | ☐ | candidate: "WheelOwl — an AI-vetoed options wheel agent" (decide 30 Aug) |
-| 2 | Short description ≤255 chars | ☐ | one-liner: autonomous options-wheel agent whose AI can only say NO |
-| 3 | Long description ≥100 words (problem/solution/audience/unique) | ☐ | adapt from WRITEUP |
-| 4 | Technology & category tags | ☐ | AI/MCP/CLI/fintech/options |
-| 5 | Cover image PNG/JPG 16:9 | ☐ | owl + chart motif; generate with stablestudio or simple SVG→PNG |
-| 6 | Video ≤5 min MP4 (intro → slides → demo) | ☐ | script below |
-| 7 | Slide deck PDF (≤10 pages, 2–3 sentences/slide) | ☐ | problem, solution, demo screenshot, market, revenue, team, next |
+| 1 | Project title (clear, descriptive) | ✅ final | "OWL Agent — an autonomous options wheel whose AI can only say NO" ([SUBMISSION_FORM](SUBMISSION_FORM.md)) |
+| 2 | Short description ≤255 chars | ✅ final | 244 chars, paste-ready (SUBMISSION_FORM) |
+| 3 | Long description ≥100 words (problem/solution/audience/unique) | ✅ final | 195 kata, paste-ready (SUBMISSION_FORM) |
+| 4 | Technology & category tags | ✅ picked | AI Agents / Fintech / Trading / Python / API (SUBMISSION_FORM) |
+| 5 | Cover image PNG/JPG 16:9 | ✅ done | `docs/cover-16x9.png` (headline K=3) |
+| 6 | Video ≤5 min MP4 (intro → slides → demo) | ☐ rekam 1 Sep | script + shot list + checklist: `VIDEO_SCRIPT.md`; notes: `SLIDE_NOTES.md` |
+| 7 | Slide deck PDF (≤10 pages, 2–3 sentences/slide) | ✅ done | `docs/slides.pdf` 10 hlm 16:9 EN |
 | 8 | Public GitHub repo (real commits across event window) | ✅ live | guntoken/alpaca-wheel-agent — keep daily commits |
-| 9 | **Application URL (interactive)** | ☐ | **GAP — biggest one. See dashboard plan** |
+| 9 | **Application URL (interactive)** | ✅ live | **https://alpaca-wheel-agent.streamlit.app** (DOM-verified 6 tab) |
 
 Note: "IBM Bob report" in the guide is template boilerplate from an IBM hackathon —
 our equivalent is the agent-native paper trail: CLAUDE.md operating manual, commit
