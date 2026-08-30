@@ -512,8 +512,8 @@ OWL_SVG = ('<svg viewBox="0 0 36 36" width="34" height="34" aria-label="owl">'
 st.markdown(
     f'<div class="wa-hero"><div style="display:flex;gap:14px;align-items:center">'
     f'<div class="wa-mark">{OWL_SVG}</div><div><div class="wa-title">OWL Agent</div>'
-    f'<div class="wa-tag">autonomous options wheel agent · AI-vetoed · built on '
-    f'Alpaca hackathon Lablab.ai</div>'
+    f'<div class="wa-tag">autonomous OWL-Options WheeL agent · AI-vetoed · built '
+    f'on Alpaca hackathon Lablab.ai</div>'
     f'</div></div><div class="wa-pills">'
     + pill("paper only", "ok")
     + pill(("market open" if DATA.get("market_open") else "market closed"),
