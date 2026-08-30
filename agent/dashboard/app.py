@@ -1,4 +1,4 @@
-"""Wheel Agent — live dashboard (read-only, zero credentials).
+"""OWL (Option-WheeL) Agent — live dashboard (read-only, zero credentials).
 
 Serves dashboard/data.json, snapshotted from the trading agent's journal and
 the Alpaca PAPER account. Hosted copy on Streamlit Community Cloud reads the
@@ -16,7 +16,7 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 
-st.set_page_config(page_title="O-WheeL Agent — Alpaca Hackathon",
+st.set_page_config(page_title="OWL Agent — Alpaca Hackathon",
                    layout="wide")
 
 HERE = Path(__file__).parent
@@ -511,7 +511,7 @@ OWL_SVG = ('<svg viewBox="0 0 36 36" width="34" height="34" aria-label="owl">'
 
 st.markdown(
     f'<div class="wa-hero"><div style="display:flex;gap:14px;align-items:center">'
-    f'<div class="wa-mark">{OWL_SVG}</div><div><div class="wa-title">O-WheeL Agent</div>'
+    f'<div class="wa-mark">{OWL_SVG}</div><div><div class="wa-title">OWL Agent</div>'
     f'<div class="wa-tag">autonomous options wheel agent · AI-vetoed · built on '
     f'Alpaca hackathon Lablab.ai</div>'
     f'</div></div><div class="wa-pills">'
@@ -766,7 +766,7 @@ with tabs[4]:
         'error-prone</b>: the wrong delta, panic buy-backs, one ticker oversized. '
         'The usual "AI trading agent" answer — let an LLM pick trades — makes that '
         'worse: LLMs hallucinate, drift, and cannot be held to a risk mandate.<br><br>'
-        '<b>The Wheel Agent inverts the design.</b> A deterministic engine does 100% '
+        '<b>The OWL Agent inverts the design.</b> A deterministic engine does 100% '
         'of the trading on hard-coded rails. A Claude layer sits above it with '
         'exactly two powers: <b>read the regime</b> and <b>veto a new entry</b>. '
         'It can never place, size or force a trade — and it can never block an exit. '
@@ -988,7 +988,7 @@ with tabs[5]:
             st.markdown(a, unsafe_allow_html=True)
 
 st.markdown(
-    '<div class="wa-foot"><b>O-WheeL Agent</b> — Alpaca AI Trading Agents '
+    '<div class="wa-foot"><b>OWL Agent</b> — Alpaca AI Trading Agents '
     'Hackathon 2026 · paper trading only · no real money · no performance '
     'guarantee · not investment advice · options involve substantial risk · '
     'built on Alpaca Trading API, CLI and MCP server.</div>',

@@ -1,4 +1,4 @@
-# 🦉 Wheel Agent — the autonomous options wheel whose AI can only say NO
+# 🦉 OWL (Option-WheeL) Agent — the autonomous options wheel whose AI can only say NO
 
 **Live dashboard: https://alpaca-wheel-agent.streamlit.app** ·
 [source](agent/dashboard/app.py) · [slides](docs/slides.pdf) ·

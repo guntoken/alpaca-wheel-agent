@@ -1,4 +1,4 @@
-# Wheel Agent — Technical Write-up
+# OWL (Option-WheeL) Agent — Technical Write-up
 
 One page on how the agent thinks, how it stays safe, and what it is built on.
 Live on Alpaca paper since 28 Aug 2026. Facts below are read from the agent's
