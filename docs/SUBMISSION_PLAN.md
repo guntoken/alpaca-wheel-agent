@@ -10,6 +10,26 @@ real lablab winner (evo.ninja). Updated 28 Aug 2026 night.
   created ~1–2 Sep and used ONLY for the judged run (dev account ≠ submission account).
   Switch keys in `agent/.env` + MCP env when we flip.
 
+### Runbook flip akun paper (diverifikasi 30 Agu — mekanisme Alpaca)
+Dashboard app.alpaca.markets → paper section → **"Open New Paper Account"**
+(satu login boleh punya sampai 3 akun paper, masing-masing API keys sendiri;
+tidak perlu email baru). JANGAN hapus akun dev (tetap sebagai bukti/backup).
+1. Buat akun paper baru, starting balance $100.000, generate key pair baru.
+2. `alpaca doctor`-class sanity: pastikan endpoint tetap `https://paper-api.alpaca.markets`.
+3. Update `agent/.env` (perm 600) + env MCP user-scope bila dipakai sesi malam itu.
+4. Arsipkan jejak dev supaya data.json run penilaian bersih:
+   `git mv agent/journal.jsonl agent/journal-dev.jsonl` (atau salin + kosongkan),
+   pertimbangkan reset `agent/state.json`. Loop berikutnya mulai dari $100k flat.
+5. `uv run wheel-agent status` → equity $100.000, 0 posisi → baru `cycle --live`.
+6. Catat di README/judul run bahwa judged window mulai tanggal flip.
+
+### Strategi form lablab (diverifikasi 30 Agu)
+- lablab punya **draft**: buka draft submission lebih awal, paste semua field
+  dari SUBMISSION_FORM.md kecuali URL video; draft belum dihitung submission.
+- Submit final Rabu 2 Sep ≥6 jam sebelum deadline 4 Sep → bonus poin
+  "Early Submission" +25 (poin leaderboard, bukan skor juri) dan buffer
+  1 hari penuh sebelum hard-stop Kamis.
+
 ## Required deliverables (from the official guide)
 | # | Deliverable | Status | Owner/notes |
 |---|---|---|---|
