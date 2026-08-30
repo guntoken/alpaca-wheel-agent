@@ -16,7 +16,7 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 
-st.set_page_config(page_title="Wheel Agent — Alpaca Hackathon",
+st.set_page_config(page_title="O-WheeL Agent — Alpaca Hackathon",
                    layout="wide")
 
 HERE = Path(__file__).parent
@@ -494,23 +494,26 @@ rl = DATA.get("risk_limits", {})
 
 # ------------------------------------------------------------ hero band ---
 updated = str(DATA.get("updated", ""))[:16].replace("T", " ")
+# Minimalist geometric owl — thin gold strokes on the navy hero, angular
+# head with ear tufts, ring eyes, diamond beak (institutional-terminal look).
 OWL_SVG = ('<svg viewBox="0 0 36 36" width="34" height="34" aria-label="owl">'
-           '<path d="M7 13 L10 4.5 L13.5 12 Z" fill="#FFD666"/>'
-           '<path d="M29 13 L26 4.5 L22.5 12 Z" fill="#FFD666"/>'
-           '<circle cx="18" cy="19" r="13" fill="none" stroke="#FFD666" '
-           'stroke-width="2.4"/>'
-           '<circle cx="13" cy="17" r="4.8" fill="#F2B705"/>'
-           '<circle cx="23" cy="17" r="4.8" fill="#F2B705"/>'
-           '<circle cx="13" cy="17" r="1.8" fill="#14181F"/>'
-           '<circle cx="23" cy="17" r="1.8" fill="#14181F"/>'
-           '<path d="M18 23 L16.1 26.8 H19.9 Z" fill="#FFD666"/>'
-           '<path d="M9 26 Q13 30.6 18 30.6 Q23 30.6 27 26" stroke="#FFD666" '
-           'stroke-width="2.2" fill="none"/></svg>')
+           '<path d="M7 5.5 L12.5 9 L23.5 9 L29 5.5 L29 19 L26 28 L18 31 '
+           'L10 28 L7 19 Z" fill="none" stroke="#FFD666" stroke-width="1.8" '
+           'stroke-linejoin="round"/>'
+           '<circle cx="13.2" cy="16.5" r="4.2" fill="none" stroke="#FFD666" '
+           'stroke-width="1.8"/>'
+           '<circle cx="22.8" cy="16.5" r="4.2" fill="none" stroke="#FFD666" '
+           'stroke-width="1.8"/>'
+           '<circle cx="13.2" cy="16.5" r="1.5" fill="#FFD666"/>'
+           '<circle cx="22.8" cy="16.5" r="1.5" fill="#FFD666"/>'
+           '<path d="M18 21.5 L16.5 24.3 L18 26 L19.5 24.3 Z" fill="#FFD666"/>'
+           '</svg>')
 
 st.markdown(
     f'<div class="wa-hero"><div style="display:flex;gap:14px;align-items:center">'
-    f'<div class="wa-mark">{OWL_SVG}</div><div><div class="wa-title">WHEEL AGENT</div>'
-    f'<div class="wa-tag">autonomous options wheel · AI-vetoed · built on Alpaca</div>'
+    f'<div class="wa-mark">{OWL_SVG}</div><div><div class="wa-title">O-WheeL Agent</div>'
+    f'<div class="wa-tag">autonomous options wheel agent · AI-vetoed · built on '
+    f'Alpaca hackathon Lablab.ai</div>'
     f'</div></div><div class="wa-pills">'
     + pill("paper only", "ok")
     + pill(("market open" if DATA.get("market_open") else "market closed"),
@@ -985,7 +988,7 @@ with tabs[5]:
             st.markdown(a, unsafe_allow_html=True)
 
 st.markdown(
-    '<div class="wa-foot"><b>Wheel Agent</b> — Alpaca AI Trading Agents '
+    '<div class="wa-foot"><b>O-WheeL Agent</b> — Alpaca AI Trading Agents '
     'Hackathon 2026 · paper trading only · no real money · no performance '
     'guarantee · not investment advice · options involve substantial risk · '
     'built on Alpaca Trading API, CLI and MCP server.</div>',
