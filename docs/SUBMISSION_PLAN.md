@@ -6,9 +6,15 @@ real lablab winner (evo.ninja). Updated 28 Aug 2026 night.
 
 ## Hard deadline & account rules
 - **Submit EARLY: target Wed 2 Sep, hard stop Thu 3 Sep** — never ride into 4 Sep.
-- Final run must be on a **brand-new paper account, $100,000 starting balance**,
-  created ~1–2 Sep and used ONLY for the judged run (dev account ≠ submission account).
-  Switch keys in `agent/.env` + MCP env when we flip.
+- ⚠️ **UPDATE 31 Agu — akun baru = SYARAT ELIGIBILITAS** (halaman event):
+  "create a brand-new Alpaca paper trading account dedicated to this
+  hackathon. Projects run on an existing or reused account will not be
+  eligible for judging." Balance awal $100.000. Plus field wajib di form:
+  **Alpaca account ID** (juri menilai P&L dari akun itu). Karena P&L adalah
+  kriteria penilaian #1 → **flip akun Senin 31 Agu malam** (bukan Selasa):
+  loop restart Senin 20:15 WIB langsung di akun judged → 3 malam trading
+  (Sen/Sel/Rab) + Kamis sampai end-of-submissions, loop tetap jalan.
+  Dev account berhenti dipakai saat flip (jangan dihapus — bukti).
 
 ### Runbook flip akun paper (diverifikasi 30 Agu — mekanisme Alpaca)
 Dashboard app.alpaca.markets → paper section → **"Open New Paper Account"**
@@ -65,13 +71,13 @@ Judges need something clickable. Plan (no credentials in the cloud):
 - 2:30–4:00 business case: who pays, TAM/SAM, revenue model
 - 4:00–5:00 solo builder + roadmap (spreads sleeve, multi-agent debate, live-ready rails)
 
-## Judging rubric → our mapping
+## Judging rubric → our mapping (kriteria RESMI event, urutan asli — P&L no. 1)
 | Criterion | What we show |
 |---|---|
-| Presentation | dashboard-first README (hero screenshot before install), 5-min video, crisp slides |
-| Business value | retail traders earning options income; TAM (US retail options volume), SaaS sub model |
-| Application of tech | **real** autonomous agent, live on Alpaca paper since day 1; SDK+CLI+MCP all used; AI meaningfully integrated (regime read + veto-only risk overlay — not a chatbot wrapper) |
-| Originality | "an AI that can only say no" — LLM as risk governor on deterministic rails; agent-native build (Claude Code built & operates it); public decision journal incl. bugs found & fixed live |
+| **P&L Performance** | akun judged baru $100k berjalan otonom sejak Senin malam (maksimalkan malam trading sebelum 4 Sep); premium terkumpul + drawdown terkendali; backtest 2,5 th sebagai bukti aturan yang sama |
+| **Technology Implementation** | **real** autonomous agent, live on Alpaca paper since day 1; SDK + CLI + MCP semua terpakai; AI meaningfully integrated (regime read + veto-only risk overlay — bukan chatbot wrapper) |
+| **Creativity & Originality** | "an AI that can only say no" — LLM sebagai risk governor di atas rel deterministik; decision journal publik termasuk bug yang ditemukan & diperbaiki live |
+| **Presentation & Execution** | dashboard-first README (hero screenshot sebelum install), video 5 mnt, slide PDF, write-up 1 halaman |
 
 ## README upgrade (copy evo.ninja patterns)
 Hero screenshot first → one-line tagline → quick start split (demo URL vs source)
