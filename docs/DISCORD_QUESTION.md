@@ -7,61 +7,32 @@ Post di Discord event (channel help/questions), tag mentor bila diizinkan.
 Fakta akun diverifikasi 31 Agu pagi: 4 posisi short put terbuka, 0 order
 terbuka, equity $99.698,16, semua order via API (tanpa trade manual).
 
+Batas Discord non-Nitro = 2.000 char. Versi utama di bawah = 1.161 char
+✓ aman (judul +42 char bila ikut tercopy).
+
 ---
 
-## Versi lengkap (disarankan)
+## Versi utama (1.161 char — aman di bawah batas 2.000)
 
 ```text
-Clarification on the "brand-new account" rule — dev account created at kickoff, now holding open positions
+Hi organizers — quick clarification on the "brand-new account" rule before we submit.
 
-Hi organizers — we'd like to double-check the account requirement before
-finalizing our submission.
+Our paper account was created specifically for this hackathon (Aug 28, $100,000 start) and never used for anything else — no manual trades; every order came from our options-wheel agent via the Trading API. It has traded live since day 1 and still holds open short puts from the first sessions. One caveat: our code iterated during the event (bugs found and fixed mid-week), so its history spans a few code versions.
 
-Our situation:
+The rules say a submission must use "a brand-new Alpaca paper trading account dedicated to this hackathon" and that "projects run on an existing or reused account will not be eligible for judging."
 
-- We built an autonomous options-wheel trading agent using the Trading API,
-  the Alpaca CLI, and the Alpaca MCP server.
-- Our paper account was created specifically for this hackathon at the very
-  start of the event window (Aug 28), with the $100,000 starting balance,
-  and it has never been used for anything else — no manual trades; every
-  order was submitted programmatically by the agent via the API.
-- It has been trading live since day 1 and currently holds open short-put
-  positions that were opened during the first market sessions.
-- Like most builds, our code iterated during the event (two bugs found via
-  the agent's own decision journal and fixed mid-week), so the account's
-  history spans a few code versions.
+Questions:
+1. Does our account count as "brand-new / dedicated" since it was created for this event — despite carrying dev-phase history and open positions?
+2. If we must create a fresh $100k account, is a judged run of ~3 trading sessions before the deadline acceptable?
+3. If so, do we submit only the new account ID (dev history stays as build evidence in our repo/journal)?
 
-The rules say: "For your final submission, create a brand-new Alpaca paper
-trading account dedicated to this hackathon. Projects run on an existing or
-reused account will not be eligible for judging."
-
-Our questions:
-
-1. Does our account qualify as "brand-new ... dedicated to this hackathon" —
-   given it was created for this event — even though it already carries
-   development-phase trading history and open positions?
-2. If not, we will create a fresh $100,000 account for the judged run. Is it
-   acceptable for that fresh account to start trading only a few days before
-   the submission deadline (~3 trading sessions), or do you expect a longer
-   judged window?
-3. If a fresh account is required, should the submission include only the
-   new account ID, with the dev account's history kept purely as build
-   evidence (journal / README / social posts)?
-
-Happy to flip to a fresh account either way — we just want to submit in the
-intended way. Thank you!
+Happy to flip either way — we just want to submit in the intended way. Thanks!
 ```
 
-## Versi singkat (fallback bila channel ketat)
+## Versi mini (fallback, ~600 char)
 
 ```text
-Quick check on the "brand-new account" rule: our paper account was created
-specifically for this hackathon right at the start (Aug 28), funded at
-$100,000, used only by our agent (no manual trades), and it now holds open
-positions from the first sessions. Does that count as "a brand-new account
-dedicated to this hackathon", or must we create a fresh account at
-submission time? If fresh is required, is a judged run of ~3 trading days
-before the deadline acceptable?
+Quick check on the "brand-new account" rule: our paper account was created for this hackathon at kickoff (Aug 28, $100k, agent-only trades, never used for anything else) and now holds open positions from week 1. Does it count as "a brand-new account dedicated to this hackathon", or must we create a fresh account at submission? If fresh is required, is a ~3-day judged run before the deadline OK?
 ```
 
 ## Setelah dijawab
