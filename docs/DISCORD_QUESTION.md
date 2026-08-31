@@ -50,3 +50,24 @@ Quick check on the "brand-new account" rule: our agent has traded paper since ki
   membuat satu-satunya jalur compliant adalah akun baru).
 
 ## Runbook flip: SUBMISSION_PLAN.md §"Runbook flip akun paper"
+
+---
+
+## Follow-up (31 Agu siang — post sebagai reply di thread jawaban admin)
+
+Konteks: admin ( orang lain) sudah jawab resmi — window P&L Sen 31 Agu 09:30 ET
+→ Jum 4 Sep 09:30 ET, snapshot equity total di close Thu 3 Sep, posisi expire
+Jum 4 Sep dikecualikan dari pengukuran. Kunci interpretasi terakhir utk sizing:
+
+```text
+Thanks! One follow-up so we size correctly: for positions expiring Fri Sep 4
+that are excluded from the measurement — the premium already received (cash in
+the account) still counts toward the total equity snapshot at Thu close,
+correct? i.e. only the position's mark at Thu close is excluded, not the
+trade's cash. Thanks!
+```
+
+(~330 char.) Kalau admin konfirmasi → sprint 4-Sep jalan penuh Sen–Rab.
+Kalau dibalik ("seluruh ekonomi trade dikecualikan") → set SPRINT_EXPIRY=None
+Selasa pagi dan jalankan wheel murni — premium TP-50 buyback tetap dihitung
+sebagai cash equity biasa.

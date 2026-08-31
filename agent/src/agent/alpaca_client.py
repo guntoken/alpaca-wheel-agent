@@ -255,12 +255,13 @@ class Api:
     def candidates(self, underlying: str, right: str,
                    dte_min: int, dte_max: int,
                    strike_max: Optional[float] = None,
-                   strike_min: Optional[float] = None) -> list[Candidate]:
+                   strike_min: Optional[float] = None,
+                   expiry: Optional[str] = None) -> list[Candidate]:
         today = date.today()
         resp = self.trade.get_option_contracts(GetOptionContractsRequest(
             underlying_symbols=[underlying], status="active",
-            expiration_date_gte=(today + timedelta(days=dte_min)).isoformat(),
-            expiration_date_lte=(today + timedelta(days=dte_max)).isoformat(),
+            expiration_date_gte=expiry or (today + timedelta(days=dte_min)).isoformat(),
+            expiration_date_lte=expiry or (today + timedelta(days=dte_max)).isoformat(),
             type=("call" if right == "C" else "put"), limit=1000))
         snaps = self.chain_snapshots(underlying)
         out: list[Candidate] = []

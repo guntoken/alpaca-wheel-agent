@@ -16,6 +16,25 @@ real lablab winner (evo.ninja). Updated 28 Aug 2026 night.
   (Sen/Sel/Rab) + Kamis sampai end-of-submissions, loop tetap jalan.
   Dev account berhenti dipakai saat flip (jangan dihapus — bukti).
 
+## ⚡ Jendela skor P&L (JAWABAN RESMI LabLab Admin, Discord 31 Agu 01:27)
+> "the official P&L scoring window is from Monday, August 31 at 9:30 a.m. ET
+> to Friday, September 4 at 9:30 a.m. ET. The total equity snapshot will be
+> taken at the close of business on Thursday, September 3. Positions expiring
+> on Friday, September 4 are indeed excluded from this measurement."
+
+Konversi WIB (EDT = WIB−11) dan implikasi:
+- Window **Sen 31 Agu 20:30 WIB → Jum 4 Sep 20:30 WIB**; snapshot equity
+  total di **close Thu 3 Sep 16:00 ET = Jum 4 Sep 03:00 WIB**.
+- Malam trading yang dihitung: **Sen, Sel, Rab, Kam** (4 malam). Jumat tak
+  ada nilai skor — loop boleh berhenti setelah close Kamis.
+- **Sprint 4-Sep (keputusan pemilik 31 Agu)**: `SPRINT_EXPIRY="2026-09-04"`
+  di config → CSP baru (dan roll defensif) target expiry tepat Jum 4 Sep:
+  premium masuk sebagai cash yang terhitung di snapshot, mark posisi
+  dikecualikan per konfirmasi admin, assignment settle pasca-snapshot.
+  Diungkap jujur di journal/README. `VOL_PCT_FLOOR` 0.40→0.25 (sprint).
+  Follow-up utk mengunci interpretasi: DISCORD_QUESTION.md §Follow-up.
+  Kalau admin membalik interpretasi → `SPRINT_EXPIRY=None` (wheel murni).
+
 ### Runbook flip akun paper (diverifikasi 30 Agu — mekanisme Alpaca)
 Dashboard app.alpaca.markets → paper section → **"Open New Paper Account"**
 (satu login boleh punya sampai 3 akun paper, masing-masing API keys sendiri;

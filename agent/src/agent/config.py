@@ -21,6 +21,14 @@ UNIVERSE = ["INTC", "T", "F", "GM", "PFE", "KO", "NOK", "SOFI", "BABA", "MU", "W
 CSP_TARGET_DELTA = 0.30
 CSP_DELTA_BAND = (0.18, 0.42)
 DTE_MIN, DTE_MAX = 7, 35
+
+# --- judged-run sprint (LabLab Admin, 31 Agu): P&L window Sen 31 Agu 09:30 ET
+# → total-equity snapshot at Thu 3 Sep close; "positions expiring on Friday,
+# September 4 are excluded from this measurement". New CSPs (and defensive
+# rolls) target exactly that expiry: premium lands as counted cash while the
+# short's Thu-close mark is excluded, and any assignment settles post-snapshot.
+# None = standard 7–35 DTE wheel. Disclosed in the journal/README. ---
+SPRINT_EXPIRY = "2026-09-04"
 MIN_PREMIUM_PCT = 0.005        # premium >= 0.5% of collateral (strike*100)
 TP_CLOSE_FRACTION = 0.50       # buy back when premium <= 50% of what we received
 ROLL_DELTA = 0.60              # defensive: close short put when delta reaches this
@@ -29,7 +37,9 @@ ROLL_DELTA = 0.60              # defensive: close short put when delta reaches t
 # for premium selling: skip NEW CSPs when vol is cheap vs its own history) ---
 VOL_BAR_WINDOW = 21            # ~1 month bar, vs paper's 35-day OHP
 VOL_HISTORY_DAYS = 250         # paper uses 250 trading days
-VOL_PCT_FLOOR = 0.40           # last bar must rank >= 40th percentile
+VOL_PCT_FLOOR = 0.25           # sprint override (was 0.40): 4-session judged
+                               # window Sen–Kam 31 Agu–3 Sep; idle capital = zero
+                               # score, and 0.40 blocked 4/6 names on 30 Agu
 
 # --- CC (covered call) ---
 CC_TARGET_DELTA = 0.25

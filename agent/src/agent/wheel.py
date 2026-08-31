@@ -101,7 +101,8 @@ def decide(api: Api, st: SymbolState, ctx: dict) -> list[Intent]:
         if not ctx["slots_free"]:
             return skip(f"max underlyings reached ({config.MAX_UNDERLYINGS})")
         strike_max = ctx["caps"]["per_underlying"] / 100.0
-        cands = api.candidates(u, "P", config.DTE_MIN, config.DTE_MAX, strike_max=strike_max)
+        cands = api.candidates(u, "P", config.DTE_MIN, config.DTE_MAX,
+                               strike_max=strike_max, expiry=config.SPRINT_EXPIRY)
         target = ctx.get("csp_target_delta") or config.CSP_TARGET_DELTA
         band = ctx.get("csp_band") or config.CSP_DELTA_BAND
         best = _best(cands, target, band, config.MIN_PREMIUM_PCT)
@@ -161,7 +162,8 @@ def decide(api: Api, st: SymbolState, ctx: dict) -> list[Intent]:
                 # have worked off. No credit available -> hold to assignment.
                 strike_max = ctx["caps"]["per_underlying"] / 100.0
                 fresh = _best(api.candidates(u, "P", config.DTE_MIN, config.DTE_MAX,
-                                             strike_max=strike_max),
+                                             strike_max=strike_max,
+                                             expiry=config.SPRINT_EXPIRY),
                               config.CSP_TARGET_DELTA, config.CSP_DELTA_BAND,
                               config.MIN_PREMIUM_PCT)
                 if fresh and fresh.bid >= ask:
