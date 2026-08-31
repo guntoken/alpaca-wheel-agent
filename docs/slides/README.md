@@ -6,7 +6,12 @@
 2. charts: `equity.svg` + `premium.svg` generated from the published baseline run
    (`agent/runs/bt-2026-08-29_wheel-csp-cc_1Day/` + `agent/dashboard/backtest.json`);
    palette validated with the dataviz skill validator (gold #C98A00 / navy #3D6BA8)
-3. inline SVGs into `slides.print.html` (agent-browser `open file://…`)
+3. inline SVGs into `slides.print.html` (agent-browser `open file://…`).
+   Exact transform: replace each `<image href="X.svg" width height/>` element
+   with the INNER content of `X.svg` (strip its outer `<svg…>`/`</svg>`), so
+   the chart svg's inner elements land inside the existing wrapper svg. A
+   `<img src=…>` regex matches nothing here and silently produces a chartless
+   print.html (restore from git if that happens).
 4. **screenshots — CRITICAL, do it exactly this way** (learned the hard way):
    ```
    agent-browser set viewport 1280 720          # viewport MUST equal slide size
