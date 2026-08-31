@@ -42,6 +42,13 @@ Quick check on the "brand-new account" rule: our agent has traded paper since ki
 ```
 
 ## Setelah dijawab (semua cabang → flip tetap hari ini)
+
+**TERJAWAB TIDAK LANGSUNG 31 Agu siang** — admin menjawab peserta lain:
+(02:33) akun brand-new wajib, akun existing/reused tak eligibel; (04:39)
+akun baru di profil lama acceptable, hapus akun lama tak wajib; (04:16)
+penghubung penilaian = account ID di form submission. Rencana kita persis
+jalur itu — pertanyaan kita tinggal menunggu jawaban formal, keputusan
+sudah final: FLIP SORE INI.
 - "3 session OK, new ID only" → lanjut runbook flip sore ini tanpa perubahan.
 - "3 session terlalu pendek / ideally longer" → TETAP flip secepatnya hari ini
   (kriteria #1 = P&L; tiap malam trading tambahan = nilai; tidak ada cara

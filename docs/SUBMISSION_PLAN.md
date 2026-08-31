@@ -15,6 +15,13 @@ real lablab winner (evo.ninja). Updated 28 Aug 2026 night.
   loop restart Senin 20:15 WIB langsung di akun judged → 3 malam trading
   (Sen/Sel/Rab) + Kamis sampai end-of-submissions, loop tetap jalan.
   Dev account berhenti dipakai saat flip (jangan dihapus — bukti).
+- ✅ **KONFIRMASI ADMIN Discord 31 Agu (02:33 & 04:39)**: akun paper BARU di
+  profil/login LAMA = jalur resmi ("Deleting an existing paper account and
+  creating a new one under the same profile is acceptable as long as it is a
+  fresh account"); menghapus akun lama TIDAK wajib; penghubung penilaian =
+  **account ID yang disubmit di form** ("requiring participants to submit
+  their final submission with a brand-new Alpaca paper trading account ID
+  dedicated to the hackathon"). Pertanyaan kita di Discord efektif terjawab.
 
 ## ⚡ Jendela skor P&L (JAWABAN RESMI LabLab Admin, Discord 31 Agu 01:27)
 > "the official P&L scoring window is from Monday, August 31 at 9:30 a.m. ET
