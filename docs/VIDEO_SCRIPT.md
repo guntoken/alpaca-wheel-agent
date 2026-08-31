@@ -70,9 +70,12 @@ point at the veto column.
 **SCREEN D (2:35–3:15) — About tab.** Click tab; hover the equity chart
 crosshair slowly left→right; point at +54.6% card, then 21.5% card.
 
-> The evidence. A two-and-a-half-year backtest on real Alpaca option
-> trades — every premium a real traded bar. The selection-first mode, where
-> the bot picks three stocks a week, returned plus fifty-four-point-six
+> The evidence. To be clear about which engine is which: the agent you
+> just saw trading live runs the diversified five-name engine — its own
+> two-and-a-half-year number is plus thirty-two-point-two percent, on the
+> next slide. This chart is the pre-committed selection-first variant,
+> where the bot picks three stocks a week — every premium a real traded
+> bar. It returned plus fifty-four-point-six
 > percent versus SPY's forty-five-point-six — and right next to it, the
 > deeper drawdown, because that's the honest price of concentration. How
 > did we pick this mode? A series of backtests. One stock a week beat SPY

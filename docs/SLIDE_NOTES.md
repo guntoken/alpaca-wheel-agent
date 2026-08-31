@@ -16,8 +16,11 @@ dengan panah, wajah pojok kanan bawah.
 > line: an AI that can only say NO. A deterministic engine does the
 > trading, and Claude holds exactly two powers — read the regime, and
 > veto a new entry. It never places, sizes, or forces a trade, and it
-> never blocks an exit. Back here: plus fifty-four point six percent,
-> live since day one, one hundred percent public. Let me show you.
+> never blocks an exit. Back here, two backtest numbers, both published:
+> the selection-first variant — plus fifty-four point six — is the one
+> that beat SPY; the live five-name engine's own run — plus thirty-two
+> point two — trades upside for drawdown control. Live since day one,
+> one hundred percent public. Let me show you.
 
 ## Slide 2 · The problem — ±30 detik
 
@@ -78,9 +81,12 @@ dengan panah, wajah pojok kanan bawah.
 ## Slide 7 · The backtest — ±33 detik
 
 > Now the evidence: backtested two and a half years on real option
-> trades — and it beats SPY in its own bull window. The mode on this
-> chart: every Monday the bot scores twenty-four names and sells puts
-> on the top three only. Every premium is a real traded option bar, and
+> trades — and it beats SPY in its own bull window. To be clear: the
+> agent you saw trading live runs the diversified five-name engine; its
+> own number is the plus thirty-two point two you'll see on the next
+> slide. The mode on this chart: every Monday the bot scores twenty-four
+> names and sells puts on the top three only — the pre-committed
+> selection-first variant. Every premium is a real traded option bar, and
 > no parameter was fitted to this window. The result: plus fifty-four
 > point six percent, versus SPY's forty-five point six. Calmar one point
 > three nine versus one point three four. And the deeper drawdown —

@@ -815,8 +815,8 @@ with tabs[4]:
         cal_b = b["cagr"] / max(b["max_drawdown"], 0.01)
         row(
             card("Total return", f"{s['total_return']:+.1f}%",
-                 sub=f"SPY buy-and-hold {b['total_return']:+.1f}% — beats the "
-                     "index in its own bull window",
+                 sub=f"selection-first variant — SPY {b['total_return']:+.1f}%, "
+                     "beats the index; live 5-name engine's run: +32.2%",
                  tone="good" if s["total_return"] >= b["total_return"] else "warn",
                  cls="gold" if s["total_return"] >= b["total_return"] else "")
             + card("Calmar (CAGR÷DD)", f"{cal_s:.2f}",
