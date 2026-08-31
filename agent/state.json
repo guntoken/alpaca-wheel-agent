@@ -1,6 +1,9 @@
 {
   "day": "2026-08-31",
   "day_start_equity": 100000.0,
-  "repriced": {},
-  "cycles": 2
+  "repriced": {
+    "BABA": 1,
+    "SOFI": 2
+  },
+  "cycles": 9
 }

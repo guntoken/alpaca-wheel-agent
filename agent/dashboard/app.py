@@ -11,6 +11,7 @@ rhythm, tabular numerals, whisper-layered shadows.
 Run locally:  streamlit run agent/dashboard/app.py   (from repo root)
 """
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 
 import pandas as pd
@@ -493,7 +494,13 @@ stats = DATA.get("stats", {})
 rl = DATA.get("risk_limits", {})
 
 # ------------------------------------------------------------ hero band ---
-updated = str(DATA.get("updated", ""))[:16].replace("T", " ")
+# "updated" in data.json is tz-aware (US/Eastern) — normalize to UTC for the
+# label so the suffix below is truthful.
+try:
+    updated = (datetime.fromisoformat(str(DATA.get("updated", "")))
+               .astimezone(timezone.utc).strftime("%Y-%m-%d %H:%M"))
+except ValueError:
+    updated = str(DATA.get("updated", ""))[:16].replace("T", " ")
 # Minimalist geometric owl — thin gold strokes on the navy hero, angular
 # head with ear tufts, ring eyes, diamond beak (institutional-terminal look).
 OWL_SVG = ('<svg viewBox="0 0 36 36" width="34" height="34" aria-label="owl">'
@@ -538,7 +545,8 @@ with tabs[0]:
         + card("Unrealized P&L", fmt_usd(upl, signed=True), sub="mark-to-market",
                tone="good" if upl >= 0 else "bad")
         + card("Open positions", str(len(DATA.get("positions", []))),
-               sub=f"{stats.get('live_cycles', 0)} live cycles"))
+               sub=f"{stats.get('live_cycles', 0)} live "
+                   f"cycle{'s' if stats.get('live_cycles', 0) != 1 else ''}"))
 
     st.subheader("Equity curve — every cycle, from the decision journal")
     entries = [e for e in DATA.get("equity_curve", [])
