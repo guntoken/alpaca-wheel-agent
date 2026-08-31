@@ -1,8 +1,8 @@
 {
- "updated": "2026-08-31T15:59:46.526328-04:00",
- "market_open": true,
+ "updated": "2026-08-31T16:00:27.632171-04:00",
+ "market_open": false,
  "account": {
-  "equity": 99997.31,
+  "equity": 99983.31,
   "cash": 100825.31,
   "options_buying_power": 28825.31,
   "day_start_equity": 100015.53,
@@ -17,10 +17,10 @@
    "expiry": "2026-09-04",
    "qty": -1.0,
    "avg_entry": 0.97,
-   "mark": 1.38,
-   "unrealized_pl": -41.0,
+   "mark": 1.4,
+   "unrealized_pl": -43.0,
    "collateral": 11300.0,
-   "spot": 114.1
+   "spot": 114.03
   },
   {
    "symbol": "INTC260904P00087000",
@@ -33,7 +33,7 @@
    "mark": 1.14,
    "unrealized_pl": -8.0,
    "collateral": 17400.0,
-   "spot": 89.515
+   "spot": 89.49
   },
   {
    "symbol": "NOK260904P00010000",
@@ -46,7 +46,7 @@
    "mark": 0.2,
    "unrealized_pl": -9.0,
    "collateral": 9000.0,
-   "spot": 10.135
+   "spot": 10.13
   },
   {
    "symbol": "PFE260904P00028000",
@@ -56,10 +56,10 @@
    "expiry": "2026-09-04",
    "qty": -6.0,
    "avg_entry": 0.18,
-   "mark": 0.12,
-   "unrealized_pl": 36.0,
+   "mark": 0.14,
+   "unrealized_pl": 24.0,
    "collateral": 16800.0,
-   "spot": 28.48
+   "spot": 28.47
   },
   {
    "symbol": "SOFI260904P00017500",
@@ -72,19 +72,10 @@
    "mark": 0.21,
    "unrealized_pl": 20.0,
    "collateral": 17500.0,
-   "spot": 17.9
+   "spot": 17.88
   }
  ],
- "open_orders": [
-  {
-   "symbol": "PFE260904P00028000",
-   "side": "buy",
-   "qty": 6.0,
-   "limit": 0.08,
-   "status": "new",
-   "coid": "WHL-TPP-PFE260904P00028000-0149"
-  }
- ],
+ "open_orders": [],
  "fills": [
   {
    "ts": "2026-08-31 17:15:05.858300+00:00",
@@ -1235,7 +1226,7 @@
   "cycles_total": 20,
   "live_cycles": 19,
   "fills": 5,
-  "unrealized_pl": -2.0,
+  "unrealized_pl": -16.0,
   "kill_switch": false
  },
  "risk_limits": {
