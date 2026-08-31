@@ -96,14 +96,18 @@ https://alpaca-wheel-agent.streamlit.app
 Dashboard read-only 6 tab (Command Center / Risk Lab + stress test /
 AI Brain / Execution Desk / About + FAQ), tanpa kredensial apa pun.
 
-## 11. Alpaca paper trading account ID — ⚠️ WAJIB, isi setelah buat akun
+## 11. Alpaca paper trading account ID — ⚠️ WAJIB — ✅ TERISI
 
 > "Your final submission must include the Alpaca paper trading account ID
 > used for the hackathon. This allows the judging team to identify your
 > trading activity and evaluate your P&L performance."
 
-Isi setelah akun baru dibuat (Senin/Selasa): ambil dari
-`uv run wheel-agent status` / dashboard Alpaca (format UUID).
+**`84705518-320e-457b-a68e-46c099b8ff06`**
+
+Akun judged: `PA3F0TJJ7C7W`, dibuat 31 Agu 2026 12:04 WIB (brand-new,
+$100.000 flat, options lv 3/3), diverifikasi via API. Jendela skor resmi:
+Sen 31 Agu 09:30 ET → snapshot close Thu 3 Sep (SUBMISSION_PLAN §Jendela
+skor). ⚠️ Jangan top-up/reset akun selama window — snapshot = total equity.
 
 ---
 
