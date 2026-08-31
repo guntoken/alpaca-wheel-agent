@@ -22,3 +22,7 @@ repos/
 
 # submission deck (slide PDF + cover) — build via docs/slides/
 !docs/slides.pdf
+
+# autoexport runtime
+autoexport.log
+autoexport.pid
