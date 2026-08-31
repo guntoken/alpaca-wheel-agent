@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-31T14:37:26.315880-04:00",
+ "updated": "2026-08-31T14:37:47.385874-04:00",
  "market_open": true,
  "account": {
   "equity": 100001.31,
@@ -20,7 +20,7 @@
    "mark": 1.24,
    "unrealized_pl": -27.0,
    "collateral": 11300.0,
-   "spot": 114.355
+   "spot": 114.365
   },
   {
    "symbol": "INTC260904P00087000",
@@ -72,7 +72,7 @@
    "mark": 0.22,
    "unrealized_pl": 10.0,
    "collateral": 17500.0,
-   "spot": 17.845
+   "spot": 17.85
   }
  ],
  "open_orders": [],
