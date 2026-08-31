@@ -37,25 +37,16 @@ account, 4 cash-secured puts expiring exactly Fri Sep 4, 2 filled fast — $328
 premium. Claude's only power is veto; the deterministic engine trades.
 @lablabai @AlpacaHQ alpaca-wheel-agent.streamlit.app
 
-## LinkedIn (~120 words)
+## LinkedIn (low-key, permintaan pemilik 31 Agu malam — cukup tag penyelenggara)
 
-Day 4 of the Alpaca AI Trading Agents hackathon (lablab.ai × Alpaca) — the
-official P&L window opened tonight.
+Day 4 progress note from the Alpaca AI Trading Agents hackathon (lablab.ai × Alpaca).
 
-We want the judged run done right: the dev account we built on didn't meet the
-rules, so today we opened a brand-new $100k paper account and started night 1
-of 4.
+Tonight the paper-trading options-wheel agent began its judged run on a fresh
+$100k account: four cash-secured puts expiring Fri Sep 4, two filled so far
+($328 premium). The LLM layer remains veto-only; a deterministic engine
+handles all order decisions.
 
-The wheel sold cash-secured puts expiring exactly Friday Sep 4 — the window
-scores equity at Thursday's close, so we sell premium that turns into cash
-inside it. That choice is disclosed in the public journal, not hidden.
-
-Four puts across INTC, PFE, BABA, SOFI; two filled within minutes ($328
-premium). Claude read the regime (RISK_ON) and approved entries — but it still
-cannot place a trade. Veto only. A deterministic engine picks every strike on
-hard rails.
-
-Dashboard: https://alpaca-wheel-agent.streamlit.app
+Dashboard (read-only): https://alpaca-wheel-agent.streamlit.app
 Repo: github.com/guntoken/alpaca-wheel-agent
 
-#AI #fintech #alpaca #hackathon @lablabai @AlpacaHQ
+@lablabai @AlpacaHQ
