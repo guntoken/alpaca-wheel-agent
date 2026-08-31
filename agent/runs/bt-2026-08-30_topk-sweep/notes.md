@@ -32,3 +32,15 @@ drawdown lebih kecil — data yang memutuskan.
 - K tetap seleksi momentum: menang di rezim momentum, membeli puncak di
   mean-reversion — berlaku untuk semua K.
 - 1 tahun = 1 sampel per K.
+
+## Run lanjutan 1 Sep 2026: k5full (mengisi matriks sweep)
+
+Pertanyaan pemilik (1 Sep, sebelum eksekusi perbaikan penyajian): *"kalau 5 stock
+di-backtest di strategy selection-first ini, bisakah beats SPY juga? Jika bisa,
+tinggal catatan tambahan 3->5 stock."* Celah sah di matriks sweep: k5full belum
+pernah dijalankan di window 2,5 tahun (k5 hanya 1 tahun: +1,1% vs SPY +20,1%).
+
+**Lineage**: identik dengan k3full (run.py yang sama, window 2024-03-01 ->
+2026-07-31, budget per-nama min(40%, 72%/K) = 14,4%, fee/fill/SPY sama,
+opts_cache dibagi) — SATU perubahan: `BT_TOPK=5 BT_TAG=k5full`. Tidak ada
+parameter lain yang disentuh. Hasil apa adanya dipublikasikan di folder ini.
