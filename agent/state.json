@@ -1,8 +1,6 @@
 {
-  "day": "2026-09-01",
-  "day_start_equity": 100015.53,
-  "repriced": {
-    "NOK": 1
-  },
-  "cycles": 33
+  "day": "2026-09-02",
+  "day_start_equity": 99535.59,
+  "repriced": {},
+  "cycles": 35
 }
