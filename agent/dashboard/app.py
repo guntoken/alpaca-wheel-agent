@@ -544,15 +544,20 @@ with tabs[0]:
     row(
         card("Equity", fmt_usd(acct.get("equity")),
              sub=f"anchor {fmt_usd(anchor)}")
-        + card("Premium collected", fmt_usd(prem, signed=True),
-               sub=f"{stats.get('fills', 0)} fills — the wheel's income",
+        + card("Premium secured", fmt_usd(prem, signed=True),
+               sub=f"{stats.get('fills', 0)} fills · realized cash income",
                cls="gold" if prem >= 0 else "",
                tone=None if prem >= 0 else "bad")
-        + card("Unrealized P&L", fmt_usd(upl, signed=True), sub="mark-to-market",
+        + card("Unrealized P&L", fmt_usd(upl, signed=True),
+               sub="premium vs. cost-to-close · not realized",
                tone="good" if upl >= 0 else "bad")
         + card("Open positions", str(len(DATA.get("positions", []))),
                sub=f"{stats.get('live_cycles', 0)} live "
                    f"cycle{'s' if stats.get('live_cycles', 0) != 1 else ''}"))
+    st.caption("Premium secured is realized cash — banked at fill, kept whether the "
+               "open shorts expire worthless Friday or get assigned. Unrealized P&L "
+               "is only the cost to close those shorts today; it converges to the "
+               "full premium if the puts stay out of the money.")
 
     st.subheader("Equity curve — every cycle, from the decision journal")
     entries = [e for e in DATA.get("equity_curve", [])
