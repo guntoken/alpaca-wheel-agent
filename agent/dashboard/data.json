@@ -1,10 +1,10 @@
 {
- "updated": "2026-09-02T13:45:01.874497-04:00",
+ "updated": "2026-09-02T14:10:01.736639-04:00",
  "market_open": true,
  "account": {
-  "equity": 100043.39,
-  "cash": 100726.39,
-  "options_buying_power": 54126.39,
+  "equity": 100065.36,
+  "cash": 100707.36,
+  "options_buying_power": 62907.36,
   "day_start_equity": 100050.39,
   "paper_only": true
  },
@@ -17,23 +17,10 @@
    "expiry": "2026-09-04",
    "qty": -1.0,
    "avg_entry": 0.97,
-   "mark": 2.1,
-   "unrealized_pl": -113.0,
+   "mark": 2.13,
+   "unrealized_pl": -116.0,
    "collateral": 11300.0,
-   "spot": 111.67
-  },
-  {
-   "symbol": "KO260904P00088000",
-   "underlying": "KO",
-   "kind": "short put",
-   "strike": 88.0,
-   "expiry": "2026-09-04",
-   "qty": -1.0,
-   "avg_entry": 0.46,
-   "mark": 0.24,
-   "unrealized_pl": 22.0,
-   "collateral": 8800.0,
-   "spot": 88.835
+   "spot": 111.805
   },
   {
    "symbol": "NOK260904P00010000",
@@ -56,23 +43,22 @@
    "expiry": "2026-09-04",
    "qty": -10.0,
    "avg_entry": 0.23,
-   "mark": 0.17,
-   "unrealized_pl": 60.0,
+   "mark": 0.15,
+   "unrealized_pl": 80.0,
    "collateral": 17500.0,
-   "spot": 17.755
+   "spot": 17.875
   }
  ],
- "open_orders": [
+ "open_orders": [],
+ "fills": [
   {
+   "ts": "2026-09-02 18:03:22.938568+00:00",
    "symbol": "KO260904P00088000",
    "side": "buy",
    "qty": 1.0,
-   "limit": 0.19,
-   "status": "new",
-   "coid": "WHL-TPP-KO260904P00088000-0038"
-  }
- ],
- "fills": [
+   "price": 0.19,
+   "notional": 19.0
+  },
   {
    "ts": "2026-09-02 16:20:51.603316+00:00",
    "symbol": "INTC260904P00087000",
@@ -138,8 +124,8 @@
    "notional": 220.0
   }
  ],
- "premium_net_collected": 728.0,
- "realized_closed_legs": 184.0,
+ "premium_net_collected": 709.0,
+ "realized_closed_legs": 211.0,
  "equity_curve": [
   {
    "ts": "2026-08-31T05:14:15+00:00",
@@ -360,40 +346,44 @@
   {
    "ts": "2026-09-02T17:38:23+00:00",
    "equity": 100038.39
+  },
+  {
+   "ts": "2026-09-02T17:54:14+00:00",
+   "equity": 100068.39
   }
  ],
  "market_context": {
   "SPY": {
-   "last": 764.55,
-   "sma20": 768.9,
-   "sma50": 755.28,
-   "vs_sma20_pct": -0.57,
-   "vs_sma50_pct": 1.23
+   "last": 764.945,
+   "sma20": 768.93,
+   "sma50": 755.29,
+   "vs_sma20_pct": -0.52,
+   "vs_sma50_pct": 1.28
   },
   "QQQ": {
-   "last": 707.98,
-   "sma20": 717.49,
-   "sma50": 710.82,
-   "vs_sma20_pct": -1.33,
-   "vs_sma50_pct": -0.4
+   "last": 708.46,
+   "sma20": 717.52,
+   "sma50": 710.83,
+   "vs_sma20_pct": -1.26,
+   "vs_sma50_pct": -0.33
   },
-  "SPY_vol_dollar_percentile": 0.046,
-  "SPY_day_change_pct": 0.38,
+  "SPY_vol_dollar_percentile": 0.052,
+  "SPY_day_change_pct": 0.44,
   "macro": {
    "GLD": {
-    "last": 400.72,
-    "day_pct": 1.0,
-    "vs_sma20_pct": -1.87
+    "last": 401.49,
+    "day_pct": 1.19,
+    "vs_sma20_pct": -1.69
    },
    "VIXY": {
-    "last": 17.39,
-    "day_pct": -2.52,
-    "vs_sma20_pct": -5.55
+    "last": 17.33,
+    "day_pct": -2.86,
+    "vs_sma20_pct": -5.87
    },
    "BTC": {
-    "last": 77154.95,
-    "day_pct": -0.32,
-    "vs_sma20_pct": 4.46
+    "last": 77329.35,
+    "day_pct": -0.1,
+    "vs_sma20_pct": 4.69
    },
    "news": {
     "avg_sentiment": null,
@@ -823,105 +813,16 @@
    "reason": "QQQ under both SMAs, SPY under 20-day; VIXY calm, gold bid, no panic \u2014 mixed choppy tape",
    "det": "NEUTRAL_OR_BULL",
    "spy_pct": 0.38
+  },
+  {
+   "ts": "2026-09-02T17:54:14+00:00",
+   "regime": "NEUTRAL",
+   "reason": "SPY above 50-SMA but below 20-SMA, QQQ below both; gold up yet VIXY falling, BTC firm \u2014 mixed, choppy tape",
+   "det": "NEUTRAL_OR_BULL",
+   "spy_pct": 0.44
   }
  ],
  "decisions_feed": [
-  {
-   "ts": "2026-09-02T15:31:24+00:00",
-   "cycle": 47,
-   "kind": "SKIP",
-   "underlying": "BABA",
-   "occ": "",
-   "reason": "BABA260904P00113000: delta 0.60 challenged, no credit roll \u2014 hold to assignment"
-  },
-  {
-   "ts": "2026-09-02T15:31:24+00:00",
-   "cycle": 47,
-   "kind": "SKIP",
-   "underlying": "MU",
-   "occ": "",
-   "reason": "max underlyings reached (5)"
-  },
-  {
-   "ts": "2026-09-02T15:31:24+00:00",
-   "cycle": 47,
-   "kind": "SKIP",
-   "underlying": "WBD",
-   "occ": "",
-   "reason": "max underlyings reached (5)"
-  },
-  {
-   "ts": "2026-09-02T15:31:24+00:00",
-   "cycle": 47,
-   "kind": "SKIP",
-   "underlying": "VALE",
-   "occ": "",
-   "reason": "max underlyings reached (5)"
-  },
-  {
-   "ts": "2026-09-02T15:47:07+00:00",
-   "cycle": 48,
-   "kind": "SKIP",
-   "underlying": "INTC",
-   "occ": "",
-   "reason": "hold INTC260904P00087000: delta 0.24, dte 2, uPL +90.00"
-  },
-  {
-   "ts": "2026-09-02T15:47:07+00:00",
-   "cycle": 48,
-   "kind": "SKIP",
-   "underlying": "T",
-   "occ": "",
-   "reason": "vol percentile 17% < 25% floor \u2014 premium cheap vs history (AON gate)"
-  },
-  {
-   "ts": "2026-09-02T15:47:07+00:00",
-   "cycle": 48,
-   "kind": "SKIP",
-   "underlying": "F",
-   "occ": "",
-   "reason": "max underlyings reached (5)"
-  },
-  {
-   "ts": "2026-09-02T15:47:07+00:00",
-   "cycle": 48,
-   "kind": "SKIP",
-   "underlying": "GM",
-   "occ": "",
-   "reason": "vol percentile 16% < 25% floor \u2014 premium cheap vs history (AON gate)"
-  },
-  {
-   "ts": "2026-09-02T15:47:07+00:00",
-   "cycle": 48,
-   "kind": "SKIP",
-   "underlying": "PFE",
-   "occ": "",
-   "reason": "max underlyings reached (5)"
-  },
-  {
-   "ts": "2026-09-02T15:47:07+00:00",
-   "cycle": 48,
-   "kind": "SKIP",
-   "underlying": "KO",
-   "occ": "",
-   "reason": "hold KO260904P00088000: delta 0.32, dte 2, uPL +16.00"
-  },
-  {
-   "ts": "2026-09-02T15:47:07+00:00",
-   "cycle": 48,
-   "kind": "SKIP",
-   "underlying": "NOK",
-   "occ": "",
-   "reason": "NOK260904P00010000: delta 0.62 challenged, no credit roll \u2014 hold to assignment"
-  },
-  {
-   "ts": "2026-09-02T15:47:07+00:00",
-   "cycle": 48,
-   "kind": "SKIP",
-   "underlying": "SOFI",
-   "occ": "",
-   "reason": "hold SOFI260904P00017500: delta 0.38, dte 2, uPL +30.00"
-  },
   {
    "ts": "2026-09-02T15:47:07+00:00",
    "cycle": 48,
@@ -1625,14 +1526,110 @@
    "underlying": "VALE",
    "occ": "",
    "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
+  },
+  {
+   "ts": "2026-09-02T17:54:14+00:00",
+   "cycle": 56,
+   "kind": "SKIP",
+   "underlying": "INTC",
+   "occ": "",
+   "reason": "collateral budget exhausted for INTC"
+  },
+  {
+   "ts": "2026-09-02T17:54:14+00:00",
+   "cycle": 56,
+   "kind": "SKIP",
+   "underlying": "T",
+   "occ": "",
+   "reason": "vol percentile 17% < 25% floor \u2014 premium cheap vs history (AON gate)"
+  },
+  {
+   "ts": "2026-09-02T17:54:14+00:00",
+   "cycle": 56,
+   "kind": "SKIP",
+   "underlying": "F",
+   "occ": "",
+   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
+  },
+  {
+   "ts": "2026-09-02T17:54:14+00:00",
+   "cycle": 56,
+   "kind": "SKIP",
+   "underlying": "GM",
+   "occ": "",
+   "reason": "vol percentile 13% < 25% floor \u2014 premium cheap vs history (AON gate)"
+  },
+  {
+   "ts": "2026-09-02T17:54:14+00:00",
+   "cycle": 56,
+   "kind": "SKIP",
+   "underlying": "PFE",
+   "occ": "",
+   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
+  },
+  {
+   "ts": "2026-09-02T17:54:14+00:00",
+   "cycle": 56,
+   "kind": "SKIP",
+   "underlying": "KO",
+   "occ": "",
+   "reason": "hold KO260904P00088000: delta 0.25, dte 1, uPL +24.00"
+  },
+  {
+   "ts": "2026-09-02T17:54:14+00:00",
+   "cycle": 56,
+   "kind": "SKIP",
+   "underlying": "NOK",
+   "occ": "",
+   "reason": "NOK260904P00010000: delta 0.63 challenged, no credit roll \u2014 hold to assignment"
+  },
+  {
+   "ts": "2026-09-02T17:54:14+00:00",
+   "cycle": 56,
+   "kind": "SKIP",
+   "underlying": "SOFI",
+   "occ": "",
+   "reason": "hold SOFI260904P00017500: delta 0.32, dte 1, uPL +80.00"
+  },
+  {
+   "ts": "2026-09-02T17:54:14+00:00",
+   "cycle": 56,
+   "kind": "SKIP",
+   "underlying": "BABA",
+   "occ": "",
+   "reason": "BABA260904P00113000: delta 0.66 challenged, no credit roll \u2014 hold to assignment"
+  },
+  {
+   "ts": "2026-09-02T17:54:14+00:00",
+   "cycle": 56,
+   "kind": "SKIP",
+   "underlying": "MU",
+   "occ": "",
+   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
+  },
+  {
+   "ts": "2026-09-02T17:54:14+00:00",
+   "cycle": 56,
+   "kind": "SKIP",
+   "underlying": "WBD",
+   "occ": "",
+   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
+  },
+  {
+   "ts": "2026-09-02T17:54:14+00:00",
+   "cycle": 56,
+   "kind": "SKIP",
+   "underlying": "VALE",
+   "occ": "",
+   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
   }
  ],
  "ai_vetoes": [],
  "stats": {
-  "cycles_total": 55,
-  "live_cycles": 54,
-  "fills": 8,
-  "unrealized_pl": -139.0,
+  "cycles_total": 56,
+  "live_cycles": 55,
+  "fills": 9,
+  "unrealized_pl": -144.0,
   "kill_switch": false
  },
  "risk_limits": {
