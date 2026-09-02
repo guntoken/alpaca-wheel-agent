@@ -8,23 +8,35 @@ submit final Rabu 2 Sep.
 
 ---
 
-## 1. Submission Title (form: 0/50 char, min 5)
+## 1. Submission Title (form: 0/50 char, min 5) — DIKUNCI Rabu 2 Sep
 
 ```
-OWL Agent — an options wheel whose AI says only NO
+OWL Agent — trades on rails, AI on a leash
 ```
 
-(50 char — PAS batas; counter JS em-dash = 1 char.)
+(42 char; counter JS em-dash = 1 char.)
 
-Alternatif bila counter menolak tepat-50:
-- `OWL Agent: options wheel, AI can only say NO` (44)
-- `OWL (Option-WheeL) Agent — AI can only say NO` (45)
+Alasan penggantian: judul lama "an options wheel whose AI says only NO"
+ditinggalkan 2 Sep — sudah ada submission sejenis dengan framing "AI says
+only NO". "Rails ↔ leash" unambiguous pada skim 1 detik: rel = engine
+deterministik, rantai = AI dibatasi (tidak bisa terbalik dibaca "AI yang
+menjalankan").
 
-## 2. Short Description (form: 0/255 char, min 50 — terpakai 244)
+Alternatif bila perlu:
+- `OWL Agent — the wheel trades, the AI only vetoes` (48)
+- `OWL Agent: hard-coded options wheel, AI veto only` (49)
+- `OWL Agent — an options wheel with an AI handbrake` (49)
+
+## 2. Short Description (form: 0/255 char, min 50 — terpakai 234)
 
 ```
-An autonomous options-wheel agent on Alpaca paper trading: a deterministic engine sells cash-secured puts and covered calls on hard-coded rails, while a Claude layer reads the market regime and vetoes risky entries — an AI that can only say NO.
+An autonomous options-wheel agent on Alpaca paper trading: a deterministic engine sells cash-secured puts and covered calls on hard-coded rails, while a Claude layer reads the market regime and vetoes risky entries — an AI on a leash.
 ```
+
+(Ending diganti "an AI on a leash" 2 Sep — konsisten dengan judul baru dan
+menghindari framing "say NO" yang dipakai submission lain. Long description
+TIDAK diubah: kalimat "can only say NO" di dalam paragraf adalah argumen
+desain, bukan identitas judul.)
 
 ## 3. Long Description (form: 0/2000 char, min 600 — terpakai 1.149 char / 195 kata)
 
