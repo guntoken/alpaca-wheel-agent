@@ -1,8 +1,8 @@
 {
- "updated": "2026-09-02T15:59:43.438698-04:00",
- "market_open": true,
+ "updated": "2026-09-02T16:00:23.921676-04:00",
+ "market_open": false,
  "account": {
-  "equity": 100105.36,
+  "equity": 100095.36,
   "cash": 100707.36,
   "options_buying_power": 62907.36,
   "day_start_equity": 100050.39,
@@ -20,7 +20,7 @@
    "mark": 2.11,
    "unrealized_pl": -114.0,
    "collateral": 11300.0,
-   "spot": 111.75
+   "spot": 111.805
   },
   {
    "symbol": "NOK260904P00010000",
@@ -33,7 +33,7 @@
    "mark": 0.29,
    "unrealized_pl": -90.0,
    "collateral": 9000.0,
-   "spot": 9.855
+   "spot": 9.84
   },
   {
    "symbol": "SOFI260904P00017500",
@@ -43,22 +43,13 @@
    "expiry": "2026-09-04",
    "qty": -10.0,
    "avg_entry": 0.23,
-   "mark": 0.13,
-   "unrealized_pl": 100.0,
+   "mark": 0.14,
+   "unrealized_pl": 90.0,
    "collateral": 17500.0,
-   "spot": 17.84
+   "spot": 17.83
   }
  ],
- "open_orders": [
-  {
-   "symbol": "SOFI260904P00017500",
-   "side": "buy",
-   "qty": 10.0,
-   "limit": 0.11,
-   "status": "new",
-   "coid": "WHL-TPP-SOFI260904P00017500-0246"
-  }
- ],
+ "open_orders": [],
  "fills": [
   {
    "ts": "2026-09-02 18:03:22.938568+00:00",
@@ -1715,7 +1706,7 @@
   "cycles_total": 63,
   "live_cycles": 62,
   "fills": 9,
-  "unrealized_pl": -104.0,
+  "unrealized_pl": -114.0,
   "kill_switch": false
  },
  "risk_limits": {
