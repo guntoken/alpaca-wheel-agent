@@ -37,7 +37,21 @@ account, 4 cash-secured puts expiring exactly Fri Sep 4, 2 filled fast — $328
 premium. Claude's only power is veto; the deterministic engine trades.
 @lablabai @AlpacaHQ alpaca-wheel-agent.streamlit.app
 
-## LinkedIn (low-key, permintaan pemilik 31 Agu malam — cukup tag penyelenggara)
+## LinkedIn (low-key, disegarkan Rabu 2 Sep malam — angka malam-3; versi lama malam-1 di bawah)
+
+Progress note from the Alpaca AI Trading Agents hackathon (lablab.ai × Alpaca).
+
+Night 3 of the judged run on a fresh $100k paper account: the deterministic
+wheel engine has collected $872 gross premium on cash-secured puts and closed
+its first position at +$72 realized. The Claude layer still cannot place a
+trade — its only power is vetoing an entry.
+
+Dashboard: https://alpaca-wheel-agent.streamlit.app
+Repo: github.com/guntoken/alpaca-wheel-agent
+
+@lablabai @AlpacaHQ
+
+### Versi lama (malam-1, sudah basi — jangan dipakai)
 
 Day 4 progress note from the Alpaca AI Trading Agents hackathon (lablab.ai × Alpaca).
 
