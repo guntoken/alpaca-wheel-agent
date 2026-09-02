@@ -92,6 +92,13 @@ def write_dashboard_data(api: Api | None = None) -> dict:
             })
     data["fills"] = fills[-30:]
     data["premium_net_collected"] = round(premium_total, 2)
+    # realized P&L on legs already fully closed (symbol no longer open)
+    open_syms = {p["symbol"] for p in positions}
+    realized_closed = 0.0
+    for f in fills:
+        if f["symbol"] not in open_syms:
+            realized_closed += f["notional"] if f["side"] == "sell" else -f["notional"]
+    data["realized_closed_legs"] = round(realized_closed, 2)
 
     # journal-derived series
     cycles = []

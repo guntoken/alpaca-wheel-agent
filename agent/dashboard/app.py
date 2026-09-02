@@ -535,6 +535,7 @@ tabs = st.tabs(["Command Center", "Risk Lab", "AI Brain",
 with tabs[0]:
     upl = stats.get("unrealized_pl", 0) or 0
     prem = DATA.get("premium_net_collected", 0) or 0
+    realized = DATA.get("realized_closed_legs", 0) or 0
     # Run anchor = equity at the first journaled cycle of this account. Alpaca's
     # day_start_equity resets every trading day, which would drift the anchor
     # across a multi-day judged run.
@@ -545,7 +546,10 @@ with tabs[0]:
         card("Equity", fmt_usd(acct.get("equity")),
              sub=f"anchor {fmt_usd(anchor)}")
         + card("Premium secured", fmt_usd(prem, signed=True),
-               sub=f"{stats.get('fills', 0)} fills · realized cash income",
+               sub=(f"{stats.get('fills', 0)} fills · incl. "
+                    f"{fmt_usd(realized, signed=True)} realized (closed leg)"
+                    if realized else
+                    f"{stats.get('fills', 0)} fills · realized cash income"),
                cls="gold" if prem >= 0 else "",
                tone=None if prem >= 0 else "bad")
         + card("Unrealized P&L", fmt_usd(upl, signed=True),
