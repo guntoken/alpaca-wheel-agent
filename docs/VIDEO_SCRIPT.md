@@ -105,4 +105,5 @@ $29/$79 pricing.
 - [x] `python build.py` → TTS per scene → render → concat → `docs/demo-video.mp4`
 - [x] QA: durasi 3:43 (≤4:00), 10,7 MB (≤50 MB), frame t=2s & t=120s tajam,
       stream H.264 1080p30 + AAC stereo
-- [ ] Approve suara pemilik (play `docs/demo-video.mp4`)
+- [x] Approve suara pemilik — **APPROVED 3 Sep ~00:05 WIB** (play via Firefox,
+      voice en-US-AndrewMultilingualNeural rate −6% dipertahankan)
