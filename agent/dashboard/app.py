@@ -53,7 +53,7 @@ h1, h2, h3, .wa-title {letter-spacing: -0.16px;}
 [data-testid="stToolbar"], [data-testid="stStatusWidget"],
 [class="stDeployButton"] {display: none !important;}
 /* altair chart element menu ("Show data" etc.) — a raw i/equity table is
-   noise for judges; the chart itself carries the information */
+   visual noise; the chart itself carries the information */
 [data-testid="stElementToolbar"] {display: none !important;}
 #MainMenu, footer {visibility: hidden;}
 

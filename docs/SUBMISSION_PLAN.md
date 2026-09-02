@@ -10,7 +10,7 @@ real lablab winner (evo.ninja). Updated 28 Aug 2026 night.
   "create a brand-new Alpaca paper trading account dedicated to this
   hackathon. Projects run on an existing or reused account will not be
   eligible for judging." Balance awal $100.000. Plus field wajib di form:
-  **Alpaca account ID** (juri menilai P&L dari akun itu). Karena P&L adalah
+  **Alpaca account ID** (skor P&L dihitung dari akun itu). Karena P&L adalah
   kriteria penilaian #1 → **flip akun Senin 31 Agu malam** (bukan Selasa):
   loop restart Senin 20:15 WIB langsung di akun judged → 3 malam trading
   (Sen/Sel/Rab) + Kamis sampai end-of-submissions, loop tetap jalan.
@@ -59,13 +59,13 @@ tidak perlu email baru). JANGAN hapus akun dev (tetap sebagai bukti/backup).
 - lablab punya **draft**: buka draft submission lebih awal, paste semua field
   dari SUBMISSION_FORM.md kecuali URL video; draft belum dihitung submission.
 - Submit final Rabu 2 Sep ≥6 jam sebelum deadline 4 Sep → bonus poin
-  "Early Submission" +25 (poin leaderboard, bukan skor juri) dan buffer
+  "Early Submission" +25 (poin leaderboard, bukan skor penilaian) dan buffer
   1 hari penuh sebelum hard-stop Kamis.
 
 ## Required deliverables (from the official guide)
 | # | Deliverable | Status | Owner/notes |
 |---|---|---|---|
-| 1 | Project title (clear, descriptive) | ✅ final | "OWL Agent — an autonomous options wheel whose AI can only say NO" ([SUBMISSION_FORM](SUBMISSION_FORM.md)) |
+| 1 | Project title (clear, descriptive) | ✅ final | "OWL Agent — trades on rails, AI on a leash" (arsip form internal; file dihapus dari repo) |
 | 2 | Short description ≤255 chars | ✅ final | 244 chars, paste-ready (SUBMISSION_FORM) |
 | 3 | Long description ≥100 words (problem/solution/audience/unique) | ✅ final | 195 kata, paste-ready (SUBMISSION_FORM) |
 | 4 | Technology & category tags | ✅ picked | AI Agents / Fintech / Trading / Python / API (SUBMISSION_FORM) |
@@ -80,7 +80,7 @@ our equivalent is the agent-native paper trail: CLAUDE.md operating manual, comm
 history, and the decision journal (`agent/journal.jsonl`).
 
 ## The gap we must close: demo URL (Streamlit dashboard)
-Judges need something clickable. Plan (no credentials in the cloud):
+The project needs something clickable. Plan (no credentials in the cloud):
 1. Loop already logs every cycle to `agent/journal.jsonl` (equity, regime, orders, errors).
 2. Add a small exporter: agent writes `dashboard/data.json` (equity curve, open
    positions, order history, latest AI regime + reasons, P&L) each cycle — committed
@@ -118,8 +118,8 @@ Installation LAST, not first.
 | 31 Aug (Mon) | WRITEUP.md (one-pager: AI logic, risk gates, Alpaca infra); business-case research (TAM/SAM/competitors: Composer, Option Alpha, Tastytrade) |
 | 1 Sep (Tue) | slides PDF + cover image + record video; social post #2 |
 | 2 Sep (Wed) | **create fresh $100k account, flip keys, judged run starts**; submission dry-run (every field filled) |
-| 3 Sep (Thu) | **SUBMIT** with buffer; prep judge Q&A; final social post w/ results |
-| 4 Sep (Fri) | slack; watch for judge questions |
+| 3 Sep (Thu) | **SUBMIT** with buffer; prep Q&A; final social post w/ results |
+| 4 Sep (Fri) | slack; watch for questions |
 
 ## Anti-patterns to avoid (from the playbook)
 - Don't add features after video is recorded — polish the golden path only.
