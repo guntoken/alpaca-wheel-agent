@@ -37,6 +37,22 @@ account, 4 cash-secured puts expiring exactly Fri Sep 4, 2 filled fast — $328
 premium. Claude's only power is veto; the deterministic engine trades.
 @lablabai @AlpacaHQ alpaca-wheel-agent.streamlit.app
 
+## LinkedIn — alternatif sudut VETO (Rabu 2 Sep malam, fakta terverifikasi journal)
+
+Night 3 note from the Alpaca AI Trading Agents hackathon (lablab.ai × Alpaca).
+
+A design choice worth sharing: the LLM layer here holds no trade power at
+all. A deterministic engine sells the cash-secured puts; Claude only reads
+the macro regime and can veto a new entry — this week it blocked all entries
+for one cycle as Iran escalation headlines hit, then stepped back. Veto-only
+by design; exits can never be blocked. $872 premium collected so far on a
+fresh $100k paper account, first closed leg +$72 realized.
+
+Dashboard: https://alpaca-wheel-agent.streamlit.app
+Repo: github.com/guntoken/alpaca-wheel-agent
+
+@lablabai @AlpacaHQ
+
 ## LinkedIn (low-key, disegarkan Rabu 2 Sep malam — angka malam-3; versi lama malam-1 di bawah)
 
 Progress note from the Alpaca AI Trading Agents hackathon (lablab.ai × Alpaca).
