@@ -13,7 +13,7 @@ dengan panah, wajah pojok kanan bawah.
 
 > Hi everyone — this is OWL Agent, short for Option-WheeL: an autonomous
 > options wheel with an AI risk governor. The whole idea is in this one
-> line: an AI that can only say NO. A deterministic engine does the
+> line: the trades run on rails, and the AI is on a leash. A deterministic engine does the
 > trading, and Claude holds exactly two powers — read the regime, and
 > veto a new entry. It never places, sizes, or forces a trade, and it
 > never blocks an exit. Back here, two backtest numbers, both published:
