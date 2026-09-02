@@ -1,8 +1,8 @@
 {
- "updated": "2026-09-02T09:35:01.851635-04:00",
+ "updated": "2026-09-02T10:00:01.781631-04:00",
  "market_open": true,
  "account": {
-  "equity": 99553.44,
+  "equity": 99700.44,
   "cash": 100834.44,
   "options_buying_power": 36834.44,
   "day_start_equity": 99535.59,
@@ -17,10 +17,10 @@
    "expiry": "2026-09-04",
    "qty": -1.0,
    "avg_entry": 0.97,
-   "mark": 1.62,
-   "unrealized_pl": -65.0,
+   "mark": 1.43,
+   "unrealized_pl": -46.0,
    "collateral": 11300.0,
-   "spot": 112.755
+   "spot": 113.005
   },
   {
    "symbol": "INTC260904P00087000",
@@ -30,10 +30,10 @@
    "expiry": "2026-09-04",
    "qty": -2.0,
    "avg_entry": 1.1,
-   "mark": 0.99,
-   "unrealized_pl": 22.0,
+   "mark": 1.24,
+   "unrealized_pl": -28.0,
    "collateral": 17400.0,
-   "spot": 89.13
+   "spot": 88.11
   },
   {
    "symbol": "KO260904P00088000",
@@ -43,10 +43,10 @@
    "expiry": "2026-09-04",
    "qty": -1.0,
    "avg_entry": 0.46,
-   "mark": 0.74,
-   "unrealized_pl": -28.0,
+   "mark": 0.6,
+   "unrealized_pl": -14.0,
    "collateral": 8800.0,
-   "spot": 87.75
+   "spot": 87.92
   },
   {
    "symbol": "NOK260904P00010000",
@@ -56,10 +56,10 @@
    "expiry": "2026-09-04",
    "qty": -9.0,
    "avg_entry": 0.19,
-   "mark": 0.33,
-   "unrealized_pl": -126.0,
+   "mark": 0.37,
+   "unrealized_pl": -162.0,
    "collateral": 9000.0,
-   "spot": 9.85
+   "spot": 9.755
   },
   {
    "symbol": "SOFI260904P00017500",
@@ -69,10 +69,10 @@
    "expiry": "2026-09-04",
    "qty": -10.0,
    "avg_entry": 0.23,
-   "mark": 0.55,
-   "unrealized_pl": -320.0,
+   "mark": 0.35,
+   "unrealized_pl": -120.0,
    "collateral": 17500.0,
-   "spot": 17.085
+   "spot": 17.395
   }
  ],
  "open_orders": [],
@@ -1517,7 +1517,7 @@
   "cycles_total": 45,
   "live_cycles": 44,
   "fills": 7,
-  "unrealized_pl": -517.0,
+  "unrealized_pl": -370.0,
   "kill_switch": false
  },
  "risk_limits": {
