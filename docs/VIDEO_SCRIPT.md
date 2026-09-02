@@ -1,132 +1,108 @@
-# OWL Agent — demo video script (≤5 minutes, English narration)
+# OWL Agent — demo video script (3–4 minutes, English TTS narration)
 
-Target: lablab.ai × Alpaca judges. Tone: calm, confident, honest. Pace ≈ 140
-words/min. Total narration ≈ 640 words. Record 1080p, browser FULLSCREEN on
-**https://alpaca-wheel-agent.streamlit.app** (not localhost — show the real
-URL). Slow mouse; hover charts 2–3 s before speaking about them; leave 1 s of
-silence at each cut point.
+**v2 — Rabu 2 Sep 2026**: dipendekkan 4:22 → **3:43** (~470 kata), slide-1 baru
+(rails/leash), kalimat identitas diganti ke metafora rails/leash. Video = TTS
+(`en-US-AndrewMultilingualNeural`, rate −6%) di atas still 1080p30 — build
+script `/tmp/video-build/build.py` (venv `/tmp/videnv`: edge-tts +
+imageio-ffmpeg; ffmpeg sistem tidak ada). Output: `docs/demo-video.mp4`
+(10,7 MB, H.264+AAC).
 
-Sumber nomor — jangan improvisasi angka di depan kamera:
+Sumber nomor — jangan improvisasi angka:
 +54.6% = selection-first variant (bot picks 3/week), 2.5 yr, DD 21.5%;
-SPY +45.6% DD 19.0%; live-engine run +32.2% DD 18.3%; live paper: 25 cycles,
-$1,753 premium; 15.2B contracts 2025; retail 30–60%; $29/$79 pricing.
+SPY +45.6% DD 19.0%; live-engine run +32.2% DD 18.3%; judged-window regime
+reads 31 RISK_ON / 8 NEUTRAL / 0 veto; 15.2B contracts 2025; retail 30–60%;
+$29/$79 pricing.
 
 ---
 
-## 0:00–0:30 · THE PROBLEM (~70 words)
+## 0:00–0:04 · COVER — silent 3,5 dtk
 
-**SCREEN:** PDF cover slide (or dashboard hero, slow zoom in). Then slide 2.
+**SCREEN:** `slide-1.png` — "Trades on rails. / AI on a **leash**." (leash emas)
 
-> Retail options income should be boring. Sell a cash-secured put, take
-> profit at fifty percent, roll for credit, sell a covered call if you're
-> assigned — repeat. In practice it's manual, emotional, and error-prone:
-> the wrong delta, panic buy-backs, one oversized ticker. And the usual "AI
-> trading agent" makes it worse — an LLM asked to pick trades hallucinates,
-> drifts, and cannot be held to a risk mandate.
+## 0:04–0:29 · THE PROBLEM — slide-2 (55 kata)
 
-**CUT:** hard cut on "risk mandate."
+> Retail options income should be boring: sell a cash-secured put, take
+> profit at fifty percent, roll for credit, sell a covered call if assigned.
+> In practice it's manual, emotional, error-prone, and the usual AI trading
+> agent makes it worse: an LLM asked to pick trades hallucinates, drifts,
+> and cannot be held to a risk mandate.
 
-## 0:30–1:10 · THE IDEA (~95 words)
+## 0:29–0:59 · THE IDEA — slide-3 (75 kata)
 
-**SCREEN:** slide 3 (two columns), slow pan left→right. Then dashboard
-**About** tab, top note visible.
+> So we inverted the design. This is OWL, the Option Wheel Agent. A
+> deterministic engine does one hundred percent of the trading on hard-coded
+> rails: the classic wheel. Above it, a Claude layer with exactly two powers:
+> read the market regime, and veto a new entry. It can never place, size, or
+> force a trade, and it can never block an exit. An AI on a leash is an AI
+> you can actually trust on a broker.
 
-> So we inverted the design. This is OWL — the Option-WheeL Agent. A
-> deterministic engine does one hundred percent of the trading on
-> hard-coded rails: the classic wheel. Above it sits a Claude layer with
-> exactly two powers: read the market regime, and veto a new entry. It can
-> never place, size, or force a trade — and it can never block an exit.
-> An AI that can only say NO is an AI you can actually trust on a broker.
+## 0:59–1:22 · LIVE: COMMAND CENTER — sc-1 (54 kata)
 
-**CUT:** to the hosted dashboard Command Center.
+**SCREEN:** hosted Command Center screenshot (URL bar terlihat).
 
-## 1:10–3:05 · LIVE DEMO (~300 words) — the core, do not rush
+> This is the live system, running unattended on Alpaca paper since day one.
+> The Command Center shows the equity curve from the agent's own decision
+> journal, premium collected, the wheel stage for every name, and both regime
+> readers side by side: Claude's judgment and a deterministic SPY anchor.
+> The tighter of the two always governs.
 
-**SCREEN A (1:10–1:40) — Command Center.** Point (hover) at: equity chart →
-premium card → regime ribbon → wheel stepper.
+## 1:22–1:39 · LIVE: RISK LAB — sc-2 (43 kata)
 
-> This is the live system, running unattended on Alpaca paper since day one
-> of the hackathon. The Command Center shows the equity curve built from the
-> agent's own decision journal, premium collected, the wheel stage for every
-> name — and the two regime readers side by side: Claude's judgment, and a
-> deterministic SPY anchor. The tighter of the two always governs.
+> The Risk Lab is where safety is inspectable: every position with its
+> collateral, the concentration caps, the hard-coded rails, and a live stress
+> test. Drag the market down five percent, and watch what the book does
+> before it happens for real.
 
-**SCREEN B (1:40–2:10) — Risk Lab.** Click tab; run the stress test slider
-to −5%; let the number settle.
+## 1:39–1:59 · LIVE: AI BRAIN — sc-3 (46 kata)
 
-> The Risk Lab is where safety is inspectable. Every position with its
-> collateral, the concentration caps, the full list of hard-coded rails —
-> and a live stress test: drag the market down five percent and watch what
-> the book does before it happens for real.
-
-**SCREEN C (2:10–2:35) — AI Brain.** Click tab; scroll one regime read;
-point at the veto column.
-
-> The AI Brain tab shows Claude's actual words, every cycle — each regime
+> The AI Brain tab shows Claude's actual words, every cycle: each regime
 > read with its stated reason, and the veto path. In the judged window:
-> thirty-one risk-on reads, eight neutral, zero vetoes — the veto path is
-> exercised in dry-runs, and every refusal would be journaled verbatim.
+> thirty-one risk-on reads, eight neutral, zero vetoes. Every refusal would
+> be journaled verbatim.
 
-**SCREEN D (2:35–3:15) — About tab.** Click tab; hover the equity chart
-crosshair slowly left→right; point at +54.6% card, then 21.5% card.
+## 1:59–2:40 · THE EVIDENCE — sc-4 About (97 kata) — scene terpanjang, jangan dipotong lagi
 
-> The evidence. To be clear about which engine is which: the agent you
-> just saw trading live runs the diversified five-name engine — its own
-> two-and-a-half-year number is plus thirty-two-point-two percent, on the
-> next slide. This chart is the pre-committed selection-first variant,
-> where the bot picks three stocks a week — every premium a real traded
-> bar. It returned plus fifty-four-point-six
-> percent versus SPY's forty-five-point-six — and right next to it, the
-> deeper drawdown, because that's the honest price of concentration. How
-> did we pick this mode? A series of backtests. One stock a week beat SPY
-> in its first year — but lost over the full two-and-a-half-year window,
-> so we rejected it. Three stocks a week beat SPY in BOTH windows — one
-> year, and two-and-a-half years. That's the mode we selected, and its
-> full paper trail is public, failures included.
+**SCREEN:** hosted About tab: kartu +54.6%, chart equity vs SPY, bar premium.
 
-**CUT:** to slide 8 (explorations table) for 2 seconds if timing allows.
+> The evidence, and let's be clear which engine is which. The agent you saw
+> trading live runs the five-name engine: its own two-and-a-half-year number
+> is plus thirty-two-point-two percent. This chart is the pre-committed
+> selection-first variant: the bot picks three stocks a week, every premium
+> a real traded bar. Plus fifty-four-point-six versus SPY's forty-five-point-
+> six, with a deeper drawdown: the honest price of concentration. Why this
+> mode? One stock a week won year one but lost the full window, so we
+> rejected it. Three stocks a week won both. The full paper trail is public,
+> failures included.
 
-## 3:15–3:55 · BUSINESS CASE (~100 words)
+## 2:40–3:08 · BUSINESS CASE — slide-9 (55 kata)
 
-**SCREEN:** slide 9. Point at TAM tile, then competitor table.
-
-> Who pays for this? US options just printed fifteen-point-two billion
-> contracts — the sixth straight record — with retail at thirty to sixty
-> percent of flow. Every competitor automates execution; none of them sells
-> an AI risk governor whose incentive alignment is provable — a layer that
-> cannot trade cannot churn your account. Twenty-nine dollars a month for
-> the engine and the governor; seventy-nine for multi-account and
+> Who pays? US options printed fifteen-point-two billion contracts, the
+> sixth straight record, with retail at thirty to sixty percent of flow.
+> Every competitor automates execution; none sells an AI risk governor with
+> provable alignment. A layer that cannot trade cannot churn your account.
+> Twenty-nine dollars a month; seventy-nine for multi-account and
 > defined-risk spreads.
 
-**CUT:** to slide 10.
-
-## 3:55–4:45 · WHAT'S NEXT + TRUST (~90 words)
-
-**SCREEN:** slide 10; end on the hosted dashboard FAQ tab, "Can it lose
-> money?" expander opened.
+## 3:08–3:33 · WHAT'S NEXT + TRUST — slide-10 (49 kata)
 
 > Next: a defined-risk spreads sleeve, walk-forward re-validation of every
-> gate, and the selection-first mode behind an opt-in with tighter drawdown
-> limits. Everything you've seen is public: the repo, the decision journal
-> with every order and reason, every backtest artifact — including the
-> failures. The FAQ even answers "can it lose money?" honestly: yes.
+> gate, and selection-first behind an opt-in with tighter drawdown limits.
+> Everything you've seen is public: the repo, the decision journal, every
+> backtest artifact, failures included. The FAQ even answers, can it lose
+> money? Honestly: yes.
 
-## 4:45–5:00 · CLOSE (~35 words)
+## 3:33–3:43 · CLOSE — sc-1 lagi (23 kata)
 
-**SCREEN:** back to dashboard hero (OWL logo). Hold still.
-
-> OWL Agent. The AI doesn't pick the trades — it makes sure you survive
-> them. Try it yourself: alpaca-wheel-agent dot streamlit dot app.
+> OWL Agent. The AI doesn't pick the trades, it makes sure you survive
+> them. Try it yourself, at alpaca-wheel-agent dot streamlit dot app.
 
 ---
 
-## Recording checklist
+## Checklist build (bukan rekaman manual — TTS over stills)
 
-- [ ] OBS (or any recorder) 1080p60, browser fullscreen, hide bookmarks bar
-- [ ] Mic test; room quiet; narrate slightly slower than comfortable
-- [ ] Use the HOSTED URL (the address bar is visible proof)
-- [ ] Stress-test slider: one smooth move to −5%, hold 3 s
-- [ ] Chart hover: slow sweep, let the tooltip track
-- [ ] Export MP4 H.264; check ≤5:00 and ≤100 MB before uploading
-- [ ] Simpan sebagai docs/demo-video.mp4 (jangan commit bila >50 MB —
-      unggah ke platform submission dan cantumkan tautannya)
+- [x] Slide PNG dari `docs/slides/` (slide-1 = cover rails/leash, regen 2 Sep)
+- [x] Screenshot hosted dari `docs/video-assets/` (5 PNG, tangkap 1 Sep)
+- [x] `python build.py` → TTS per scene → render → concat → `docs/demo-video.mp4`
+- [x] QA: durasi 3:43 (≤4:00), 10,7 MB (≤50 MB), frame t=2s & t=120s tajam,
+      stream H.264 1080p30 + AAC stereo
+- [ ] Approve suara pemilik (play `docs/demo-video.mp4`)
