@@ -1,6 +1,6 @@
 {
- "updated": "2026-09-03T15:59:43.004193-04:00",
- "market_open": true,
+ "updated": "2026-09-03T16:00:23.257675-04:00",
+ "market_open": false,
  "account": {
   "equity": 100207.05,
   "cash": 100667.05,
@@ -20,7 +20,7 @@
    "mark": 1.81,
    "unrealized_pl": -84.0,
    "collateral": 11300.0,
-   "spot": 111.715
+   "spot": 111.8
   },
   {
    "symbol": "NOK260904P00010000",
@@ -33,7 +33,7 @@
    "mark": 0.31,
    "unrealized_pl": -108.0,
    "collateral": 9000.0,
-   "spot": 9.745
+   "spot": 9.77
   }
  ],
  "open_orders": [],
