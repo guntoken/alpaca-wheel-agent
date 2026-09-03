@@ -1,8 +1,8 @@
 {
- "updated": "2026-09-03T12:30:01.732077-04:00",
+ "updated": "2026-09-03T12:55:01.734531-04:00",
  "market_open": true,
  "account": {
-  "equity": 100157.05,
+  "equity": 100158.05,
   "cash": 100667.05,
   "options_buying_power": 80367.05,
   "day_start_equity": 100050.39,
@@ -17,10 +17,10 @@
    "expiry": "2026-09-04",
    "qty": -1.0,
    "avg_entry": 0.97,
-   "mark": 1.95,
-   "unrealized_pl": -98.0,
+   "mark": 1.94,
+   "unrealized_pl": -97.0,
    "collateral": 11300.0,
-   "spot": 111.55
+   "spot": 111.57
   },
   {
    "symbol": "NOK260904P00010000",
@@ -30,10 +30,10 @@
    "expiry": "2026-09-04",
    "qty": -9.0,
    "avg_entry": 0.19,
-   "mark": 0.37,
-   "unrealized_pl": -162.0,
+   "mark": 0.35,
+   "unrealized_pl": -144.0,
    "collateral": 9000.0,
-   "spot": 9.705
+   "spot": 9.71
   }
  ],
  "open_orders": [],
@@ -417,44 +417,54 @@
   {
    "ts": "2026-09-03T16:25:55+00:00",
    "equity": 100151.05
+  },
+  {
+   "ts": "2026-09-03T16:41:54+00:00",
+   "equity": 100122.05
   }
  ],
  "market_context": {
   "SPY": {
-   "last": 772.53,
-   "sma20": 769.13,
+   "last": 772.97,
+   "sma20": 769.15,
    "sma50": 756.08,
-   "vs_sma20_pct": 0.44,
-   "vs_sma50_pct": 2.18
+   "vs_sma20_pct": 0.5,
+   "vs_sma50_pct": 2.23
   },
   "QQQ": {
-   "last": 717.0,
-   "sma20": 717.68,
-   "sma50": 710.97,
-   "vs_sma20_pct": -0.09,
-   "vs_sma50_pct": 0.85
+   "last": 717.36,
+   "sma20": 717.69,
+   "sma50": 710.98,
+   "vs_sma20_pct": -0.05,
+   "vs_sma50_pct": 0.9
   },
-  "SPY_vol_dollar_percentile": 0.144,
-  "SPY_day_change_pct": 0.97,
+  "SPY_vol_dollar_percentile": 0.149,
+  "SPY_day_change_pct": 1.02,
   "macro": {
    "GLD": {
-    "last": 411.81,
-    "day_pct": 2.25,
-    "vs_sma20_pct": 0.55
+    "last": 411.54,
+    "day_pct": 2.18,
+    "vs_sma20_pct": 0.49
    },
    "VIXY": {
-    "last": 17.12,
-    "day_pct": -0.93,
-    "vs_sma20_pct": -6.39
+    "last": 17.09,
+    "day_pct": -1.13,
+    "vs_sma20_pct": -6.57
    },
    "BTC": {
-    "last": 80742.95,
-    "day_pct": 4.44,
-    "vs_sma20_pct": 8.01
+    "last": 80860.9,
+    "day_pct": 4.59,
+    "vs_sma20_pct": 8.16
    },
    "news": {
     "avg_sentiment": null,
     "headlines": [
+     {
+      "ts": "2026-09-03 16:26:44+00:00",
+      "headline": "Snowflake Signals Surging AI Data Cloud Demand; Broadcom Sees Strong Chip Demand Through 2028; Yen Strengthens",
+      "sentiment": null,
+      "source": "benzinga"
+     },
      {
       "ts": "2026-09-03 15:58:25+00:00",
       "headline": "U.S. Official Says Pentagon Is Temporarily Rescinding Recent Guidance On U.S. Troops Testosterone Screening",
@@ -482,12 +492,6 @@
      {
       "ts": "2026-09-03 14:56:25+00:00",
       "headline": "Canada PM Carney Says Ready To Sit Down And Strike A Trade Deal With U.S. When Washington Is Ready; There Must Be Stability And Credibility In Any Trade Deal Wi",
-      "sentiment": null,
-      "source": "benzinga"
-     },
-     {
-      "ts": "2026-09-03 14:19:13+00:00",
-      "headline": "'Trump administration ratchets up its fight to get more oil flowing from California' - KTLA 5",
       "sentiment": null,
       "source": "benzinga"
      }
@@ -1013,105 +1017,16 @@
    "reason": "SPY above both SMAs, VIXY calm, BTC strong, but gold +2.25% safe-haven bid and tense geopolitical headlines \u2014 conflicting macro signals",
    "det": "NEUTRAL_OR_BULL",
    "spy_pct": 0.97
+  },
+  {
+   "ts": "2026-09-03T16:41:54+00:00",
+   "regime": "RISK_ON",
+   "reason": "SPY above both SMAs with up day, VIXY calm, BTC strong risk appetite; gold pop single-day, no panic news",
+   "det": "NEUTRAL_OR_BULL",
+   "spy_pct": 1.02
   }
  ],
  "decisions_feed": [
-  {
-   "ts": "2026-09-03T14:17:44+00:00",
-   "cycle": 66,
-   "kind": "SKIP",
-   "underlying": "BABA",
-   "occ": "",
-   "reason": "BABA260904P00113000: delta 0.83 challenged, no credit roll \u2014 hold to assignment"
-  },
-  {
-   "ts": "2026-09-03T14:17:44+00:00",
-   "cycle": 66,
-   "kind": "SKIP",
-   "underlying": "MU",
-   "occ": "",
-   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
-  },
-  {
-   "ts": "2026-09-03T14:17:44+00:00",
-   "cycle": 66,
-   "kind": "SKIP",
-   "underlying": "WBD",
-   "occ": "",
-   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
-  },
-  {
-   "ts": "2026-09-03T14:17:44+00:00",
-   "cycle": 66,
-   "kind": "SKIP",
-   "underlying": "VALE",
-   "occ": "",
-   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
-  },
-  {
-   "ts": "2026-09-03T14:33:34+00:00",
-   "cycle": 67,
-   "kind": "SKIP",
-   "underlying": "INTC",
-   "occ": "",
-   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
-  },
-  {
-   "ts": "2026-09-03T14:33:34+00:00",
-   "cycle": 67,
-   "kind": "SKIP",
-   "underlying": "T",
-   "occ": "",
-   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
-  },
-  {
-   "ts": "2026-09-03T14:33:34+00:00",
-   "cycle": 67,
-   "kind": "SKIP",
-   "underlying": "F",
-   "occ": "",
-   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
-  },
-  {
-   "ts": "2026-09-03T14:33:34+00:00",
-   "cycle": 67,
-   "kind": "SKIP",
-   "underlying": "GM",
-   "occ": "",
-   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
-  },
-  {
-   "ts": "2026-09-03T14:33:34+00:00",
-   "cycle": 67,
-   "kind": "SKIP",
-   "underlying": "PFE",
-   "occ": "",
-   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
-  },
-  {
-   "ts": "2026-09-03T14:33:34+00:00",
-   "cycle": 67,
-   "kind": "SKIP",
-   "underlying": "KO",
-   "occ": "",
-   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
-  },
-  {
-   "ts": "2026-09-03T14:33:34+00:00",
-   "cycle": 67,
-   "kind": "SKIP",
-   "underlying": "NOK",
-   "occ": "",
-   "reason": "NOK260904P00010000: delta 0.81 challenged, no credit roll \u2014 hold to assignment"
-  },
-  {
-   "ts": "2026-09-03T14:33:34+00:00",
-   "cycle": 67,
-   "kind": "SKIP",
-   "underlying": "SOFI",
-   "occ": "",
-   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
-  },
   {
    "ts": "2026-09-03T14:33:34+00:00",
    "cycle": 67,
@@ -1815,14 +1730,110 @@
    "underlying": "VALE",
    "occ": "",
    "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T16:41:54+00:00",
+   "cycle": 75,
+   "kind": "SKIP",
+   "underlying": "INTC",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T16:41:54+00:00",
+   "cycle": 75,
+   "kind": "SKIP",
+   "underlying": "T",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T16:41:54+00:00",
+   "cycle": 75,
+   "kind": "SKIP",
+   "underlying": "F",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T16:41:54+00:00",
+   "cycle": 75,
+   "kind": "SKIP",
+   "underlying": "GM",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T16:41:54+00:00",
+   "cycle": 75,
+   "kind": "SKIP",
+   "underlying": "PFE",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T16:41:54+00:00",
+   "cycle": 75,
+   "kind": "SKIP",
+   "underlying": "KO",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T16:41:54+00:00",
+   "cycle": 75,
+   "kind": "SKIP",
+   "underlying": "NOK",
+   "occ": "",
+   "reason": "NOK260904P00010000: delta 0.73 challenged, no credit roll \u2014 hold to assignment"
+  },
+  {
+   "ts": "2026-09-03T16:41:54+00:00",
+   "cycle": 75,
+   "kind": "SKIP",
+   "underlying": "SOFI",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T16:41:54+00:00",
+   "cycle": 75,
+   "kind": "SKIP",
+   "underlying": "BABA",
+   "occ": "",
+   "reason": "BABA260904P00113000: delta 0.75 challenged, no credit roll \u2014 hold to assignment"
+  },
+  {
+   "ts": "2026-09-03T16:41:54+00:00",
+   "cycle": 75,
+   "kind": "SKIP",
+   "underlying": "MU",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T16:41:54+00:00",
+   "cycle": 75,
+   "kind": "SKIP",
+   "underlying": "WBD",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T16:41:54+00:00",
+   "cycle": 75,
+   "kind": "SKIP",
+   "underlying": "VALE",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
   }
  ],
  "ai_vetoes": [],
  "stats": {
-  "cycles_total": 74,
-  "live_cycles": 73,
+  "cycles_total": 75,
+  "live_cycles": 74,
   "fills": 10,
-  "unrealized_pl": -260.0,
+  "unrealized_pl": -241.0,
   "kill_switch": false
  },
  "risk_limits": {
