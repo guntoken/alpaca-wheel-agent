@@ -1,8 +1,8 @@
 {
- "updated": "2026-09-03T10:25:01.730829-04:00",
+ "updated": "2026-09-03T10:50:01.772031-04:00",
  "market_open": true,
  "account": {
-  "equity": 99988.05,
+  "equity": 99990.05,
   "cash": 100667.05,
   "options_buying_power": 80367.05,
   "day_start_equity": 100050.39,
@@ -17,10 +17,10 @@
    "expiry": "2026-09-04",
    "qty": -1.0,
    "avg_entry": 0.97,
-   "mark": 3.1,
-   "unrealized_pl": -213.0,
+   "mark": 2.72,
+   "unrealized_pl": -175.0,
    "collateral": 11300.0,
-   "spot": 110.285
+   "spot": 110.67
   },
   {
    "symbol": "NOK260904P00010000",
@@ -30,10 +30,10 @@
    "expiry": "2026-09-04",
    "qty": -9.0,
    "avg_entry": 0.19,
-   "mark": 0.41,
-   "unrealized_pl": -198.0,
+   "mark": 0.45,
+   "unrealized_pl": -234.0,
    "collateral": 9000.0,
-   "spot": 9.675
+   "spot": 9.575
   }
  ],
  "open_orders": [],
@@ -385,44 +385,58 @@
   {
    "ts": "2026-09-03T14:17:44+00:00",
    "equity": 99974.05
+  },
+  {
+   "ts": "2026-09-03T14:33:34+00:00",
+   "equity": 100044.05
+  },
+  {
+   "ts": "2026-09-03T14:49:28+00:00",
+   "equity": 99965.05
   }
  ],
  "market_context": {
   "SPY": {
-   "last": 768.4,
+   "last": 768.63,
    "sma20": 768.93,
    "sma50": 755.99,
-   "vs_sma20_pct": -0.07,
-   "vs_sma50_pct": 1.64
+   "vs_sma20_pct": -0.04,
+   "vs_sma50_pct": 1.67
   },
   "QQQ": {
-   "last": 712.39,
-   "sma20": 717.44,
-   "sma50": 710.88,
-   "vs_sma20_pct": -0.7,
-   "vs_sma50_pct": 0.21
+   "last": 711.67,
+   "sma20": 717.41,
+   "sma50": 710.86,
+   "vs_sma20_pct": -0.8,
+   "vs_sma50_pct": 0.11
   },
   "SPY_vol_dollar_percentile": 0.063,
-  "SPY_day_change_pct": 0.43,
+  "SPY_day_change_pct": 0.46,
   "macro": {
    "GLD": {
-    "last": 410.16,
-    "day_pct": 1.84,
-    "vs_sma20_pct": 0.17
+    "last": 410.54,
+    "day_pct": 1.93,
+    "vs_sma20_pct": 0.26
    },
    "VIXY": {
-    "last": 17.19,
-    "day_pct": -0.52,
-    "vs_sma20_pct": -6.02
+    "last": 17.21,
+    "day_pct": -0.41,
+    "vs_sma20_pct": -5.92
    },
    "BTC": {
-    "last": 79055.7,
-    "day_pct": 2.25,
-    "vs_sma20_pct": 5.87
+    "last": 79968.13,
+    "day_pct": 3.43,
+    "vs_sma20_pct": 7.03
    },
    "news": {
     "avg_sentiment": null,
     "headlines": [
+     {
+      "ts": "2026-09-03 14:19:13+00:00",
+      "headline": "'Trump administration ratchets up its fight to get more oil flowing from California' - KTLA 5",
+      "sentiment": null,
+      "source": "benzinga"
+     },
      {
       "ts": "2026-09-03 14:00:39+00:00",
       "headline": "ISM Non-Manufacturing Employment For August 47.8 Vs 47.4 Prior",
@@ -450,12 +464,6 @@
      {
       "ts": "2026-09-03 13:45:22+00:00",
       "headline": "USA S&P Global Composite PMI For August\u00a056.0 Vs 56.0 Est",
-      "sentiment": null,
-      "source": "benzinga"
-     },
-     {
-      "ts": "2026-09-03 13:45:09+00:00",
-      "headline": "USA S&P Global Services PMI For August\u00a056.5 Vs 56.8 Est",
       "sentiment": null,
       "source": "benzinga"
      }
@@ -925,201 +933,23 @@
    "reason": "Both indexes above SMA50 in shallow, low-volume pullback; VIXY calm, BTC up, ISM beat; gold bid reads inflation hedge, not panic.",
    "det": "NEUTRAL_OR_BULL",
    "spy_pct": 0.43
+  },
+  {
+   "ts": "2026-09-03T14:33:34+00:00",
+   "regime": "RISK_ON",
+   "reason": "Indices above SMA50 in quiet low-volume pullback; VIXY falling, BTC strong, ISM beat; gold pop alone not stress",
+   "det": "NEUTRAL_OR_BULL",
+   "spy_pct": 0.43
+  },
+  {
+   "ts": "2026-09-03T14:49:28+00:00",
+   "regime": "NEUTRAL",
+   "reason": "Choppy tape pinned at 20-day SMAs; calm VIXY and strong BTC offset gold's +1.9% safety bid.",
+   "det": "NEUTRAL_OR_BULL",
+   "spy_pct": 0.46
   }
  ],
  "decisions_feed": [
-  {
-   "ts": "2026-09-02T18:26:17+00:00",
-   "cycle": 58,
-   "kind": "SKIP",
-   "underlying": "BABA",
-   "occ": "",
-   "reason": "BABA260904P00113000: delta 0.64 challenged, no credit roll \u2014 hold to assignment"
-  },
-  {
-   "ts": "2026-09-02T18:26:17+00:00",
-   "cycle": 58,
-   "kind": "SKIP",
-   "underlying": "MU",
-   "occ": "",
-   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
-  },
-  {
-   "ts": "2026-09-02T18:26:17+00:00",
-   "cycle": 58,
-   "kind": "SKIP",
-   "underlying": "WBD",
-   "occ": "",
-   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
-  },
-  {
-   "ts": "2026-09-02T18:26:17+00:00",
-   "cycle": 58,
-   "kind": "SKIP",
-   "underlying": "VALE",
-   "occ": "",
-   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
-  },
-  {
-   "ts": "2026-09-02T18:42:08+00:00",
-   "cycle": 59,
-   "kind": "SKIP",
-   "underlying": "INTC",
-   "occ": "",
-   "reason": "collateral budget exhausted for INTC"
-  },
-  {
-   "ts": "2026-09-02T18:42:08+00:00",
-   "cycle": 59,
-   "kind": "SKIP",
-   "underlying": "T",
-   "occ": "",
-   "reason": "vol percentile 16% < 25% floor \u2014 premium cheap vs history (AON gate)"
-  },
-  {
-   "ts": "2026-09-02T18:42:08+00:00",
-   "cycle": 59,
-   "kind": "SKIP",
-   "underlying": "F",
-   "occ": "",
-   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
-  },
-  {
-   "ts": "2026-09-02T18:42:08+00:00",
-   "cycle": 59,
-   "kind": "SKIP",
-   "underlying": "GM",
-   "occ": "",
-   "reason": "vol percentile 16% < 25% floor \u2014 premium cheap vs history (AON gate)"
-  },
-  {
-   "ts": "2026-09-02T18:42:08+00:00",
-   "cycle": 59,
-   "kind": "SKIP",
-   "underlying": "PFE",
-   "occ": "",
-   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
-  },
-  {
-   "ts": "2026-09-02T18:42:08+00:00",
-   "cycle": 59,
-   "kind": "SKIP",
-   "underlying": "KO",
-   "occ": "",
-   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
-  },
-  {
-   "ts": "2026-09-02T18:42:08+00:00",
-   "cycle": 59,
-   "kind": "SKIP",
-   "underlying": "NOK",
-   "occ": "",
-   "reason": "NOK260904P00010000: delta 0.63 challenged, no credit roll \u2014 hold to assignment"
-  },
-  {
-   "ts": "2026-09-02T18:42:08+00:00",
-   "cycle": 59,
-   "kind": "SKIP",
-   "underlying": "SOFI",
-   "occ": "",
-   "reason": "hold SOFI260904P00017500: delta 0.31, dte 1, uPL +80.00"
-  },
-  {
-   "ts": "2026-09-02T18:42:08+00:00",
-   "cycle": 59,
-   "kind": "SKIP",
-   "underlying": "BABA",
-   "occ": "",
-   "reason": "BABA260904P00113000: delta 0.64 challenged, no credit roll \u2014 hold to assignment"
-  },
-  {
-   "ts": "2026-09-02T18:42:08+00:00",
-   "cycle": 59,
-   "kind": "SKIP",
-   "underlying": "MU",
-   "occ": "",
-   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
-  },
-  {
-   "ts": "2026-09-02T18:42:08+00:00",
-   "cycle": 59,
-   "kind": "SKIP",
-   "underlying": "WBD",
-   "occ": "",
-   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
-  },
-  {
-   "ts": "2026-09-02T18:42:08+00:00",
-   "cycle": 59,
-   "kind": "SKIP",
-   "underlying": "VALE",
-   "occ": "",
-   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
-  },
-  {
-   "ts": "2026-09-02T18:58:10+00:00",
-   "cycle": 60,
-   "kind": "SKIP",
-   "underlying": "INTC",
-   "occ": "",
-   "reason": "collateral budget exhausted for INTC"
-  },
-  {
-   "ts": "2026-09-02T18:58:10+00:00",
-   "cycle": 60,
-   "kind": "SKIP",
-   "underlying": "T",
-   "occ": "",
-   "reason": "vol percentile 16% < 25% floor \u2014 premium cheap vs history (AON gate)"
-  },
-  {
-   "ts": "2026-09-02T18:58:10+00:00",
-   "cycle": 60,
-   "kind": "SKIP",
-   "underlying": "F",
-   "occ": "",
-   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
-  },
-  {
-   "ts": "2026-09-02T18:58:10+00:00",
-   "cycle": 60,
-   "kind": "SKIP",
-   "underlying": "GM",
-   "occ": "",
-   "reason": "vol percentile 16% < 25% floor \u2014 premium cheap vs history (AON gate)"
-  },
-  {
-   "ts": "2026-09-02T18:58:10+00:00",
-   "cycle": 60,
-   "kind": "SKIP",
-   "underlying": "PFE",
-   "occ": "",
-   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
-  },
-  {
-   "ts": "2026-09-02T18:58:10+00:00",
-   "cycle": 60,
-   "kind": "SKIP",
-   "underlying": "KO",
-   "occ": "",
-   "reason": "no qualifying put (delta/DTE/OI/spread/premium filters)"
-  },
-  {
-   "ts": "2026-09-02T18:58:10+00:00",
-   "cycle": 60,
-   "kind": "SKIP",
-   "underlying": "NOK",
-   "occ": "",
-   "reason": "NOK260904P00010000: delta 0.64 challenged, no credit roll \u2014 hold to assignment"
-  },
-  {
-   "ts": "2026-09-02T18:58:10+00:00",
-   "cycle": 60,
-   "kind": "SKIP",
-   "underlying": "SOFI",
-   "occ": "",
-   "reason": "hold SOFI260904P00017500: delta 0.29, dte 1, uPL +80.00"
-  },
   {
    "ts": "2026-09-02T18:58:10+00:00",
    "cycle": 60,
@@ -1727,14 +1557,206 @@
    "underlying": "VALE",
    "occ": "",
    "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T14:33:34+00:00",
+   "cycle": 67,
+   "kind": "SKIP",
+   "underlying": "INTC",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T14:33:34+00:00",
+   "cycle": 67,
+   "kind": "SKIP",
+   "underlying": "T",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T14:33:34+00:00",
+   "cycle": 67,
+   "kind": "SKIP",
+   "underlying": "F",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T14:33:34+00:00",
+   "cycle": 67,
+   "kind": "SKIP",
+   "underlying": "GM",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T14:33:34+00:00",
+   "cycle": 67,
+   "kind": "SKIP",
+   "underlying": "PFE",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T14:33:34+00:00",
+   "cycle": 67,
+   "kind": "SKIP",
+   "underlying": "KO",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T14:33:34+00:00",
+   "cycle": 67,
+   "kind": "SKIP",
+   "underlying": "NOK",
+   "occ": "",
+   "reason": "NOK260904P00010000: delta 0.81 challenged, no credit roll \u2014 hold to assignment"
+  },
+  {
+   "ts": "2026-09-03T14:33:34+00:00",
+   "cycle": 67,
+   "kind": "SKIP",
+   "underlying": "SOFI",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T14:33:34+00:00",
+   "cycle": 67,
+   "kind": "SKIP",
+   "underlying": "BABA",
+   "occ": "",
+   "reason": "BABA260904P00113000: delta 0.79 challenged, no credit roll \u2014 hold to assignment"
+  },
+  {
+   "ts": "2026-09-03T14:33:34+00:00",
+   "cycle": 67,
+   "kind": "SKIP",
+   "underlying": "MU",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T14:33:34+00:00",
+   "cycle": 67,
+   "kind": "SKIP",
+   "underlying": "WBD",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T14:33:34+00:00",
+   "cycle": 67,
+   "kind": "SKIP",
+   "underlying": "VALE",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T14:49:28+00:00",
+   "cycle": 68,
+   "kind": "SKIP",
+   "underlying": "INTC",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T14:49:28+00:00",
+   "cycle": 68,
+   "kind": "SKIP",
+   "underlying": "T",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T14:49:28+00:00",
+   "cycle": 68,
+   "kind": "SKIP",
+   "underlying": "F",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T14:49:28+00:00",
+   "cycle": 68,
+   "kind": "SKIP",
+   "underlying": "GM",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T14:49:28+00:00",
+   "cycle": 68,
+   "kind": "SKIP",
+   "underlying": "PFE",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T14:49:28+00:00",
+   "cycle": 68,
+   "kind": "SKIP",
+   "underlying": "KO",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T14:49:28+00:00",
+   "cycle": 68,
+   "kind": "SKIP",
+   "underlying": "NOK",
+   "occ": "",
+   "reason": "NOK260904P00010000: delta 0.88 challenged, no credit roll \u2014 hold to assignment"
+  },
+  {
+   "ts": "2026-09-03T14:49:28+00:00",
+   "cycle": 68,
+   "kind": "SKIP",
+   "underlying": "SOFI",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T14:49:28+00:00",
+   "cycle": 68,
+   "kind": "SKIP",
+   "underlying": "BABA",
+   "occ": "",
+   "reason": "BABA260904P00113000: delta 0.77 challenged, no credit roll \u2014 hold to assignment"
+  },
+  {
+   "ts": "2026-09-03T14:49:28+00:00",
+   "cycle": 68,
+   "kind": "SKIP",
+   "underlying": "MU",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T14:49:28+00:00",
+   "cycle": 68,
+   "kind": "SKIP",
+   "underlying": "WBD",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T14:49:28+00:00",
+   "cycle": 68,
+   "kind": "SKIP",
+   "underlying": "VALE",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
   }
  ],
  "ai_vetoes": [],
  "stats": {
-  "cycles_total": 66,
-  "live_cycles": 65,
+  "cycles_total": 68,
+  "live_cycles": 67,
   "fills": 10,
-  "unrealized_pl": -411.0,
+  "unrealized_pl": -409.0,
   "kill_switch": false
  },
  "risk_limits": {
