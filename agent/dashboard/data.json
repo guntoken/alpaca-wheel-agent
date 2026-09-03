@@ -1,8 +1,8 @@
 {
- "updated": "2026-09-03T15:57:42.156758-04:00",
+ "updated": "2026-09-03T15:58:22.454648-04:00",
  "market_open": true,
  "account": {
-  "equity": 100204.05,
+  "equity": 100211.05,
   "cash": 100667.05,
   "options_buying_power": 80367.05,
   "day_start_equity": 100156.05,
@@ -17,10 +17,10 @@
    "expiry": "2026-09-04",
    "qty": -1.0,
    "avg_entry": 0.97,
-   "mark": 1.75,
-   "unrealized_pl": -78.0,
+   "mark": 1.77,
+   "unrealized_pl": -80.0,
    "collateral": 11300.0,
-   "spot": 111.74
+   "spot": 111.69
   },
   {
    "symbol": "NOK260904P00010000",
@@ -30,10 +30,10 @@
    "expiry": "2026-09-04",
    "qty": -9.0,
    "avg_entry": 0.19,
-   "mark": 0.32,
-   "unrealized_pl": -117.0,
+   "mark": 0.31,
+   "unrealized_pl": -108.0,
    "collateral": 9000.0,
-   "spot": 9.745
+   "spot": 9.76
   }
  ],
  "open_orders": [],
@@ -1916,7 +1916,7 @@
   "cycles_total": 87,
   "live_cycles": 86,
   "fills": 10,
-  "unrealized_pl": -195.0,
+  "unrealized_pl": -188.0,
   "kill_switch": false
  },
  "risk_limits": {
