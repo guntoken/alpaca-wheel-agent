@@ -1,8 +1,8 @@
 {
- "updated": "2026-09-03T15:25:01.691044-04:00",
+ "updated": "2026-09-03T15:50:01.780721-04:00",
  "market_open": true,
  "account": {
-  "equity": 100197.05,
+  "equity": 100177.05,
   "cash": 100667.05,
   "options_buying_power": 80367.05,
   "day_start_equity": 100156.05,
@@ -17,10 +17,10 @@
    "expiry": "2026-09-04",
    "qty": -1.0,
    "avg_entry": 0.97,
-   "mark": 1.73,
-   "unrealized_pl": -76.0,
+   "mark": 1.75,
+   "unrealized_pl": -78.0,
    "collateral": 11300.0,
-   "spot": 111.87
+   "spot": 111.79
   },
   {
    "symbol": "NOK260904P00010000",
@@ -30,10 +30,10 @@
    "expiry": "2026-09-04",
    "qty": -9.0,
    "avg_entry": 0.19,
-   "mark": 0.33,
-   "unrealized_pl": -126.0,
+   "mark": 0.34,
+   "unrealized_pl": -135.0,
    "collateral": 9000.0,
-   "spot": 9.735
+   "spot": 9.76
   }
  ],
  "open_orders": [],
@@ -461,30 +461,34 @@
   {
    "ts": "2026-09-03T19:19:03+00:00",
    "equity": 100196.05
+  },
+  {
+   "ts": "2026-09-03T19:34:46+00:00",
+   "equity": 100206.05
   }
  ],
  "market_context": {
   "SPY": {
-   "last": 773.4,
+   "last": 773.325,
    "sma20": 769.17,
    "sma50": 756.09,
-   "vs_sma20_pct": 0.55,
-   "vs_sma50_pct": 2.29
+   "vs_sma20_pct": 0.54,
+   "vs_sma50_pct": 2.28
   },
   "QQQ": {
-   "last": 717.75,
+   "last": 717.59,
    "sma20": 717.71,
-   "sma50": 710.99,
-   "vs_sma20_pct": 0.01,
-   "vs_sma50_pct": 0.95
+   "sma50": 710.98,
+   "vs_sma20_pct": -0.02,
+   "vs_sma50_pct": 0.93
   },
   "SPY_vol_dollar_percentile": 0.167,
-  "SPY_day_change_pct": 1.08,
+  "SPY_day_change_pct": 1.07,
   "macro": {
    "GLD": {
-    "last": 410.16,
-    "day_pct": 1.84,
-    "vs_sma20_pct": 0.17
+    "last": 410.25,
+    "day_pct": 1.86,
+    "vs_sma20_pct": 0.19
    },
    "VIXY": {
     "last": 17.04,
@@ -492,9 +496,9 @@
     "vs_sma20_pct": -6.83
    },
    "BTC": {
-    "last": 81268.43,
-    "day_pct": 5.12,
-    "vs_sma20_pct": 8.68
+    "last": 81447.43,
+    "day_pct": 5.35,
+    "vs_sma20_pct": 8.9
    },
    "news": {
     "avg_sentiment": null,
@@ -540,13 +544,6 @@
   }
  },
  "regime_history": [
-  {
-   "ts": "2026-08-31T16:10:06+00:00",
-   "regime": "RISK_ON",
-   "reason": "Healthy pullback: SPY/QQQ above SMA50, slightly under SMA20; VIXY -6%, gold flat, BTC strong, calm news.",
-   "det": "NEUTRAL_OR_BULL",
-   "spy_pct": -0.54
-  },
   {
    "ts": "2026-08-31T16:26:16+00:00",
    "regime": "RISK_ON",
@@ -1099,106 +1096,17 @@
    "reason": "SPY above both SMAs, VIXY calm below trend, BTC risk appetite strong; gold one-day pop only minor offset.",
    "det": "NEUTRAL_OR_BULL",
    "spy_pct": 1.08
+  },
+  {
+   "ts": "2026-09-03T19:34:46+00:00",
+   "regime": "RISK_ON",
+   "reason": "SPY above both SMAs, fear gauge calm, BTC surging; gold bounce only at-range, no panic news",
+   "det": "NEUTRAL_OR_BULL",
+   "spy_pct": 1.07
   }
  ],
  "decisions_feed": [
   {
-   "ts": "2026-09-03T17:13:48+00:00",
-   "cycle": 77,
-   "kind": "SKIP",
-   "underlying": "BABA",
-   "occ": "",
-   "reason": "BABA260904P00113000 expires today \u2014 let it settle (assignment if ITM)"
-  },
-  {
-   "ts": "2026-09-03T17:13:48+00:00",
-   "cycle": 77,
-   "kind": "SKIP",
-   "underlying": "MU",
-   "occ": "",
-   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
-  },
-  {
-   "ts": "2026-09-03T17:13:48+00:00",
-   "cycle": 77,
-   "kind": "SKIP",
-   "underlying": "WBD",
-   "occ": "",
-   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
-  },
-  {
-   "ts": "2026-09-03T17:13:48+00:00",
-   "cycle": 77,
-   "kind": "SKIP",
-   "underlying": "VALE",
-   "occ": "",
-   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
-  },
-  {
-   "ts": "2026-09-03T17:29:43+00:00",
-   "cycle": 78,
-   "kind": "SKIP",
-   "underlying": "INTC",
-   "occ": "",
-   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
-  },
-  {
-   "ts": "2026-09-03T17:29:43+00:00",
-   "cycle": 78,
-   "kind": "SKIP",
-   "underlying": "T",
-   "occ": "",
-   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
-  },
-  {
-   "ts": "2026-09-03T17:29:43+00:00",
-   "cycle": 78,
-   "kind": "SKIP",
-   "underlying": "F",
-   "occ": "",
-   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
-  },
-  {
-   "ts": "2026-09-03T17:29:43+00:00",
-   "cycle": 78,
-   "kind": "SKIP",
-   "underlying": "GM",
-   "occ": "",
-   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
-  },
-  {
-   "ts": "2026-09-03T17:29:43+00:00",
-   "cycle": 78,
-   "kind": "SKIP",
-   "underlying": "PFE",
-   "occ": "",
-   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
-  },
-  {
-   "ts": "2026-09-03T17:29:43+00:00",
-   "cycle": 78,
-   "kind": "SKIP",
-   "underlying": "KO",
-   "occ": "",
-   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
-  },
-  {
-   "ts": "2026-09-03T17:29:43+00:00",
-   "cycle": 78,
-   "kind": "SKIP",
-   "underlying": "NOK",
-   "occ": "",
-   "reason": "NOK260904P00010000 expires today \u2014 let it settle (assignment if ITM)"
-  },
-  {
-   "ts": "2026-09-03T17:29:43+00:00",
-   "cycle": 78,
-   "kind": "SKIP",
-   "underlying": "SOFI",
-   "occ": "",
-   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
-  },
-  {
    "ts": "2026-09-03T17:29:43+00:00",
    "cycle": 78,
    "kind": "SKIP",
@@ -1897,6 +1805,102 @@
   {
    "ts": "2026-09-03T19:19:03+00:00",
    "cycle": 85,
+   "kind": "SKIP",
+   "underlying": "VALE",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T19:34:46+00:00",
+   "cycle": 86,
+   "kind": "SKIP",
+   "underlying": "INTC",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T19:34:46+00:00",
+   "cycle": 86,
+   "kind": "SKIP",
+   "underlying": "T",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T19:34:46+00:00",
+   "cycle": 86,
+   "kind": "SKIP",
+   "underlying": "F",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T19:34:46+00:00",
+   "cycle": 86,
+   "kind": "SKIP",
+   "underlying": "GM",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T19:34:46+00:00",
+   "cycle": 86,
+   "kind": "SKIP",
+   "underlying": "PFE",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T19:34:46+00:00",
+   "cycle": 86,
+   "kind": "SKIP",
+   "underlying": "KO",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T19:34:46+00:00",
+   "cycle": 86,
+   "kind": "SKIP",
+   "underlying": "NOK",
+   "occ": "",
+   "reason": "NOK260904P00010000 expires today \u2014 let it settle (assignment if ITM)"
+  },
+  {
+   "ts": "2026-09-03T19:34:46+00:00",
+   "cycle": 86,
+   "kind": "SKIP",
+   "underlying": "SOFI",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T19:34:46+00:00",
+   "cycle": 86,
+   "kind": "SKIP",
+   "underlying": "BABA",
+   "occ": "",
+   "reason": "BABA260904P00113000 expires today \u2014 let it settle (assignment if ITM)"
+  },
+  {
+   "ts": "2026-09-03T19:34:46+00:00",
+   "cycle": 86,
+   "kind": "SKIP",
+   "underlying": "MU",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T19:34:46+00:00",
+   "cycle": 86,
+   "kind": "SKIP",
+   "underlying": "WBD",
+   "occ": "",
+   "reason": "no-new-CSP night (1-DTE into NFP) \u2014 manage open legs only"
+  },
+  {
+   "ts": "2026-09-03T19:34:46+00:00",
+   "cycle": 86,
    "kind": "SKIP",
    "underlying": "VALE",
    "occ": "",
@@ -1905,10 +1909,10 @@
  ],
  "ai_vetoes": [],
  "stats": {
-  "cycles_total": 85,
-  "live_cycles": 84,
+  "cycles_total": 86,
+  "live_cycles": 85,
   "fills": 10,
-  "unrealized_pl": -202.0,
+  "unrealized_pl": -213.0,
   "kill_switch": false
  },
  "risk_limits": {
