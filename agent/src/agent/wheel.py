@@ -84,6 +84,8 @@ def decide(api: Api, st: SymbolState, ctx: dict) -> list[Intent]:
             return skip("no new entries (regime/risk gate)")
         if u not in ctx["universe"]:
             return skip("not in universe")
+        if config.BLOCK_NEW_CSP:
+            return skip("no-new-CSP night (1-DTE into NFP) — manage open legs only")
         if u in [i for i in ctx.get("active_underlyings", []) if i != u]:
             pass  # cap handled below via slots
         from . import risk

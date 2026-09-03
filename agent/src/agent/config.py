@@ -29,6 +29,11 @@ DTE_MIN, DTE_MAX = 7, 35
 # short's Thu-close mark is excluded, and any assignment settles post-snapshot.
 # None = standard 7–35 DTE wheel. Disclosed in the journal/README. ---
 SPRINT_EXPIRY = "2026-09-04"
+# Kamis 3 Sep malam (malam terakhir window skor): TIDAK buka CSP baru —
+# 1-DTE menjelang NFP (Jum 19:30 WIB, pasca-snapshot) = EV buruk. Premium
+# 4 malam sudah tercatat sebagai cash; posisi expiry 4-Sep dikecualikan
+# dari snapshot Kamis. Take-profit buyback & roll tetap diizinkan.
+BLOCK_NEW_CSP = True
 MIN_PREMIUM_PCT = 0.005        # premium >= 0.5% of collateral (strike*100)
 TP_CLOSE_FRACTION = 0.50       # buy back when premium <= 50% of what we received
 ROLL_DELTA = 0.60              # defensive: close short put when delta reaches this
