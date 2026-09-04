@@ -3,7 +3,7 @@
 Tiap ~25 menit sepanjang sesi pasar (20:30-03:00 WIB) malam Sel/Rab/Kam
 (plus sisa sesi Senin), jalankan `python -m agent.export` lalu commit+push
 data.json/journal/state. Tick penutup 02:57 tiap malam menangkap kondisi
-jelang close. Berhenti sendiri setelah Jum 4 Sep 03:05 WIB (window selesai).
+jelang close. Berhenti sendiri setelah Sab 5 Sep 03:05 WIB (malam pasca-window).
 
 Jalankan:  setsid nohup ~/.local/bin/uv run python autoexport.py \
              >> autoexport.log 2>&1 < /dev/null & echo $! > autoexport.pid
@@ -17,7 +17,7 @@ from pathlib import Path
 
 AGENT = Path(__file__).resolve().parent
 WIB = timezone(timedelta(hours=7))
-END = datetime(2026, 9, 4, 3, 5, tzinfo=WIB)          # window resmi selesai
+END = datetime(2026, 9, 5, 3, 5, tzinfo=WIB)          # malam Jum 4 Sep (pasca-window) selesai
 FILES = ["dashboard/data.json", "journal.jsonl", "state.json"]
 
 
@@ -51,7 +51,7 @@ def export_and_push():
         log("skip — tidak ada perubahan")
         return
     for args in (["git", "commit", "-m",
-                  "Auto-export sesi live (window skor resmi)",
+                  "Auto-export sesi live",
                   "-m", "Co-Authored-By: Claude Code <noreply@anthropic.com>"],
                  ["git", "pull", "--rebase", "--autostash"],
                  ["git", "push"]):

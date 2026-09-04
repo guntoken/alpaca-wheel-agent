@@ -28,12 +28,11 @@ DTE_MIN, DTE_MAX = 7, 35
 # rolls) target exactly that expiry: premium lands as counted cash while the
 # short's Thu-close mark is excluded, and any assignment settles post-snapshot.
 # None = standard 7–35 DTE wheel. Disclosed in the journal/README. ---
-SPRINT_EXPIRY = "2026-09-04"
-# Kamis 3 Sep malam (malam terakhir window skor): TIDAK buka CSP baru —
-# 1-DTE menjelang NFP (Jum 19:30 WIB, pasca-snapshot) = EV buruk. Premium
-# 4 malam sudah tercatat sebagai cash; posisi expiry 4-Sep dikecualikan
-# dari snapshot Kamis. Take-profit buyback & roll tetap diizinkan.
-BLOCK_NEW_CSP = True
+SPRINT_EXPIRY = None
+# Pasca-window (Jum 4 Sep, keputusan pemilik): wheel kembali normal —
+# CSP baru diizinkan, expiry bebas 7-35 DTE, vol-floor kembali 0.40.
+# Gate malam-4 (BLOCK_NEW_CSP utk 1-DTE menjelang NFP) sudah tidak relevan.
+BLOCK_NEW_CSP = False
 MIN_PREMIUM_PCT = 0.005        # premium >= 0.5% of collateral (strike*100)
 TP_CLOSE_FRACTION = 0.50       # buy back when premium <= 50% of what we received
 ROLL_DELTA = 0.60              # defensive: close short put when delta reaches this
@@ -42,9 +41,8 @@ ROLL_DELTA = 0.60              # defensive: close short put when delta reaches t
 # for premium selling: skip NEW CSPs when vol is cheap vs its own history) ---
 VOL_BAR_WINDOW = 21            # ~1 month bar, vs paper's 35-day OHP
 VOL_HISTORY_DAYS = 250         # paper uses 250 trading days
-VOL_PCT_FLOOR = 0.25           # sprint override (was 0.40): 4-session judged
-                               # window Sen–Kam 31 Agu–3 Sep; idle capital = zero
-                               # score, and 0.40 blocked 4/6 names on 30 Agu
+VOL_PCT_FLOOR = 0.40           # kembali normal pasca-sprint (0.25 hanya utk
+                               # window skor Sen–Kam 31 Agu–3 Sep)
 
 # --- CC (covered call) ---
 CC_TARGET_DELTA = 0.25
