@@ -245,8 +245,11 @@ def run_cycle(dry_run: bool = True, force: bool = False, no_ai: bool = False) ->
     caps = risk.collateral_caps(equity, regime["regime"])
     # Broker truth: our own caps may not exceed Alpaca's actual options buying
     # power (open CSP orders reserve it). If the field is missing, assume none.
+    # Halve the broker BP: Alpaca reserves ~2x strike-notional per PENDING
+    # sell-put order (observed Sep 11: 3 pending CSPs reserved $86.7k on
+    # $43.65k notional), so a 1x estimate oversubmits the 4th order (40310000).
     obp = _num(getattr(acct, "options_buying_power", None)) or 0.0
-    caps["total"] = min(caps["total"], collateral_used + obp)
+    caps["total"] = min(caps["total"], collateral_used + obp * 0.5)
     # Deterministic-regime budget multiplier (BEAR halves, EXTREME zeroes).
     caps["total"] *= det["budget_mult"]
     rec["options_buying_power"] = obp
