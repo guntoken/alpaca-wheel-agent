@@ -29,11 +29,11 @@ DTE_MIN, DTE_MAX = 7, 35
 # short's Thu-close mark is excluded, and any assignment settles post-snapshot.
 # None = standard 7–35 DTE wheel. Disclosed in the journal/README. ---
 SPRINT_EXPIRY = None
-# Dijeda selama penilaian juri (keputusan pemilik 4 Sep ~15:10 WIB): journey
-# public repo dibekukan di kondisi close resmi window (commit 03:00 WIB).
-# Assignment BABA/NOK 4-Sep tetap settle natural di level OCC. Resume
-# pasca-penilaian: BLOCK_NEW_CSP=False + restart loop (runbook owl-live-ops).
-BLOCK_NEW_CSP = True
+# Dijeda selama penilaian juri (4 Sep ~15:10 WIB); diresume pemilik 11 Sep
+# ~21:55 WIB dengan keys paper baru (keys lama dicabut Alpaca). Catatan
+# pasca-window: paper trading Alpaca TIDAK memproses assignment — opsi
+# deep-ITM BABA/NOK 4-Sep expired tanpa assignment, akun flat cash utuh.
+BLOCK_NEW_CSP = False
 MIN_PREMIUM_PCT = 0.005        # premium >= 0.5% of collateral (strike*100)
 TP_CLOSE_FRACTION = 0.50       # buy back when premium <= 50% of what we received
 ROLL_DELTA = 0.60              # defensive: close short put when delta reaches this
